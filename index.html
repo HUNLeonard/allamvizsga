@@ -67,11 +67,42 @@
             padding: 10px;
             border: 1px solid black;
             flex-direction: column;
+            position: relative;
         }
+
+        .completion-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .completion-0 {
+            background-color: #ff2d2d;
+        }
+
+        .completion-50 {
+            background-color: #ffff2a;
+        }
+
+        .completion-100 {
+            background-color: #23ff23;
+        }
+
+
         .tetel-square:hover {
             transform: translateY(-7px);
             transition: all 0.3s ease-in-out;
-            filter: drop-shadow(0px 10px 0px #000000);
+            filter: drop-shadow(0px 7px 0px #000000);
             background-color: #fff500;
         }
 
@@ -156,34 +187,34 @@
 
     <script>
         const tetelFiles = [
-            { name: 'Alga I.', file: '1.html' },
-            { name: 'Alga II.', file: '2.html' },
-            { name: 'Bonya I.', file: '3.html' },
-            { name: 'Fonya I.', file: '4.html' },
-            { name: 'köszi I.', file: '5.html' },
-            { name: 'Köszi II.', file: '6.html' },
-            { name: 'Logika I.', file: '7.html' },
-            { name: 'Mestint I.', file: '8.html' },
-            { name: 'Mestint II.', file: '9.html' },
-            { name: 'Opkut I.', file: '10.html' },
-            { name: 'Opkut II.', file: '11.html' },
-            { name: 'Oprend I.', file: '12.html' },
-            { name: 'Oprend II.', file: '13.html' },
-            { name: 'Adatb I.', file: '14.html' },
-            { name: 'Adatb II.', file: '15.html' },
-            { name: 'Digi I.', file: '16.html' },
-            { name: 'Prog alap I.', file: '17.html' },
-            { name: 'Prog alap II.', file: '18.html' },
-            { name: 'Prog 1-2 I.', file: '19.html' },
-            { name: 'Prog 1-2 II.', file: '20.html' },
-            { name: 'Prog 1-2 III.', file: '21.html' },
-            { name: 'Prog nyelv I.', file: '22.html' },
-            { name: 'Rendf I.', file: '23.html' },
-            { name: 'Rendf II.', file: '24.html' },
-            { name: 'Számh I.', file: '25.html' },
-            { name: 'Számh II.', file: '26.html' },
-            { name: 'Szar I.', file: '27.html' },
-            { name: 'Szar II.', file: '28.html' },
+            { name: 'Alga I.', file: '1.html' , completion: 50 },
+            { name: 'Alga II.', file: '2.html', completion: 0 },
+            { name: 'Bonya I.', file: '3.html', completion: 0 },
+            { name: 'Fonya I.', file: '4.html', completion: 0 },
+            { name: 'köszi I.', file: '5.html', completion: 0 },
+            { name: 'Köszi II.', file: '6.html', completion: 0 },
+            { name: 'Logika I.', file: '7.html', completion: 0 },
+            { name: 'Mestint I.', file: '8.html', completion: 0 },
+            { name: 'Mestint II.', file: '9.html', completion: 0 },
+            { name: 'Opkut I.', file: '10.html', completion: 0 },
+            { name: 'Opkut II.', file: '11.html', completion: 0 },
+            { name: 'Oprend I.', file: '12.html', completion: 0 },
+            { name: 'Oprend II.', file: '13.html', completion: 0 },
+            { name: 'Adatb I.', file: '14.html', completion: 0 },
+            { name: 'Adatb II.', file: '15.html', completion: 0 },
+            { name: 'Digi I.', file: '16.html', completion: 0 },
+            { name: 'Prog alap I.', file: '17.html', completion: 0 },
+            { name: 'Prog alap II.', file: '18.html', completion: 0 },
+            { name: 'Prog 1-2 I.', file: '19.html', completion: 0 },
+            { name: 'Prog 1-2 II.', file: '20.html', completion: 0 },
+            { name: 'Prog 1-2 III.', file: '21.html', completion: 0 },
+            { name: 'Prog nyelv I.', file: '22.html', completion: 0 },
+            { name: 'Rendf I.', file: '23.html', completion: 0 },
+            { name: 'Rendf II.', file: '24.html', completion: 0 },
+            { name: 'Számh I.', file: '25.html', completion: 0 },
+            { name: 'Számh II.', file: '26.html', completion: 0 },
+            { name: 'Szar I.', file: '27.html', completion: 0 },
+            { name: 'Szar II.', file: '28.html', completion: 0 },
         ];
     
         async function checkTetelContent(file) {
@@ -210,8 +241,13 @@
                 square.className = 'tetel-square';
                 
                 const isEmpty = await checkTetelContent(tetel.file);
-                if (isEmpty) {
+                if (isEmpty && tetel.completion === 0) {
                     square.classList.add('empty');
+                } else {
+                    const badge = document.createElement('div');
+                    badge.className = `completion-badge completion-${tetel.completion}`;
+                    badge.textContent = `${tetel.completion}%`;
+                    square.appendChild(badge);
                 }
                 
                 const tetelNumber = document.createElement('div');
