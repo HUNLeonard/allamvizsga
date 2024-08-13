@@ -4,15 +4,626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 2 - </title>
+    <title>Tétel 2 - Alga I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
+    <style>
+        .graph-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .graph-image {
+                width: 100%;
+                margin: 10px auto;
+            }
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Algoritmusok és adatszerkezetek I - 2. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Elemi adatszerkezetek</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Halmaz</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A halmaz szerepe <span class="highlight">alapvető</span> a számítástudományban, hasonlóan a matematikához. A számítástechnikában a halmazok <span class="highlight">dinamikusak</span> lehetnek, azaz  <span class="highlight">bővülhetnek, zsugorodhatnak</span> vagy módosulhatnak az algoritmusok során.</p>
+                <div class="step">
+                    <p><span class="key-point">Példa:</span> <code>H = {15, 23, 5, 8, 42}</code></p>
+                </div>
+                <p>A halmazokon értelmezett műveletek <span class="highlight">két csoportba</span> sorolhatók:</p>
+                <ul>
+                    <li><span class="highlight">Lekérdező műveletek:</span> információt szolgáltatnak a halmazról</li>
+                    <li><span class="highlight">Módosító műveletek:</span> megváltoztatják a halmazt</li>
+                </ul>
+                <div class="step">
+                    <p><span class="key-point">Leggyakoribb műveletek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Keres(H, k):</span> Lekérdező művelet, <span class="highlight">k kulcsú</span> elemet keres <span class="highlight">H halmazban</span></li>
+                        <ul>
+                            <li><span class="key-point">Példa:</span> <code>Keres(H, 23):</code> visszaadja a 23 kulcsú elem <span class="highlight">mutatóját</span>.</li>
+                        </ul>
+                        <li><span class="highlight">Beszúr(H, x):</span> Módosító művelet, <span class="highlight">bővíti</span> H halmazt x elemmel</li>
+                        <ul>
+                            <li><span class="key-point">Példa:</span> <code>Beszúr(H, 30):</code> után a halmaz: <code>{15, 23, 5, 8, 42, 30}</code></li>
+                        </ul>
+                        <li><span class="highlight">Töröl(H, x):</span> Módosító művelet, <span class="highlight">eltávolítja</span> x elemet H halmazból</li>
+                        <ul>
+                            <li><span class="key-point">Példa:</span> <code>Töröl(H, 8):</code> után a halmaz: <code>{15, 23, 5, 42}</code></li>
+                        </ul>
+                        <li><span class="highlight">Minimum(H) / Maximum(H):</span> Lekérdező művelet, <span class="highlight">legkisebb/legnagyobb</span> kulcsértékű elemet adja vissza</li>
+                        <ul>
+                            <li><span class="key-point">Példa:</span> <code>Minimum(H):</code> visszaadja az 5 kulcsú elem mutatóját.</li>
+                        </ul>
+                        <li><span class="highlight">Következő(H, x) / Előző(H, x):</span> Lekérdező művelet, x elem <span class="highlight">utáni/előtti</span> elemet adja vissza</li>
+                        <ul>
+                            <li><span class="key-point">Példa:</span> <code>Következő(H, 15):</code> visszaadja a 23 kulcsú elem mutatóját.</li>
+                        </ul>
+                    </ul>
+                </div>
+                <p><span class="key-point">Előny:</span> A halmazműveletek <span class="highlight">rugalmas</span> és <span class="highlight">hatékony adatkezelést</span> tesznek lehetővé.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Verem</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A verem egy <span class="highlight">speciális halmaz</span>, amely a <span class="highlight">LIFO (Last In First Out)</span> elvet követi.</p>
+                <p><span class="key-point">Működési elv:</span> Működése hasonló egy <span class="highlight">földbe ásott veremhez</span>: csak a <span class="highlight">tetején</span> lehet elemeket betenni és kivenni.</p>
+                <div class="step">
+                    <p><span class="key-point">Megvalósítás:</span> Egy n elemű verem megvalósítható egy <span class="highlight">V[1..n] tömbbel</span></p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Fontos tulajdonságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">tető[V]</span> attribútum: a legutoljára betett elem indexe</li>
+                        <li><span class="highlight">V[1]:</span> legalsó elem</li>
+                        <li><span class="highlight">V[tető[V]]:</span> legfelső elem</li>
+                        <li>Ha <span class="highlight">tető[V] = 0:</span> a verem üres</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Hibalehetőségek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Alulcsordulás:</span> Ha <span class="highlight">üres veremből</span> próbálunk elemet kivenni</li>
+                        <li><span class="highlight">Túlcsordulás:</span> Ha tető[V] értéke <span class="highlight">meghaladja n-t</span></li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Műveletek időigénye:</span> <span class="highlight">O(1)</span></p>
+                <p><span class="key-point">Előny:</span> <span class="highlight">Gyors és hatékony adatkezelés</span> bizonyos típusú problémáknál, például <span class="highlight">függvényhívások kezelésénél</span>.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Sor</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A sor egy olyan adatszerkezet, amely a <span class="highlight">FIFO (First In First Out)</span> elvet követi.</p>
+                <div class="step">
+                    <p><span class="key-point">Fontos fogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Fej:</span> A sor <span class="highlight">első eleme</span></li>
+                        <li><span class="highlight">Vége:</span> A sor <span class="highlight">utolsó eleme</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Műveletek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Sorba:</span> Új elem <span class="highlight">beszúrása</span> a sor végére</li>
+                        <li><span class="highlight">Sorból:</span> Elem <span class="highlight">kivétele</span> a sor elejéről</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Megvalósítás:</span> Egy legfeljebb <span class="highlight">n-1 elemű</span> sor megvalósítható egy <span class="highlight">S[1..n] tömb</span> felhasználásával</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Fontos tulajdonságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">fej[S]:</span> a sor első elemének indexe</li>
+                        <li><span class="highlight">vége[S]:</span> az új elem helyének indexe</li>
+                        <li><span class="highlight">Ciklikus elrendezésű</span></li>
+                        <li>Ha fej[S] = vége[S]: a sor <span class="highlight">üres</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Hibalehetőségek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Alulcsordulás:</span> Ha <span class="highlight">üres sorból</span> próbálunk elemet kivenni</li>
+                        <li><span class="highlight">Túlcsordulás:</span> Ha fej[S] = vége[S] + 1 (a sor <span class="highlight">tele van</span>)</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Műveletek időigénye:</span> <span class="highlight">O(1)</span></p>
+                <p><span class="key-point">Előny:</span> Ideális olyan feladatokhoz, ahol az adatok feldolgozása <span class="highlight">érkezési sorrendben</span> történik, például <span class="highlight">feladatütemezésnél</span>.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Láncolt lista</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A láncolt lista olyan adatszerkezet, melyben az objektumok <span class="highlight">lineáris sorrendben</span> követik egymást.</p>
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li>Minden objektum tartalmaz egy <span class="highlight">mutatót</span> a következő elemre</li>
+                        <li>A lista első elemére mutató pointer: <span class="highlight">fej[L]</span></li>
+                        <li>Ha fej[L] = NIL, akkor a lista <span class="highlight">üres</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Változatok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszeresen láncolt:</span> Csak a következő elemre mutat</li>
+                        <li><span class="highlight">Kétszeresen láncolt:</span> Az előző és következő elemre is mutat</li>
+                        <li><span class="highlight">Rendezett:</span> A kulcsmezők növekvő sorrendjében</li>
+                        <li><span class="highlight">Rendezetlen:</span> Tetszőleges sorrendben</li>
+                        <li><span class="highlight">Ciklikus:</span> Az utolsó elem a fejre mutat</li>
+                        <li><span class="highlight">Nem ciklikus:</span> Az utolsó elem NIL-re mutat</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Előny:</span> Rugalmas <span class="highlight">méretezhetőség</span> és hatékony <span class="highlight">beszúrás/törlés</span> a lista közepén.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Bináris keresőfák</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Bináris keresőfák alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A bináris keresőfák célja, hogy minden művelet (keresés, beszúrás, törlés) <span class="highlight">O(log n)</span> időben végrehajtható legyen.</p>
+                <div class="step">
+                    <p><span class="key-point">Mi az a fa?</span> A fa egy <span class="highlight">hierarchikus adatszerkezet</span>, amely csúcsokból (nodes) és élekből (edges) áll. Jellemzői:</p>
+                    <ul>
+                        <li>Van egy kiemelt csúcs, a <span class="highlight">gyökér (root)</span></li>
+                        <li>Minden csúcsnak (a gyökér kivételével) pontosan egy <span class="highlight">szülője</span> van</li>
+                        <li>Nincsenek <span class="highlight">körkörös kapcsolatok</span></li>
+                        <li>A csúcsok közötti kapcsolatokat <span class="highlight">szülő-gyermek viszonynak</span> nevezzük</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az a bináris fa?</span> A bináris fa egy olyan fa, amelyben <span class="highlight">minden csúcsnak legfeljebb két gyermeke</span> lehet. Ezeket általában <span class="highlight">bal és jobb gyermeknek</span> nevezzük.</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Mi az, hogy kiegyensúlyozott?</span> Egy bináris fa akkor kiegyensúlyozott, ha:</p>
+                    <ul>
+                        <li>A fa <span class="highlight">bal és jobb részfájának magassága közel azonos</span></li>
+                        <li>Ez a tulajdonság <span class="highlight">rekurzívan igaz minden részfára</span> is</li>
+                        <li>A kiegyensúlyozottság célja, hogy <span class="highlight">elkerüljük a fa "elfajulását"</span>, azaz hogy egyoldalúvá váljon</li>
+                        <li>Egy kiegyensúlyozott fa magassága <span class="highlight">közel logaritmikus</span> a csúcsok számához viszonyítva</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Miért "kereső"?</span> A bináris keresőfa egy speciális bináris fa, amelyben:</p>
+                    <ul>
+                        <li>Minden csúcsnak <span class="highlight">legfeljebb 2 gyereke</span> lehet</li>
+                        <li>Minden csúcs <span class="highlight">bal részfájában</span> lévő érték <span class="highlight">kisebb</span> a csúcs értékénél</li>
+                        <li>Minden csúcs <span class="highlight">jobb részfájában</span> lévő érték <span class="highlight">nagyobb vagy egyenlő</span> a csúcs értékénél</li>
+                        <li>Ez a tulajdonság lehetővé teszi a <span class="highlight">gyors keresést, beszúrást és törlést</span>, mivel minden lépésben a fa felét kizárhatjuk</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Fa magassága (h):</span></p>
+                    <ul>
+                        <li>Legrosszabb esetben lehet akár <span class="highlight">n</span> (beszúrt elemek száma)</li>
+                        <li>A fa szerkezete <span class="highlight">erősen függ</span> a beszúrás sorrendjétől</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Előny:</span> <span class="highlight">Hatékony keresés, beszúrás és törlés</span> nagy adathalmazokon.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kiegyensúlyozott keresőfák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <a href="https://www.youtube.com/watch?v=DB1HFCEdLxA" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p><span class="key-point">Definíció:</span> Kiegyensúlyozott keresőfáról akkor beszélünk, ha annak <span class="highlight">magassága a lehető legkisebb</span>. Az azon végrehajtott műveletek időigénye csak a magasságtól függ.</p>
+                <div class="step">
+                    <p><span class="key-point">Példa:</span> <span class="highlight">Piros-fekete fa</span></p>
+                    <ul>
+                        <li><span class="highlight">Megközelítőleg kiegyensúlyozott</span></li>
+                        <li>Magassága legfeljebb <span class="highlight">2 log<small><small>2</small></small>(n+1)</span></li>
+                    </ul>
+                    <p><span class="key-point">Piros-fekete fa tulajdonságai:</span></p>
+                    <ol>
+                        <li>Minden csúcs színe <span class="highlight">piros vagy fekete</span></li>
+                        <li>A <span class="highlight">gyökér fekete</span></li>
+                        <li>Minden <span class="highlight">levél (NIL) színe fekete</span></li>
+                        <li>Minden <span class="highlight">piros csúcsnak mindkét gyereke fekete</span></li>
+                        <li>Bármely csúcsból bármely levélig vezető úton <span class="highlight">ugyanannyi fekete csúcs</span> van</li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Tulajdonságok fenntartása:</span> Ezek a 5 piros-fekete tulajdonságok módosítások során fenntartandók, ami egész könnyen sérülhet, de nem gond hisz <span class="highlight">O(log n) idő alatt helyreállíthatók</span>.</p>
+                <p><span class="key-point">Előny:</span> Garantált <span class="highlight">O(log n) műveleti idő</span> még a legrosszabb esetben is.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Bináris keresőfa műveletek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div>
+                    <h3>Playlista ehez:
+                    <a href="https://www.youtube.com/watch?v=qvZGUFHWChY" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    </h3>
+                </div>
+                
+                <div class="step">
+                    <h3>Keresés:</h3>
+                    <a href="https://www.youtube.com/watch?v=Gt2yBZAhsGM" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ol>
+                        <li>A <span class="highlight">gyökércsúcsból</span> indulunk</li>
+                        <li><span class="highlight">Összehasonlítjuk</span> az aktuális elemet a keresett értékkel</li>
+                        <li>Ha <span class="highlight">egyezik</span>, visszatérünk</li>
+                        <li>Ha <span class="highlight">kisebb</span>, a bal részfában folytatjuk</li>
+                        <li>Ha <span class="highlight">nagyobb</span>, a jobb részfában folytatjuk</li>
+                    </ol>
+                    <p><span class="key-point">Időigény:</span> <span class="highlight">O(h)</span>, ahol h a fa magassága</p>
+                </div>
+    
+                <div class="step">
+                    <h3>Min/Max keresés:</h3>
+                    <ul>
+                        <li><span class="highlight">Min:</span> Bal oldali ágon haladunk, amíg lehet</li>
+                        <li><span class="highlight">Max:</span> Jobb oldali ágon haladunk, amíg lehet</li>
+                    </ul>
+                    <p><span class="key-point">Időigény:</span> <span class="highlight">O(h)</span></p>
+                </div>
+    
+                <div class="step">
+                    <h3>Következő/Előző elem keresése:</h3>
+                    <ul>
+                        <li><span class="highlight">Következő:</span> Ha van jobb részfa, annak a <span class="highlight">minimuma</span>; ha nincs, felfelé haladunk, amíg <span class="highlight">nagyobb értéket</span> nem találunk</li>
+                        <li><span class="highlight">Előző:</span> Ha van bal részfa, annak a <span class="highlight">maximuma</span>; ha nincs, felfelé haladunk, amíg <span class="highlight">kisebb értéket</span> nem találunk</li>
+                    </ul>
+                    <p><span class="key-point">Időigény:</span> <span class="highlight">O(h)</span></p>
+                </div>
+    
+                <div class="step">
+                    <h3>Beszúrás:</h3>
+                    <a href="https://www.youtube.com/watch?v=A3JZinzkMpk" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ol>
+                        <li>Megkeressük a <span class="highlight">megfelelő helyet</span> (mint a keresésnél)</li>
+                        <li>Beszúrjuk az új elemet <span class="highlight">levélként</span></li>
+                        <li>Szükség esetén <span class="highlight">újraszínezzük</span> a fát (piros-fekete fa esetén)</li>
+                    </ol>
+                    <p><span class="key-point">Időigény:</span> <span class="highlight">O(h)</span></p>
+                </div>
+    
+                <div class="step">
+                    <h3>Törlés:</h3>
+                    <a href="https://www.youtube.com/watch?v=lU99loSvD8s" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ul>
+                        <li>Ha a törlendő csúcs <span class="highlight">levél</span>: egyszerűen eltávolítjuk</li>
+                        <li>Ha <span class="highlight">egy gyereke</span> van: a gyereket kötjük a törölt csúcs szülőjéhez</li>
+                        <li>Ha <span class="highlight">két gyereke</span> van: a bal részfa <span class="highlight">legnagyobb elemét</span> (vagy a jobb részfa <span class="highlight">legkisebb elemét</span>) tesszük a helyére</li>
+                    </ul>
+                    <p><span class="key-point">Időigény:</span> <span class="highlight">O(h)</span></p>
+                </div>
+    
+                <div class="step">
+                    <h3>Inorder bejárás:</h3>
+                    <ol>
+                        <li><span class="highlight">Rekurzívan</span> bejárjuk a bal részfát</li>
+                        <li>Feldolgozzuk a <span class="highlight">gyökérelemet</span></li>
+                        <li><span class="highlight">Rekurzívan</span> bejárjuk a jobb részfát</li>
+                    </ol>
+                    <p><span class="key-point">Eredmény:</span> Ez a bejárás a elemeket <span class="highlight">növekvő sorrendben</span> adja vissza.</p>
+                </div>
+                <p><span class="key-point">Előny:</span> Hatékony módszer a fa elemeinek <span class="highlight">rendezett bejárására</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Hasító táblázatok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Hasító táblák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <a href="https://www.youtube.com/watch?v=knV86FlSXJ8" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p><span class="key-point">Definíció:</span> A hasító táblázat egy <span class="highlight">hatékony adatszerkezet</span> szótárak megvalósítására.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mi az alapötlet?</span></p>
+                    <ul>
+                        <li>A cél a <span class="highlight">gyors keresés és beszúrás</span> megvalósítása</li>
+                        <li>Az elemeket egy <span class="highlight">tömbben (táblázatban) tároljuk</span></li>
+                        <li>Minden elemhez egy <span class="highlight">egyedi indexet rendelünk</span> a hasító függvény segítségével</li>
+                        <li>Ez lehetővé teszi az <span class="highlight">elemek közvetlen elérését</span> a kiszámított index alapján</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi ezzel a baj (potenciális problémák)?</span></p>
+                    <ul>
+                        <li><span class="highlight">Ütközések:</span> Különböző kulcsok ugyanarra az indexre képződhetnek le</li>
+                        <li><span class="highlight">Nem garantált</span> a konstans idejű műveletvégzés minden esetben</li>
+                        <li>A hasító függvény <span class="highlight">minősége kritikus</span> a teljesítmény szempontjából</li>
+                        <li><span class="highlight">Dinamikus átméretezés</span> lehet szükséges a hatékonyság fenntartásához</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az a hasító függvény?</span></p>
+                    <ul>
+                        <li>Egy <span class="highlight">matematikai függvény</span>, amely a kulcsokat a táblázat indexeire képezi le</li>
+                        <li>Jelölése: h : U → {0, 1, ..., m-1}, ahol U a kulcsok univerzuma, m a táblázat mérete</li>
+                        <li>Cél: <span class="highlight">Egyenletes eloszlású</span> indexek generálása a kulcsokból</li>
+                        <li>Példa: <span class="highlight">Osztási maradékos módszer:</span> h(k) = k mod m</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Összegzés:</span> A hasító táblázat <span class="highlight">kompromisszumot</span> kínál a memóriahasználat és a keresési sebesség között, ütközéskezelési technikákkal kiegészítve.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Ütközéskezelés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíciója:</span> Ütközésről beszélünk, amikor <span class="highlight">két különböző kulcs</span> ugyanarra a táblaindexre képződik le</p>
+                <p><span class="key-point">Például:</span> ha h(k1) = h(k2), de k1 ≠ k2</p>
+                <p>Az ütközések <span class="highlight">elkerülhetetlenek</span>, ha a kulcsok univerzuma nagyobb, mint a táblázat mérete</p>
+                <div class="step">
+                    <p><span class="key-point">Ütközésfeloldás láncolással:</span></p>
+                    <ul>
+                        <li>Ez az úgynevezett <span class="highlight">"ütközésfeloldás láncolással"</span> módszer</li>
+                        <li>Minden táblaelem egy <span class="highlight">láncolt lista fejére</span> mutat</li>
+                        <li>Az azonos indexre képződő elemeket <span class="highlight">ebben a listában tároljuk</span></li>
+                        <li>Műveletek:
+                            <ul>
+                                <li><span class="highlight">Beszúrás:</span> Az új elemet a megfelelő lista elejére fűzzük</li>
+                                <li><span class="highlight">Keresés:</span> A megfelelő listát végigjárva keressük az elemet</li>
+                                <li><span class="highlight">Törlés:</span> Az elemet eltávolítjuk a listából</li>
+                            </ul>
+                        </li>
+                        <li>Előnye: <span class="highlight">Egyszerű implementáció</span> és hatékony kezelése az ütközéseknek</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Megjegyzés:</span> Bár az ütközések elkerülhetetlenek, a láncolás <span class="highlight">hatékony megoldást</span> nyújt kezelésükre, fenntartva a hasító táblák előnyeit.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Gráfok és fák számítógépes reprezentációja</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Fák reprezentációja</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A fák reprezentációjánál a <span class="highlight">csúcsokat</span> és az <span class="highlight">éleket</span> kell ábrázolni. Maga a fa lényegében egy <span class="highlight">mutató a gyökérre</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Reprezentációs módok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gyerek éllista:</span> 
+                            <ul>
+                                <li>Tartalmazza a <span class="highlight">kulcsot</span>, a <span class="highlight">szülőt</span> és a <span class="highlight">leszármazottak listáját</span></li>
+                                <li><span class="key-point">Előny:</span> Könnyű hozzáférés az összes gyerekhez</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Első fiú, apa, testvér:</span> 
+                            <ul>
+                                <li>Tartalmazza a <span class="highlight">kulcsot</span>, a <span class="highlight">szülőt</span>, egy <span class="highlight">gyereket</span> és egy <span class="highlight">testvért</span></li>
+                                <li><span class="key-point">Előny:</span> Memóriatakarékos, és könnyen bejárható</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Bináris fa:</span> 
+                            <ul>
+                                <li>Tartalmazza a <span class="highlight">szülőt</span>, a <span class="highlight">kulcsot</span>, a <span class="highlight">bal</span> és a <span class="highlight">jobb gyereket</span></li>
+                                <li><span class="key-point">Előny:</span> Egyszerű és hatékony bináris fákhoz</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Előny:</span> <span class="highlight">Rugalmas reprezentáció</span>, amely különböző típusú fák <span class="highlight">hatékony tárolását</span> és <span class="highlight">kezelését</span> teszi lehetővé.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Gráfok ábrázolása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a gráf?</span> A gráf egy olyan <span class="highlight">adatszerkezet</span>, amely <span class="highlight">csúcsokból (vertices)</span> és az ezeket összekötő <span class="highlight">élekből (edges)</span> áll. A gráfok alkalmasak komplex kapcsolatok és hálózatok modellezésére.</p>
+                <p><span class="key-point">Definíció:</span> Gráfok ábrázolásánál meg kell különböztetni az <span class="highlight">irányított</span> és <span class="highlight">irányítatlan</span> gráfokat.</p>
+                <div class="step">
+
+                    <p><span class="key-point">Ábrázolási módok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Szomszédsági lista:</span>
+                            <ul>
+                                <li>Minden csúcshoz egy listát rendelünk, amely tartalmazza az adott csúcsból <span class="highlight">közvetlenül elérhető csúcsokat</span></li>
+                                <li><span class="highlight">Irányítatlan gráf:</span> Ha két csúcs között van él, <span class="highlight">mindkét irányban</span> felvesszük</li>
+                                <li><span class="highlight">Irányított gráf:</span> Csak a <span class="highlight">kimenő éleket</span> vesszük fel</li>
+                                <li><span class="key-point">Előny:</span> <span class="highlight">Helytakarékos</span> ritka gráfoknál</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Csúcsmátrix:</span>
+                            <ul>
+                                <li>Egy <span class="highlight">n x n méretű mátrix</span>, ahol n a csúcsok száma</li>
+                                <li><span class="highlight">Irányítatlan gráf:</span> <span class="highlight">Szimmetrikus mátrixot</span> kapunk</li>
+                                <li><span class="highlight">Irányított gráf:</span> Ha van él u-ból v-be, akkor a mátrix <span class="highlight">[u,v] eleme 1</span>, egyébként 0</li>
+                                <li><span class="key-point">Előny:</span> <span class="highlight">Gyors élkeresés</span> sűrű gráfoknál</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Példa:</span> Szomszédsági lista irányított/irányítatlan gráfhoz</p>
+                    <img src="../assets/images/graf_abrazolasa.webp" alt="Gráf ábrázolása szomszédsági listával" class="graph-image">
+                </div>
+                <p><span class="key-point">Összehasonlítás:</span> A <span class="highlight">szomszédsági lista</span> hatékony tárolást biztosít <span class="highlight">ritka gráfoknak</span>, míg a <span class="highlight">csúcsmátrix</span> gyors élkeresést tesz lehetővé <span class="highlight">sűrű gráfokban</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összegzés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Elemi adatszerkezetek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Halmaz:</span></p>
+                    <ul>
+                        <li><span class="highlight">Dinamikus halmazok:</span> Időben változhatnak, ellentétben a matematikai halmazokkal</li>
+                        <li><span class="highlight">Lekérdező műveletek:</span> keres, minimum, maximum, előző, következő</li>
+                        <li><span class="highlight">Módosító műveletek:</span> beszúr, töröl</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Verem:</span></p>
+                    <ul>
+                        <li>Megvalósítás: <span class="highlight">n elemű tömbbel</span></li>
+                        <li><span class="highlight">LIFO (Last In First Out)</span> szerkezet</li>
+                        <li>Műveletek: <span class="highlight">Verembe (beszúr), Veremből (töröl)</span></li>
+                        <li>Analógia: Olyan, mint egy <span class="highlight">földbe ásott verem</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Sor:</span></p>
+                    <ul>
+                        <li><span class="highlight">FIFO (First In First Out)</span> szerkezet</li>
+                        <li>Műveletek: <span class="highlight">Sorba (beszúr), Sorból (töröl)</span></li>
+                        <li>Kivétel: A <span class="highlight">legrégebb óta</span> a sorban lévő elem</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Láncolt lista:</span></p>
+                    <ul>
+                        <li>Elemek <span class="highlight">referenciát tartalmaznak</span> a következő (és opcionálisan az előző) elemre</li>
+                        <li>Változatok:
+                            <ul>
+                                <li><span class="highlight">Egyszeresen láncolt</span>: csak következő elemre mutat</li>
+                                <li><span class="highlight">Kétszeresen láncolt</span>: előző és következő elemre is mutat</li>
+                                <li><span class="highlight">Rendezett / Nem rendezett</span></li>
+                                <li><span class="highlight">Ciklikus / Nem ciklikus</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Bináris keresőfák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Fő tulajdonságok:</span></p>
+                    <ul>
+                        <li>Műveletek futásideje: <span class="highlight">O(log n)</span></li>
+                        <li><span class="highlight">Bináris keresőfa tulajdonság:</span> Bal részfa < gyökér ≤ jobb részfa</li>
+                        <li>Fa magassága legrosszabb esetben: <span class="highlight">n</span></li>
+                        <li>Cél: <span class="highlight">Kiegyensúlyozott keresőfák</span> (pl. piros-fekete fa)</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Műveletek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Keresés:</span> Gyökértől indulva, összehasonlítás alapján haladunk</li>
+                        <li><span class="highlight">Min/Max:</span> Szélső elemek keresése</li>
+                        <li><span class="highlight">Következő/Előző:</span> Részfában minimum/maximum keresése</li>
+                        <li><span class="highlight">Beszúrás:</span> Megfelelő hely keresése, majd beszúrás</li>
+                        <li><span class="highlight">Törlés:</span> Különböző esetek kezelése (levél, egy gyerek, két gyerek)</li>
+                        <li><span class="highlight">Inorder bejárás:</span> Növekvő sorrendű elemkinyerés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Hasító táblázatok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hatékony szótár</span> megvalósítás</li>
+                        <li>Keresés ideje: Átlagosan <span class="highlight">O(1)</span>, legrosszabb esetben <span class="highlight">ϴ(n)</span></li>
+                        <li><span class="highlight">Memóriahatékony</span> nagy kulcsuniverzum esetén</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Működés:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hasító függvény (h):</span> Kulcsok leképezése táblázat indexeire</li>
+                        <li>h : U → {0, 1, …, m - 1}, ahol U a kulcsuniverzum, m a táblázat mérete</li>
+                        <li>Cél: <span class="highlight">Tömbindexek tartományának csökkentése</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gráfok és fák reprezentációja</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Fák ábrázolása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gyerek éllista:</span> Kulcs, szülő, leszármazottak listája</li>
+                        <li><span class="highlight">Első fiú, apa, testvér:</span> Kulcs, szülő, egy gyerek, egy testvér</li>
+                        <li><span class="highlight">Bináris fa:</span> Szülő, kulcs, bal és jobb gyerek</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Gráfok ábrázolása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Szomszédsági lista:</span>
+                            <ul>
+                                <li>Irányítatlan: Mindkét irányú él felvétele</li>
+                                <li>Irányított: Csak kimenő élek felvétele</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Csúcsmátrix:</span>
+                            <ul>
+                                <li>Irányítatlan: Szimmetrikus mátrix</li>
+                                <li>Irányított: Aszimmetrikus mátrix (1 - van él, 0 - nincs él)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

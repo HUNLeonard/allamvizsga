@@ -70,8 +70,8 @@
                     <p><span class="key-point">Lépések:</span></p>
                     <ol>
                         <li><span class="highlight">Felezzük le</span> a keresési tartomány. <br>(Osszuk két részre)</li>
-                        <li>Nézzük meg, a keresett elemet a középső elemmel <span class="highlight">összehasonlítása</span>.</li>
-                        <li><span class="highlight">Válasszuk ki</span> a megfelelő <span class="highlight">félet</span> további keresésre.</li>
+                        <li><span class="highlight">Hasonlítsuk össze</span>a keresett elemet a középső elemmel.</li>
+                        <li><span class="highlight">Válasszuk ki </span>a megfelelő <span class="highlight">felet</span> további keresésre.</li>
                         <li>Az 1-3 lépések <span class="highlight">ismétlése</span>, amíg meg nem találjuk az elemet vagy ki nem derül, hogy nincs benne.</li>
                     </ol>
                 </div>
@@ -196,17 +196,9 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Algoritmus lépései:</span></p>
-                    <ol>
-                        <li><span class="highlight">Felosztás:</span> A tömböt rekurzívan felosztjuk két közel egyenlő részre.</li>
-                        <li><span class="highlight">Rendezés:</span> A résztömböket rekurzívan rendezzük.</li>
-                        <li><span class="highlight">Összefésülés:</span> A rendezett résztömböket "összefésüljük<span class="highlight">*</span>" egy rendezett tömbbé.</li>
-                        <li><span class="highlight">Ismétlés:</span> Az 1-3 lépéseket ismételjük, amíg el nem érjük az eredeti méretű, rendezett tömböt.</li>
-                    </ol>
-                </div>
-                <div class="step">
                     <p><span class="key-point">*Összefésülési folyamat (by ATTILA):</span></p>
                     <ul>
+                        <li><span class="highlight">Felosztás:</span> A tömböt először isrekurzívan felosztjuk közel egyenlő részekre</li>
                         <li>Két rendezett résztömböt egyesítünk:</li>
                         <li>Összehasonlítjuk a résztömbök első elemeit.</li>
                         <li>A kisebb elemet az eredmény tömbbe helyezzük.</li>
