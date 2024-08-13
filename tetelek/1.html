@@ -19,80 +19,106 @@
     </div>
     <div class="main-content">
 		<div class="algorithm">
-			<h2>1. Mohó algoritmusok</h2>
-			<p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-			<div class="content">
-				<p>A mohó algoritmus alapelve az, hogy <span class="highlight">minden adott lépésben az optimálisnak látszó választást teszi meg.</span> Ez az egyszerű megközelítés nem minden problémára alkalmazható, de ahol igen, ott <span class="highlight">rendkívül hatékony.</span> A cél, hogy a mohó választás <span class="highlight">egyetlen részproblémát eredményezzen</span>, amelynek optimális megoldásából közvetlenül következik az eredeti probléma optimális megoldása.</p>
-				<p>Ezzel a megközelítés arra törekszik, hogy <span class="highlight">minimalizálja a szükséges rekurzív hívások számát</span>, ezáltal csökkentve a probléma komplexitását.</p>
-				<p>Bár gyors és hatékony, a mohó algoritmus nem mindig találja meg a globális optimumot, mivel <span class="highlight">a lokális optimumokat globális optimumként azonosíthatja</span>. Ezért körültekintően kell alkalmazni optimalizálási problémákra.</p>
-				<h3>Példa: Töredékes hátizsák probléma</h3>
-				<p>Képzeljük el, hogy van egy hátizsákunk és különböző tárgyaink, amiket bele szeretnénk tenni. Minden tárgynak van <span class="highlight">értéke és súlya</span>, de a tárgyakat fel is darabolhatjuk. A cél, hogy a lehető <span class="highlight">legtöbb értéket</span> vigyük magunkkal a hátizsák súlykorlátján belül.</p>
-				<p><strong>A mohó algoritmus így oldaná meg ezt a problémát:</strong></p>
-				<ol>
-					<li>Először kiszámoljuk minden tárgy <span class="highlight">érték/súly arányát</span>.</li>
-					<li>Ezután <span class="highlight">sorba rendezzük</span> a tárgyakat e szerint az arány szerint, a legnagyobbtól a legkisebbig.</li>
-					<li>Végigmegyünk ezen a listán:
-						<ol>
-							<li>Ha egy tárgy teljesen belefér a hátizsákba, betesszük.</li>
-							<li>Ha nem fér be teljesen, annyit teszünk be belőle, amennyi még befér.</li>
-						</ol>
-					</li>
-					<li>Ezt addig folytatjuk, amíg a hátizsák meg nem telik.</li>
-				</ol>
-				<p>Ez a megközelítés <span class="highlight">optimális megoldást ad</span>, mert mindig a legjobb "ár-érték arányú" tárgyakat választjuk.</p>
-			</div>
-		</div>
-		<div class="algorithm">
-			<h2>2. Oszd-meg-és-uralkodj algoritmusok</h2>
-			<p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-			<div class="content">
-				<p>Az oszd-meg-és-uralkodj módszer lényege, hogy a problémát <span class="highlight">kisebb, hasonló jellegű és egymástól független </span><strong>(diszjunkt) </strong><span class="highlight"> részfeladatokra bontja</span>. Ezeket a részfeladatokat aztán rekurzívan olja meg, szükség esetén tovább bontva őket, míg elemi feladatokhoz nem jutunk. Végül a <span class="highlight">részfeladatok megoldásait összevonja</span> az eredeti probléma megoldásává.</p>
-				<p>Ez a módszer akkor hatékony, ha a részfeladatok <span class="highlight">valóban függetlenek egymástól és nincsenek ismétlődések</span>. Fontos megjegyezni, hogy bár alapos megoldást nyújt, általában ez a leglassabb a részproblémára bontó algoritmusok közül.</p>
-				<p>Az oszd-meg-és-uralkodj algoritmus három fő lépésből áll:</p>
-				<ol>
-					<li><span class="highlight">Felosztás</span>: A probléma kisebb részproblémákra bontása.</li>
-					<li><span class="highlight">Megoldás</span>: A részproblémák önálló megoldása, rekurzív vagy iteratív módon.</li>
-					<li><span class="highlight">Összevonás</span>: A részmegoldások kombinálása a teljes megoldás érdekében.</li>
-				</ol>
-				<h3>Példa: Bináris keresés</h3>
-				<p>Képzeljük el, hogy egy rendezett telefonkönyvben keresünk egy nevet. Az oszd-meg-és-uralkodj megközelítés így nézne ki:</p>
-				<ol>
-					<li>Nyissuk ki a könyvet középen.</li>
-					<li>Nézzük meg, hogy a keresett név a középső névhez képest előrébb vagy hátrébb van-e a betűrendben.</li>
-					<li>Ha előrébb van, csak az első felével foglalkozunk tovább, ha hátrébb, akkor csak a második felével.</li>
-					<li>Ezt ismételjük, mindig felezve a maradék részt, amíg meg nem találjuk a nevet vagy ki nem derül, hogy nincs benne.</li>
-				</ol>
-				<p>Ez a módszer sokkal <span class="highlight">gyorsabb</span>, mint ha egyesével néznénk végig minden nevet.</p>
-			</div>
-		</div>
-		<div class="algorithm">
-        <h2>3. Dinamikus programozás</h2>
-        <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-        <div class="content">
-            <p>A dinamikus programozás egy olyan módszer, amely <span class="highlight">komplex problémákat kisebb részproblémákra bont</span>, és ezek megoldásait tárolja a későbbi felhasználás céljából. Főbb jellemzői:</p>
-			<ul>
-				<li>Akkor alkalmazható, amikor a részproblémák nem függetlenek <strong>(diszjunkt)</strong> egymástól.</li>
-				<li>Minden részfeladatot csak egyszer old meg, az eredményeket tárolja.</li>
-				<li>Elkerüli a felesleges újraszámításokat, így hatékonyabb más módszereknél.</li>
-			</ul>
-			<p><strong>Két fő megközelítése:</strong></p>
-			<ol>
-				<li><span class="highlight">Iteratív (tabuláció):</span>Részmegoldásokat táblázatba tárolja, minden részmegoldást kiszámol, alulról felfelé építkezik. A legkisebb részproblémákkal kezdünk, majd fokozatosan építjük fel a végső megoldást.</li>
-				<li><span class="highlight" >Rekurzív memorizálással:</span> Részmegoldásokat kulcs-érték párokban tárolja, felülről lefelé halad, ahol rekurzívan felbontjuk kisebb részproblémákra</li>
-			</ol>
-			<p>Tipikusan <span class="highlight">optimalizálási feladatoknál</span> alkalmazzuk, ahol a cél a legjobb megoldás megtalálása.</p>
-
-			<h3>Példa: Fibonacci-sorozat</h3>
-			<p>A Fibonacci-sorozat számítása kiváló példa a dinamikus programozásra:</p>
-			<ol>
-				<li>Definiáljuk az alapeseteket: F(0) = 0, F(1) = 1</li>
-				<li>Készítünk egy táblázatot a részeredmények tárolására.</li>
-				<li>Minden következő számot az előző kettő összegeként számolunk: F(n) = F(n-1) + F(n-2)</li>
-				<li>A táblázat segítségével elkerüljük a többszöri számítást, jelentősen gyorsítva a folyamatot.</li>
-			</ol>
-			<p>Ez a módszer <span class="highlight">jelentősen csökkenti a számítási időt</span> a rekurzív megoldáshoz képest, különösen nagyobb számok esetén.</p>
+            <h2>1. Mohó algoritmusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Alapelv:</span> A mohó algoritmus <span class="highlight">minden lépésben az aktuálisan optimálisnak tűnő döntést hozza meg</span>, anélkül hogy figyelembe venné a jövőbeli következményeket.</p>
+                <p><span class="key-point">Hatékonyság:</span> <span class="highlight">Nem minden</span> problémára alkalmazható, viszont ahol igen, ott <span class="highlight">rendkívül gyors és hatékony</span> megoldást nyújt.</p>
+                <p><span class="key-point">Cél:</span> A mohó választás <span class="highlight">egyetlen részproblémát eredményezzen</span>, amelyből közvetlenül következik az eredeti probléma optimális megoldása.</p>
+                <p><span class="key-point">Előny:</span> <span class="highlight">Minimalizálja a rekurzív hívások számát</span>, csökkentve a probléma komplexitását.</p>
+                <p><span class="key-point">Korlát:</span> Nem mindig találja meg a globális optimumot, mert <span class="highlight">a lokális optimumokat globálisként azonosíthatja</span>. Ezért körültekintően kell alkalmazni optimalizálási problémákra.</p>
+                
+                <h3>Példa: Töredékes hátizsák probléma</h3>
+                <p><span class="key-point">Probléma leírása:</span> Van egy <span class="highlight">hátizsákunk és különböző tárgyaink</span>, amiket bele szeretnénk tenni. Minden tárgynak van <span class="highlight">értéke és súlya</span>, de a tárgyakat fel is darabolhatjuk.</p>
+                <p><span class="key-point">Cél:</span> A lehető <span class="highlight">legtöbb értéket</span> vigyük magunkkal a hátizsák súlykorlátján belül.</p>
+                <div class="step">
+                    <p><span class="key-point">Mohó megoldás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Érték/súly arány</span> kiszámítása minden tárgyra.</li>
+                        <li>Tárgyak <span class="highlight">sorba rendezése</span> az arány szerint, csökkenő sorrendben.</li>
+                        <li>Tárgyak berakása a hátizsákba:
+                            <ol>
+                                <li>Ha egy tárgy teljesen belefér a hátizsákba, betesszük.</li>
+                                <li>Ha nem fér be teljesen, annyit teszünk be belőle, amennyi még befér.</li>
+                            </ol>
+                        </li>
+                        <li>Ezt addig folytatjuk, amíg a hátizsák meg nem telik.</li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Eredmény:</span> Ez a megközelítés <span class="highlight">optimális megoldást ad</span> a töredékes hátizsák problémára, mert mindig a legjobb <span class="highlight">"ár-érték arányú"</span> tárgyakat választjuk.</p>
+            </div>
         </div>
-    </div>
+		<div class="algorithm">
+            <h2>2. Oszd-meg-és-uralkodj algoritmusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Lényeg:</span> A problémát <span class="highlight">kisebb, hasonló jellegű és független </span><strong>(diszjunkt)</strong><span class="highlight"> részfeladatokra bontja</span>.</p>
+                <p><span class="key-point">Folyamat:</span> A részfeladatokat <span class="highlight">rekurzívan oldja meg</span>, szükség esetén tovább bontva őket.</p>
+                <p><span class="key-point">Végső lépés:</span> A <span class="highlight">részfeladatok megoldásait összevonja</span> az eredeti probléma megoldásává.</p>
+                <p><span class="key-point">Hatékonyság feltétele:</span> A részfeladatok <span class="highlight">valóban függetlenek egymástól és nincsenek ismétlődések</span>.</p>
+                <p><span class="key-point">Fontos Megjegyzés:</span> Általában ez a <span class="highlight">leglassabb a részproblémára bontó algoritmusok közül</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Az algoritmus három fő lépése:</span></p>
+                    <ol>
+                        <li><span class="highlight">Felosztás (Divide):</span> A probléma kisebb részproblémákra bontása.</li>
+                        <li><span class="highlight">Megoldás (Conquer):</span> A részproblémák önálló megoldása, rekurzív vagy iteratív módon.</li>
+                        <li><span class="highlight">Összevonás:</span> A részmegoldások kombinálása a teljes megoldás érdekében.</li>
+                    </ol>
+                </div>
+                <h3>Példa: Bináris keresés</h3>
+                <div class="step">
+                    <p><span class="key-point">Alkalmazás:</span> Rendezett adathalmazban keresünk egy elemet.</p>
+                    <p><span class="key-point">Lépések:</span></p>
+                    <ol>
+                        <li><span class="highlight">Felezzük le</span> a keresési tartomány felezése. <br>(Osszuk két részre)</li>
+                        <li>Nézzük meg, a keresett elemet a középső elemmel <span class="highlight">összehasonlítása</span>.</li>
+                        <li><span class="highlight">Válasszuk ki</span> a megfelelő <span class="highlight">félet</span> további keresésre.</li>
+                        <li>Az 1-3 lépések <span class="highlight">ismétlése</span>, amíg meg nem találjuk az elemet vagy ki nem derül, hogy nincs benne.</li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Előny:</span> <span class="highlight">Sokkal gyorsabb</span>, mint a lineáris keresés, különösen nagy adathalmazok esetén.</p>
+            
+            </div>
+        </div>
+		<div class="algorithm">
+            <h2>3. Dinamikus programozás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Olyan módszer, amely <span class="highlight">komplex problémákat kisebb részproblémákra bont</span>, és ezek megoldásait tárolja a későbbi felhasználás céljából.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb jellemzők:</span></p>
+                    <ul>
+                        <li>Alkalmazható, amikor a részproblémák <span class="highlight">nem függetlenek </span><strong>(nem diszjunkt)</strong> egymástól.</li>
+                        <li>Minden részfeladatot <span class="highlight">csak egyszer old meg</span>, az eredményeket tárolja.</li>
+                        <li><span class="highlight">Elkerüli a felesleges újraszámításokat</span>, így hatékonyabb más módszereknél.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Két fő megközelítés:</span></p>
+                    <ol>
+                        <li><span class="highlight">Iteratív (tabuláció):</span> Részmegoldásokat táblázatba tárolja, minden részmegoldást kiszámol, alulról felfelé építkezik.<br><em>(A legkisebb részproblémákkal kezdünk, majd fokozatosan építjük fel a végső megoldást.)</em></li>
+                        <li><span class="highlight">Rekurzív memorizálással:</span> Részmegoldásokat kulcs-érték párokban tárolja, felülről lefelé halad, rekurzívan bontva kisebb részproblémákra.</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Alkalmazás:</span> Tipikusan <span class="highlight">optimalizálási feladatoknál</span>, ahol a cél a legjobb megoldás megtalálása.</p>
+                
+                <div class="step">
+                    <h3>Példa: Fibonacci-sorozat</h3>
+                    <p><span class="key-point">Probléma:</span> Az n-edik Fibonacci-szám kiszámítása.</p>
+                    <p><span class="key-point">Dinamikus programozási megoldás:</span></p>
+                    <ol>
+                        <li><span class="highlight">Alapesetek definiálása:</span> F(0) = 0, F(1) = 1</li>
+                        <li><span class="highlight">Készítünk egy táblázatot</span> a részeredmények tárolására.</li>
+                        <li>Minden következő számot az előző kettő összegeként számolunk: <span class="highlight">F(n) = F(n-1) + F(n-2)</span></li>
+                        <li>A táblázat segítségével <span class="highlight">elkerüljük a többszöri számítást</span>, ezzel jelentősen gyorsítva a folyamatot.</li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Eredmény:</span> <span class="highlight">Jelentősen csökkenti a számítási időt</span> a rekurzív megoldáshoz képest, különösen nagyobb számok esetén.</p>
+            </div>
+        </div>
 	</div>
 	
 	<div class="main-topic" onclick="toggleMainContent(this)">
@@ -109,32 +135,51 @@
             </div>
         </div>
         <div class="algorithm">
-            <h2>Beszúró rendezés </h2>
+            <h2>Beszúró rendezés (insertion sort)</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p>A <span class="highlight">beszúró rendezés</span> egy <span class="highlight">egyszerű</span>, de kisebb adathalmazokra <span class="highlight">hatékony</span> algoritmus.</p>
+                <a href="https://www.youtube.com/watch?v=JU767SDMDvA" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p><span class="key-point">Definíció:</span> A <span class="highlight">beszúró rendezés</span> egy <span class="highlight">egyszerű, de hatékony</span> algoritmus, különösen <span class="highlight">kisebb adathalmazok</span> esetén.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Működése:</span></p>
+                    <p><span class="key-point">Működési elv:</span> Az algoritmus <span class="highlight">lépésenként építi fel a rendezett listát</span>, minden elemet a megfelelő helyre illesztve.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Algoritmus lépései:</span></p>
                     <ol>
-                        <li>Az algoritmus <span class="highlight">balról jobbra halad</span> a tömbön.</li>
-                        <li>Út mentén jelenlegi elemet egy <span class="highlight">ideiglenes változóba</span> tesz.</li>
-                        <li>Összehasonlítja a tőle <span class="highlight">balra lévő elemekkel</span>.</li>
-                        <li>Az 'jelenlegi' elemet addig <span class="highlight">mozgatja balra</span>, amíg a megfelelő helyére nem kerül. <br>(Ameddig kisebb számot nem talál, majd beszúrja 'utána')</li>
-                        <li>Ezután folytatja a következő számmal <br>(A balra mozgatott szám 'eredeti' index +1 től)</li>
+                        <li>Az algoritmus <span class="highlight">balról jobbra halad</span> a tömbön, a második elemtől kezdve.</li>
+                        <li>Az aktuális elemet egy <span class="highlight">ideiglenes változóban</span> tárolja el.</li>
+                        <li><span class="highlight">Összehasonlítja</span> az ideiglenes elemet a tőle balra lévő elemekkel.</li>
+                        <li>A nagyobb elemeket <span class="highlight">jobbra mozgatja</span>, hogy helyet csináljon az ideiglenes elemnek.</li>
+                        <li>Az ideiglenes elemet <span class="highlight">beszúrja</span> a megfelelő helyre (ahol az első tőle kisebb vagy egyenlő elemet találja).</li>
+                        <li>Ezt a folyamatot <span class="highlight">ismétli minden elemre</span>, balról jobbra haladva.</li>
                     </ol>
                 </div>
                 <div class="step">
-                    <p>(Ez 'n' szer fog lefutni)</p>
+                    <p><span class="key-point">Alkalmazás:</span> Hatékony <span class="highlight">kis adathalmazokra</span> vagy <span class="highlight">majdnem rendezett tömbökre</span>. Gyakran használják más, összetettebb rendezési algoritmusok részeként.</p>
                 </div>
+                <div class="step">
+                    <p><span class="key-point">Futási idő:</span> Az algoritmus <span class="highlight">n-szer fut le</span>, ahol n a tömb elemeinek száma.</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Időkomplexitás:</span></p>
+                    <ul>
+                        <li>Átlagos és legrosszabb eset: <span class="highlight">O(n^2)</span></li>
+                        <li>Legjobb eset (már rendezett tömb): <span class="highlight">O(n)</span></li>
+                    </ul>
+                </div>
+
                 <div class="step">
                     <p><span class="key-point">Jellemzők:</span></p>
                     <ul>
-                        <li><span class="highlight">Stabil rendezés</span></li>
-                        <li><span class="highlight">Helyben rendez</span>, extra memória nélkül</li>
-                        <li>Időigénye: <span class="highlight">O(n^2)</span></li>
+                        <li><span class="highlight">Stabil rendezés:</span> Az egyenlő elemek relatív sorrendje nem változik.</li>
+                        <li><span class="highlight">In-place algoritmus:</span> Helyben rendez, extra memória nélkül.</li>
                     </ul>
                 </div>
+                
             </div>
         </div>
         <div class="algorithm">
@@ -144,33 +189,54 @@
                 <a href="https://www.youtube.com/watch?v=5Z9dn2WTg9o" class="algorithm-link" target="_blank">
                     <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                 </a>
-                <p>Az <span class="highlight">összefésülő rendezés</span> egy <span class="highlight">"oszd meg és uralkodj"</span> elven működő algoritmus.</p>
+                
+                <p><span class="key-point">Definíció:</span> Az <span class="highlight">összefésülő rendezés</span> egy <span class="highlight">"oszd meg és uralkodj"</span> elven működő hatékony rendezési algoritmus.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Működése:</span></p>
+                    <p><span class="key-point">Működési elv:</span> Az algoritmus a problémát kisebb részekre bontja, megoldja azokat, majd egyesíti a megoldásokat.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Algoritmus lépései:</span></p>
                     <ol>
-                        <li>A tömböt <span class="highlight">rekurzívan felosztjuk</span> két közel egyenlő részre.</li>
-                        <li>A résztömböket <span class="highlight">rekurzívan rendezzük</span>.</li>
-                        <li>A rendezett résztömböket <span class="highlight">"összefésüljük"</span> egy rendezett tömbbé.</li>
-                        <li>Ezt addig folytatjuk, amíg vissza nem jutunk az <span class="highlight">eredeti méretű</span>, de már rendezett tömbhöz.</li>
+                        <li><span class="highlight">Felosztás:</span> A tömböt rekurzívan felosztjuk két közel egyenlő részre.</li>
+                        <li><span class="highlight">Rendezés:</span> A résztömböket rekurzívan rendezzük.</li>
+                        <li><span class="highlight">Összefésülés:</span> A rendezett résztömböket "összefésüljük<span class="highlight">*</span>" egy rendezett tömbbé.</li>
+                        <li><span class="highlight">Ismétlés:</span> Az 1-3 lépéseket ismételjük, amíg el nem érjük az eredeti méretű, rendezett tömböt.</li>
                     </ol>
                 </div>
-    
+                <div class="step">
+                    <p><span class="key-point">*Összefésülési folyamat (by ATTILA):</span></p>
+                    <ul>
+                        <li>Két rendezett résztömböt egyesítünk:</li>
+                        <li>Összehasonlítjuk a résztömbök első elemeit.</li>
+                        <li>A kisebb elemet az eredmény tömbbe helyezzük.</li>
+                        <li>Ezt ismételjük, amíg minden elem a helyére nem kerül.</li>
+                    </ul>
+                </div>
                 <div class="step">
                     <p><span class="key-point">Jellemzők:</span></p>
                     <ul>
-                        <li>Időigénye: <span class="highlight">Θ(n log(n))</span></li>
-                        <li><span class="highlight">Stabil rendezés</span></li>
-                        <li><span class="highlight">Nem helyben rendez</span>, extra memóriát igényel</li>
+                        <li><span class="highlight">Időigénye minden esetben: </span>Θ(n log n) <em>Théta</em>
+                            <br><em>(Térkomplexitás: O(n))</em>
+                        </li>
+                        <li><span class="highlight">Stabil rendezés:</span> Az egyenlő elemek relatív sorrendje nem változik.</li>
+                        <li><span class="highlight">Nem helyben rendez:</span> Extra memóriát igényel a műveletek során.</li>
                     </ul>
                 </div>
-    
+        
                 <div class="step">
                     <p><span class="key-point">Előnyök:</span></p>
                     <ul>
-                        <li><span class="highlight">Hatékony nagy adathalmazokra</span></li>
-                        <li><span class="highlight">Garantált futásidő</span> minden esetben</li>
+                        <li><span class="highlight">Hatékony nagy adathalmazokra:</span> Jól skálázódik nagyméretű adatok esetén.
+                            <br><em>(Hátránya: Kis adathalmazokra más algoritmusok (pl. beszúró rendezés) hatékonyabbak lehetnek.)</em>
+                        </li>
+                        <li><span class="highlight">Garantált futásidő </span> minden esetben.</li>
                     </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Alkalmazások:</span> Gyakran használják nagy adatbázisok rendezésére, külső rendezésre és olyan helyzetekben, ahol stabil rendezésre van szükség.</p>
                 </div>
             </div>
         </div>
@@ -179,36 +245,50 @@
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=mgUiY8CVDhU" class="algorithm-link" target="_blank">
-                    <i class="fas fa-video"></i>Youtube vizuális elmagyarázva
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                 </a>
-                <p>A kupacrendezés a <span class="highlight">kupac (heap) adatszerkezetet</span> használja, ami egy speciális <span class="highlight">bináris fa</span>.</p>
+                <p><span class="key-point">Definíció:</span> A kupacrendezés a <span class="highlight">kupac (heap) adatszerkezetet</span> használja, ami egy speciális <span class="highlight">bináris fa</span>.</p>
                 <div class="step">
                     <p><span class="key-point">Algoritmus lépései:</span></p>
                     <ol>
-                        <li>Az algoritmus először <span class="highlight">épít egy maximum kupacot</span> a bemeneti tömbből.</li>
-                        <li>Az elemeket <span class="highlight">összehasonlítja egymással és helyben rendezi</span> úgy, hogy <span class="highlight">mindvégig megmaradjon a kupac-tulajdonság</span>.</li>
-                        <li>Miután a kupac elkészült, a következő lépéseket ismétli:</li>
-                        <ul>
-                            <li><span class="highlight">Kiírja a gyökérelem értékét</span> (legnagyobb elem) a kimenetre.</li>
-                            <li>A <span class="highlight">legszélső levél értékét</span> beírja a gyökér helyére.</li>
-                            <li>Ezzel <span class="highlight">sérül a kupac-tulajdonság</span>, így újra rendezi a kupacot.</li>
-                        </ul>
-                        <li>Ezt addig ismétli, amíg a <span class="highlight">kupac mérete 1 nem lesz</span>.</li>
+                        <li><span class="highlight">Maximum kupac építése</span> a bemeneti tömbből.</li>
+                        <li>Az elemek <span class="highlight">helyben rendezése</span> a kupac-tulajdonság megtartásával.</li>
+                        <li>A rendezés folyamata:
+                            <ol>
+                                <li>A <span class="highlight">gyökérelem</span> (legnagyobb elem) kiírása a kimenetre.</li>
+                                <li>A <span class="highlight">legszélső levél</span> áthelyezése a gyökérbe.</li>
+                                <li>Ezzel sérül a kupac-tulajdonság, így<span class="highlight"> a kupactulajdonságot helyre kell állítani</span>.</li>
+                            </ol>
+                        </li>
+                        <li>Ismétlés, amíg a <span class="highlight">kupac mérete 1 nem lesz</span>.</li>
                     </ol>
                 </div>
+                <div class="step">
+                    <p><span class="key-point">Kupactulajdonság helyreállítása:</span></p>
+                    <ol>
+                        <li>A <span class="highlight">gyökér összehasonlítása</span> a gyerekeivel.</li>
+                        <li><span class="highlight">Csere a nagyobb gyerekkel</span>, ha szükséges.</li>
+                        <li><span class="highlight">Rekurzív folytatás</span> a módosított részfán.</li>
+                    </ol>
+                </div>
+
                 <div class="step">
                     <p><span class="key-point">Kupac-tulajdonság:</span> A kupac minden gyökértől különböző elemére teljesül, hogy <span class="highlight">értéke nem lehet nagyobb, mint az apjáé</span> maximum kupac esetén. Minimum kupacnál ez fordítva igaz.</p>
                 </div>
                 <div class="step">
-                    <p><span class="key-point">Időigénye:</span> <span class="highlight">Θ(n * log n)</span>, ahol n a rendezendő elemek száma.</p>
-                    <p>A kupacrendezés <span class="highlight">nem stabil</span>, de <span class="highlight">helyben rendez</span>, így memóriahatékony.</p>
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Időigény: <span class="highlight">Θ(n * log n)</span>, ahol n a rendezendő elemek száma.</li>
+                        <li><span class="highlight">Nem stabil</span> rendezés</li>
+                        <li>De <span class="highlight">helyben rendez</span>,így  memóriahatékony</li>
+                    </ul>
                 </div>
                 <div class="step">
-                    <p><span class="key-point">A kupactulajdonság helyreállítása:</span></p>
+                    <p><span class="key-point">Kupactulajdonság helyreállítása:</span></p>
                     <ol>
-                        <li><span class="highlight">Összehasonlítjuk a gyökeret</span> a gyerekeivel.</li>
-                        <li>Ha szükséges, <span class="highlight">cseréljük a nagyobb gyerekkel</span>.</li>
-                        <li><span class="highlight">Rekurzívan folytatjuk</span> a módosított részfán.</li>
+                        <li>A <span class="highlight">gyökér összehasonlítása</span> a gyerekeivel.</li>
+                        <li><span class="highlight">Csere a nagyobb gyerekkel</span>, ha szükséges.</li>
+                        <li><span class="highlight">Rekurzív folytatás</span> a módosított részfán.</li>
                     </ol>
                 </div>
             </div>
@@ -219,98 +299,106 @@
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=WprjBK0p6rw" class="algorithm-link" target="_blank">
-                    <i class="fas fa-video"></i>Youtube vizuális elmagyarázva
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                 </a>
-                <p>A gyorsrendezés egy <span class="highlight">egyszerű, de hatékony</span> <strong>oszd meg és uralkodj</strong> elven működő összehasonlító rendezési algoritmus. Íme, hogyan működik (Attila magyarázat):</p>
+                <p><span class="key-point">Definíció:</span> A gyorsrendezés egy <span class="highlight">egyszerű, de hatékony</span> <strong>oszd meg és uralkodj</strong> elven működő összehasonlító rendezési algoritmus.</p>
+                
+                <p><span class="key-point">Működése (Attila magyarázat):</span></p>
                 <div class="step">
-                    <p><span class="key-point">1. Pivot választás:</span> Választunk egy <span class="highlight">random pivot pontot</span>. Gyakran az <span class="highlight">utolsó elemet</span> választjuk pivotnak.</p>
+                    <p><span class="key-point">1. Pivot választás:</span> Kiválasztunk egy <span class="highlight">pivot elemet</span>. Általában az <span class="highlight">utolsó elemet</span> választjuk.</p>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">2. Változók beállítása:</span> A tömbben két fontos változót használunk:</p>
+                    <p><span class="key-point">2. Változók beállítása:</span> Két fő indexet használunk:</p>
                     <ul>
-                        <li><span class="highlight">Első: "current" index</span> és a rajta álló szám értéke</li>
-                        <li><span class="highlight">Második: "swap" index</span> és a rajta álló szám</li>
+                        <li><span class="highlight">"current" index:</span> Az aktuálisan vizsgált elem</li>
+                        <li><span class="highlight">"swap" index:</span> A következő csere helye</li>
                     </ul>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">3. Particionálás:</span> Elindítunk egy ciklust, ami addig fut, amíg be nem rendezzük a tömböt:</p>
+                    <p><span class="key-point">3. Particionálás:</span> A tömb felosztása:</p>
                     <ul>
-                        <li>A <span class="highlight">"swap" és "current" index</span> ugyanott kezd, a tömb elején (0. index).</li>
-                        <li>Összehasonlítjuk a <span class="highlight">current indexen álló számot a pivot számmal</span>:</li>
+                        <li>Mindkét index a <span class="highlight">tömb elején</span> kezd (0. index).</li>
+                        <li><span class="highlight">Összehasonlítjuk</span> a current indexen álló számot a pivottal:</li>
                         <ul>
-                            <li>Ha a pivot <span class="highlight">nagyobb</span>, növeljük a swap indexet (+1).</li>
-                            <li>Ha a pivot <span class="highlight">kisebb</span>, a swap indexen lévő szám helyet cserél a current indexen lévővel, és nem növeljük a swap indexet.</li>
+                            <li>Ha a pivot <span class="highlight">nagyobb:</span> Növeljük a swap indexet.</li>
+                            <li>Ha a pivot <span class="highlight">kisebb:</span> Csere a swap és current indexen álló számok között, swap index nem változik (csak az értéke).</li>
                         </ul>
                     </ul>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">4. Felosztás:</span> A folyamat végén a tömb két részre bomlik:</p>
+                    <p><span class="key-point">4. Felosztás eredménye:</span> A tömb két részre oszlik:</p>
                     <ul>
-                        <li>Pivot számnál <span class="highlight">kisebb számok</span></li>
-                        <li>Pivot számnál <span class="highlight">nagyobb számok</span></li>
+                        <li>Pivot számnál <span class="highlight">kisebb elemek</span></li>
+                        <li>Pivot számnál <span class="highlight">nagyobb elemek</span></li>
                     </ul>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">5. Rekurzió:</span> Ugyanezt a folyamatot <span class="highlight">rekurzívan elvégezzük</span> mindkét résztömbön, amíg minden résztömb mérete 1 nem lesz.</p>
+                    <p><span class="key-point">5. Rekurzió:</span> A folyamatot <span class="highlight">rekurzívan ismételjük</span> mindkét résztömbön, amíg minden résztömb mérete 1 nem lesz.</p>
                 </div>
                 
-                <p>És voilà! A tömb be van rendezve.</p>
+                <div class="step">
+                    <p><span class="key-point">Időkomplexitás:</span></p>
+                    <ul>
+                        <li>Átlagos eset: <span class="highlight">O(n log n)</span></li>
+                        <li>Legrosszabb eset: <span class="highlight">Θ(n^2)</span></li>
+                    </ul>
+                </div>
                 
-                <p><span class="key-point">Időigénye:</span> Átlagos esetben O(n log(n)), legrosszabb esetben Θ(n^2).</p>
-                
-                <p><span class="key-point">Fontos tudnivalók:</span></p>
-                <ul>
-                    <li>A gyorsrendezés egy <span class="highlight">nem stabil rendezés</span>.</li>
-                    <li><span class="highlight">Helyben rendez</span>, így memóriahatékony.</li>
-                    <li>Teljesítménye nagyban függ a <span class="highlight">pivot elem választásától</span>.</li>
-                </ul>
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nem stabil</span> rendezés</li>
+                        <li><span class="highlight">Helyben rendez</span>, memóriahatékony</li>
+                        <li>Teljesítménye függ a <span class="highlight">pivot választástól</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="algorithm">
             <h2>Leszámláló rendezés</h2>
-            
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=7zuGmKfUt7s" class="algorithm-link" target="_blank">
-                    <i class="fas fa-video"></i>Youtube vizuális elmagyarázva
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                 </a>
-                <p>A leszámláló rendezés egy <span class="key-point">speciális rendezési algoritmus</span>, amit akkor használunk, ha a tömbben <span class="highlight">legfeljebb k-féle érték szerepel</span>.</p>
+                <p><span class="key-point">Definíció:</span> A leszámláló rendezés egy <span class="highlight">speciális rendezési algoritmus</span>, amit akkor használunk, ha a tömbben <span class="highlight">legfeljebb k-féle érték szerepel</span>.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">1. Segédtömb létrehozása:</span> Létrehozunk egy <span class="highlight">k elemű segédtömböt</span>.</p>
+                    <p><span class="key-point">Algoritmus lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Segédtömb létrehozása:</span> Egy k elemű segédtömb inicializálása.</li>
+                        <li><span class="highlight">Elemek számlálása:</span> Az eredeti tömb elemeinek összeszámolása a segédtömbben.</li>
+                        <li><span class="highlight">Kumulatív összegek:</span> Módosítjuk a segédtömb értékeit úgy, hogy <span class="highlight">minden tömbelem az őt megelőző elemek összegét tartalmazza.</span></li>
+                        <li><span class="highlight">Elemek elhelyezése:</span> Az eredeti tömb elemeinek rendezett elhelyezése:
+                            <ul>
+                                <li><span class="highlight">Visszafelé iterálunk</span> az eredeti tömbön.</li>
+                                <li>Minden elemet a <span class="highlight"></span>segédtömbben található indexre helyezünk.</li>
+                                <li>Ezután <span class="highlight">csökkentjük a segédtömbben az adott elem számlálóját.</span></li>
+                            </ul>
+                        </li>
+                    </ol>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">2. Elemek számlálása:</span> Ebben a segédtömbben <span class="highlight">összeszámoljuk, hogy melyik elemből mennyi van</span> az eredeti tömbben.</p>
+                    <p><span class="key-point">Időigénye:</span> <span class="highlight">O(n + k)</span>, ahol n az elemek száma, k a lehetséges értékek száma.</p>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">3. Kumulatív összegek:</span> Módosítjuk a segédtömb értékeit úgy, hogy <span class="highlight">minden tömbelem az őt megelőző elemek összegét tartalmazza</span>.</p>
-                </div>
-                
-                <div class="step">
-                    <p><span class="highlight">4. Elemek elhelyezése:</span> Az input minden elemét a helyére tesszük:</p>
+                    <p><span class="key-point">Jellemzők:</span></p>
                     <ul>
-                        <li><span class="highlight">Visszafelé iterálunk</span> az eredeti tömbön.</li>
-                        <li>Minden elemet a <span class="highlight">segédtömbben található indexre helyezünk</span>.</li>
-                        <li>Ezután <span class="highlight">csökkentjük a segédtömbben az adott elem számlálóját</span>.</li>
+                        <li><span class="highlight">Lineáris futásidő:</span> Ha k = O(n), akkor a futásidő gyakorlatilag O(n).</li>
+                        <li><span class="highlight">Stabil rendezés:</span> Az egyenlő elemek relatív sorrendje nem változik.</li>
+                        <li><span class="highlight">Külső rendezés:</span> Extra memóriát használ a segédtömbhöz.</li>
                     </ul>
                 </div>
                 
-                <p><span class="key-point">Időigénye:</span><span class="highlight"> O(n + k)</span>, ahol n az elemek száma, k a lehetséges értékek száma.</p>
-                
-                <p><span class="key-point">Fontos tudnivalók:</span></p>
-                <ul>
-                    <li>Csak akkor érdemes használni, ha <span class="highlight">k = O(n)</span>, mert ekkor a futásidő gyakorlatilag <span class="highlight">lineáris: O(n)</span>.</li>
-                    <li>Ez egy <span class="highlight">stabil rendezés</span>, ami azt jelenti, hogy az egyenlő elemek relatív sorrendje nem változik.</li>
-                    <li>A leszámláló rendezés egy <span class="highlight">külső rendezés</span>, mivel extra memóriát használ a segédtömbhöz.</li>
-                </ul>
-                
-                <p>A leszámláló rendezés <span class="highlight">rendkívül hatékony</span> lehet olyan esetekben, amikor ismerjük az értéktartományt, és az nem túl nagy az elemek számához képest.</p>
+                <div class="step">
+                    <p><span class="key-point">Alkalmazás:</span> <span class="highlight">Rendkívül hatékony</span> ismert szűk értéktartományú adatok rendezésére, ahol az értéktartomány nem sokkal nagyobb, mint az elemek száma.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -326,7 +414,7 @@
                 <a href="https://www.youtube.com/watch?v=HZ5YTanv5QE" class="algorithm-link" target="_blank">
                     <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                 </a>
-                <p>A szélességi keresés (BFS) egy <span class="highlight">gráfbejárási algoritmus</span>, amely a csúcsokat a <span class="highlight">kezdőcsúcstól való távolságuk sorrendjében</span> járja be.</p>
+                <p><span class="key-point">Definíció:</span> A szélességi keresés (BFS) egy <span class="highlight">gráfbejárási algoritmus</span>, amely a csúcsokat a <span class="highlight">kezdőcsúcstól való távolságuk sorrendjében</span> járja be.</p>
                 
                 <div class="step">
                     <p><span class="key-point">Cél:</span> Bejárni az összes csúcsot, ami egy <span class="highlight">'s' kezdőcsúcsból elérhető</span>, miközben kiszámoljuk a távolságukat 's'-től.</p>
@@ -376,7 +464,7 @@
                 <a href="https://youtu.be/Urx87-NMm6c" class="algorithm-link" target="_blank">
                     <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                 </a>
-                <p>A mélységi keresés (DFS) egy <span class="highlight">gráfbejárási algoritmus</span>, amely a gráf ágait a <span class="highlight">lehető legmélyebbre követi</span>, mielőtt visszalépne.</p>
+                <p><span class="key-point">Definíció:</span> A mélységi keresés (DFS) egy <span class="highlight">gráfbejárási algoritmus</span>, amely a gráf ágait a <span class="highlight">lehető legmélyebbre követi</span>, mielőtt visszalépne.</p>
                 
                 <div class="step">
                     <p><span class="key-point">Cél:</span> Egy megoldás megtalálása, amely <span class="highlight">nem feltétlenül optimális</span>. Például egy út megtalálása két csúcs között.</p>
@@ -493,7 +581,7 @@
             <h2>Legrövidebb utak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p>A legrövidebb utak probléma célja, hogy megtaláljuk a <span class="highlight">minimális költségű utat</span> egy adott kezdőcsúcsból az összes többi csúcsba egy súlyozott gráfban.</p>
+                <p><span class="key-point">Definíció:</span> A legrövidebb utak probléma célja, hogy megtaláljuk a <span class="highlight">minimális költségű utat</span> egy adott kezdőcsúcsból az összes többi csúcsba egy súlyozott gráfban.</p>
                 
                 <div class="step">
                     <p><span class="key-point">Bemenet:</span> Irányított, súlyozott G=(V, E) gráf, ahol V a csúcsok halmaza, E az élek halmaza, w(u, v) az (u, v) él súlya, és egy s kezdőcsúcs.</p>
@@ -508,11 +596,8 @@
                         <li>Időbonyolultság: <span class="highlight">O(E log V)</span> bináris kupac használatával</li>
                         <li>A legrövidebb út <span class="highlight">részútja is legrövidebb út</span></li>
                         <li>Alkalmazás: GPS útvonaltervezés</li>
-                        <li><span class="key-point">Korlája: </span><span class="highlight">Nem működik negatív élsúlyú körök</span> esetén</li>
-                        <li>A Dijkstra hibáira <span class="highlight">megoldást</span> nyújthat a <span class="highlight">Bellman-Ford algoritmus</span></li>
                     </ul>
                 </div>
-                
                 <div class="step">
                     <p><span class="key-point">Dijkstra algoritmus működése:</span></p>
                     <a href="https://youtu.be/_lHSawdgXpI" class="algorithm-link" target="_blank">
@@ -527,6 +612,9 @@
                         <li>Ismételjük a 2-5 lépéseket, amíg minden csúcsot fel nem dolgoztunk</li>
                     </ol>
                 </div>
+
+                <span class="key-point">Korlája:</span><span class="highlight"> Nem működik negatív élsúlyú körök</span> esetén
+                <p>A Dijkstra hibáira <span class="highlight">megoldást</span> nyújthat a <span class="highlight">Bellman-Ford algoritmus</span></p>
                 
                 <div class="step">
                     <p><span class="key-point">Bellman-Ford algoritmus:</span></p>

@@ -33,11 +33,19 @@ h2 {
 
 .highlight {
     font-weight: bold;
-    color: #ff9b00;
+    color: #1552ff;
     transition: color 0.3s;
 }
 
 .highlight:hover {
+    color: #00adff;
+}
+
+.dark-mode .highlight {
+    color: #ff9b00;
+}
+
+.dark-mode .highlight:hover {
     color: #f76334;
 }
 
