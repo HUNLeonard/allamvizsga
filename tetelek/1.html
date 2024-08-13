@@ -323,10 +323,49 @@
             <h2>Szélességi keresés (BFS)</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p>A szélességi keresés egy gráfbejárási algoritmus, amely a csúcsokat a kezdőcsúcstól való távolságuk sorrendjében járja be.</p>
-                <p><span class="highlight">Működése:</span> Egy sorban tárolja a még fel nem dolgozott csúcsokat, és rétegenként halad a gráfban.</p>
-                <p><span class="highlight">Időbonyolultság:</span> O(V + E), ahol V a csúcsok, E az élek száma.</p>
-                <p><span class="highlight">Alkalmazások:</span> Legrövidebb utak keresése súlyozatlan gráfokban, összefüggőség vizsgálata.</p>
+                <a href="https://www.youtube.com/watch?v=HZ5YTanv5QE" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p>A szélességi keresés (BFS) egy <span class="highlight">gráfbejárási algoritmus</span>, amely a csúcsokat a <span class="highlight">kezdőcsúcstól való távolságuk sorrendjében</span> járja be.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Cél:</span> Bejárni az összes csúcsot, ami egy <span class="highlight">'s' kezdőcsúcsból elérhető</span>, miközben kiszámoljuk a távolságukat 's'-től.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Bemenet:</span> Irányított vagy irányítatlan gráf és annak egy 's' csúcsa.</p>
+                    <p><span class="key-point">Kimenet:</span> Szótár, amely tartalmazza az <span class="highlight">s-ből elérhető csúcsokat és azok távolságát</span>.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Működése:</span></p>
+                    <ul>
+                        <li>Egy <span class="highlight">sorban tárolja</span> a még fel nem dolgozott csúcsokat.</li>
+                        <li><span class="highlight">Rétegenként halad</span> a gráfban, minden lépéssel eggyel távolabb kerülve a kiindulási csúcstól.</li>
+                        <li>A bejárás állapotát a csúcsok <span class="highlight">színezésével</span> tartja számon:
+                            <ul>
+                                <li><span class="highlight">Fehér:</span> Még nem felfedezett csúcs</li>
+                                <li><span class="highlight">Szürke:</span> Felfedezett, de még nem teljesen feldolgozott csúcs</li>
+                                <li><span class="highlight">Fekete:</span> Teljesen feldolgozott csúcs</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Időbonyolultság:</span> O(V + E), ahol V a csúcsok, E az élek száma.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Alkalmazások:</span></p>
+                    <ul>
+                        <li>Legrövidebb utak keresése <span class="highlight">súlyozatlan gráfokban</span></li>
+                        <li>Összefüggőség vizsgálata</li>
+                        <li>Navigációs programokban <span class="highlight">közelben lévő helyek</span> (pl. éttermek, benzinkutak) megtalálása</li>
+                    </ul>
+                </div>
+                
+                <p>A BFS egy <span class="highlight">szélességi fát</span> hoz létre, amely függ a kimenő élek bejárási sorrendjétől, de a távolságok egyértelműek.</p>
             </div>
         </div>
 
@@ -334,24 +373,119 @@
             <h2>Mélységi keresés (DFS)</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p>A mélységi keresés egy gráfbejárási algoritmus, amely a gráf ágait a lehető legmélyebbre követi, mielőtt visszalépne.</p>
-                <p><span class="highlight">Működése:</span> Rekurzívan vagy verem használatával implementálható. A csúcsokat fehér, szürke és fekete színekkel jelöli.</p>
-                <p><span class="highlight">Időbonyolultság:</span> O(V + E)</p>
-                <p><span class="highlight">Alkalmazások:</span> Topológiai rendezés, erősen összefüggő komponensek keresése, ciklusok detektálása.</p>
+                <a href="https://youtu.be/Urx87-NMm6c" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p>A mélységi keresés (DFS) egy <span class="highlight">gráfbejárási algoritmus</span>, amely a gráf ágait a <span class="highlight">lehető legmélyebbre követi</span>, mielőtt visszalépne.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Cél:</span> Egy megoldás megtalálása, amely <span class="highlight">nem feltétlenül optimális</span>. Például egy út megtalálása két csúcs között.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Bemenet:</span> Irányított vagy irányítatlan gráf és egy kezdőcsúcs.</p>
+                    <p><span class="key-point">Kimenet:</span> Mélységi feszítőerdő (MFE).</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Működése:</span></p>
+                    <ul>
+                        <li>A kiindulási csúcsból <span class="highlight">egy irányban halad</span> a gráf legmélyebb pontjáig.</li>
+                        <li>Ha nem tud tovább haladni, <span class="highlight">visszalép</span> és új, fel nem fedezett utat keres.</li>
+                        <li>Megvalósítása lehet <span class="highlight">rekurzív vagy iteratív</span>.</li>
+                        <li>A csúcsokat színezi és meghatározza róluk az <span class="highlight">elérési időt, elhagyási időt és a szülőt</span>.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Csúcsok állapota:</span></p>
+                    <ul>
+                        <li><span class="highlight">Fehér:</span> Még nem felfedezett csúcs</li>
+                        <li><span class="highlight">Szürke:</span> Felfedezett, de még nem teljesen feldolgozott csúcs</li>
+                        <li><span class="highlight">Fekete:</span> Teljesen feldolgozott csúcs</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Élek osztályozása a MFE-ben:</span></p>
+                    <ul>
+                        <li><span class="highlight">Faél:</span> (u,v) faél, ha bekerül a MFE élei közé, azaz π(v) = u</li>
+                        <li><span class="highlight">Visszaél:</span> (u,v) visszaél, ha u leszármazottja v-nek a MFE-ben</li>
+                        <li><span class="highlight">Előreél:</span> (u,v) előreél, ha v leszármazottja u-nak a MFE-ben és nem faél</li>
+                        <li><span class="highlight">Keresztél:</span> minden más esetben</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Alkalmazások:</span></p>
+                    <ul>
+                        <li>Labirintus feladatok megoldása</li>
+                        <li>Erősen összefüggő komponensek keresése</li>
+                        <li>Topológiai rendezés</li>
+                    </ul>
+                </div>
+                
+                <p>A DFS <span class="highlight">nem feltétlenül optimális</span> megoldást ad, de gyorsan megtalálja a lehetséges megoldásokat.</p>
             </div>
         </div>
 
         <div class="algorithm">
-            <h2>Minimális feszítőfák</h2>
+            <h2>Minimális feszítőfa</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <h3>Kruskal algoritmus</h3>
-                <p><span class="highlight">Működése:</span> Az éleket súly szerint rendezi, majd egyesével hozzáadja őket a fához, ha nem képeznek kört.</p>
-                <p><span class="highlight">Időbonyolultság:</span> O(E log E) vagy O(E log V)</p>
-
-                <h3>Prim algoritmus</h3>
-                <p><span class="highlight">Működése:</span> Egy csúcsból indul, és mindig a legkisebb súlyú élt választja, amely a fát egy új csúccsal bővíti.</p>
-                <p><span class="highlight">Időbonyolultság:</span> O(E log V) vagy O(V^2) sűrű gráfok esetén</p>
+                
+                <p>A minimális feszítőfa egy <span class="highlight">összefüggő, körmentes élhalmaz</span>, amely tartalmazza az eredeti gráf összes csúcsát, és az <span class="highlight">élköltségek összege minimális</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Bemenet:</span> Összefüggő, irányítatlan, súlyozott G=(V, E) gráf, ahol V a csúcsok halmaza, E az élek halmaza, és w(u, v) az (u, v) él költsége.</p>
+                    <p><span class="key-point">Kimenet:</span> Minden csúcsot érintő, körmentes, összefüggő, minimális költségű élhalmaz.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Tulajdonságok:</span></p>
+                    <ul>
+                        <li>Tartalmazza az összes csúcsot</li>
+                        <li>N-1 éle van, ahol N a csúcsok száma</li>
+                        <li>Több azonos súlyú él esetén több minimális feszítőfa is lehetséges</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Algoritmusok:</span></p>
+                    <h3>1. Kruskal algoritmus</h3>
+                    <a href="https://youtu.be/71UQH7Pr9kU" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ul>
+                        <li><span class="highlight">Mohó elven</span> működik</li>
+                        <li>Minimális fák erdejét tárolja</li>
+                        <li>Kezdetben minden pont külön fa</li>
+                        <li>Lépésenként a <span class="highlight">legkisebb súlyú élet</span> húzza be, ami két fát összeköt, és nem hoz létre 'cicle'</li>
+                        <li>Időbonyolultság: <span class="highlight">O(E log E)</span>, ahol E az élek száma</li>
+                    </ul>
+                    
+                    <h3>2. Prim algoritmus</h3>
+                    <a href="https://youtu.be/cplfcGZmX7I" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ul>
+                        <li>Szintén <span class="highlight">mohó algoritmus</span></li>
+                        <li>Egy tetszőleges gyökérpontból <span class="highlight">egyetlen fát növeszt</span></li>
+                        <li>Minden lépésben egy új csúcsot köt be a legkisebb költségű élen keresztül</li>
+                        <li>Időbonyolultság: <span class="highlight">O(E log V)</span> bináris kupaccal <br>(V a csúcsok, E az élek száma)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Fontos megjegyzések:</span></p>
+                    <ul>
+                        <li>Ha minden élsúly különböző, a két algoritmus <span class="highlight">azonos eredményt ad</span></li>
+                        <li>A minimális feszítőfa <span class="highlight">nem feltétlenül egyedi</span></li>
+                        <li>Mindkét algoritmus <span class="highlight">garantáltan megtalálja</span> a minimális feszítőfát</li>
+                    </ul>
+                </div>
+                
+                <p>A minimális feszítőfa probléma megoldása fontos szerepet játszik <span class="highlight">hálózattervezésben</span> és más optimalizálási feladatokban.</p>
             </div>
         </div>
 
@@ -359,15 +493,64 @@
             <h2>Legrövidebb utak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <h3>Dijkstra algoritmus</h3>
-                <p><span class="highlight">Működése:</span> Mohó algoritmus, amely mindig a legközelebbi, még nem feldolgozott csúcsot választja.</p>
-                <p><span class="highlight">Időbonyolultság:</span> O(E log V) bináris kupac használatával</p>
-                <p><span class="highlight">Korlátok:</span> Nem működik negatív élsúlyok esetén</p>
-
-                <h3>Bellman-Ford algoritmus</h3>
-                <p><span class="highlight">Működése:</span> Dinamikus programozáson alapul, iteratívan javítja a távolságbecsléseket.</p>
-                <p><span class="highlight">Időbonyolultság:</span> O(VE)</p>
-                <p><span class="highlight">Előnyök:</span> Működik negatív élsúlyok esetén is, detektálja a negatív körök jelenlétét</p>
+                <p>A legrövidebb utak probléma célja, hogy megtaláljuk a <span class="highlight">minimális költségű utat</span> egy adott kezdőcsúcsból az összes többi csúcsba egy súlyozott gráfban.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Bemenet:</span> Irányított, súlyozott G=(V, E) gráf és egy s kezdőcsúcs. w(u, v) az (u, v) él súlya.</p>
+                    <p><span class="key-point">Kimenet:</span> Minden V csúcshoz vezető legrövidebb út s-ből indulva.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Algoritmusok:</span></p>
+                    <h3>1. Dijkstra algoritmus</h3>
+                    <a href="https://youtu.be/_lHSawdgXpI" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ul>
+                        <li><span class="highlight">Mohó algoritmus</span></li>
+                        <li>Tárolja a már megtalált legrövidebb utakkal rendelkező csúcsokat</li>
+                        <li>Minden lépésben a <span class="highlight">legrövidebb úttal bíró csúcsot választja</span></li>
+                        <li>Időbonyolultság: <span class="highlight">O(E log V)</span></li>
+                        <li>Működése:
+                            <ol>
+                                <li>Kezdőcsúcs távolsága 0, többi csúcs távolsága ∞</li>
+                                <li>Kiválasztjuk a legkisebb távolságú, még nem feldolgozott csúcsot</li>
+                                <li>Frissítjük szomszédjai távolságát, ha rövidebb utat találunk</li>
+                                <li>Ismételjük, amíg minden csúcsot fel nem dolgoztunk</li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Korlátok:</span> Nem működik negatív élsúlyok vagy negatív összsúlyú körök esetén</li>
+                    </ul>
+                    
+                    <h3>2. Bellman-Ford algoritmus</h3>
+                    <a href="https://youtu.be/obWXjtg0L64" class="algorithm-link" target="_blank">
+                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                    </a>
+                    <ul>
+                        <li>Működik <span class="highlight">negatív élsúlyok</span> esetén is</li>
+                        <li>Észleli a <span class="highlight">negatív körök</span> jelenlétét</li>
+                        <li>Időbonyolultság: <span class="highlight">O(VE)</span></li>
+                        <li>Működése:
+                            <ol>
+                                <li>Kezdőcsúcs távolsága 0, többi csúcs távolsága ∞</li>
+                                <li>V-1 iterációban minden élre elvégezzük a relaxációt</li>
+                                <li>Ha V. iterációban is találunk javítást, negatív kört észleltünk</li>
+                            </ol>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Fontos tulajdonságok:</span></p>
+                    <ul>
+                        <li>A legrövidebb út <span class="highlight">részútja is legrövidebb út</span></li>
+                        <li>Az érintett csúcsok száma nem befolyásolja az optimális utat</li>
+                        <li>Dijkstra algoritmus <span class="highlight">körökkel boldogul</span>, de negatív élsúlyokkal nem</li>
+                        <li>Bellman-Ford <span class="highlight">negatív élsúlyokkal is működik</span>, de lassabb</li>
+                    </ul>
+                </div>
+                
+                <p>A legrövidebb utak probléma megoldása fontos szerepet játszik <span class="highlight">navigációs rendszerekben</span> (pl. GPS) és hálózati útválasztásban.</p>
             </div>
         </div>
     </div>
