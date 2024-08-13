@@ -496,41 +496,45 @@
                 <p>A legrövidebb utak probléma célja, hogy megtaláljuk a <span class="highlight">minimális költségű utat</span> egy adott kezdőcsúcsból az összes többi csúcsba egy súlyozott gráfban.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Bemenet:</span> Irányított, súlyozott G=(V, E) gráf és egy s kezdőcsúcs. w(u, v) az (u, v) él súlya.</p>
+                    <p><span class="key-point">Bemenet:</span> Irányított, súlyozott G=(V, E) gráf, ahol V a csúcsok halmaza, E az élek halmaza, w(u, v) az (u, v) él súlya, és egy s kezdőcsúcs.</p>
                     <p><span class="key-point">Kimenet:</span> Minden V csúcshoz vezető legrövidebb út s-ből indulva.</p>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Algoritmusok:</span></p>
-                    <h3>1. Dijkstra algoritmus</h3>
+                    <p><span class="key-point">Dijkstra algoritmus:</span></p>
+                    <ul>
+                        <li><span class="highlight">Mohó algoritmus</span>, amely mindig a legközelebbi, még nem feldolgozott csúcsot választja</li>
+                        <li>Minden lépésben <span class="highlight">legrövidebb úttal bíró csúcsot választja</span>, ezzel <span class="highlight">bővíti az elért csúcsok halmazát</span></li>
+                        <li>Időbonyolultság: <span class="highlight">O(E log V)</span> bináris kupac használatával</li>
+                        <li>A legrövidebb út <span class="highlight">részútja is legrövidebb út</span></li>
+                        <li>Alkalmazás: GPS útvonaltervezés</li>
+                        <li><span class="key-point">Korlája: </span><span class="highlight">Nem működik negatív élsúlyú körök</span> esetén</li>
+                        <li>A Dijkstra hibáira <span class="highlight">megoldást</span> nyújthat a <span class="highlight">Bellman-Ford algoritmus</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Dijkstra algoritmus működése:</span></p>
                     <a href="https://youtu.be/_lHSawdgXpI" class="algorithm-link" target="_blank">
                         <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
                     </a>
-                    <ul>
-                        <li><span class="highlight">Mohó algoritmus</span></li>
-                        <li>Tárolja a már megtalált legrövidebb utakkal rendelkező csúcsokat</li>
-                        <li>Minden lépésben a <span class="highlight">legrövidebb úttal bíró csúcsot választja</span></li>
-                        <li>Időbonyolultság: <span class="highlight">O(E log V)</span></li>
-                        <li>Működése:
-                            <ol>
-                                <li>Kezdőcsúcs távolsága 0, többi csúcs távolsága ∞</li>
-                                <li>Kiválasztjuk a legkisebb távolságú, még nem feldolgozott csúcsot</li>
-                                <li>Frissítjük szomszédjai távolságát, ha rövidebb utat találunk</li>
-                                <li>Ismételjük, amíg minden csúcsot fel nem dolgoztunk</li>
-                            </ol>
-                        </li>
-                        <li><span class="highlight">Korlátok:</span> Nem működik negatív élsúlyok vagy negatív összsúlyú körök esetén</li>
-                    </ul>
-                    
-                    <h3>2. Bellman-Ford algoritmus</h3>
-                    <a href="https://youtu.be/obWXjtg0L64" class="algorithm-link" target="_blank">
-                        <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
-                    </a>
+                    <ol>
+                        <li>Kezdetben a kezdőcsúcs távolsága 0, minden más csúcsé ∞</li>
+                        <li>Kiválasztjuk a <span class="highlight">legkisebb távolságú, még nem feldolgozott csúcsot</span></li>
+                        <li>Megvizsgáljuk a kiválasztott csúcs szomszédjait</li>
+                        <li>Ha találunk <span class="highlight">rövidebb utat egy szomszédhoz</span>, frissítjük annak távolságát</li>
+                        <li>A kiválasztott csúcsot megjelöljük feldolgozottként</li>
+                        <li>Ismételjük a 2-5 lépéseket, amíg minden csúcsot fel nem dolgoztunk</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Bellman-Ford algoritmus:</span></p>
                     <ul>
                         <li>Működik <span class="highlight">negatív élsúlyok</span> esetén is</li>
                         <li>Észleli a <span class="highlight">negatív körök</span> jelenlétét</li>
-                        <li>Időbonyolultság: <span class="highlight">O(VE)</span></li>
-                        <li>Működése:
+                        <li>Időbonyolultság: <span class="highlight">O(VE)</span>, ahol V a csúcsok, E az élek száma</li>
+                        <li><span class="key-point">Működése:</span>
                             <ol>
                                 <li>Kezdőcsúcs távolsága 0, többi csúcs távolsága ∞</li>
                                 <li>V-1 iterációban minden élre elvégezzük a relaxációt</li>
@@ -541,26 +545,171 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Fontos tulajdonságok:</span></p>
+                    <p><span class="key-point">Fontos megjegyzések:</span></p>
                     <ul>
-                        <li>A legrövidebb út <span class="highlight">részútja is legrövidebb út</span></li>
-                        <li>Az érintett csúcsok száma nem befolyásolja az optimális utat</li>
-                        <li>Dijkstra algoritmus <span class="highlight">körökkel boldogul</span>, de negatív élsúlyokkal nem</li>
-                        <li>Bellman-Ford <span class="highlight">negatív élsúlyokkal is működik</span>, de lassabb</li>
+                        <li>Dijkstra algoritmusa <span class="highlight">körökkel boldogul</span>, de negatív élsúlyokkal nem</li>
+                        <li>Negatív összsúlyú körök esetén a <span class="highlight">legrövidebb út nem értelmezhető</span></li>
+                        <li>Bellman-Ford algoritmusa <span class="highlight">lassabb, de általánosabb</span> megoldást nyújt</li>
                     </ul>
                 </div>
                 
-                <p>A legrövidebb utak probléma megoldása fontos szerepet játszik <span class="highlight">navigációs rendszerekben</span> (pl. GPS) és hálózati útválasztásban.</p>
+                <p>A legrövidebb utak problémája fontos szerepet játszik <span class="highlight">hálózati forgalomirányításban</span>, <span class="highlight">útvonaltervezésben</span> és számos más alkalmazási területen.</p>
             </div>
         </div>
     </div>
-
     <div class="main-topic" onclick="toggleMainContent(this)">
         <h2>Összegzés</h2>
     </div>
     <div class="main-content">
-    </div>
+        <div class="algorithm">
+            <h2>Mohó algoritmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li>Az algoritmus <span class="highlight">minden lépésben az optimálisnak tűnő döntést</span> hozza meg</li>
+                    <li>Példa: <span class="highlight">hátizsák probléma</span> (töredékes és ismétléses változat)</li>
+                    <li>Nem minden problémára alkalmazható, de ha igen, akkor <span class="highlight">rendkívül hatékony</span></li>
+                    <li>Cél: egy részprobléma kapása, amelyből közvetlenül következik az eredmény</li>
+                </ul>
+            </div>
+        </div>
     
+        <div class="algorithm">
+            <h2>Oszd-meg-és-uralkodj (D&C)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li>Példa: <span class="highlight">csúcskeresés</span></li>
+                    <li>Lépések: <span class="highlight">felosztás - uralkodás - összevonás</span></li>
+                    <li>A problémát <span class="highlight">több diszjunkt, hasonló részre</span> osztjuk</li>
+                    <li>A részeket <span class="highlight">rekurzívan megoldjuk</span></li>
+                    <li>A részeredményeket <span class="highlight">összevonjuk</span> az eredeti probléma megoldásává</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Dinamikus programozás (DP)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li>Példa: <span class="highlight">pénzváltás probléma</span></li>
+                    <li>Hasonló a D&C-hez, de itt <span class="highlight">azonos részproblémák is előfordulhatnak</span></li>
+                    <li>A részproblémák megoldásait <span class="highlight">tároljuk és újrafelhasználjuk</span></li>
+                    <li>Alternatíva a "nyers erő" megoldásokra</li>
+                </ul>
+            </div>
+        </div>
+        
+    
+        <div class="algorithm">
+            <h2>Rendező algoritmusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="key-point">Beszúró rendezés:</span>
+                        <ul>
+                            <li>Végigiterál a tömbön a <span class="highlight">második elemtől</span> kezdve</li>
+                            <li>Az aktuális elemet a <span class="highlight">megfelelő helyre beszúrja</span> a már rendezett részbe</li>
+                            <li>Időigény: <span class="highlight">O(n^2)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Összefésülő rendezés:</span>
+                        <ul>
+                            <li><span class="highlight">Rekurzívan felezi</span> az inputot</li>
+                            <li>A kapott részeket rendezi, majd <span class="highlight">összefésüli</span></li>
+                            <li>Időigény: <span class="highlight">Θ(n log n)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Kupacrendezés:</span>
+                        <ul>
+                            <li><span class="highlight">Kupaccal</span> (bináris fa) reprezentálja a bemeneti tömböt</li>
+                            <li><span class="highlight">Maximum kupacot</span> képez, majd a gyökérelemet kivéve rendezi a tömböt</li>
+                            <li>Időigény: átlagosan <span class="highlight">O(n log n)</span>, legrosszabb esetben <span class="highlight">O(n^2)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Gyorsrendezés:</span>
+                        <ul>
+                            <li><span class="highlight">Oszd-meg-és-uralkodj</span> elven alapul</li>
+                            <li><span class="highlight">Particionálja</span> a tömböt egy kulcselem körül</li>
+                            <li><span class="highlight">Rekurzívan rendezi</span> a részeket</li>
+                            <li>Időigény: átlagosan <span class="highlight">O(n log n)</span>, legrosszabb esetben <span class="highlight">O(n^2)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Leszámláló rendezés:</span>
+                        <ul>
+                            <li><span class="highlight">K-féle értéket</span> tartalmazó tömbökre alkalmazható</li>
+                            <li><span class="highlight">Megszámolja</span> az értékek előfordulásait</li>
+                            <li>A számlálók alapján <span class="highlight">helyezi el</span> az elemeket</li>
+                            <li>Időigény: <span class="highlight">O(n + k)</span>, ahol k a különböző értékek száma</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Gráfalgoritmusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="key-point">Szélességi keresés (BFS):</span>
+                        <ul>
+                            <li><span class="highlight">Rétegenként</span> járja be a gráfot</li>
+                            <li><span class="highlight">Fehér, szürke, fekete</span> színezést használ</li>
+                            <li><span class="highlight">Szélességi fát</span> eredményez</li>
+                            <li>Időigény: <span class="highlight">O(V + E)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Mélységi keresés (DFS):</span>
+                        <ul>
+                            <li>A gráf ágait a <span class="highlight">lehető legmélyebbre</span> követi</li>
+                            <li><span class="highlight">Mélységi feszítőerdőt</span> eredményez</li>
+                            <li><span class="highlight">Faél, visszaél, előreél, keresztél</span> típusokat azonosít</li>
+                            <li>Időigény: <span class="highlight">O(V + E)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Minimális feszítőfák:</span>
+                        <ul>
+                            <li>Kruskal algoritmus:
+                                <ul>
+                                    <li><span class="highlight">Minimális fák erdejét</span> tárolja</li>
+                                    <li>Mindig a <span class="highlight">legkisebb, két fát összekötő élt</span> választja</li>
+                                    <li>Időigény: <span class="highlight">O(E log E)</span></li>
+                                </ul>
+                            </li>
+                            <li>Prim algoritmus:
+                                <ul>
+                                    <li><span class="highlight">Egyetlen fát</span> növeszt</li>
+                                    <li>Minden lépésben a <span class="highlight">legolcsóbb élen</span> keresztül köt be új csúcsot</li>
+                                    <li>Időigény: <span class="highlight">O(E log V)</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="key-point">Legrövidebb utak:</span>
+                        <ul>
+                            <li>Dijkstra algoritmus:
+                                <ul>
+                                    <li>Mindig a <span class="highlight">legrövidebb úttal bíró csúcsot</span> választja</li>
+                                    <li><span class="highlight">Nem működik negatív élsúlyok</span> esetén</li>
+                                    <li>Időigény: <span class="highlight">O(E log V)</span></li>
+                                </ul>
+                            </li>
+                            <li>Bellman-Ford algoritmus:
+                                <ul>
+                                    <li>Működik <span class="highlight">negatív élsúlyok</span> esetén is</li>
+                                    <li>Észleli a <span class="highlight">negatív köröket</span></li>
+                                    <li><span class="highlight">V-1 iterációban</span> próbál minden élen javítani</li>
+                                    <li>Időigény: <span class="highlight">O(VE)</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
