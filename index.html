@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tétel Lobby</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff8d6;
+            transition: background-color 0.3s;
+            margin-bottom: 10vh;
+        }
+
+        h1,
+        h2 {
+            color: #092643;
+            text-align: center;
+            transition: color 0.3s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 1;
+        }
+
+        .theme-toggle:hover {
+            background-color: #2980b9;
+            transform: rotate(20deg);
+        }
+        #tetel-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tetel-square {
+            width: 150px;
+            height: 150px;
+            background-color: #fdf765;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            padding: 10px;
+            border: 1px solid black;
+            flex-direction: column;
+        }
+        .tetel-square:hover {
+            transform: translateY(-7px);
+            transition: all 0.3s ease-in-out;
+            filter: drop-shadow(0px 10px 0px #000000);
+            background-color: #fff500;
+        }
+
+        .tetel-square.empty {
+            background-color: rgb(193 189 101 / 26%);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgb(12 12 12 / 50%);
+        }
+
+        .tetel-square.empty:hover {
+            background-color: rgb(255 248 87 / 50%);
+        }
+
+        a.empty:hover{
+            color: #5b5b5b;
+        }
+
+        .dark-mode .tetel-square.empty {
+            background-color: rgb(41 58 77 / 50%);
+        }
+
+        .dark-mode .tetel-square.empty:hover {
+            background-color: rgb(66 103 141 / 50%);
+        }
+
+        .dark-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark-mode h1,
+        .dark-mode h2 {
+            color: #fffced;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                margin-bottom: 5vh;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                padding: 0px 10px;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px;
+            }
+
+            #tetel-container {
+                gap: 10px;
+            }
+
+            
+
+            .tetel-number {
+                font-size: 12px;
+            }
+
+            .tetel-name {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tetel-square {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
+
+    <h1>Tétel Lobby</h1>
+    <div id="tetel-container"></div>
+
+    <script>
+        const tetelFiles = [
+            { name: 'Alga I.', file: '1.html' },
+            { name: 'Alga II.', file: '2.html' },
+            { name: 'Bonya I.', file: '3.html' },
+            { name: 'Fonya I.', file: '4.html' },
+            { name: 'köszi I.', file: '5.html' },
+            { name: 'Köszi II.', file: '6.html' },
+            { name: 'Logika I.', file: '7.html' },
+            { name: 'Mestint I.', file: '8.html' },
+            { name: 'Mestint II.', file: '9.html' },
+            { name: 'Opkut I.', file: '10.html' },
+            { name: 'Opkut II.', file: '11.html' },
+            { name: 'Oprend I.', file: '12.html' },
+            { name: 'Oprend II.', file: '13.html' },
+            { name: 'Adatb I.', file: '14.html' },
+            { name: 'Adatb II.', file: '15.html' },
+            { name: 'Digi I.', file: '16.html' },
+            { name: 'Prog alap I.', file: '17.html' },
+            { name: 'Prog alap II.', file: '18.html' },
+            { name: 'Prog 1-2 I.', file: '19.html' },
+            { name: 'Prog 1-2 II.', file: '20.html' },
+            { name: 'Prog 1-2 III.', file: '21.html' },
+            { name: 'Prog nyelv I.', file: '22.html' },
+            { name: 'Rendf I.', file: '23.html' },
+            { name: 'Rendf II.', file: '24.html' },
+            { name: 'Számh I.', file: '25.html' },
+            { name: 'Számh II.', file: '26.html' },
+            { name: 'Szar I.', file: '27.html' },
+            { name: 'Szar II.', file: '28.html' },
+        ];
+    
+        async function checkTetelContent(file) {
+            try {
+                const response = await fetch(`/tetelek/${file}`);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const title = doc.querySelector('title').textContent;
+                return title.trim().endsWith('-');
+            } catch (error) {
+                console.error('Error checking tétel content:', error);
+                return false;
+            }
+        }
+    
+        async function createTetelSquares() {
+            const container = document.getElementById('tetel-container');
+            
+            for (let i = 0; i < tetelFiles.length; i++) {
+                const tetel = tetelFiles[i];
+                const square = document.createElement('a');
+                square.href = `/tetelek/${tetel.file}`;
+                square.className = 'tetel-square';
+                
+                const isEmpty = await checkTetelContent(tetel.file);
+                if (isEmpty) {
+                    square.classList.add('empty');
+                }
+                
+                const tetelNumber = document.createElement('div');
+                tetelNumber.className = 'tetel-number';
+                tetelNumber.textContent = `Tétel ${i + 1}`;
+                
+                const tetelName = document.createElement('div');
+                tetelName.className = 'tetel-name';
+                tetelName.textContent = tetel.name;
+                
+                square.appendChild(tetelNumber);
+                square.appendChild(tetelName);
+                container.appendChild(square);
+            }
+        }
+    
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+    
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+    
+        // Call the function when the page loads
+        window.onload = createTetelSquares;
+    </script>
+</body>
+</html>
