@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 7 - </title>
+    <title>Tétel 7 - Logika I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,491 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Logika és informatikai alkalmazásai I - 7. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Normálformák az ítéletkalkulusban</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>CNF és DNF</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a normálforma célja?</span> A normálformák <span class="highlight">egyszerűsítik és egységesítik</span> az ítéletkalkulus kifejezéseit, ami <span class="highlight">csökkenti az algoritmusokra vonatkozó esetek számát</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mik a CNF alapfogalmai?</span></p>
+                    <ul>
+                        <li><span class="highlight">Literál:</span> Egy ítéletváltozó vagy annak negáltja (pl.: p, ¬q, ¬p, r)</li>
+                        <li><span class="highlight">Klóz:</span> Véges sok literál diszjunkciója (logikai "vagy"), pl.: (p ∨ ¬q), (¬p ∨ ¬q ∨ r), p</li>
+                        <li><span class="highlight">CNF:</span> Véges sok klóz konjunkciója (logikai "és")</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi a különbség a CNF és a DNF között?</span></p>
+                    <ul>
+                        <li><span class="highlight">CNF:</span> Belül vagyolások (∨), kívül éselések (∧)</li>
+                        <li><span class="highlight">DNF:</span> Belül éselések (∧), kívül vagyolások (∨)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>CNF-re hozás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan hozzuk CNF-re a formulákat?</span></p>
+                <ol>
+                    <li>Implikáció (→) és ekvivalencia (↔) eliminálása:
+                        <ol>
+                            <li>F → G ≡ ¬F ∨ G</li>
+                            <li>F ↔ G ≡ (¬F ∨ G) ∧ (F ∨ ¬G)</li>
+                        </ol>
+                    </li>
+                    <li>Negáció (¬) bevitele a változók mellé (De Morgan azonosságok):
+                        <ol>
+                            <li>¬(F ∨ G) ≡ ¬F ∧ ¬G</li>
+                            <li>¬(F ∧ G) ≡ ¬F ∨ ¬G</li>
+                            <li>¬¬F ≡ F</li>
+                        </ol>
+                    </li>
+                    <p>Ekkor a formula <span class="highlight">negációs normálformában (NNF)</span> van.</p>
+                    <li>Diszjunkció (∨) bevitele a konjunkció (∧) alá:
+                        <ol>
+                            <li>F ∨ (G ∧ H) ≡ (F ∨ G) ∧ (F ∨ H)</li>
+                            <li>(F ∧ G) ∨ H ≡ (F ∨ H) ∧ (G ∨ H)</li>
+                        </ol>
+                    </li>
+                </ol>
+                <p><span class="key-point">Előny:</span> A CNF-re hozás lehetővé teszi a formulák egységes kezelését és egyszerűsítését, ami különösen hasznos az automatizált tételbizonyításban és a SAT-problémák megoldásában.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>SAT-probléma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a SAT-probléma?</span> A SAT (satisfiability) egy <span class="highlight">CNF-eken értelmezett probléma</span>, amely azt vizsgálja, hogy egy adott CNF <span class="highlight">kielégíthető-e</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Input:</span> CNF formula</p>
+                    <p><span class="key-point">Output:</span> A formula kielégíthető-e vagy sem</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Kielégíthetőség:</span> Egy formula akkor kielégíthető, ha létezik a literáljainak olyan értékadása, amiben a formula igazra értékelődik ki.</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Mik a SAT-probléma speciális esetei?</span></p>
+                    <ul>
+                        <li><span class="highlight">Üres klóz (☐):</span> Minden értékadás mellett hamis</li>
+                        <li><span class="highlight">Üres CNF (Ø):</span> Minden értékadás mellett igaz</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan csökkenthetjük a keresési teret?<br>A keresési tér vágása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egység propagáció (Unit Propagation):</span>
+                            <ul>
+                                <li>Ha van {l} egységklóz Σ-ban, akkor Σ minden A modelljében <span class="highlight">A(l) = 1</span></li>
+                                <li>Σ pontosan akkor kielégíthető, ha Σ|l=1 az, mivel Σ|l=0-ban lesz egy üres klóz</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Tiszta literál elimináció (Pure Literal Elimination):</span>
+                            <ul>
+                                <li>Ha l olyan literál, melynek komplementere nem fordul elő Σ-ban, akkor l-t 1-re állíthatjuk</li>
+                                <li>Σ pontosan akkor kielégíthető, ha Σ|l=1 az</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Egységklóz:</span></p>
+                    <p>Egy <span class="highlight">egységklóz</span> olyan klóz, amely csak egyetlen literált tartalmaz. Az egységklózok különösen hasznosak a keresési tér vágásában, mivel egyértelműen meghatározzák egy változó értékét.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>SAT Példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Példa SAT-problémára:</span></p>
+                    <p>Legyen <code>Σ = { {p}, {p, q}, {¬p, ¬q}, {p, ¬p, r } } és l = ¬p</code></p>
+                    <p>Célunk: Meghatározni Σ|¬p =1 értékét</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Lépések:</span></p>
+                    <ol>
+                        <li><span class="highlight">Kiindulási helyzet:</span>
+                            <pre>Σ = { {p}, {p, q}, {¬p, ¬q}, {p, ¬p, r} }</pre>
+                        </li>
+                        <li><span class="highlight">Egység propagáció alkalmazása (l = ¬p):</span>
+                            <ul>
+                                <li>Eltávolítjuk a ¬p-t tartalmazó klózokat</li>
+                                <li>Töröljük p-t a többi klózból</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Végrehajtás:</span>
+                            <ul>
+                                <li>{p} klóz: p törlése után üres klóz marad
+                                    <pre>Σ = { {}, {p, q}, {¬p, ¬q}, {p, ¬p, r} }</pre>
+                                </li>
+                                <li>{p, q} klóz: p törlése
+                                    <pre>Σ = { {}, {q}, {¬p, ¬q}, {p, ¬p, r} }</pre>
+                                </li>
+                                <li>{¬p, ¬q} klóz: Teljes klóz törlése (¬p miatt)
+                                    <pre>Σ = { {}, {q}, {p, ¬p, r} }</pre>
+                                </li>
+                                <li>{p, ¬p, r} klóz: Teljes klóz törlése (¬p miatt)
+                                    <pre>Σ = { {}, {q} }</pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Végső állapot:</span>
+                            <pre>Σ|¬p = { {}, {q} }</pre>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>DPLL algoritmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a DPLL algoritmus?</span> A DPLL (Davis-Putnam-Logemann-Loveland) algoritmus a <span class="highlight">SAT-probléma egyik leghatékonyabb megoldási módszere</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">A DPLL algoritmus lépései:</span></p>
+                    <ol>
+                        <li>Ha az input formula üres CNF, akkor <span class="highlight">return true</span>.</li>
+                        <li>Ha az input formulában van üres klóz, akkor <span class="highlight">return false</span>.</li>
+                        <li>Különben:
+                            <ol>
+                                <li><span class="highlight">Egység propagáció:</span> Ha van egységklóz, akkor azt 1-re állítjuk</li>
+                                <li><span class="highlight">Tiszta literál elimináció:</span> Ha van l literál, amelynek komplementere nem szerepel a formulában, akkor l=1</li>
+                                <li>Ha egyik sem alkalmazható, <span class="highlight">választunk egy p változót</span> és rekurzívan kiértékeljük p=0-ra és p=1-re</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+                <p><span class="key-point">Miért hatékony a DPLL?</span> A DPLL algoritmus <span class="highlight">egyesíti a keresési tér vágását, az egység propagációt és a tiszta literál eliminációt</span>, így hatékonyan csökkenti a probléma méretét és gyorsítja a megoldás megtalálását.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>DPLL algoritmus példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">DPLL Algoritmus Példa:</span></p>
+                    <p>Tegyük fel, hogy van egy CNF formulánk: (A ∨ B) ∧ (¬A ∨ C) ∧ (B ∨ ¬C) ∧ (¬B ∨ C)</p>
+                    <ol>
+                        <li><span class="highlight">Egység propagáció:</span> Nincs egység klóz.</li>
+                        <li><span class="highlight">Tiszta literál elimináció:</span> Nincs tiszta literál.</li>
+                        <li><span class="highlight">Döntés:</span> Válasszunk egy literált, például `A`. Próbáljuk meg először `A`-t igaznak beállítani.</li>
+                        <li>Az új formula: (B) ∧ (C) ∧ (B ∨ ¬C) ∧ (¬B ∨ C)</li>
+                        <li><span class="highlight">Egység propagáció:</span> `B` igaz, `C` igaz.</li>
+                        <li>Az új formula üres, mivel az összes klóz igaz lett.</li>
+                    </ol>
+                    <p>Következtetés: A formula kielégíthető az `A = igaz`, `B = igaz`, `C = igaz` beállításokkal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Boole-függvények teljes rendszerei</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Boole-függvények teljes rendszerei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a teljes rendszer?</span> Egy Boole-függvények H rendszere <span class="highlight">teljes vagy adekvát</span>, ha <span class="highlight">minden n-változós függvény előáll</span> a következőkből:</p>
+                <ul>
+                    <li>A <span class="highlight">projekciókból</span> (πi jelöli az i-edik változó kiválasztását)</li>
+                    <li>És H <span class="highlight">elemeiből</span></li>
+                    <li><span class="highlight">Alkalmas kompozícióval</span></li>
+                </ul>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az a kompozíció?</span></p>
+                    <p>Ha f/n és g1/k, …, gn/k Boole-függvények, akkor az f ० 〈g1, …, gn〉 az a k-változós Boole-függvény, melyre:</p>
+                    <p><span class="highlight">(f ०〈g1, . . . , gn〉(x1, . . . , xk) = f(g1〈x1, . . . , xk〉, ..., gn〈x1, . . . , xk〉)</span></p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan értelmezzük a teljességet?</span></p>
+                    <p>Ha H teljes, az azt jelenti, hogy ha vesszük azt az <span class="highlight">O operátort</span>, melyben a <span class="highlight">projekciók és H elemei</span> szerepelnek, akkor erre <span class="highlight">O*(∅) tartalmazza az összes Boole-függvényt</span>. Ez egy <span class="highlight">műveletcsaláddal definiált lezárási operátor</span>.</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan alkalmazhatunk megszorításokat Boole-függvényekre?</span></p>
+                    <p>Ha b ∈ {0, 1} igazságérték, akkor <span class="highlight">f|Xn=b jelöli azt az (n-1)-változós Boole-függvényt</span>, amelyet úgy kapunk, hogy <span class="highlight">f inputjában xn értékét b-re rögzítjük</span>.</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az a Shannon expanzió?</span></p>
+                    <p>A Shannon expanzió szerint <span class="highlight">minden Boole-függvény előáll a projekciók és a {¬, ∨, ∧} Boole-függvények alkalmas kompozíciójaként</span>. Ezt n szerinti teljes indukcióval bizonyíthatjuk:</p>
+                    <ul>
+                        <li>Ha n = 0, akkor <span class="highlight">f/0 az vagy konstans 0, vagy konstans 1</span></li>
+                        <li>Ha n > 0, akkor az <span class="highlight">indukciós feltevés szerint</span> az f|Xn=b(x1, …, xn-1) Boole-függvények előállnak ilyen alakban, és a Shannon expanzióban <span class="highlight">szintén csak ezt a három műveletet használjuk</span></li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Milyen rendszer teljes biztosan?</span> Fontos megjegyezni, hogy a <span class="highlight">{¬, ∨, ∧} rendszer teljes</span>.</p>
+
+                <p><span class="key-point">Miért fontosak a teljes rendszerek?</span> A teljes rendszerek lehetővé teszik, hogy <span class="highlight">bármely Boole-függvényt kifejezzünk egy adott függvényhalmaz segítségével</span>, ami alapvető fontosságú a <span class="highlight">digitális áramkörök tervezésében és a logikai rendszerek elemzésében</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Hilbert-kalkulus</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Hilbert rendszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a Hilbert rendszer?</span> A Hilbert rendszer egy <span class="highlight">deduktív (következtető) rendszer</span>, amellyel az <span class="highlight">input Σ összes következményét (és csak azokat) lehet levezetni</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Milyen konnektívákat használ a Hilbert rendszer?</span></p>
+                    <ul>
+                        <li>Csak a <span class="highlight">→ konnektívát</span> (implikáció)</li>
+                        <li>És a <span class="highlight">↓ logikai konstanst</span> (azonosan hamis)</li>
+                        <li>Az <span class="highlight">ítéletváltozókon kívül</span></li>
+                    </ul>
+                    <p>Minden formula ilyen alakra hozható, mivel a <span class="highlight">{→, ↓} rendszer teljes</span>.</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Melyek a Hilbert rendszer axiómái?</span> A rendszer <span class="highlight">három axiómát</span> tartalmaz, amelyek mind <span class="highlight">tautológiák</span>:</p>
+                    <ul>
+                        <li>Ax1: <span class="highlight">(F → (G → H)) → ((F → G) → (F → H))</span></li>
+                        <li>Ax2: <span class="highlight">F → (G → F)</span></li>
+                        <li>Ax3: <span class="highlight">((F → ↓) → ↓) → F</span></li>
+                    </ul>
+                    <p><span class="highlight">Fontos a sorrend</span>, mivel a → nem asszociatív!</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan képezhetünk axiómapéldányokat?</span></p>
+                    <p>Az axiómáknak <span class="highlight">megadható példány</span> úgy, hogy <span class="highlight">F, G, H helyére tetszőleges formulát írunk</span>.</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az a leválasztási következtetés (modus ponens)?</span></p>
+                    <p>A modus ponens egy <span class="highlight">helyes következtetési szabály</span>, amelynek segítségével <span class="highlight">levezethetünk formulákat</span> a Hilbert rendszerben:</p>
+                    <p><span class="highlight">{F, F → G} ⊨ G</span></p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mikor mondhatjuk, hogy egy formula levezethető?</span></p>
+                    <p>Egy F formula <span class="highlight">levezethető Σ-ból</span> a Hilbert rendszerben (Σ ⊢ F), ha létezik olyan F1, F2, …, Fn formula-sorozat, melynek minden eleme:</p>
+                    <ul>
+                        <li><span class="highlight">Σ-beli</span>, vagy</li>
+                        <li><span class="highlight">Axiómapéldány</span>, vagy</li>
+                        <li><span class="highlight">Előáll két korábbiból modus ponenssel</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Példa levezetésre:</span></p>
+                    <p><span class="highlight">{p → q} ⊢ p → (r → q)</span></p>
+                    <ol>
+                        <li><span class="highlight">(p → (q → (r → q))) → ((p → q) → (p → (r → q)))</span> Ax1[F/p, G/q, H/(r → q)]</li>
+                        <li><span class="highlight">(q → (r → q)</span> Ax2[F/q, G/r]</li>
+                        <li><span class="highlight">(q → (r → q)) → (p → (q → (r → q)))</span> Ax2[F/(q → (r → q)), G/p]</li>
+                        <li><span class="highlight">p → (q → (r → q))</span> MP(2, 3)</li>
+                        <li><span class="highlight">(p → q) → (p → (r → q))</span> MP(1, 4)</li>
+                        <li><span class="highlight">p → q</span> ∈ Σ</li>
+                        <li><span class="highlight">p → (r → q)</span> MP(5, 6)</li>
+                    </ol>
+                </div>
+
+                <p><span class="key-point">Mi a visszavezetés lényege?</span> A visszavezetés lényege az, hogy <span class="highlight">axiómapéldányokkal és a levezetés bal oldalán található formulák segítségével állítsuk elő a jobb oldalon látható formulát</span>.</p>
+
+                <p><span class="key-point">Miért fontos a Hilbert rendszer?</span> A Hilbert rendszer <span class="highlight">formális keretet biztosít a logikai következtetések levezetéséhez</span>, ami alapvető fontosságú a <span class="highlight">matematikai logikában és az automatizált tételbizonyításban</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Rezolúció</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Rezolúciós algoritmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a rezolúció célja?</span> A rezolúció egy <span class="highlight">következtetési módszer</span>, amely egy <span class="highlight">klózhalmaz kielégíthetetlenségét</span> vizsgálja.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan működik a rezolúciós algoritmus?</span></p>
+                    <ul>
+                        <li><span class="highlight">Input:</span> Klózok Σ halmaza</li>
+                        <li><span class="highlight">Output:</span> Kielégíthetetlen-e Σ?</li>
+                        <li>Listát vezetünk a klózokról</li>
+                        <li>Egy klózt felvehetünk, ha:
+                            <ul>
+                                <li><span class="highlight">Σ-beli</span>, vagy</li>
+                                <li><span class="highlight">Két, a listán már szereplő klóz rezolvense</span></li>
+                            </ul>
+                        </li>
+                        <li>Ha az <span class="highlight">üres klóz</span> (☐) kerül a listára, Σ <span class="highlight">kielégíthetetlen</span></li>
+                        <li>Ha már <span class="highlight">nem tudunk új klózt felvenni</span>, és nincs köztük ☐, Σ <span class="highlight">kielégíthető</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Példa a rezolúcióra:</span></p>
+                    <p>Σ = { {p, q, r}, {¬p, r}, {¬q, s}, {¬r, s}, {¬s} }</p>
+                    <ol>
+                        <li>{p, q, r} ∈ Σ</li>
+                        <li>{¬p, r} ∈ Σ</li>
+                        <li>{q, r} Res(1, 2)</li>
+                        <li>{¬q, s} ∈ Σ</li>
+                        <li>{r, s} Res(3, 4)</li>
+                        <li>{¬r, s} ∈ Σ</li>
+                        <li>{s} Res(5, 6)</li>
+                        <li>{¬s} ∈ Σ</li>
+                        <li>☐ Res(7, 8)</li>
+                    </ol>
+                    <p>Következtetés: Σ <span class="highlight">kielégíthetetlen</span>, mivel az üres klóz levezethető.</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Milyen tulajdonságai vannak a rezolúciós algoritmusnak?</span></p>
+                    <ul>
+                        <li><span class="highlight">Helyes:</span> Ha kielégíthetetlen válasszal áll meg, akkor az input Σ tényleg kielégíthetetlen</li>
+                        <li><span class="highlight">Teljes:</span> Ha Σ kielégíthetetlen, akkor minden esetben "kielégíthetetlen" választ ad</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Milyen fontos szabályok vonatkoznak a rezolúcióra?</span></p>
+                    <ul>
+                        <li>Egy lépésben <span class="highlight">egyszerre csak egy literál mentén rezolválunk</span></li>
+                        <li><span class="highlight">Lineáris rezolúció:</span> Mindig az előző lépésben felvett klózhoz veszünk hozzá egyet a Σ klózai közül, és azokat rezolváljuk</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az a Horn-formula és Horn-klóz?</span></p>
+                    <ul>
+                        <li><span class="highlight">Horn-formula:</span> Minden klóza Horn-klóz</li>
+                        <li><span class="highlight">Horn-klóz:</span> Legfeljebb egy pozitív literál van benne</li>
+                        <li>Rezolúció közben minden képzésben az <span class="highlight">egyik résztvevő klóz pozitív egységklóz</span> legyen</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mi az az SLD rezolúció?</span></p>
+                    <p>Az <span class="highlight">SLD (Selective Linear Definite) rezolúció</span> egy olyan lineáris rezolúció, ahol:</p>
+                    <ul>
+                        <li><span class="highlight">Horn-formulából</span> indulunk ki</li>
+                        <li><span class="highlight">Nem rezolválunk</span> a listán korábban szereplő klózokkal</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miért fontos a rezolúció?</span> A rezolúció egy <span class="highlight">hatékony módszer</span> a logikai következtetések levonására és a <span class="highlight">kielégíthetetlenség bizonyítására</span>, ami kulcsfontosságú az <span class="highlight">automatizált tételbizonyításban</span> és a <span class="highlight">mesterséges intelligenciában</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összegzés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Normálformák az ítéletkalkulusban</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li>A <span class="highlight">konjunktív normálforma (CNF)</span> az egyik leggyakrabban alkalmazott normálforma</li>
+                    <li><span class="highlight">Literálok:</span> ítéletváltozók és negáltjaik (pl.: p, ¬q, ¬p, r)</li>
+                    <li><span class="highlight">Klóz:</span> véges sok literál diszjunkciója (logikai "vagy")</li>
+                    <li><span class="highlight">CNF:</span> véges sok klóz konjunkciója</li>
+                    <li>CNF-re hozás lépései:
+                        <ol>
+                            <li><span class="highlight">→ és ↔ konnektívák eliminálása</span></li>
+                            <li><span class="highlight">¬ jelek levitele</span> (De Morgan azonosságok)</li>
+                            <li><span class="highlight">∨ jelek bevitele ∧ jelek alá</span> (disztributivitás)</li>
+                        </ol>
+                    </li>
+                    <li><span class="highlight">SAT probléma:</span> CNF kielégíthetőségének eldöntése</li>
+                    <li><span class="highlight">Üres klóz (☐):</span> minden értékadás mellett hamis</li>
+                    <li><span class="highlight">Üres CNF (Ø):</span> minden értékadás mellett igaz</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Teljes rendszerek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li>Boole-függvények H rendszere <span class="highlight">teljes (adekvát)</span>, ha minden n-változós függvény előáll:
+                        <ul>
+                            <li>a projekciókból</li>
+                            <li>H elemeiből</li>
+                            <li>alkalmas kompozícióval</li>
+                        </ul>
+                    </li>
+                    <li>Ha H teljes: <span class="highlight">O*(∅) tartalmazza az összes Boole-függvényt</span></li>
+                    <li><span class="highlight">Shannon expanzió:</span> minden Boole-függvény indukálható {¬, ∨, ∧} konnektívákkal</li>
+                    <li>A <span class="highlight">{¬, ∨, ∧} rendszer teljes</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Hilbert rendszere</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Deduktív (következtető) rendszer</span></li>
+                    <li>Csak <span class="highlight">→ konnektívát és ↓ (azonosan hamis) logikai konstanst</span> használ</li>
+                    <li>Három <span class="highlight">axiómát</span> tartalmaz:
+                        <ol>
+                            <li>Ax1: (F → (G → H)) → ((F → G) → (F → H))</li>
+                            <li>Ax2: F → (G → F)</li>
+                            <li>Ax3: ((F → ↓) → ↓) → F</li>
+                        </ol>
+                    </li>
+                    <li><span class="highlight">Modus ponens:</span> leválasztási következtetés</li>
+                    <li>Formula levezethető, ha <span class="highlight">Σ-beli, axiómapéldány, vagy modus ponenssel előáll</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Rezolúció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Input:</span> klózok Σ halmaza</li>
+                    <li><span class="highlight">Output:</span> kielégíthetetlen-e Σ?</li>
+                    <li>Klóz felvétele: <span class="highlight">Σ-beli vagy két klóz rezolvense</span></li>
+                    <li><span class="highlight">Üres klóz:</span> Σ kielégíthetetlen</li>
+                    <li><span class="highlight">Helyes és teljes</span> algoritmus</li>
+                    <li><span class="highlight">Lineáris rezolúció:</span> előző lépésben felvett klózhoz adunk hozzá</li>
+                    <li><span class="highlight">Horn-formula:</span> minden klóz Horn-klóz (legfeljebb egy pozitív literál)</li>
+                    <li><span class="highlight">SLD rezolúció:</span> lineáris rezolúció Horn-formulákra</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
