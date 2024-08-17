@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 10 - </title>
+    <title>Tétel 10 - Operációkutatás I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,469 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Operációkutatás I - 10. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. LP alapfeladat, példa, szimplex algoritmus</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Lineáris programozás alapfeladata</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <a href="https://www.youtube.com/watch?v=xPj6PGh2hZc&list=PLDeiJeeT0bkgHr44CTt5cxmsKwR1-aB0u&index=1" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube videó a témáról
+                </a>
+                <a href="https://www.youtube.com/watch?v=0rZFAHWIXws&list=PLDeiJeeT0bkgHr44CTt5cxmsKwR1-aB0u&index=2" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube videó a témáról
+                </a>
+                <a href="https://www.youtube.com/watch?v=0rZFAHWIXws&list=PLDeiJeeT0bkgHr44CTt5cxmsKwR1-aB0u&index=3" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube videó a témáról
+                </a>
+                <p><span class="key-point">Definíció:</span> Az LP egy <span class="highlight">optimalizálási probléma</span>, ahol egy <span class="highlight">lineáris célfüggvény</span> szélsőértékét keressük <span class="highlight">lineáris feltételek mellett</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Standard alak:</span></p>
+                    <img src="../assets/images/lp_alapfeladat.webp" alt="LP alapfeladat felírása" class="graph-image">
+                    <ul>
+                        <li><span class="highlight">Célfüggvény:</span> Max c1x1 + c2x2 + ... + cnxn = z</li>
+                        <li><span class="highlight">Feltételek:</span> Lineáris egyenlőtlenségek rendszere</li>
+                        <li><span class="highlight">Változók:</span> x1, ..., xn ≥ 0</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Kulcsfogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Lehetséges megoldás:</span> Feltételeket kielégítő vektor</li>
+                        <li><span class="highlight">Optimális megoldás:</span> Olyan <span class="highlight">lehetséges megoldás</span>, ahol a <span class="highlight">célfüggvény felveszi maximumát/minimumát</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Példa - termék mix feladat</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <img src="../assets/images/mix.bmp" alt="mix" class="graph-image">
+                <ul>
+                    <li><span class="highlight">Lehetséges megoldás:</span> x(20,20) - 20 katona, 20 vonat</li>
+                    <li><span class="highlight">Optimális megoldás:</span> x* = (20,60) - 20 katona, 60 vonat</li>
+                    <li><span class="highlight">Optimum értéke:</span> z* = 180 ($180 profit)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Szimplex algoritmus és szótár alak</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Szótár alak:</span> Az LP feladat <span class="highlight">átalakított formája</span>, ahol az újonnan felvett változókat kifejezzük.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa szótár alakra:</span></p>
+                    <img src="../assets/images/szotar_alak.jpg" alt="szotar alak" class="graph-image">
+                    <p><span class="key-point">Magyarázat:</span></p>
+                    <ul>
+                        <li><span class="highlight" style="color: #b51eff;">Bázisváltozók: </span>A szótár alakú feladat <span class="highlight">bal oldalán szereplő változók</span>. Értékük az egyenletek jobb oldalán álló konstans.</li>
+                        <li><span class="highlight"  style="color: rgb(255, 187, 0);">Nembázis változók:</span> A szótár alakú feladat <span class="highlight">jobb oldalán álló változók</span>. Értékük 0!</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Szimplex algoritmus:</span> Iteratív módszer az LP feladat <span class="highlight">optimális megoldásának megtalálására</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Algoritmus lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Input:</span> A szótár alakú feladat.</li>
+                        <li><span class="highlight">Pivot lépések:</span> Amíg van pozitív együtthatójú célfüggvény változónk:
+                            <ol>
+                                <li><span class="highlight">Generáló elem választása:</span>
+                                    <ol>
+                                        <li><span class="highlight">Oszlop választás:</span> Pozitív célfüggvény együttható közül a legnagyobb. Ha több azonos, a kisebb indexűt.</li>
+                                        <li><span class="highlight">Sor választás:</span> Hányados szabály alapján. Ha van negatív együtthatójú változó, vége az algoritmusnak.</li>
+                                    </ol>
+                                </li>
+                                <li><span class="highlight">Belépő változó kifejezése és behelyettesítése</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Output:</span> Megoldás (nincs megoldás / nem korlátos a feladat / az optimum értéke).</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Fontos fogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Belépőváltozó:</span> Az a nem bázis változó, ami a következő szótárban már bázisváltozó.</li>
+                        <li><span class="highlight">Kilépőváltozó:</span> Az a bázisváltozó, ami a következő szótárban már nem bázis változó.</li>
+                        <li><span class="highlight">Pivot szabály:</span> Szabály, amely meghatározza a belépő- és kilépőváltozókat.</li>
+                        <li><span class="highlight">Degenerált iterációs lépés:</span> Olyan szimplex iteráció, amelyben nem változik a bázismegoldás.</li>
+                        <li><span class="highlight">Ciklizáció:</span> Ha egy korábbi iteráció szótárát kapjuk vissza.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Az LP Geometriája</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Az LP Geometriája</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Alapelv:</span> A lineáris programozás <span class="highlight">szoros kapcsolatban áll a konvex geometriával</span>. Az eddig tárgyalt fogalmaknak mind megfeleltethető egy-egy geometriai objektum.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Kulcsfogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">n-dimenziós tér (R^n):</span> Olyan tér, ahol minden pontot n szám határoz meg.</li>
+                        <li><span class="highlight">Euklideszi tér (E^n):</span> Speciális n-dimenziós tér, ahol értelmezett a távolság és a szög.</li>
+                        <li><span class="highlight">Pont:</span> n hosszúságú koordináta-vektor.</li>
+                        <li><span class="highlight">Lehetséges megoldások:</span> Pontok az n-dimenziós Euklideszi térben.</li>
+                        <li><span class="highlight">Lineáris feltételek:</span> Síkok vagy falak a térben.</li>
+                        <li><span class="highlight">Lehetséges megoldások halmaza:</span> Konvex poliéder.</li>
+                        <li><span class="highlight">Feltételek:</span> A poliéder lapjai.</li>
+                        <li><span class="highlight">Bázismegoldások:</span> A poliéder csúcsai.</li>
+                    </ul>
+                </div>
+                
+                <img src="../assets/images/n_dimenzios_ter.webp" alt="n-dimenziós tér" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">LP és Konvex poliéderek:</span></p>
+                    <ul>
+                        <li>Feltételek (egyenletek) <-> <span class="highlight">Poliéder lapok</span></li>
+                        <li>Egy lineáris célfüggvény a poliéder <span class="highlight">valamelyik csúcsában veszi fel szélsőértékét</span></li>
+                        <li>Bázismegoldások <-> <span class="highlight">Poliéder csúcsok</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Szimplex algoritmus és geometria:</span></p>
+                    <img src="../assets/images/szimplex_algorithm.bmp" alt="Szimplex algoritmus" class="graph-image">
+                    <p>A példán végrehajtva a szimplex algoritmust a klasszikus pivot stratégiával:</p>
+                    <p>[ 0 0 0 | 4 5 ] -> [ 0 0 5 | 4 0] -> [2 0 5 | 0 0] -> [0 4 5 | 0 0]</p>
+                    <p><span class="highlight">Bázismegoldások adódnak:</span> <br>
+                        [0 0 0 ] -> [0 0 5] -> [2 0 5] -> [0 4 5]<br>
+                        <span class="highlight">poliéder csúcsoknak</span> felelnek meg.</p>
+                </div>
+                
+                <img src="../assets/images/szimplex_algoritmus.webp" alt="Szimplex algoritmus" class="graph-image">
+            </div>
+
+        </div>
+
+        <div class="algorithm">
+            <h2>Ciklizáció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Alapfogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Degeneráció:</span> Egy n-dimenziós csúcspont legalább n + 1 síkra esik.</li>
+                        <li><span class="highlight">Degenerált iterációs lépés:</span> A "csúcsban maradunk".</li>
+                        <li><span class="highlight">Ciklizáció:</span> Egy csúcspontban ragadunk, csak a csúcspont leírására használt síkokat cserélgetjük.</li>
+                    </ul>
+                </div>
+                <p>A klasszikus pivot stratégiával:<br>
+                [ 0 0 0 | 4 4 ] -> [ 0 0 1 | 0 0] -> [0 0 1 | 0 0] -> [4 4 0 | 0 0]<br>
+                bázismegoldások adódnak.</p>
+                <p><span class="highlight">Bázismegoldások rendrea:</span> <br>
+                    [0 0 0 ] -> [0 0 1] -> [0 0 1] -> [4 4 0]<br>
+                    <span class="highlight">poliéder csúcsoknak</span> felelnek meg.
+                </p>
+                
+                <img src="../assets/images/ciklizacio_geometria.webp" alt="Ciklizáció és geometria" class="graph-image">
+                <img src="../assets/images/ciklizacio.webp" alt="Ciklizáció" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Perturbáció módszere:</span></p>
+                    <img src="../assets/images/perturbacio.bmp" alt="Szimplex algoritmus" class="graph-image">
+                    <p>A degeneráció megszüntetésével <span class="highlight">elkerüljük a ciklizációt</span>.</p>
+                </div>
+                
+                <img src="../assets/images/ciklizacio_perturbacio.webp" alt="Ciklizáció perturbáció" class="graph-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Generálóelem Választási Szabályok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Generálóelem Választási Szabályok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <a href="https://www.youtube.com/watch?v=xPj6PGh2hZc&list=PLDeiJeeT0bkgHr44CTt5cxmsKwR1-aB0u&index=4" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube videó a témáról
+                </a>
+                <p><span class="key-point">Alapelv:</span> A generálóelem választás <span class="highlight">kulcsfontosságú lépés</span> a szimplex algoritmus során.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Előkészítő lépések:</span></p>
+                    <ol>
+                        <li><span class="highlight">Korlátozások és célfüggvény felírása</span></li>
+                        <li><span class="highlight">Mesterséges változók felvétele</span> minden sorba</li>
+                        <li><span class="highlight">Szótár alakra hozás</span>: mesterséges változók kifejezése</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Optimális megoldás:</span> Egy bázismegoldás akkor optimális, ha a <span class="highlight">célfüggvényben már nincs pozitív együtthatós változó</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Hányadosteszt:</span></p>
+                    <ol>
+                        <li>Vesszük azokat a korlátokat, ahol a <span class="highlight">belépő változó negatívan szerepel</span></li>
+                        <li><span class="highlight">Konstans értéket elosztjuk</span> a belépő változó szorzójának abszolút értékével</li>
+                        <li><span class="highlight">Legkisebb értéket</span> adó sor lesz a kilépő változó</li>
+                    </ol>
+                </div>
+                
+                <img src="../assets/images/generaloelem_valasztasi_szabalyok.bmp" alt="Generálóelem választási szabályok példa" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Klasszikus módszer:</span></p>
+                    <ul>
+                        <li><span class="highlight">Belépő változó:</span> A "legpozitívabb" konstansú, pozitív előjelű a célfüggvényben</li>
+                        <li><span class="highlight">Kilépő változó:</span> Hányadosteszt, ütközésnél a legkisebb indexű egyenlet bázisváltozója</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Bland módszer:</span></p>
+                    <ul>
+                        <li><span class="highlight">Belépő változó:</span> A legkisebb indexű a lehetséges belépő változók közül</li>
+                        <li><span class="highlight">Kilépő változó:</span> Hányadosteszt, ütközésnél a legkisebb indexű egyenlet bázisváltozója</li>
+                    </ul>
+                    <p><span class="highlight">Garantáltan véges számú lépésben véget ér!</span></p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Legnagyobb növekmény módszere:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hányadosteszt minden lehetséges belépő változóra</span></li>
+                        <li>A <span class="highlight">legnagyobb növekményt</span> adó változópárt választjuk</li>
+                        <li>Egyszerre határozza meg a be- és kilépő változókat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Kétfázisú Szimplex Módszer</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Kétfázisú Szimplex Módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Kétfázisú szimplex módszert akkor alkalmazunk, amikor a <span class="highlight">szótár eredeti alakja nem lehetséges</span>, azaz valamelyik korlát jobb oldalán negatív szám szerepel.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Lépések:</span></p>
+                    <ol>
+                        <li><span class="highlight">Szótár alak felírása</span> mesterséges változókkal</li>
+                        <li><span class="highlight">+x0 változó</span> felvétele minden egyenlethez</li>
+                        <li><span class="highlight">W(x) minimalizálási segédfeladat</span> felírása Z(x) maximalizálási feladathoz</li>
+                        <li><span class="highlight">Generálóelem választása</span> a kiegészített feladatban, amíg W(x) = 0</li>
+                        <li><span class="highlight">x0 kifejezése</span> a legnegatívabb korlátból</li>
+                        <li><span class="highlight">Szimplex algoritmus alkalmazása</span> az új szótár alakra</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Fontos megjegyzés:</span> A standard feladatnak akkor és csak akkor van lehetséges megoldása, ha a <span class="highlight">hozzá felírt segédfeladat optimuma 0</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Kétfázisú algoritmus:</span></p>
+                    <ol>
+                        <li><span class="highlight">1. fázis:</span>
+                            <ol>
+                                <li>Segédfeladat megoldása</li>
+                                <li>Ha optimum < 0, nincs megoldás</li>
+                                <li>Ha optimum = 0, készítünk egy lehetséges bázismegoldású szótárat</li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">2. fázis:</span>
+                            <ol>
+                                <li>Szimplex algoritmus végrehajtása az első fázisból kapott szótárból</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kétfázisú Szimplex Módszer - Példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Eredeti feladat:</span></p>
+                    <pre>
+Max  z = x1  -  x2  +  x3 
+     2x1 -  x2  +  x3 ≤ 4
+     2x1 -  3x2 +  x3 ≤ -5
+    -x1  +  x2  - 2x3 ≤ -1
+     x1,    x2,    x3 ≥ 0
+                    </pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">1. Lépés: Induló szótár felírása</span></p>
+                    <pre>
+x4 = 4 - 2x1 + x2 - 2x3
+x5 = -5 - 2x1 + 3x2 - x3
+x6 = -1 + x1 - x2 + 2x3
+---------------------
+z =       x1 - x2 + x3
+                    </pre>
+                    <p>Ez <span class="highlight">nem lehetséges</span> induló szótár, mert x5, x6 < 0 a bázismegoldásban.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Lépés: Segédfeladat felírása</span></p>
+                    <p>Új mesterséges változó (x0) bevezetése:</p>
+                    <pre>
+Max  w =                  -x0
+     2x1 -  x2  +  x3 -x0 ≤ 4
+     2x1 -  3x2 +  x3 -x0 ≤ -5
+    -x1  +  x2  - 2x3 -x0 ≤ -1
+     x1,    x2,    x3  x0 ≥ 0
+                    </pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Lépés: x0 kifejezése a legnegatívabb jobboldalú egyenletből</span></p>
+                    <pre>
+x0 = 5 + 2x1 - 3x2 + x3  + x5
+x4 = 9       - 2x2       + x5
+x6 = 4 + 3x1 - 4x2 + 3x3 + x5
+---------------------
+w =  -5 -2x1 + 3x2 - x3 - x5
+                    </pre>
+                    <p>Ez már egy <span class="highlight">lehetséges induló szótár</span>.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">4. Lépés: Szimplex algoritmus alkalmazása a segédfeladatra</span></p>
+                    <p>Ezt a lépést addig ismételjük, amíg w = 0 nem lesz.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">5. Lépés: Eredeti feladat megoldása</span></p>
+                    <p>Ha a segédfeladat optimuma 0, akkor az utolsó szótárból felírhatjuk az eredeti feladat lehetséges megoldását:</p>
+                    <ul>
+                        <li>Elhagyjuk x0-t</li>
+                        <li>Visszaírjuk az eredeti célfüggvényt</li>
+                        <li>Alkalmazzuk a szimplex algoritmust erre a szótárra</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Végső megoldás:</span></p>
+                    <pre>
+x2 = 5.5 - 0.5x4 + 0.5x3
+x1 = 0.5 - 0.5x4 - 0.5x3
+-----------------------
+z = 6.5 - 1.5x4 - 0.5x3
+                    </pre>
+                    <p>Ez a <span class="highlight">végső optimális megoldás</span> az eredeti feladatra.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Speciális esetek</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Speciális esetek az LP-ben</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Ciklizáció-degeneráció:</span></p>
+                    <ul>
+                        <li><span class="highlight">Degenerált bázismegoldás:</span> Legalább egy változó értéke 0</li>
+                        <li><span class="highlight">Degenerált iterációs lépés:</span> A bázismegoldás értéke nem változik</li>
+                        <li><span class="highlight">Ciklizáció:</span> Ugyanaz a szótár ismétlődik</li>
+                    </ul>
+                    <p><span class="key-point">Pivot szabály:</span> Meghatározza a belépő- és kilépőváltozók kiválasztását, segít elkerülni a ciklizációt.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Nem korlátos feladat:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">célfüggvényben lévő lehetséges belépőváltozók</span> vizsgálata</li>
+                        <li>Ha a <span class="highlight">nem bázisváltozók is pozitívak</span>, a feladat nem korlátos</li>
+                        <li>A célfüggvény tetszőlegesen nagy (vagy kicsi) értéket vehet fel</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Nincs lehetséges megoldás:</span></p>
+                    <ul>
+                        <li>Ha a <span class="highlight">kétfázisú szimplex módszer</span> segédfeladata nem hozható ki 0-ra</li>
+                        <li>Ha a <span class="highlight">lehetséges megoldások halmaza üres</span></li>
+                        <li><span class="highlight">Tucker tétele:</span> Egy lineáris egyenlőtlenség-rendszer megoldhatatlan akkor és csak akkor, ha inkonzisztens (az egyenletek és egyenlőtlenségek ellentmondanak egymásnak)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Fontos megjegyzés:</span> Ha a <span class="highlight">lehetséges megoldások halmaza korlátos</span>, akkor az LP-nek <span class="highlight">van optimális megoldása</span>.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Példa: Ciklizáció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A <span class="highlight">ciklizáció</span> olyan jelenség, amikor a <span class="highlight">szimplex algoritmus</span> ismételten ugyanazokat a <span class="highlight">bázismegoldásokat</span> generálja, anélkül, hogy elérné az <span class="highlight">optimális megoldást</span> vagy felismerné, hogy a feladat <span class="highlight">nem megoldható</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Lépések:</span></p>
+                    <ol>
+                        <li><span class="highlight">Kezdeti szótár felírása:</span> Az LP feladat kezdeti egyenletrendszerének felírása <span class="highlight">szótár alakban</span>.</li>
+                        <li><span class="highlight">Iterációk végrehajtása:</span> A szimplex algoritmus <span class="highlight">iterációinak</span> végrehajtása, minden lépésben új <span class="highlight">bázismegoldást</span> keresve.</li>
+                        <li><span class="highlight">Ciklus detektálása:</span> Annak felismerése, hogy az algoritmus <span class="highlight">visszatért</span> egy korábbi bázismegoldáshoz.</li>
+                        <li><span class="highlight">Megoldás:</span> Megfelelő <span class="highlight">pivot szabály</span> alkalmazása a ciklizáció elkerülésére.</li>
+                    </ol>
+                </div>
+    
+                <p><span class="key-point">Példa magyarázat:</span> Az alábbi példában láthatjuk, hogyan alakul ki a ciklizáció egy <span class="highlight">degenerált bázismegoldás</span> esetén.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">1. iteráció:</span></p>
+                    <pre>
+    x5 = -1/2 x1 + 11/2 x2 + 5/2 x3 - 9x4
+    x6 = -1/2 x1 + 3/2 x2 + 1/2 x3 - x4
+    x7 = 1 - x1
+    z = 10x1 - 57x2 - 8x3 - 24x4
+                    </pre>
+                    <p>Ez a <span class="highlight">kezdeti szótár</span>. Figyeljük meg, hogy <span class="highlight">x7 értéke 1</span>, ami egy <span class="highlight">degenerált megoldáshoz</span> vezethet.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. iteráció:</span></p>
+                    <pre>
+    x1 = 11x2 + 5x3 - 18x4 - 2x5
+    x6 = -4x2 - 2x3 + 8x4 + x5
+    x7 = 1 - 11x2 - 5x3 + 18x4 + x5
+    z = 53x2 + 41x3 - 204x4 - 20x5
+                    </pre>
+                    <p>Az <span class="highlight">x1 belépett a bázisba</span>. Vegyük észre, hogy <span class="highlight">x7 értéke még mindig 1</span>, ami jelzi, hogy ez egy <span class="highlight">degenerált lépés</span> volt.</p>
+                </div>
+                
+                <p>A példa további iterációkon keresztül bemutatja, hogyan jut vissza az algoritmus a <span class="highlight">kezdeti szótárhoz</span>, ami a <span class="highlight">ciklizáció jelenségét</span> szemlélteti.</p>
+                
+                <p><span class="key-point">Megoldás:</span> A ciklizáció elkerülhető megfelelő <span class="highlight">pivot szabályok</span> alkalmazásával, például a <span class="highlight">Bland-szabály</span> vagy a <span class="highlight">legnagyobb növekmény módszere</span>. Ezek a szabályok biztosítják, hogy az algoritmus ne ragadjon be egy <span class="highlight">végtelen ciklusba</span>.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

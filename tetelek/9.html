@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 9 - </title>
+    <title>Tétel 9 - Mesterséges Intelligencia II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,938 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Mesterséges Intelligencia II - 9. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Teljes együttes eloszlás tömör reprezentációja</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Teljes együttes eloszlás Alapfogalmak</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A teljes együttes eloszlás tömör reprezentációja az <span class="highlight">összes lehetséges eseményt és ezek valószínűségét</span> tartalmazza.</p>
+            
+                <div class="step">
+                    <p><span class="key-point">Logika igaz/hamis világgal és logikai következtetésekkel problémák:</span></p>
+                    <ul>
+                        <li>Az igaz/hamis világgal és logikai következtetésekkel problémák vannak:</li>
+                        <li><span class="highlight">Nem teljes tudás esetén:</span> Nem mindig tudunk logikai levezetéseket gyártani fontos kérdésekhez, döntésképtelenek lehetünk</li>
+                        <li><span class="highlight">Heurisztikus szabályok esetén:</span> A tapasztalat inkonzisztens lehet az elmélettel, a logikai levezetés nem működik</li>
+                        <li>Következtetés: A <span class="highlight">hiányos, részleges tudás kezelésére a logika nem optimális</span></li>
+                    </ul>
+                </div>
+                
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Minden lehetséges eseményt felsorol, majd ↓</li>
+                        <li>Minden eseményhez <span class="highlight">valószínűséget rendel</span></li>
+                        <li>Ez a reprezentáció lehet <span class="highlight">táblázatos formában</span> ábrázolni</li>
+                        <li><em>(Ahol az események listája van, és minden esemény mellett szerepel a hozzá tartozó valószínűség.)</em></li>
+                    </ul>
+                </div>
+                <img src="../assets/images/te_eloszla_tomor_rep.webp" alt="# Teljes együttes eloszlás tömör reprezentációja" class="graph-image">
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li>Lehetővé teszi <span class="highlight">bármely kijelentés valószínűségének kiszámítását</span></li>
+                        <li>Alkalmas <span class="highlight">feltételes valószínűségek</span> meghatározására is</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Kihívás:</span> A teljes együttes eloszlás táblázat mérete <span class="highlight">exponenciálisan nő</span> a változók számával (2^n méretű n logikai változó esetén).</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Véletlen változók</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Egy véletlen változónak van <span class="highlight">neve és lehetséges értékei</span> (értékkészlet, domain).</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Logikai:</span> Domain {igaz, hamis}, pl. Fogfájás=igaz</li>
+                        <li><span class="highlight">Diszkrét:</span> Megszámlálható domain, pl. Idő={nap, eső, felhő, hó}</li>
+                        <li><span class="highlight">Folytonos:</span> Valós számok tartománya, pl. X < 3.2</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Elemi események:</span></p>
+                    <ul>
+                        <li>Minden véletlen változóhoz <span class="highlight">értéket rendel</span> a hozzá tartozó domainből</li>
+                        <li>Az elemi események halmaza az összes domain <span class="highlight">direkt szorzata</span></li>
+                        <li>Például, ha két logikai véletlen változónk van (Luk és Fogfájás), az négy elemi eseményt ad:
+                            <ul>
+                                <li>luk ∧ fogfájás</li>
+                                <li>luk ∧ ¬fogfájás</li>
+                                <li>¬luk ∧ fogfájás</li>
+                                <li>¬luk ∧ ¬fogfájás</li>
+                            </ul>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Fontos:</span> Komplex kijelentések képezhetők <span class="highlight">logikai operátorokkal</span> (∧, ∨, ¬). A valószínűség egy függvény, amely minden kijelentéshez egy valós számot rendel.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Valószínűségi alapok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A valószínűség a <span class="highlight">tudás tökéletlenségének kezelésére</span> szolgál, figyelembe véve az ismeretlen tényeket és szabályokat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fontos fogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Feltételes valószínűség:</span> P(a|b) - az a esemény valószínűsége, ha b-t tudjuk</li>
+                        <li><span class="highlight">Szorzatszabály:</span> P(a ∧ b) = P(a|b)P(b) = P(b|a)P(a)</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">A szorzatszabály magyarázata:</span></p>
+                    <ul>
+                        <li>P(a ∧ b): az a és b események együttes bekövetkezésének valószínűsége</li>
+                        <li>P(a|b)P(b): a valószínűsége annak, hogy b bekövetkezik, és aztán a bekövetkezik, feltéve hogy b már bekövetkezett</li>
+                        <li>P(b|a)P(a): a valószínűsége annak, hogy a bekövetkezik, és aztán b bekövetkezik, feltéve hogy a már bekövetkezett</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa:</span></p>
+                    <ul>
+                        <li>P(luk|fogfájás) = 0.8 - a lyukas fog valószínűsége, ha fáj a fog</li>
+                        <li>Definíció szerint: P(a|b) = P(a ∧ b) / P(b), ahol P(b) > 0</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Valószínűségi megközelítés előnyei:</span></p>
+                    <ul>
+                        <li>Kezelni tudja a <span class="highlight">tudás tökéletlenségét</span> (ismeretlen tények és szabályok)</li>
+                        <li>Lehetővé teszi a <span class="highlight">részleges és bizonytalan információk</span> felhasználását</li>
+                        <li>Alkalmas a <span class="highlight">tapasztalatok alapján változó valószínűségek</span> kezelésére</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Teljes együttes eloszlás - Példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Példa:</span> Véletlen változók: Luk, Fogfájás, Beakad (mind logikai {0, 1} típusú)</p>
+                    <img src="../assets/images/te_eloszla_tomor_rep.webp" alt="# Teljes együttes eloszlás tömör reprezentációja" class="graph-image">
+                    <p>P(luk ∨ fogfájás) = 0.108 + 0.012 + 0.072 + 0.008 + 0.016 + 0.064</p>
+                </div>
+                
+                <p><span class="key-point">Megjegyzés:</span> Ha minden változó logikai, és n db változó van, akkor a táblázat 2^n méretű, ami nem skálázódik jól.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Függetlenség</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Két esemény (a és b) független, ha az együttes valószínűségük (mindkettő bekövetkezik) megegyezik a külön-külön vett valószínűségeik szorzatával: P(a ∧ b) = P(a)P(b).</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa:</span></p>
+                    <ul>
+                        <li>Dobok egy érmét és egy kockát.</li>
+                        <li>A két esemény: "fejet dobok" és "hatos dobok".</li>
+                        <li>Ezek függetlenek, mert az egyik kimenetele nem befolyásolja a másikat.</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Lényeg:</span> Függetlenség azt jelenti, hogy a két esemény egymástól "függetlenül" történik, az egyik nem befolyásolja a másikat.</p>
+
+                <p><span class="key-point">Például:</span> ha dobok egy érmét és egy kockát, az érme eredménye független a kocka eredményétől. Az, hogy fejet dobok az érmével, nem befolyásolja, hogy milyen számot dobok a kockával.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Feltételes függetlenség</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Két esemény (a és b) feltételesen független egy harmadik esemény (c) mellett, ha az együttes valószínűségük (mindkettő bekövetkezik c mellett) megegyezik a külön-külön vett valószínűségeik szorzatával: P(a ∧ b|c) = P(a|c)P(b|c).</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa:</span></p>
+                    <ul>
+                        <li>A fogfájás (a) és a fogak beakadása (b) nem függetlenek, de ha tudjuk, hogy van egy lyuk (c), akkor azok lesznek.</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Lényeg:</span> Feltételes függetlenség akkor áll fenn, ha két esemény függetlenné válik egy harmadik esemény bekövetkezése esetén.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Az eloszlás reprezentációjának tömörítése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Alapelv:</span> A valószínűségi eloszlást egyszerűbben is felírhatjuk, ha feltételezzük, hogy bizonyos események függetlenek egymástól feltételesen.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Példa:</span></p>
+                    <ul>
+                        <li>P(A, B, C) = P(A, B|C)P(C)</li>
+                        <li>Ez tovább bontható: P(A|C)P(B|C)P(C)</li>
+                        <li>Ez feltételezi, hogy A és B függetlenek egymástól, ha tudjuk, hogy C történt.</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Lényeg:</span> Ez a módszer segít egyszerűsíteni a számításokat, ha feltételezhető, hogy bizonyos események feltételesen függetlenek.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Bayes hálók + Naiv Bayes módszer</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Bayes hálók alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A Bayes hálók <span class="highlight">valószínűségi modellek leírására</span> használt eszközök, amelyek kihasználják a változók közötti feltételes függetlenségeket.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Irányított, körmentes gráf</span></li>
+                        <li>A csomópontok <span class="highlight">valószínűségi változókat</span> reprezentálnak</li>
+                        <li>Az irányított élek <span class="highlight">ok-okozati függőségeket</span> jelölnek</li>
+                        <li>Minden csomóponthoz tartozik egy <span class="highlight">feltételes valószínűség eloszlás</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tömör reprezentáció:</span> Kihasználja a feltételes függetlenségeket</li>
+                        <li><span class="highlight">Intuitív ábrázolás:</span> Könnyen értelmezhető grafikus formában</li>
+                        <li><span class="highlight">Hatékony következtetés:</span> Lehetővé teszi komplex valószínűségi lekérdezések gyors megválaszolását</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Alkalmazás:</span> Bayes hálók széles körben használatosak <span class="highlight">bizonytalanság modellezésére</span> különböző területeken, például orvosi diagnosztikában, időjárás-előrejelzésben és pénzügyi kockázatelemzésben.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Naiv Bayes algoritmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A naiv Bayes algoritmus egy <span class="highlight">egyszerű, de hatékony osztályozási módszer</span>, amely a Bayes-tételen alapul. A Naiv Bayes egy <span class="highlight">statisztikai következtetési módszer</span></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Működési elv:</span></p>
+                    <ul>
+                        <li>Feltételezi, hogy a bemeneti változók <span class="highlight">függetlenek egymástól</span> az osztálycímke ismeretében</li>
+                        <li>Az osztályozás a <span class="highlight">P(A|b1, ..., bn)</span> feltételes valószínűség maximalizálásával történik</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Képlet:</span></p>
+                    <p>P(A|b<small><small>1</small></small>, ..., bn) ≈ α P(A) <ruby>Π<rt>n</rt><rp>n</rp></ruby><small><small><small>i=1</small></small></small> P(b<small><small>i</small></small> | A)</p>
+                    <ul>
+                        <li>α: normalizáló konstans</li>
+                        <li>P(A): prior valószínűség</li>
+                        <li>P(bi|A): feltételes valószínűségek</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Alkalmazási területek:</span></p>
+                    <ul>
+                        <li>Például: <span class="highlight">Spam szűrés</span> emailekben</li>
+                        <li><span class="highlight">Szöveg kategorizálás</span></li>
+                        <li><span class="highlight">Érzelem elemzés</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Előny:</span> A naiv Bayes algoritmus <span class="highlight">egyszerű, gyors és meglepően hatékony</span> számos valós alkalmazásban, különösen amikor korlátozott mennyiségű tanító adat áll rendelkezésre.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Bayes vs Naiv Bayes</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Fő különbség:</span> A Bayes és a Naiv Bayes algoritmusok közötti legfontosabb eltérés a <span class="highlight">bemeneti változók közötti függetlenség feltételezésében</span> rejlik.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Bayes algoritmus:</span></p>
+                    <ul>
+                        <li><span class="highlight">Figyelembe veszi</span> a változók közötti összefüggéseket</li>
+                        <li>Pontosabb, de <span class="highlight">számításigényesebb</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Naiv Bayes algoritmus:</span></p>
+                    <ul>
+                        <li><span class="highlight">Feltételezi a változók függetlenségét</span> az osztálycímke ismeretében</li>
+                        <li>Egyszerűbb és <span class="highlight">gyorsabb</span>, de potenciálisan kevésbé pontos</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Alkalmazás:</span> A választás a két módszer között függ a <span class="highlight">probléma jellegétől, az adatok mennyiségétől és a rendelkezésre álló számítási kapacitástól</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Gépi tanulás alapjai</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Gépi tanulás definíciója</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A gépi tanulás a <span class="highlight">tapasztalati (megfigyelt) tények felhasználása</span> arra, hogy egy <span class="highlight">racionális ágens teljesítményét növeljük</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Felügyelt (induktív) tanulás</span></li>
+                        <li><span class="highlight">Felügyelet nélküli tanulás</span></li>
+                        <li><span class="highlight">Megerősítéses tanulás</span></li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Automatizálás:</span> Komplex feladatok automatikus végrehajtása</li>
+                    <li><span class="highlight">Adaptivitás:</span> Alkalmazkodás változó környezetekhez és új adatokhoz</li>
+                    <li><span class="highlight">Skálázhatóság:</span> Nagy mennyiségű adat hatékony feldolgozása</li>
+                </ul>
+
+                <p><span class="key-point">Kihívások:</span></p>
+                <ul>
+                    <li><span class="highlight">Adatminőség:</span> A tanulás eredményessége függ a rendelkezésre álló adatok minőségétől</li>
+                    <li><span class="highlight">Interpretálhatóság:</span> Egyes modellek "fekete dobozként" működnek, nehezen értelmezhetők</li>
+                    <li><span class="highlight">Etikai kérdések:</span> Adatvédelem, torzítások kezelése</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Felügyelt tanulás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Egy <span class="highlight">f: X → Y függvényt keresünk</span>, amely illeszkedik adott példákra.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Példák formája: <span class="highlight">(x1, f(x1)), ..., (xn, f(xn))</span>, ahol xi ∈ X</li>
+                        <li>X lehet pl. emailek halmaza, Y lehet {spam, nem spam}</li>
+                        <li>Cél: megtanulni a helyes osztályozást vagy előrejelzést</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa:</span> Spam szűrő tanítása, ahol X az emailek halmaza, Y = {spam, nem spam}, és a példák kézzel osztályozott emailek.</p>
+
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Pontosság:</span> Jól definiált célok és címkézett adatok esetén magas pontosság érhető el</li>
+                    <li><span class="highlight">Egyértelmű kiértékelés:</span> A modell teljesítménye könnyen mérhető a címkézett adatokon</li>
+                    <li><span class="highlight">Széles alkalmazási terület:</span> Osztályozás, regresszió, előrejelzés számos területen</li>
+                </ul>
+
+                <p><span class="key-point">Algoritmusok:</span></p>
+                <ul>
+                    <li><span class="highlight">Lineáris regresszió</span></li>
+                    <li><span class="highlight">Logisztikus regresszió</span></li>
+                    <li><span class="highlight">Támogató vektorgépek (SVM)</span></li>
+                    <li><span class="highlight">Neurális hálózatok</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Felügyelet nélküli tanulás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A példák csak <span class="highlight">x1, ..., xn alakban adottak</span> (xi ∈ X), és nem függvényt kell keresni, hanem mintázatokat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Cél:</span></p>
+                    <ul>
+                        <li>Mintázatok, <span class="highlight">klaszterek</span> felfedezése</li>
+                        <li><span class="highlight">Eloszlások</span> meghatározása</li>
+                        <li><span class="highlight">Adatredukció</span> és jellemző kinyerés</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Címkézetlen adatok használata:</span> Nem igényel előzetes emberi annotációt</li>
+                    <li><span class="highlight">Rejtett struktúrák feltárása:</span> Olyan mintázatokat is felfedezhet, amelyeket emberi szakértők nem vennének észre</li>
+                    <li><span class="highlight">Adatelőkészítés:</span> Hasznos lehet más gépi tanulási feladatok előkészítésében</li>
+                </ul>
+
+                <p><span class="key-point">Algoritmusok:</span></p>
+                <ul>
+                    <li><span class="highlight">K-közép klaszterezés</span></li>
+                    <li><span class="highlight">Hierarchikus klaszterezés</span></li>
+                    <li><span class="highlight">Főkomponens-analízis (PCA)</span></li>
+                    <li><span class="highlight">Autokóderek</span></li>
+                </ul>
+
+                <p><span class="key-point">Alkalmazási területek:</span></p>
+                <ul>
+                    <li><span class="highlight">Piaci szegmentálás</span></li>
+                    <li><span class="highlight">Anomália detektálás</span></li>
+                    <li><span class="highlight">Ajánlórendszerek</span></li>
+                    <li><span class="highlight">Génexpresszió-elemzés</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Megerősítéses tanulás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Az X → Y függvény létezik, de <span class="highlight">tanuló példák nem adottak direkt módon</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Cél: <span class="highlight">optimális stratégia</span> megtanulása egy állapottérben</li>
+                        <li>X az állapotok, Y a cselekvések halmaza</li>
+                        <li>Az ágens a <span class="highlight">jövőbeli jutalmak maximalizálására</span> törekszik</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Folyamatos tanulás:</span> Az ágens interakció közben, valós időben tanul</li>
+                    <li><span class="highlight">Alkalmazkodóképesség:</span> Dinamikusan változó környezetekben is hatékony</li>
+                    <li><span class="highlight">Komplex döntéshozatal:</span> Hosszú távú stratégiák kialakítására képes</li>
+                </ul>
+
+                <p><span class="key-point">Algoritmusok:</span></p>
+                <ul>
+                    <li><span class="highlight">Q-tanulás</span></li>
+                    <li><span class="highlight">SARSA (State-Action-Reward-State-Action)</span></li>
+                    <li><span class="highlight">Politika gradiens módszerek</span></li>
+                    <li><span class="highlight">Deep Q-Network (DQN)</span></li>
+                </ul>
+
+                <p><span class="key-point">Alkalmazási területek:</span></p>
+                <ul>
+                    <li><span class="highlight">Robotika</span></li>
+                    <li><span class="highlight">Játékok (pl. Go, sakk)</span></li>
+                    <li><span class="highlight">Autonóm járművek</span></li>
+                    <li><span class="highlight">Erőforrás-menedzsment</span></li>
+                </ul>
+
+                <p><span class="key-point">Kihívások:</span></p>
+                <ul>
+                    <li><span class="highlight">Felfedezés vs. kiaknázás dilemma:</span> Egyensúly megtalálása az új lehetőségek feltárása és a már ismert jó stratégiák alkalmazása között</li>
+                    <li><span class="highlight">Késleltetett jutalom:</span> A cselekvések hosszú távú következményeinek értékelése</li>
+                    <li><span class="highlight">Skálázhatóság:</span> Nagy állapotterekben való hatékony működés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Döntési fák</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Döntési fák alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A döntési fa egy <span class="highlight">felügyelt tanulási módszer</span>, ahol x ∈ X diszkrét változók értékeinek vektora, és f(x) ∈ Y egy diszkrét változó egy értéke.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Y véges halmaz (pl. Y = {igen, nem})</li>
+                        <li><span class="highlight">Osztályozási feladat</span>: X elemeit osztályokba soroljuk</li>
+                        <li>Az X halmaz a változók értékeinek vektora, minden változó diszkrét</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa:</span> Döntés, hogy érdemes-e asztalra várni egy étteremben.</p>
+                
+                <img src="../assets/images/dontesi_fa.webp" alt="Döntési fa példa" class="graph-image">
+                
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Interpretálhatóság:</span> A döntések könnyen értelmezhetők és magyarázhatók</li>
+                    <li><span class="highlight">Vizualizálhatóság:</span> A fa struktúra könnyen ábrázolható és érthető</li>
+                    <li><span class="highlight">Nem paraméteres módszer:</span> Nem feltételez előzetes eloszlást az adatokról</li>
+                    <li><span class="highlight">Kevert adattípusok kezelése:</span> Kategorikus és numerikus változókat egyaránt tud kezelni</li>
+                </ul>
+
+                <p><span class="key-point">Hátrányok:</span></p>
+                <ul>
+                    <li><span class="highlight">Túlillesztés veszélye:</span> Komplex fák esetén könnyen túlilleszkedhet a tanító adatokra</li>
+                    <li><span class="highlight">Instabilitás:</span> Kis változások az adatokban jelentősen módosíthatják a fa struktúráját</li>
+                    <li><span class="highlight">Lokális optimum:</span> A mohó építési stratégia miatt nem mindig találja meg a globális optimumot</li>
+                    <li><span class="highlight">Korlátozott pontosság:</span> Egyes komplex problémáknál más módszerek (pl. neurális hálók) pontosabbak lehetnek</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Zajszűrés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A zajszűrés a <span class="highlight">túlillesztés problémájának kezelésére</span> szolgál, ahol a modell túlságosan pontosan illeszkedik az adatokra.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Okok:</span></p>
+                    <ul>
+                        <li>Túl általános modell</li>
+                        <li>Túl kevés példa</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Következmény:</span> A zaj reprezentálása a lényeg helyett, ami csökkenti az általánosítási képességet.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Megoldások:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">információnyereség statisztikai szignifikanciájának</span> vizsgálata</li>
+                        <li>Irreleváns attribútumok kiszűrése</li>
+                        <li><span class="highlight">Keresztvalidáció:</span> A modell teljesítményének értékelése különböző adathalmazokon</li>
+                        <li><span class="highlight">Együttes módszerek:</span> Több döntési fa kombinálása (pl. véletlen erdők)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa:</span> Dobókockás példák irreleváns attribútumokkal (szín, dobás ideje), amelyek információnyeresége elméletben nulla, de a gyakorlatban értelmetlen döntési fát eredményezhetnek.</p>
+
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Jobb általánosítási képesség:</span> A modell jobban teljesít új, ismeretlen adatokon</li>
+                    <li><span class="highlight">Egyszerűbb modellek:</span> A zajszűrés gyakran egyszerűbb, értelmezhetőbb fákat eredményez</li>
+                    <li><span class="highlight">Robusztusabb predikciók:</span> A modell kevésbé érzékeny az adatok kis változásaira</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Modellillesztés a gépi tanulásban</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Modellillesztés alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A modellillesztés az a folyamat, amelynek során egy <span class="highlight">matematikai vagy számítógépes modellt</span> igazítunk a megfigyelt adatokhoz, <span class="highlight">pozitív és negatív példák</span> felhasználásával.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Cél:</span></p>
+                    <ul>
+                        <li>Az adatokat <span class="highlight">legjobban leíró modell</span> megtalálása</li>
+                        <li>A modell <span class="highlight">paramétereinek optimalizálása</span></li>
+                        <li>Az adatok és a modell közötti <span class="highlight">eltérés minimalizálása</span></li>
+                    </ul>
+                </div>
+    
+                <p><span class="key-point">Módszerek:</span></p>
+                <ul>
+                    <li><span class="highlight">Legkisebb négyzetek módszere:</span> Az eltérések négyzetösszegének minimalizálása</li>
+                    <li><span class="highlight">Maximum likelihood becslés:</span> A modell paramétereinek olyan beállítása, ami maximalizálja az adatok valószínűségét</li>
+                    <li><span class="highlight">Bayes-i módszerek:</span> A paraméterek posteriori eloszlásának becslése</li>
+                    <li><span class="highlight">Gradiens módszerek:</span> Iteratív optimalizálás a paraméterek fokozatos javításával</li>
+                    <li><span class="highlight">Döntési fa alapú módszerek:</span> Rekurzív fa építés információnyereség vagy Gini-index alapján</li>
+                </ul>
+    
+                <p><span class="key-point">Folyamat:</span></p>
+                <ol>
+                    <li>Példák gyűjtése (tipikusan több száz)</li>
+                    <li>A gyökérbe a <span class="highlight">legtöbb információt hordozó változó</span> kerül</li>
+                    <li>Rekurzív fa építés a részhalmazokon</li>
+                    <li>Modell finomhangolása és validálása</li>
+                </ol>
+    
+                <p><span class="key-point">Speciális esetek kezelése:</span></p>
+                <ul>
+                    <li>Csak pozitív vagy negatív példák: levél címkézése</li>
+                    <li>Üres halmaz: alapértelmezett érték használata</li>
+                    <li>Nincs több változó: többségi szavazat</li>
+                </ul>
+    
+                <p><span class="key-point">Alkalmazási területek:</span></p>
+                <ul>
+                    <li><span class="highlight">Regresszió analízis</span></li>
+                    <li><span class="highlight">Idősor-elemzés</span></li>
+                    <li><span class="highlight">Klasszifikációs problémák</span></li>
+                    <li><span class="highlight">Dimenziócsökkentés</span></li>
+                    <li><span class="highlight">Neurális hálózatok tanítása</span></li>
+                    <li><span class="highlight">Döntési fák létrehozása</span></li>
+                </ul>
+    
+                <p><span class="key-point">Kihívások:</span></p>
+                <ul>
+                    <li><span class="highlight">Adatminőség:</span> Zajos vagy hiányos adatok kezelése</li>
+                    <li><span class="highlight">Modell komplexitás:</span> Az optimális modell komplexitás meghatározása</li>
+                    <li><span class="highlight">Számítási költségek:</span> Nagy adathalmazok és komplex modellek esetén</li>
+                    <li><span class="highlight">Interpretálhatóság:</span> A modell döntéseinek magyarázhatósága</li>
+                </ul>
+    
+                <p><span class="key-point">Fa építési algoritmusok:</span></p>
+                <ul>
+                    <li><span class="highlight">ID3:</span> Információnyereség alapú attribútum választás</li>
+                    <li><span class="highlight">C4.5:</span> Az ID3 kiterjesztése, képes kezelni folytonos attribútumokat és hiányzó értékeket</li>
+                    <li><span class="highlight">CART:</span> Bináris fa építése Gini-index alapján</li>
+                </ul>
+    
+                <p><span class="key-point">Metszési technikák:</span></p>
+                <ul>
+                    <li><span class="highlight">Előmetszés:</span> A fa növekedésének korlátozása építés közben</li>
+                    <li><span class="highlight">Utómetszés:</span> A teljes fa felépítése után annak egyszerűsítése</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Túlillesztés és alulillesztés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Túlillesztés:</span> A modell <span class="highlight">túl pontosan illeszkedik</span> a tanító adatokra, elveszítve az általánosítási képességét.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Okok:</span></p>
+                    <ul>
+                        <li>Túl komplex modell</li>
+                        <li>Túl kevés tanító adat</li>
+                        <li>Túl sok iteráció a tanítás során</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Alulillesztés:</span> A modell <span class="highlight">túl egyszerű</span> ahhoz, hogy megfelelően leírja az adatokat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Okok:</span></p>
+                    <ul>
+                        <li>Túl egyszerű modell</li>
+                        <li>Nem megfelelő jellemzők használata</li>
+                        <li>Túl kevés tanítási iteráció</li>
+                    </ul>
+                </div>
+    
+                <p><span class="key-point">Kezelési módszerek:</span></p>
+                <ul>
+                    <li><span class="highlight">Regularizáció:</span> A modell komplexitásának büntetése (pl. L1, L2 regularizáció)</li>
+                    <li><span class="highlight">Keresztvalidáció:</span> A modell teljesítményének ellenőrzése különböző adathalmazokon</li>
+                    <li><span class="highlight">Korai leállítás:</span> A tanítás megállítása, mielőtt túlillesztés következne be</li>
+                    <li><span class="highlight">Együttes módszerek:</span> Több modell kombinálása (pl. random forest, boosting)</li>
+                    <li><span class="highlight">Jellemző szelekció és mérnökség:</span> A leginkább releváns jellemzők kiválasztása és új jellemzők létrehozása</li>
+                    <li><span class="highlight">Metszési technikák:</span> A döntési fák komplexitásának csökkentése előmetszéssel vagy utómetszéssel</li>
+                </ul>
+    
+                <p><span class="key-point">Vizualizációs technikák:</span></p>
+                <ul>
+                    <li><span class="highlight">Tanulási görbék:</span> A tanító és validációs hiba ábrázolása az iterációk vagy mintaméret függvényében</li>
+                    <li><span class="highlight">Validációs görbék:</span> A modell teljesítményének ábrázolása különböző hiperparaméter értékek mellett</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Modellválasztás és validáció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Modellválasztás:</span> A <span class="highlight">megfelelő komplexitású modell</span> kiválasztása az adott problémához.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Módszerek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Keresztvalidáció:</span> Az adatok felosztása tanító és tesztelő halmazokra, többszöri ismétléssel</li>
+                        <li><span class="highlight">Holdout módszer:</span> Az adatok egyszeri felosztása tanító, validációs és tesztelő halmazokra</li>
+                        <li><span class="highlight">Információs kritériumok:</span> AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion)</li>
+                        <li><span class="highlight">Grid search:</span> Különböző hiperparaméter kombinációk szisztematikus kipróbálása</li>
+                        <li><span class="highlight">Random search:</span> Véletlenszerű hiperparaméter kombinációk tesztelése</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Validáció:</span> A modell <span class="highlight">teljesítményének ellenőrzése</span> független adatokon.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Lépések:</span></p>
+                    <ol>
+                        <li>Adatok felosztása tanító, validációs és tesztelő halmazokra</li>
+                        <li>Modell tanítása a tanító adatokon</li>
+                        <li>Modell finomhangolása a validációs adatokon</li>
+                        <li>Végső teljesítmény értékelése a tesztelő adatokon</li>
+                    </ol>
+                </div>
+    
+                <p><span class="key-point">Teljesítménymetrikák:</span></p>
+                <ul>
+                    <li><span class="highlight">Osztályozás:</span> Pontosság, precizitás, recall, F1-score, ROC görbe, AUC</li>
+                    <li><span class="highlight">Regresszió:</span> MSE (Mean Squared Error), MAE (Mean Absolute Error), R-négyzet, RMSE (Root Mean Squared Error)</li>
+                    <li><span class="highlight">Klaszterezés:</span> Silhouette koefficiens, Calinski-Harabasz index</li>
+                </ul>
+    
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li><span class="highlight">Robusztus modellek:</span> A validáció segít elkerülni a túlillesztést</li>
+                    <li><span class="highlight">Megbízható teljesítménybecslés:</span> A tesztelő halmazon mért eredmények jól reprezentálják a modell valós teljesítményét</li>
+                    <li><span class="highlight">Modellösszehasonlítás:</span> Különböző modellek objektív összehasonlítása</li>
+                    <li><span class="highlight">Hiperparaméter optimalizálás:</span> A modell finomhangolása a legjobb teljesítmény érdekében</li>
+                </ul>
+    
+                <p><span class="key-point">Kihívások:</span></p>
+                <ul>
+                    <li><span class="highlight">Adathiány:</span> Kis adathalmazok esetén nehéz megbízható validációt végezni</li>
+                    <li><span class="highlight">Számítási költségek:</span> Komplex modellek és nagy adathalmazok esetén időigényes lehet</li>
+                    <li><span class="highlight">Modell stabilitás:</span> A validációs eredmények változékonysága különböző adatfelosztások esetén</li>
+                    <li><span class="highlight">Megfelelő metrika kiválasztása:</span> Az üzleti vagy kutatási céloknak leginkább megfelelő értékelési kritérium meghatározása</li>
+                </ul>
+    
+                <p><span class="key-point">Fejlett technikák:</span></p>
+                <ul>
+                    <li><span class="highlight">Bayes-i optimalizálás:</span> Hatékony hiperparaméter keresés valószínűségi modell alapján</li>
+                    <li><span class="highlight">Ensemble módszerek:</span> Több modell kombinálása a teljesítmény és stabilitás javítása érdekében</li>
+                    <li><span class="highlight">AutoML:</span> Automatizált gépi tanulási folyamatok a modellválasztás és hiperparaméter hangolás optimalizálására</li>
+                    <li><span class="highlight">Online tanulás és validáció:</span> Folyamatosan frissülő adatok esetén alkalmazott technikák</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Mesterséges neuronhálók</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Különálló neuron</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A mesterséges neuron egy <span class="highlight">matematikai modell</span>, amely az emberi agy neuronjainak működését utánozza egyszerűsített formában.</p>
+                
+                <img src="../assets/images/neuron_model.bmp" alt="Mesterséges neuron modell" class="graph-image">
+                <img src="../assets/images/neuron_equation.bmp" alt="Neuron matematikai egyenlete" class="graph-image">
+                <div class="step">
+                    <p><span class="key-point">Komponensek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Bemeneti kapcsolatok (xj):</span> Az információ fogadására szolgálnak</li>
+                        <li><span class="highlight">Súlyok (wj):</span> A bemenetek fontosságát jelzik</li>
+                        <li><span class="highlight">Összegző függvény (Σ):</span> A súlyozott bemenetek összegzése</li>
+                        <li><span class="highlight">Aktivációs függvény (g):</span> A neuron kimenetét meghatározó nemlineáris függvény</li>
+                        <li><span class="highlight">Eltolássúly (w0):</span> Az aktivációs küszöb beállítására szolgál</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Működés:</span> Az xj a j. bemeneti érték, a wj a j. bemenet súlya. A w0 az eltolássúly (bias weight), x0 pedig fix bemenet, mindig -1. A bemenetek általában tetszőleges valós számok lehetnek, bár néhány alkalmazásban lehetnek korlátozottak is. A súlyok is valós számok.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Matematikai reprezentáció:</span></p>
+                    <img src="../assets/images/neuron_showcase.bmp" alt="Neuron matematikai egyenlete" class="graph-image">
+                    <p>A neuron először kiszámolja ezt az összeget, majd az összeg végeredményén alkalmazza az aktivációs függvényt.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Aktivációs függvények</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Az aktivációs függvény határozza meg a neuron kimenetét a súlyozott bemenetek összege alapján.</p>
+                
+                <img src="../assets/images/activation_functions.bmp" alt="Aktivációs függvények" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Küszöbfüggvény:</span> g(x) = 0 ha x ≤ 0, g(x) = 1 ha x > 0</li>
+                        <li><span class="highlight">Szigmoid függvény:</span> g(x) = 1 / (1 + e^(-x))</li>
+                        <li><span class="highlight">ReLU (Rectified Linear Unit):</span> g(x) = max(0, x)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Szerepe:</span> Az aktivációs függvény bevezetése nemlinearitást visz a rendszerbe, lehetővé téve komplex függvények approximációját.</p>
+                
+                <p><span class="key-point">Megjegyzés:</span> A modern aktivációs függvényekkel szemben nem követelmény, hogy a [0, 1] intervallumból adjanak értéket, de nemlineárisnak kell lenniük.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Neuron mint osztályozó</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Egy neuron <span class="highlight">lineáris osztályozóként</span> működik, a bemeneti teret két részre osztva egy hipersíkkal.</p>
+                
+                <img src="../assets/images/neuron_classifier.webp" alt="Neuron mint osztályozó" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Működés:</span></p>
+                    <ul>
+                        <li>A w · x = 0 egyenlet egy d-1 dimenziós hipersíkot határoz meg</li>
+                        <li>Az eltolássúly (w0) miatt a hipersík nem feltétlenül megy át az origón</li>
+                        <li>A neuron elfogadja az inputot, ha w · x > 0, egyébként nem</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Korlátozás:</span> Csak <span class="highlight">lineárisan szeparálható függvények</span> reprezentálhatók hiba nélkül egy neuronnal.</p>
+                
+                <p><span class="key-point">Példa:</span> A XOR logikai művelet nem lineárisan szeparálható, ezért egy neuronnal nem reprezentálható.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Többrétegű neuronhálózatok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A többrétegű neuronhálózatok <span class="highlight">egymásra épülő neuronrétegekből</span> álló modellek, amelyek képesek komplex mintázatok tanulására.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Felépítés:</span></p>
+                    <ul>
+                        <li><span class="highlight">Bemeneti réteg:</span> Az adatok fogadására szolgál</li>
+                        <li><span class="highlight">Rejtett rétegek:</span> Összetett összefüggések modellezésére</li>
+                        <li><span class="highlight">Kimeneti réteg:</span> A végső eredmény előállítására</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Jellemzők:</span></p>
+                <ul>
+                    <li><span class="highlight">Előrecsatolt kapcsolatok:</span> Az információ a bemenettől a kimenet felé halad</li>
+                    <li><span class="highlight">Nemlinearitás:</span> A rejtett rétegek és aktivációs függvények miatt képes nemlineáris függvények approximációjára</li>
+                    <li><span class="highlight">Tanulási képesség:</span> A súlyok optimalizálásával képes mintázatok felismerésére és általánosításra</li>
+                </ul>
+                
+                <p><span class="key-point">Előnyök:</span></p>
+                <ul>
+                    <li>Képes komplex, nemlineáris összefüggések modellezésére</li>
+                    <li>Jól skálázható különböző méretű és típusú problémákra</li>
+                    <li>Automatikus jellemző kinyerés a nyers adatokból</li>
+                </ul>
+                
+                <p><span class="key-point">Kihívások:</span></p>
+                <ul>
+                    <li>Nagy számítási igény a tanítás során</li>
+                    <li>Túltanulás veszélye megfelelő regularizáció nélkül</li>
+                    <li>A "fekete doboz" jelleg miatt nehezen interpretálható modellek</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>7. k-NN osztályozó</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>k-NN alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A k-NN (k Nearest Neighbor) osztályozó egy <span class="highlight">nem paraméteres algoritmus</span>, amely a minták közötti távolság alapján osztályoz új mintákat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Működési elv:</span></p>
+                    <ol>
+                        <li>Tanuló adatkészlet használata, amely tartalmazza a mintákat és osztálycímkéket</li>
+                        <li>Új minta esetén meghatározzuk a <span class="highlight">k legközelebbi ismert mintát</span> a távolság alapján</li>
+                        <li>Az új minta osztálycímkéjét a k legközelebbi minta osztálycímkéi alapján határozzuk meg</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Kulcsfogalmak:</span></p>
+                <ul>
+                    <li><span class="highlight">k érték:</span> A figyelembe vett legközelebbi szomszédok száma</li>
+                    <li><span class="highlight">Távolságmérték:</span> Általában euklideszi távolság, de más mértékek is használhatók</li>
+                    <li><span class="highlight">Tanuló adatkészlet:</span> Az ismert minták és osztálycímkék halmaza</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Szavazási módszerek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Többségi szavazás:</span></p>
+                    <ul>
+                        <li>Az új minta osztálycímkéje a <span class="highlight">leggyakoribb címke</span> a k legközelebbi mintában</li>
+                        <li><span class="highlight">Példa:</span> Ha k = 3, és 2 "A" osztályú és 1 "B" osztályú minta van, az új minta "A" osztályba kerül</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Súlyozott szavazás:</span></p>
+                    <ul>
+                        <li>A szomszédok szavazatait a <span class="highlight">távolság reciprokával súlyozzuk</span></li>
+                        <li>Közelebbi szomszédok nagyobb súlyt kapnak</li>
+                        <li>Hasznos, ha a k legközelebbi minta nem egyenletesen oszlik el a távolság alapján</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">1-NN:</span> A k-NN speciális esete, ahol k = 1. Az új minta osztálycímkéjét a <span class="highlight">legközelebbi ismert minta</span> osztálycímkéje határozza meg.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Előnyök és hátrányok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszerű implementáció és értelmezés</span></li>
+                        <li>Hatékony kis adatbázisok esetén</li>
+                        <li>Nem feltételezi a lineárisan szeparálható osztályokat</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Hátrányok:</span></p>
+                    <ul>
+                        <li>A teljesítmény romlik <span class="highlight">nagy adatbázisok</span> esetén</li>
+                        <li><span class="highlight">Érzékeny a zajra és az outlierekre</span></li>
+                        <li>A k paraméter kiválasztása befolyásolhatja a teljesítményt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gyakorlati példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Scenario:</span> Virágok osztályozása "írisz" és "rózsa" kategóriákba.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Szirmok hossza</li>
+                        <li>Szirmok szélessége</li>
+                        <li>Cseplesz hossza</li>
+                        <li>Cseplesz szélessége</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Osztályozás lépései:</span></p>
+                    <ol>
+                        <li>Új virág jellemzőinek mérése</li>
+                        <li>Távolság kiszámítása a tanuló adatkészlet minden virágához</li>
+                        <li>K legközelebbi virág meghatározása</li>
+                        <li>Osztálycímke hozzárendelése a k legközelebbi virág alapján</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Megjegyzés:</span> A k értékének megválasztása kritikus lehet a teljesítmény szempontjából. Általában <span class="highlight">keresztvalidációval</span> határozzák meg az optimális k értéket.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

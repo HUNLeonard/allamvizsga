@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 11 - </title>
+    <title>Tétel 11 - Operációkutatás II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,324 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Operációkutatás II - 11. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Primál-duál feladatpár</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Primál-duál feladatpár alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A primál-duál feladatpár az LP feladatok megoldására használt rugalmas megközelítés, amely lehetővé teszi a <span class="highlight">hatékonyabb problémamegoldást</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Primál feladat általános alakja:</span></p>
+                    <pre>
+    Ax <= b
+    x >= 0 
+    Max cTx = z
+                    </pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Duál feladat általános alakja:</span></p>
+                    <pre>
+    ATy >= c
+    y >= 0
+    Min bTy = w
+                    </pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Duál feladat létrehozása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Transzponáljuk</span> az A mátrixot</li>
+                        <li><span class="highlight">Felcseréljük</span> a b és c vektorok szerepét</li>
+                        <li><span class="highlight">Cseréljük </span> a <= egyenlőtlenségeket >= -ra</li>
+                        <li><span class="highlight">Max</span> helyett <span class="highlight">Min</span> feladatot írunk fel</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <p>A dualitás <span class="highlight">rugalmas megközelítést</span> tesz lehetővé az LP feladatok megoldására, és segít a <span class="highlight">bemeneti adatok változásainak hatását</span> elemezni az optimumra.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Dualitási komplementaritási tételek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Alaptétel:</span> <span class="highlight">A duál duálisa az eredeti primál feladat.</span> Ez abból ered, hogy ha duplán transzponálunk egy tetszőleges A mátrixot, akkor visszakapjuk magát az A mátrixot. A b és c vektorok esetén meg csak oda-vissza cserélgettük őket, szóval az állítás helyes.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Gyenge dualitás tétele:</span></p>
+                    <ul>
+                        <li>Ha x lehetséges megoldása a primálnak és y a duálnak, akkor <span class="highlight">cT x ≤ bTy</span></li>
+                        <li>Ha a primál <span class="highlight">nem korlátos</span>, akkor a duálnak <span class="highlight">nincs lehetséges megoldása</span></li>
+                        <li>Ha a duál <span class="highlight">nem korlátos</span>, akkor a primálnak <span class="highlight">nincs lehetséges megoldása</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Erős dualitás tétele:</span></p>
+                    <ul>
+                        <li>Ha x optimális megoldása a primálnak és y a duálnak, akkor <span class="highlight">cT x = bTy</span></li>
+                        <li>Ha a primálnak és duálnak is van lehetséges megoldása, akkor az <span class="highlight">optimumok megegyeznek</span></li>
+                        <li>A primál természetes változóinak a duál mesterséges változók célfüggvénybeli együtthatói felelnek meg, <span class="highlight">ellentétes előjellel</span></li>
+                </div>
+                
+                <p><span class="key-point">Megjegyzés:</span> A primál természetes változóinak a duál mesterséges változók célfüggvénybeli együtthatói felelnek meg, ellentétes előjellel.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Egész értékű feladatok és jellemzőik</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Egész értékű programozás (ILP)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Az egész értékű programozási feladat (ILP) olyan LP feladat, ahol <span class="highlight">a változók vagy azok egy része csak nemnegatív egész értékeket vehet fel</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tiszta egészértékű (IP):</span> Minden változó egész</li>
+                        <li><span class="highlight">Vegyes egészértékű (MIP):</span> Csak néhány változó egész</li>
+                        <li><span class="highlight">0-1 IP:</span> Minden változó bináris (0 vagy 1)</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Kihívás:</span> Az egészértékűség követelménye <span class="highlight">jelentősen megnehezíti</span> a feladat megoldását.</p>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>LP-lazítás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Az LP-lazítás az ILP feladat <span class="highlight">egészértékűségi megkötéseinek eltörlésével</span> kapott lineáris programozási feladat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Tulajdonságok:</span></p>
+                    <ul>
+                        <li>Az LP-lazítás optimuma <span class="highlight">sosem rosszabb</span>, mint az ILP optimuma</li>
+                        <li>Ha az LP-lazítás megoldása egész, akkor az <span class="highlight">egyben az ILP megoldása</span> is</li>
+                        <li>Az LP-lazítás megoldása <span class="highlight">nem garantáltan kerekíthető</span> az ILP optimális megoldásává</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">LP-lazítás és IP-lehetséges megoldások</span></p>
+                <img src="../assets/images/ilp_vs_lp.webp" alt="Relaxált és egész optimum" class="graph-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. A Branch and Bound módszer</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Branch and Bound (B&B) algoritmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A Branch and Bound (B&amp;B) egy <span class="highlight">általános algoritmus</span> optimalizálási problémák megoldására, különösen hasznos egész értékű programozási feladatoknál.</p>
+                <div class="step">
+                    <p><span class="key-point">Alapelv:</span> Az <span class="highlight">"Oszd meg, és uralkodj!"</span> stratégia alkalmazása ILP feladatokra.</p>
+                    <ul>
+                        <li><span class="highlight">Branch (Szétválasztás):</span> A probléma részproblémákra bontása</li>
+                        <li><span class="highlight">Bound (Korlátozás):</span> A részproblémák megoldásának becslése relaxált feladatok segítségével</li>
+                        <li><span class="highlight">Pruning (Metszés):</span> A nem optimális részproblémák kizárása</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Megjegyzés:</span> A B&amp;B módszer <span class="highlight">garantálja az optimális megoldás megtalálását</span>, de a futási idő exponenciális lehet a legrosszabb esetben.</p>
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Branch and Bound alkalmazása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Algoritmus lépései:</span></p>
+                    <ol>
+                        <li>Az eredeti feladat <span class="highlight">relaxációjának megoldása</span></li>
+                        <li>A feladat <span class="highlight">részproblémákra bontása</span> (szétválasztás)</li>
+                        <li><span class="highlight">Nem lezárt részprobléma</span> kiválasztása és a hozzá tartozó relaxált feladat megoldása</li>
+                        <li>A kapott megoldás <span class="highlight">értékelése</span> és döntés a további lépésekről</li>
+                        <li><span class="highlight">Ismétlés</span>, amíg minden részprobléma lezárásra nem kerül</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Lehetséges kimenetelek a 3. lépésben:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nincs lehetséges megoldás</span> → ág lezárása</li>
+                        <li><span class="highlight">Egész szám az optimális megoldás</span> → összehasonlítás az eddigi legjobb megoldással</li>
+                        <li>A megoldás <span class="highlight">rosszabb, mint az eddigi legjobb</span> → ág lezárása</li>
+                        <li><span class="highlight">Jobb, de nem egész értékű megoldás</span> → visszatérés a 2. lépéshez</li>
+                    </ul>
+                </div>
+        
+                <p><span class="key-point">Algoritmus vége:</span> Amikor <span class="highlight">minden részprobléma lezárásra került</span>. Az optimális megoldás a <span class="highlight">tárolt legjobb egész megoldás</span>.</p>
+                
+                <p><span class="key-point">Végeredmény:</span> Az optimális egész megoldás <span class="highlight">x* = (2,2) és z(x*) = 6</span>.</p>
+        
+                <img src="../assets/images/branch_and_bound_1.webp" alt="Branch and Bound lépések 1" class="graph-image">
+                <img src="../assets/images/branch_and_bound_2.webp" alt="Branch and Bound lépések 2" class="graph-image">
+                <img src="../assets/images/branch_and_bound_3.webp" alt="Branch and Bound lépések 3" class="graph-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. A hátizsák feladat</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Hátizsák probléma alapfogalmak</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A hátizsák probléma egy <span class="highlight">klasszikus optimalizálási feladat</span>, ahol <span class="highlight">adott súlyú és értékű tárgyak</span> közül kell kiválasztani úgy, hogy a <span class="highlight">hátizsák kapacitását ne lépjük túl</span>, és az <span class="highlight">érték maximális legyen</span>.</p>
+                
+                <p><span class="key-point">Megjegyzés:</span> Egy olyan IP-t, amelyben <span class="highlight">csak egy feltétel van</span>, hátizsák feladatnak hívunk.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Bináris hátizsák feladat:</span></p>
+                    <img src="../assets/images/hatizsak_feladat_1.webp" alt="Hátizsák feladat definíció" class="graph-image">
+                    <img src="../assets/images/hatizsak_feladat_2.webp" alt="Hátizsák feladat matematikai modell" class="graph-image">
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>LP-lazítás a hátizsák problémában</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">LP-lazítás megoldása:</span></p>
+                    <ul>
+                        <li>A tárgyakat a <span class="highlight">relatív hasznosság szerint</span> tesszük be a hátizsákba</li>
+                        <li>Ami nem fér be teljesen, annak csak <span class="highlight">tört részét</span> vesszük be</li>
+                        <li>Példa: 
+                            <ul>
+                                <li>A <span class="highlight">tablet és a laptop bekerül</span>, ezzel 1200 g a súlya</li>
+                                <li>A <span class="highlight">telefon 400 g, ennek a fele fér bele</span></li>
+                                <li>Eredmény: <span class="highlight">x₁ = 1, x₂ = 1, x₃ = 0.5, z = 16 + 22 + 0.5 * 12 = 44</span></li>
+                            </ul>
+                        </li>
+                        <li>Az <span class="highlight">egyetlen tört változó szerint szétbontjuk</span>:
+                            <ul>
+                                <li><span class="highlight">x₃ = 1</span> (már csak 1000 g-nyi tárgyat keresünk)</li>
+                                <li><span class="highlight">x₃ = 0</span> (csak 3 tárgyból keresünk)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Branch and Bound a hátizsák problémában</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Branch and Bound alkalmazása:</span></p>
+                    <img src="../assets/images/hatizsak_feladat_3.webp" alt="Hátizsák feladat B&B 1" class="graph-image">
+                    <img src="../assets/images/hatizsak_feladat_4.webp" alt="Hátizsák feladat B&B 2" class="graph-image">
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Komplexitás és megoldási stratégiák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <ul>
+                        <li>Hátizsák feladat: <span class="highlight">NP-nehéz</span>, legrosszabb esetben <span class="highlight">2^n részfeladat</span></li>
+                        <li>Egészértékű feladatnál: <span class="highlight">2^Mn</span>, ahol <span class="highlight">M a lehetséges egészek száma</span> egy változóra</li>
+                        <li><span class="highlight">Duál szimplex algoritmus</span> használható gyorsításra <span class="highlight">"meleg indítással"</span>
+                            <br><em>(Ilyenkor az <span class="highlight">előző optimális szimplex táblából indulunk</span> és a hozzávett nem lehetséges feltételből kell <span class="highlight">duál szimplex lépéseket végrehajtani</span>.)</em>
+                        </li>
+                        <li>Fa bejárása lehet:
+                            <ul>
+                                <li><span class="highlight">LIFO</span> (mélységi bejárás)</li>
+                                <li><span class="highlight">FIFO</span> (szélességi bejárás)</li>
+                                <li><span class="highlight">Más heurisztikán alapuló</span> bejárás</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Alkalmazási területek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Erőforrás-allokáció</span> optimalizálása</li>
+                    <li><span class="highlight">Pénzügyi befektetések</span> portfólió optimalizálása</li>
+                    <li><span class="highlight">Logisztikai problémák</span> megoldása</li>
+                    <li><span class="highlight">Projektmenedzsment</span> erőforrás-tervezése</li>
+                    <li><span class="highlight">Gyártási folyamatok</span> optimalizálása</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összegzés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Operációkutatás II összefoglalás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Primál-duál feladatpár:</span></p>
+                    <ul>
+                        <li>Rugalmas megközelítés LP feladatok megoldására</li>
+                        <li>Gyenge és erős dualitás tételei</li>
+                        <li>Hatékony problémamegoldás és érzékenységvizsgálat</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Egész értékű programozás (ILP):</span></p>
+                    <ul>
+                        <li>Változók egészértékűségének követelménye</li>
+                        <li>LP-lazítás és annak tulajdonságai</li>
+                        <li>Komplexebb, de valósághűbb modellek</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Branch and Bound:</span></p>
+                    <ul>
+                        <li>Általános algoritmus diszkrét optimalizálásra</li>
+                        <li>Elágazás, korlátozás és metszés lépései</li>
+                        <li>Garantált optimum találása</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Hátizsák probléma:</span></p>
+                    <ul>
+                        <li>Klasszikus optimalizálási feladat</li>
+                        <li>Különböző megoldási módszerek</li>
+                        <li>Széles körű gyakorlati alkalmazások</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Összefoglalás:</span> Az Operációkutatás II témakör <span class="highlight">komplex optimalizálási technikákat</span> mutat be, amelyek lehetővé teszik valós problémák pontosabb modellezését és hatékony megoldását.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
