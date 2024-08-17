@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 12 - </title>
+    <title>Tétel 12 - Operációs rendszerek I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,8 +12,446 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Operációs rendszerek I - 12. tétel</h1>
 
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Processzusok és szálak</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Processzusok alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A <span class="highlight">processzus</span> lényegében egy <span class="highlight">végrehajtás alatt lévő program</span>. Minden modern számítógép képes több feladatot párhuzamosan elvégezni, ezt nevezzük <span class="highlight">multiprogramozásnak</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Processzus jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Saját címtartomány:</span> A memória egy szeletén belül olvashat és írhat</li>
+                        <li><span class="highlight">Regiszterkészlet:</span> Tartalmazza az utasításszámlálót, veremmutatót és egyéb hardverregisztereket</li>
+                        <li><span class="highlight">Erőforrások:</span> Megnyitott fájlok, gyermekprocesszusok, függőben lévő ébresztők, szignálkezelők, stb.</li>
+                        <li><span class="highlight">Veremmemória:</span> Saját veremmemóriával rendelkezik</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Multiprogramozás:</span> A CPU <span class="highlight">gyors oda-vissza kapcsolgatása</span> a processzusok között, ami a <span class="highlight">párhuzamosság illúzióját</span> kelti.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Processzus állapotai:</span></p>
+                    <ol>
+                        <li><span class="highlight">Futó:</span> Az adott pillanatban használja a CPU-t</li>
+                        <li><span class="highlight">Futáskész:</span> Ideiglenesen leállították egy másik processzus futása érdekében</li>
+                        <li><span class="highlight">Blokkolt:</span> Bizonyos külső esemény bekövetkeztéig nem képes futni</li>
+                        <li><span class="highlight">Kiegészítő állapotok:</span> Iniciális, terminális, aktív, felfüggesztett</li>
+                    </ol>
+                    <img src="../assets/images/allapot.webp" alt="allapot" class="graph-image">
+                </div>
+                
+                <p><span class="key-point">Processzus leírása:</span> A processzusokat a <span class="highlight">processzustáblázat</span> írja le, ami tartalmazza a <span class="highlight">processzus vezérlő blokkot (PCB)</span>. Ezek tartalmazzák a processzus azonosítóját, állapotát, a CPU állapotát az
+                    esetleges kontextus cseréhez, a jogosultságokat és a birtokolt erőforrások listáját</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Szálak (Fonalak)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A szál egy <span class="highlight">végrehajtási szál</span> vagy <span class="highlight">könnyűsúlyú processzus</span> a processzuson belül. Lehetőséget ad a programnak arra, hogy <span class="highlight">több tevékenységet végezzen el párhuzamosan</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Szál jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Utasításszámláló:</span> Nyilvántartja, melyik utasítás végrehajtása következik</li>
+                        <li><span class="highlight">Regiszterek:</span> Az aktuális munka változóit tárolják</li>
+                        <li><span class="highlight">Verem:</span> A végrehajtás eseményeit rögzíti, egy-egy kerettel minden meghívott eljáráshoz</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Szálak és processzusok viszonya:</span></p>
+                    <ul>
+                        <li>A szál és annak processzusa <span class="highlight">külön fogalmak</span>, de egy szálat egy processzuson belül kell végrehajtani</li>
+                        <li>A processzusok az <span class="highlight">erőforrások csoportosításai</span>, a szálak pedig a <span class="highlight">CPU-n való végrehajtásra ütemezett egyedek</span></li>
+                        <li>Egy processzuson belül <span class="highlight">több szál is lehet</span></li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Szálak kezelése:</span></p>
+                    <ul>
+                        <li>Ha több szál van, <span class="highlight">külön száltáblázatra</span> van szükség</li>
+                        <li>A szálakat <span class="highlight">felfüggeszthetjük és folytathatjuk</span></li>
+                        <li>Felfüggesztéskor a <span class="highlight">regisztereket el kell menteni</span></li>
+                        <li>A szálak állapota lehet <span class="highlight">futó, futáskész vagy blokkolt</span></li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Szálak előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gyorsabb létrehozás és lezárás</span></li>
+                        <li><span class="highlight">Gyorsabb váltás</span> a processzuson belüli szálak között</li>
+                        <li><span class="highlight">Könnyebb kommunikáció</span> a kernel hívása nélkül</li>
+                        <li>Lehetővé teszi a <span class="highlight">párhuzamosság elérését</span> szekvenciális processzusok esetén is</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Szálak megvalósítása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Felhasználói szintű szálak:</span> Az alkalmazások kezelik, gyors, de a kernel nem tud róluk</li>
+                        <li><span class="highlight">Kernel szintű szálak:</span> A kernel kezeli, lassabb, de szál alapú ütemezést tesz lehetővé</li>
+                        <li><span class="highlight">Vegyes megvalósítás:</span> Kombinálja a két megközelítés előnyeit</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Alkalmazási példa:</span></p>
+                    <p>Webszerverek esetén a <span class="highlight">többszörös szálak</span> lehetővé teszik, hogy a böngésző <span class="highlight">egyszerre több képet kérjen le</span>, ami jelentősen gyorsítja a weblapok betöltését.</p>
+                </div>
+        
+                <img src="../assets/images/threads_example.png" alt="Szálak példája" class="graph-image">
+                <p>Az (a) rész több szálat tartalmaz, míg a (b) rész csak egyetlen szálat mutat be. A kernel a szoftver, amely irányítja a folyamatokat és szálakat, a rendszer központi összetevője. A CPU a hardver, amivel együtt dolgozik.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Processzus létrehozása és befejezése</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Processzus létrehozása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Processzusok létrehozása és megszüntetése <span class="highlight">elengedhetetlen az általános célú rendszerekben</span>.</p>
+
+                <p><span class="key-point"> Processzus létrehozását több esemény okozhatja:</span></p>
+                
+                <div class="step">
+                    <ol>
+                        <li><span class="highlight">Rendszer inicializálása</span></li>
+                        <ol>
+                            <li>Felhasználóval való kapcsolattartás (előtérben futnak)</li>
+                            <li>nincsenek a felhasználóhoz kötve, saját feladatuk van(háttérben futnak)</li>
+                        </ol>
+                        <li><span class="highlight">Gyerek processzus létrehozásának kezdeményezése</span>-> rendszerhívás</li>
+                        <li><span class="highlight">Felhasználó kezdeményezett parancsokkal</span>-> interaktív rendszerekben</li>
+                        <li><span class="highlight">Futó processzusok is létrehozhatnak</span> -> például kooperatív feladatok esetén</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Létrehozás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Memóriaterület foglalása</span> a PCB (Process Control Block) számára</li>
+                        <li><span class="highlight">PCB kitöltése</span> iniciális adatokkal (erőforrások, jogosultságok)</li>
+                        <li><span class="highlight">Memóriafoglalás</span> programszöveg, adatok, verem számára</li>
+                        <li>PCB <span class="highlight">processzusok láncára fűzése</span>, állapot beállítása futáskészre</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">FORK() rendszerhívás:</span> Új processzus létrehozásakor fut le, a létrejövő processzus <span class="highlight">pontos mása a hívó processzusnak</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Processzus típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Előtérben futó processzusok:</span> Felhasználókkal tartják a kapcsolatot</li>
+                        <li><span class="highlight">Háttérprocesszusok (démonok):</span> Sajátos feladatokat látnak el (pl. webkérések kezelése)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Processzus befejezése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A processzusok különböző körülmények között fejezhetik be működésüket.</p>
+            
+                <div class="step">
+                    <p><span class="key-point">Befejezés okai:</span></p>
+                    <ol>
+                        <li><span class="highlight">Szabályos kilépés</span> (önkéntes) - EXIT(0)</li>
+                        <li><span class="highlight">Kilépés hiba miatt</span> (önkéntes) - EXIT(hibakód)</li>
+                        <li><span class="highlight">Kilépés végzetes hiba miatt</span> (önkéntelen)</li>
+                        <li><span class="highlight">Másik processzus általi megsemmisítés</span> (önkéntelen) - KILL()</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Példák befejezési okokra:</span></p>
+                    <ul>
+                        <li><span class="highlight">Feladat befejezése:</span> Pl. fordítóprogram lefordította a programot</li>
+                        <li><span class="highlight">Végzetes hiba felfedezése:</span> Pl. nem létező fájl fordítása</li>
+                        <li><span class="highlight">Processzus által okozott hiba:</span> Pl. nullával osztás, illegális utasítás</li>
+                        <li><span class="highlight">Rendszerhívás más processzus megszüntetésére:</span> Pl. kill hívás</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Befejezés lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Gyermek processzusok megszüntetése</span> vagy más szülőhöz csatolása</li>
+                        <li>PCB <span class="highlight">processzusok láncáról való levétele</span></li>
+                        <li><span class="highlight">Erőforrások felszabadítása</span> a PCB alapján (pl. nyitott fájlok lezárása)</li>
+                        <li><span class="highlight">Memóriaterületek felszabadítása</span> a memóriatérkép alapján</li>
+                        <li>PCB <span class="highlight">memóriaterületének felszabadítása</span></li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Fontos megjegyzés:</span> Egyes operációs rendszerekben egy processzus befejeződése <span class="highlight">maga után vonja az általa létrehozott processzusok megsemmisítését is</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Ütemezési stratégiák és algoritmusok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Alapfogalmak</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Az <span class="highlight">ütemező (scheduler)</span> az operációs rendszer azon része, amely eldönti, melyik processzus fusson először. Az erre használt algoritmust <span class="highlight">ütemezési algoritmusnak</span> nevezzük.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Ütemezés szükségessége:</span></p>
+                    <ul>
+                        <li>Processzus befejeződésekor</li>
+                        <li>Processzus blokkolódásakor (I/O művelet vagy szemafor miatt)</li>
+                        <li>Új processzus létrejöttekor</li>
+                        <li>I/O megszakítás esetén</li>
+                        <li>Időzítőmegszakítás történésekor</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Ütemezési típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nem megszakítható ütemezés:</span> A kiválasztott processzus addig fut, amíg blokkolódik vagy önként lemond a processzorról.</li>
+                        <li><span class="highlight">Megszakítható ütemezés:</span> A processzus csak egy előre meghatározott ideig futhat.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Ütemezési algoritmusok céljai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Általános célok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Páratlanság:</span> Minden processzusnak megfelelő hozzáférést biztosítani a CPU-hoz.</li>
+                        <li><span class="highlight">Elvek betartása:</span> A meghatározott elvek szerinti működés biztosítása.</li>
+                        <li><span class="highlight">Egyensúly:</span> A rendszer minden részének egyenletes terhelése.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Kötegelt rendszerek céljai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Áteresztőképesség:</span> Maximalizálni az időegységenként végrehajtott feladatok számát.</li>
+                        <li><span class="highlight">Áthaladási idő:</span> Minimalizálni a feladat-végrehajtás kezdeményezése és a befejezés között eltelt időt.</li>
+                        <li><span class="highlight">CPU-kihasználtság:</span> A CPU soha nem állhat tétlenül.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Interaktív rendszerek céljai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Válaszidő:</span> A kérésekre gyors válasz biztosítása.</li>
+                        <li><span class="highlight">Arányosság:</span> A felhasználók elvárásainak való megfelelés.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Valós idejű rendszerek céljai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Határidők betartása:</span> Adatvesztés elkerülése.</li>
+                        <li><span class="highlight">Előrejelezhetőség:</span> Minőségromlás elkerülése multimédia-rendszerekben.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Kötegelt rendszerek ütemezési stratégiái</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Sorrendi ütemezés (First-Come, First-Served - FCFS):</span></p>
+                    <ul>
+                        <li>A processzusok <span class="highlight">érkezési sorrendben</span> kapják meg a CPU-t.</li>
+                        <li><span class="highlight">Előny:</span> Egyszerű megérteni és implementálni.</li>
+                        <li><span class="highlight">Hátrány:</span> Hosszú processzusok blokkolhatják a rövideket.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Legrövidebb feladatot először (Shortest Job First - SJF):</span></p>
+                    <ul>
+                        <li>A <span class="highlight">legrövidebb futásidejű</span> processzus fut először.</li>
+                        <li><span class="highlight">Előny:</span> Optimális átlagos várakozási idő.</li>
+                        <li><span class="highlight">Hátrány:</span> Futásidők előzetes ismerete szükséges.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Legrövidebb maradék idő (Shortest Remaining Time - SRT):</span></p>
+                    <ul>
+                        <li>Az SJF <span class="highlight">megszakítható változata</span>.</li>
+                        <li>Új processzus érkezésekor összehasonlítja annak futásidejét az aktuálisan futó processzus hátralévő idejével.</li>
+                        <li><span class="highlight">Előny:</span> Rövid feladatok gyors kiszolgálása.</li>
+                        <li><span class="highlight">Hátrány:</span> Folyamatos futásidő-becslés szükséges.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Interaktív rendszerek ütemezési stratégiái</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Round Robin ütemezés:</span></p>
+                    <ul>
+                        <li>Minden processzus <span class="highlight">előre meghatározott időszelet</span>et kap.</li>
+                        <li>Ha az időszelet lejár, a processzus a sor végére kerül.</li>
+                        <li><span class="highlight">Előny:</span> Igazságos elosztás, jó válaszidő.</li>
+                        <li><span class="highlight">Hátrány:</span> Az időszelet méretének meghatározása kritikus.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Prioritásos ütemezés:</span></p>
+                    <ul>
+                        <li>Minden processzushoz <span class="highlight">prioritást rendelünk</span>.</li>
+                        <li>A legmagasabb prioritású processzus fut először.</li>
+                        <li><span class="highlight">Előny:</span> Fontos feladatok gyors végrehajtása.</li>
+                        <li><span class="highlight">Hátrány:</span> Alacsony prioritású feladatok éheztetése.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Többszörös sorok:</span></p>
+                    <ul>
+                        <li>Processzusok <span class="highlight">különböző prioritási osztályokba</span> sorolása.</li>
+                        <li>Osztályonként különböző időszelet alkalmazása.</li>
+                        <li><span class="highlight">Előny:</span> Rugalmas, különböző típusú feladatokhoz alkalmazkodó rendszer.</li>
+                        <li><span class="highlight">Hátrány:</span> Komplexebb implementáció.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Valós idejű rendszerek ütemezési stratégiái</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Szigorú valós idejű ütemezés:</span></p>
+                    <ul>
+                        <li><span class="highlight">Abszolút határidők</span> betartása kötelező.</li>
+                        <li>Statikus vagy dinamikus ütemezés használata.</li>
+                        <li><span class="highlight">Előny:</span> Garantált válaszidő.</li>
+                        <li><span class="highlight">Hátrány:</span> Komplex tervezés és implementáció.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Toleráns valós idejű ütemezés:</span></p>
+                    <ul>
+                        <li>Néhány határidő <span class="highlight">elmulasztása tolerálható</span>.</li>
+                        <li>Gyakran használt multimédia alkalmazásokban.</li>
+                        <li><span class="highlight">Előny:</span> Rugalmasabb, mint a szigorú valós idejű ütemezés.</li>
+                        <li><span class="highlight">Hátrány:</span> Nem garantálja minden határidő betartását.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Kontextus-csere</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Kontextus-csere alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A kontextus-csere az a folyamat, amikor a <span class="highlight">CPU átvált egyik processzusról a másikra</span>, például P1-ről P2-re.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Folyamat:</span></p>
+                    <ol>
+                        <li>P1 állapotának <span class="highlight">mentése</span> a CPU regisztereiből egy dedikált memóriaterületre.</li>
+                        <li>P2 korábban elmentett állapotának <span class="highlight">helyreállítása</span> a CPU regisztereiben.</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Fontos megjegyzések:</span></p>
+                    <ul>
+                        <li>Kontextus-cserére <span class="highlight">többprocesszoros rendszerekben is szükség van</span>.</li>
+                        <li>Minden CPU-n végre kell hajtani a cserét többprocesszoros környezetben.</li>
+                        <li>Lehetővé teszi több processzus <span class="highlight">párhuzamos létezését és végrehajtását</span> egyetlen CPU-n.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Kontextus-csere események</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Processzusváltás okai:</span></p>
+                <ul>
+                    <li><span class="highlight">Óra megszakítás:</span> A processzus időszeletének lejárta.</li>
+                    <li><span class="highlight">I/O megszakítás:</span> Bemeneti/kimeneti művelet befejezése.</li>
+                    <li><span class="highlight">Csapda vagy hiba:</span> A processzus hibába ütközik vagy csapdába esik.</li>
+                </ul>
+                
+                <div class="step">
+                    <p><span class="key-point">Megszakítás kezelése:</span></p>
+                    <ul>
+                        <li>Minden B/K eszközhöz tartozik egy <span class="highlight">megszakításleíró tábla</span>.</li>
+                        <li>Megszakításkor a hardver a <span class="highlight">verembe menti</span>:
+                            <ul>
+                                <li>Utasításszámlálót</li>
+                                <li>Programállapot szót</li>
+                                <li>Egy vagy több regisztert</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Kontextus-csere jelentősége</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li><span class="highlight">Erőforrás-megosztás:</span> Lehetővé teszi több processzus hatékony futtatását egyetlen CPU-n.</li>
+                        <li><span class="highlight">Multitasking:</span> Támogatja a párhuzamos feladatvégzést.</li>
+                        <li><span class="highlight">Válaszidő javítása:</span> Interaktív rendszerekben gyorsabb felhasználói visszajelzést biztosít.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Kihívások:</span></p>
+                    <ul>
+                        <li><span class="highlight">Overhead:</span> A kontextus-csere időt és erőforrást igényel.</li>
+                        <li><span class="highlight">Megfelelő időzítés:</span> Túl gyakori váltás csökkentheti a rendszer teljesítményét.</li>
+                        <li><span class="highlight">Állapotmentés pontossága:</span> Kritikus a processzusok integritásának megőrzéséhez.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
     <script src="../assets/js/tetel.js"></script>
 </body>
 </html>
