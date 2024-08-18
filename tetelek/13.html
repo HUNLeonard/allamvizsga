@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 13 - </title>
+    <title>Tétel 12 - Operációs rendszerek I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,505 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Operációs rendszerek I - 12. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Processzusok kommunikációja, versenyhelyzetek, kölcsönös kizárás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Processzusok kommunikációja (IPC)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content show">
+                <p><span class="key-point">Definíció:</span> Az IPC (InterProcess Communication) lehetővé teszi a processzusok közötti <span class="highlight">információcserét és együttműködést</span>. <br><em>( A processzusoknak gyakran szükségük van az egymással való kommunikációra )</em></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb területek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Információküldés:</span> Hogyan küldhet egy processzus adatot egy másiknak?</li>
+                        <li><span class="highlight">Kritikus tevékenységek koordinálása:</span> Hogyan biztosítható, hogy a processzusok ne zavarják egymást?</li>
+                        <li><span class="highlight">Függőségek kezelése:</span> Hogyan állítsuk sorrendbe a processzusokat, ha egymásra várnak?</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa:</span> Egy parancsértelmező adatcsőben az első processzus kimenete a második processzus bemenete lesz, és így tovább. Ezért <span class="highlight">szükséges a processzusok közti kommunikáció, előnyben részesítve egy megszakítások nélküli, jól strukturált módot.</span></p>
+                <p><span class="key-point">Megjegyzés:</span> Vannak operációs rendszerek, ahol az együtt dolgozó processzusok <span class="highlight">közös tárolóterületen osztozhatnak</span>. Ez lehet a főmemóriában vagy egy megosztott fájlban.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Versenyhelyzetek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Versenyhelyzetnek nevezzük azokat az eseteket, amikor <span class="highlight">kettő vagy több processzus olvas vagy ír megosztott adatokat</span>, és a végeredmény attól függ, hogy ki és pontosan mikor fut.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>A versenyhelyzeteket tartalmazó programokat <span class="highlight">nehéz nyomon követni</span></li>
+                        <li>Tesztelés során <span class="highlight">furcsa és látszólag megmagyarázhatatlan dolgok</span> fordulhatnak elő</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Megoldás versenyhelyzetekre:</span></p>
+                    <ul>
+                        <li>A kritikus szakaszok <span class="highlight">szinkronizálása</span> szükséges</li>
+                        <li>Cél: Biztosítani, hogy <span class="highlight">egyszerre csak egy processzus férhessen hozzá</span> és módosíthassa a megosztott változókat</li>
+                        <li>Szinkronizációs mechanizmusok:
+                            <ul>
+                                <li><span class="highlight">Szemaforok:</span> Jelzik, hogy egy erőforrás szabad vagy foglalt</li>
+                                <li><span class="highlight">Mutexek:</span> Egyszerű zárolási mechanizmusok <br><em>( biztosítják, hogy egyszerre csak egy folyamat férhessen hozzá egy adott erőforráshoz. )</em></li>
+                                <li><span class="highlight">Monitorok:</span> Automatikus szinkronizációt kezelő programozási konstrukciók</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Megjegyzés:</span> Ha két processzus <span class="highlight">soha nincs egyszerre a kritikus szekciójában</span>, a versenyhelyzet elkerülhető.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Háttérnyomtatás példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A háttérnyomtatás egy olyan megoldás, amely lehetővé teszi, hogy a <span class="highlight">nyomtatási feladatokat a rendszer a háttérben</span>, a felhasználói tevékenységtől függetlenül végezze el.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Folyamat lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Nyomtatási kérés:</span> Amikor a kliens (felhasználó vagy alkalmazás) nyomtatni szeretne egy dokumentumot, elindít egy nyomtatási folyamatot.</li>
+                        <li><span class="highlight">Háttérkatalógus frissítése:</span> A nyomtatandó fájl neve bekerül a háttérkatalógusba</li>
+                        <li><span class="highlight">Nyomtató démon:</span> Rendszeresen ellenőrzi a háttérkatalógust és elindítja a nyomtatást</li>
+                        <li><span class="highlight">Nyomtatás végrehajtása:</span> A fájl kinyomtatása és eltávolítása a háttérkatalógusból</li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Háttérkatalógus:</span> A háttérkatalógus egy olyan adatstruktúra, amely sorszámmal azonosított rekeszeket tartalmaz, mindegyik rekesz egy nyomtatandó fájl nevét tárolja.</p>
+                
+                <p><span class="key-point">Előny:</span> A felhasználók <span class="highlight">folytathatják a munkájukat</span> anélkül, hogy megvárnák a nyomtatás befejezését.</p>
+                
+                <p><span class="key-point">Megjegyzés:</span> Ez a módszer nem csak nyomtatásra alkalmazható, hanem <span class="highlight">bármilyen időigényes vagy erőforrás-igényes feladatra</span>, amit a háttérben kell futtatni.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kölcsönös kizárás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A kölcsönös kizárás egy mód a <span class="highlight">versenyhelyzetek elkerülésére</span>. Célja, hogy megakadályozza, hogy egy időben egynél több processzus olvassa és írja a megosztott adatokat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Megvalósítás:</span></p>
+                    <ul>
+                        <li>Az operációs rendszer tervezésénél fontos szempont az <span class="highlight">alkalmas primitív műveletek</span> megválasztása a kölcsönös kizárás eléréséhez</li>
+                        <li>A konkrét megvalósítási módszereket a későbbi szakaszokban részletezzük</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Konkurens és kooperatív processzusok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Konkurens és kooperatív processzusok összehasonlítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <img src="../assets/images/kunkurens.webp" alt="random"  class="graph-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Kritikus szekciók és megvalósítási módszereik</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Kritikus szekciók</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A kritikus szekció a programnak az a része, amelyben a <span class="highlight">megosztott memóriát használja</span>.</p>
+                <p><span class="key-point">Megjegyzés: </span>Ha úgy tudnánk rendezni a dolgokat, hogy <span class="highlight">soha ne legyen azonos időben két processzus</span> a kritikus szekciójában, akkor <span class="highlight">elkerülhetnénk a versenyhelyzeteket</span>. Bár ez a követelmény megóv a versenyhelyzetektől, mégsem elegendő ahhoz, hogy <span class="highlight">korrekten együttműködő párhuzamos processzusaink</span> legyenek, és azok hatékonyan használják a megosztott adatokat.</p>
+                <div class="step">
+                    <p><span class="key-point">Kritikus szekciók kezelésének feltételei:</span></p>
+                    <ol>
+                        <li>Ne legyen két processzus <span class="highlight">egyszerre a saját kritikus szekciójában</span></li>
+                        <li>Semmilyen előfeltétel ne legyen a <span class="highlight">sebességekről vagy a CPU-k számáról</span></li>
+                        <li>Egyetlen, a kritikus szekcióján kívül futó processzus sem <span class="highlight">blokkolhat más processzusokat</span></li>
+                        <li>Egyetlen processzusnak se kelljen <span class="highlight">örökké arra várni</span>, hogy belépjen a kritikus szekciójába</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Kölcsönös kizárás megvalósítási módszerei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Megszakítások tiltása:</span></p>
+                    <p><span class="key-point">Definíció:</span> Ez a módszer arra épül, hogy a <span class="highlight">folyamatok megszakítását ideiglenesen letiltjuk</span>, amikor egy processzus a kritikus szekcióba lép. Így más folyamatok <span class="highlight">nem tudnak megzavarni vagy versenyhelyzetet létrehozni</span>. </p>
+                    <p><span class="highlight">Konkretabban:</span></p>
+                    <ul>
+                        <li>Minden processzus <span class="highlight">letiltja az összes megszakítást</span> a kritikus szekcióba lépés után</li>
+                        <li>A processzus <span class="highlight">újraengedélyezi a megszakításokat</span>, mielőtt elhagyná a kritikus szekciót</li>
+                        <li>Ezáltal nem fordulhat elő <span class="highlight">óramegszakítás</span> a kritikus szekcióban.</li>
+                        <li>A CPU nem vált másik processzusra a megszakítások letiltása alatt.</li>
+                        <li><span class="highlight">Előny:</span> Egyszerű megoldás <span class="highlight">egy processzoros rendszerekben</span></li>
+                        <li><span class="highlight">Hátrány:</span> Nem ideális <span class="highlight">többprocesszoros környezetben</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Zárolásváltozók:</span></p>
+                    <p><span class="key-point">Definíció:</span> Egy vagy több változó használatával, amelyeket a folyamatok ellenőriznek, hogy <span class="highlight">megtudják, ki tartózkodik éppen a kritikus szekcióban</span>. Ezek a változók segítenek <span class="highlight">koordinálni a folyamatokat</span> és elkerülni a versenyhelyzeteket. </p>
+                    <p><span class="highlight">Konkretabban:</span></p>
+                    <ul>
+                        <li>Egyetlen osztott <span class="highlight">zárolási változót</span> használ</li>
+                        <li>A zárolási változó <span class="highlight">kezdeti értéke 0</span></li>
+                        <li>A kritikus szekcióba lépés előtt a processzus <span class="highlight">teszteli ezt a változót</span></li>
+                        <li>Ha az értéke 0, akkor <span class="highlight">1-re állítja</span>, és belép a kritikus szekciójába</li>
+                        <li>Ha az értéke 1, a processzus <span class="highlight">addig várakozik</span>, amíg az értéke 0 nem lesz, majd újra próbálkozik</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Szigorú váltogatás:</span></p>
+                    <p><span class="key-point">Definíció:</span> Ez a módszer olyan algoritmusokra épül, amelyek biztosítják, hogy egy processzus <span class="highlight">csak akkor léphet be a kritikus szekcióba</span>, ha senki más nem tartózkodik éppen benne. Ennek az alapja az, hogy a processzusok <span class="highlight">kizárólag egymást követik</span> a kritikus szekcióban.</p>
+                    <p><span class="highlight">Konkretabban:</span></p>
+                    <ul>
+                        <li>A processzusok <span class="highlight">kizárólag egymást követik</span> a kritikus szekcióban</li>
+                        <li><span class="highlight">Előny:</span> Egyszerű megvalósítás</li>
+                        <li><span class="highlight">Hátrány:</span> Pazarolja a CPU időt a <span class="highlight">folyamatos teszteléssel</span></li>
+                        <li>Problémás, ha a processzusok <span class="highlight">sebessége eltér</span></li>
+                        <li><em>( Az egyik processzus sokáig várakozhat, míg a másik a kritikus szekcióban dolgozik. )</em></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">4. Peterson megoldása:</span></p>
+                    <p><span class="key-point">Definíció:</span> Egy algoritmus, amely segítségével <span class="highlight">két processzus együttműködhet</span> a kölcsönös kizárás megvalósításában. Az algoritmus használja az <span class="highlight">összehasonlító műveleteket és változókat</span> annak biztosítására, hogy csak egy processzus léphet be a kritikus szekcióba. </p>
+                    <p><span class="highlight">Konkretabban:</span></p>
+                    <ul>
+                        <li>Kombinálja az <span class="highlight">egymás váltogatását, zárolási változókat és figyelmeztető változókat</span></li>
+                        <li>Két C eljárást használ: <code>enter_region</code> és <code>leave_region</code></li>
+                        <li><span class="highlight">Előny:</span> Udvairas megoldás, ahol a processzusok <span class="highlight">maguk elé engedik egymást</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">5. TSL utasítás:</span></p>
+                    <p><span class="key-point">Definíció:</span> A TSL (Test and Set Lock) egy olyan utasítás, amely segítségével <span class="highlight">egyetlen processzus biztonságosan ellenőrizheti és beállíthatja</span> egy zárolási változó állapotát. Ez a módszer hasznos lehet a kölcsönös kizárás elérésében, mivel <span class="highlight">garantálja a zárolás atomi műveletét</span>, és így elkerülhetővé teszi a versenyhelyzeteket. </p>
+                    <p><span class="highlight">Konkretabban:</span></p>
+                    <ul>
+                        <li>A Test and Set Lock (TSL) utasítás <span class="highlight">hardveres segítséggel</span> működik</li>
+                        <li>Beolvassa a LOCK memória szót az RX regiszterbe, és <span class="highlight">nem nulla értéket ír</span> a memória címre egyetlen oszthatatlan művelettel</li>
+                        <li>A művelet végrehajtása során a CPU <span class="highlight">zárolja a memóriasínt</span></li>
+                        <li><span class="highlight">Előny:</span> Hatékony megoldás <span class="highlight">többprocesszoros rendszerekben</span></li>
+                        <li><span class="highlight">Hátrány:</span> Szigorú betartást igényel a <span class="highlight">kölcsönös kizárás biztosításához</span></li>
+                    </ul>
+                </div>
+    
+                <p><span class="key-point">Tevékeny várakozás: </span>Amikor <span class="highlight">folyamatosan tesztelünk egy változót</span> egy bizonyos érték megjelenéséig.</p>
+                <p><span class="key-point">Megjegzés:</span> Általában <span class="highlight">tartózkodni kellene a tevékeny várakozástól</span>, mert pazarolja a CPU időt. Csak akkor használjuk a tevékeny várakozást, ha <span class="highlight">ésszerűen elvárható, hogy a várakozás rövid lesz</span>. A tevékeny várakozást használó zárolásokat <span class="highlight">aktív várakozásnak</span> hívjuk.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Altatás és ébresztés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Termelő-fogyasztó probléma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi ez a probléma?</span> A termelő-fogyasztó probléma egy <span class="highlight">klasszikus szinkronizációs kihívás</span> az operációs rendszerekben. Két processzus osztozik egy <span class="highlight">közös, rögzített méretű tárolón</span>. Az egyik, a <span class="highlight">termelő</span>, adatokat helyez el benne, míg a másik, a <span class="highlight">fogyasztó</span>, kiveszi azokat. Ez a modell számos valós szituációt reprezentál a számítástechnikában.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mikor jelentkeznek nehézségek?</span></p>
+                    <ul>
+                        <li>Ha a termelő új elemet kíván a tárolóba tenni, de az már <span class="highlight">tele van</span>. Ilyenkor nem tud tovább termelni, de várakoznia kell.</li>
+                        <li>Ha a fogyasztó elemet akar kivenni, de a tároló <span class="highlight">üres</span>. Ebben az esetben nincs mit fogyasztania, tehát várakozásra kényszerül.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Hogyan oldjuk meg ezt a problémát?</span></p>
+                    <ul>
+                        <li>A termelő <span class="highlight">elalszik</span>, ha a tároló tele van. Ezzel <span class="highlight">nem pazarolja a CPU erőforrásait</span> felesleges ellenőrzésekre.</li>
+                        <li>A fogyasztó <span class="highlight">felébreszti</span> a termelőt, ha kivett egy elemet. Így a termelő tudni fogja, hogy <span class="highlight">újra van hely</span> a tárolóban.</li>
+                        <li>A fogyasztó <span class="highlight">elalszik</span>, ha a tároló üres. Ez megakadályozza a <span class="highlight">folyamatos, felesleges ellenőrzéseket</span>.</li>
+                        <li>A termelő <span class="highlight">felébreszti</span> a fogyasztót, ha új elemet tett a tárolóba. Ezáltal a fogyasztó <span class="highlight">azonnal tudni fog</span> az új elemről.</li>
+                    </ul>
+                    <p>Ez a megoldás <span class="highlight">hatékonyan kezeli a szinkronizációt</span>, minimalizálja a felesleges CPU-használatot, és biztosítja a <span class="highlight">folyamatos, zökkenőmentes működést</span> a termelő és fogyasztó között.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Szemaforok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a szemafor és mire használjuk?</span> A szemafor egy <span class="highlight">speciális változótípus</span>, amely lehetővé teszi az <span class="highlight">ébresztések számolását és tárolását</span> későbbi felhasználás céljából. Ez egy <span class="highlight">kulcsfontosságú eszköz</span> a párhuzamos programozásban és a folyamatok szinkronizálásában. A szemafor értéke lehet <span class="highlight">0</span>, jelezve, hogy nincs elmentett ébresztés, vagy bármilyen <span class="highlight">pozitív egész szám</span>, amely a függőben lévő ébresztések számát jelzi.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen fő műveletek vannak a szemaforokon?</span></p>
+                    <ul>
+                        <li><span class="highlight">Down (Altató) művelet:</span>
+                            <ul>
+                                <li>Megvizsgálja, hogy a szemafor értéke <span class="highlight">nagyobb-e, mint 0</span>.</li>
+                                <li>Ha igen, <span class="highlight">csökkenti az értékét</span> (felhasznál egy tárolt ébresztést), és azonnal folytatja a végrehajtást.</li>
+                                <li>Ha az érték 0, akkor a processzust <span class="highlight">elaltatja</span>, mielőtt a down befejeződne.</li>
+                                <li>Ez egy <span class="highlight">oszthatatlan (atomi) művelet</span>, ami kritikus a versenyhelyzetek elkerüléséhez.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Up (Ébresztő) művelet:</span>
+                            <ul>
+                                <li><span class="highlight">Növeli</span> a szemafor értékét.</li>
+                                <li>Ha vannak alvó processzusok a szemaforon, <span class="highlight">egyet felébreszt</span> közülük.</li>
+                                <li>Az up műveletet végrehajtó processzus <span class="highlight">nem blokkolható</span>.</li>
+                                <li>Ez a művelet is <span class="highlight">oszthatatlan</span>, biztosítva a konzisztenciát.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan valósítják meg a szemaforokat?</span> A szemafor műveleteket általában <span class="highlight">rendszerhívásként implementálják</span>. Az operációs rendszer ideiglenesen <span class="highlight">letiltja a megszakításokat</span>, amíg vizsgálja és frissíti a szemafor értékét, valamint szükség esetén altatja a processzust. Többprocesszoros rendszerekben minden szemafort <span class="highlight">védeni kell egy zárolási változóval</span>, általában a <span class="highlight">TSL (Test and Set Lock)</span> utasítást használva, hogy egyszerre csak egy CPU vizsgálhassa a szemafort.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Mutexek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a mutex és miben különbözik a szemafortól?</span> A mutex (<span class="highlight">mutual exclusion</span>, azaz kölcsönös kizárás) a szemafor <span class="highlight">egyszerűsített változata</span>, amely kifejezetten a <span class="highlight">kölcsönös kizárás kezelésére</span> szolgál. Míg a szemafor számláló jellegű és több értéket vehet fel, a mutex csak <span class="highlight">két állapotban</span> lehet: zárolt vagy nem zárolt.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mik a mutex főbb jellemzői?</span></p>
+                    <ul>
+                        <li>Csak két állapota lehet: <span class="highlight">zárolt vagy nem zárolt</span></li>
+                        <li>Általában <span class="highlight">egy bitet vagy egy egész értéket</span> használ a reprezentáláshoz (0 nem zárolt, minden más érték zárolt)</li>
+                        <li><span class="highlight">Egyszerűbb és hatékonyabb</span>, mint a szemafor, ha csak kölcsönös kizárásra van szükség</li>
+                        <li>Könnyebben implementálható <span class="highlight">hardver szinten</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Hogyan működik a mutex a gyakorlatban?</span></p>
+                    <ul>
+                        <li><span class="highlight">mutex_lock eljárás:</span> Amikor egy processzus hozzá akar férni a kritikus szekcióhoz, meghívja ezt.
+                            <ul>
+                                <li>Ha a mutex <span class="highlight">nem zárolt</span>, a hívás sikeres, és a processzus beléphet a kritikus szekcióba.</li>
+                                <li>Ha <span class="highlight">zárolt</span>, a hívó processzus blokkolódik, amíg a mutex fel nem szabadul.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">mutex_unlock eljárás:</span> A kritikus szekcióból kilépve hívják meg.
+                            <ul>
+                                <li><span class="highlight">Feloldja</span> a mutexet.</li>
+                                <li>Ha több processzus is várakozik, közülük az egyik <span class="highlight">véletlenszerűen kiválasztott</span> megszerezheti a zárolást.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen veszélyeket rejt a mutexek használata?</span> A fő veszély a <span class="highlight">holtpont (deadlock)</span> kialakulása. Ez olyan helyzet, amikor <span class="highlight">minden érintett processzus blokkolódik</span>, mert mindegyik olyan erőforrásra vár, amit egy másik, szintén blokkolt processzus tart foglalva. A mutexek <span class="highlight">helyes használata</span> és a erőforrások <span class="highlight">megfelelő sorrendben történő lefoglalása</span> kulcsfontosságú a holtpontok elkerüléséhez.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Monitor eljárások</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a monitor és mire szolgál?</span> A monitor egy <span class="highlight">magasabb szintű szinkronizációs eszköz</span>, amely eljárások, változók és adatszerkezetek együttese, egy <span class="highlight">speciális modulba vagy csomagba összegyűjtve</span>. A monitorok célja, hogy <span class="highlight">strukturált és biztonságos módot</span> nyújtsanak a párhuzamos programozáshoz, <span class="highlight">automatikusan kezelve</span> a kölcsönös kizárást.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mik a monitor főbb jellemzői és előnyei?</span></p>
+                    <ul>
+                        <li>A processzusok <span class="highlight">bármikor hívhatják</span> a monitorban lévő eljárásokat</li>
+                        <li>A monitor <span class="highlight">belső adatszerkezetei nem érhetők el közvetlenül</span> a monitoron kívülről</li>
+                        <li>Minden időpillanatban <span class="highlight">csak egy processzus lehet aktív</span> egy monitorban, ami automatikus kölcsönös kizárást biztosít</li>
+                        <li>Ha a monitor szabad, a hívó processzus <span class="highlight">azonnal beléphet</span></li>
+                        <li>A monitorok általában <span class="highlight">mutexeket vagy bináris szemaforokat</span> használnak a belépési pontoknál</li>
+                        <li>A <span class="highlight">fordítóprogram kezeli</span> a kölcsönös kizárást, így <span class="highlight">kisebb a programozói hibák esélye</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Előny:</span> A fordítóprogram kezeli a kölcsönös kizárást, így <span class="highlight">kisebb a hibalehetőség</span> és <span class="highlight">magasabb szintű absztrakciót</span> biztosít a párhuzamos programozáshoz.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Írók és olvasók problémája</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Írók és olvasók problémája</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> Az írók és olvasók problémája egy <span class="highlight">adatbázis elérését modellezi</span>, ahol több olvasó egyidejűleg olvashat, de írás közben senki más nem férhet hozzá az adatbázishoz.</p>
+                
+                <p><span class="key-point">Megjegyzés:</span> Az elfogadható, hogy <span class="highlight">több processzus egyidejűleg olvasson</span> az adatbázisból, de ha egy processzus <span class="highlight">aktualizálja (írja) az adatbázist</span>, akkor azt más processzusoknak nem szabad elérniük, még az olvasóknak sem.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Kihívások:</span></p>
+                    <ul>
+                        <li>Hogyan kezeljük az <span class="highlight">olvasók és írók prioritását</span>?</li>
+                        <li>Hogyan biztosítsuk, hogy az írók ne <span class="highlight">éhezzenek</span> (ne várakozzanak végtelen ideig)?</li>
+                        <li>Hogyan maximalizáljuk a <span class="highlight">párhuzamosságot</span> az olvasók között?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Megoldási módok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Olvasók prioritása:</span></p>
+                    <ul>
+                        <li>Az olvasók <span class="highlight">bármikor beléphetnek</span>, ha nincs író az adatbázisban</li>
+                        <li>Az írók csak akkor léphetnek be, ha <span class="highlight">nincsenek aktív olvasók</span></li>
+                        <li><span class="highlight">Előny:</span> Maximalizálja az olvasási párhuzamosságot</li>
+                        <li><span class="highlight">Hátrány:</span> Az írók éhezhetnek</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Írók prioritása:</span></p>
+                    <ul>
+                        <li>Ha egy író be akar lépni, <span class="highlight">új olvasók nem léphetnek be</span></li>
+                        <li>Az író megvárja az aktív olvasók befejezését, de <span class="highlight">blokkolja az új olvasókat</span></li>
+                        <li><span class="highlight">Előny:</span> Garantálja az írók hozzáférését</li>
+                        <li><span class="highlight">Hátrány:</span> Az olvasók éhezhetnek</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Kiegyensúlyozott megközelítés:</span></p>
+                    <ul>
+                        <li>Az olvasók és az írók is <span class="highlight">sorban állnak</span> (azonos prioritás)</li>
+                        <li><span class="highlight">Váltakozva</span> kerülnek be az adatbázisba</li>
+                        <li>Az olvasók és írók <span class="highlight">váltakozva kerülhetnek be</span> az adatbázisba</li>
+                        <li><span class="highlight">Előny:</span> Egyik csoport sem szenved éhségtől</li>
+                        <li><span class="highlight">Hátrány:</span> Csökkentheti a párhuzamosságot az olvasók között</li>
+                    </ul>
+                    <p><span class="key-point">Fontos:</span> Ez a megoldás biztosítja, hogy <span class="highlight">egyik csoport se szenvedjen éhségtől</span>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Sorompók</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Sorompók működése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Definíció:</span> A sorompó egy primitív könyvtári eljárás, amely <span class="highlight">fázisokra osztja az alkalmazást</span>, és biztosítja, hogy minden processzus befejezze az aktuális fázist, mielőtt bármelyik továbbhaladna.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Működési elv:</span></p>
+                    <ul>
+                        <li>Minden fázis végére <span class="highlight">elhelyezünk egy sorompót</span></li>
+                        <li>Amikor egy processzus a sorompóhoz ér, <span class="highlight">addig blokkolódik</span>, amíg az összes többi processzus el nem éri a sorompót</li>
+                        <li>A sorompó az <span class="highlight">utolsó processzus beérkezése után elengedi</span> az összes várakozó processzust</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Alkalmazás:</span> Hasznos például <span class="highlight">nagy mátrixokon végzett párhuzamos műveletek</span> esetében, ahol minden processzusnak be kell fejeznie a saját részfeladatát, mielőtt a következő fázis elkezdődhetne.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>7. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Processzusok kommunikációja, versenyhelyzetek, kölcsönös kizárás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Processzusok kommunikációja (IPC):</span> Az információ megosztása a processzusok között.</li>
+                    <li><span class="highlight">Versenyhelyzetek:</span> Két vagy több processzus megosztott adatokat olvas vagy ír, és az eredmény függ az időzítéstől.</li>
+                    <li><span class="highlight">Kölcsönös kizárás:</span> Biztosítja, hogy egy időben csak egy processzus férhessen hozzá a kritikus szekcióhoz, megakadályozva a versenyhelyzeteket.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Konkurens és kooperatív processzusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Konkurens processzusok:</span> Versenyeznek a CPU használatáért.</li>
+                    <li><span class="highlight">Kooperatív processzusok:</span> Időnként önként lemondanak a CPU használatáról, hogy más processzusok is futtathatók legyenek.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Kritikus szekciók és megvalósítási módszereik</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Kritikus szekció:</span> A program azon része, amely megosztott memóriát használ.</p>
+                <p><span class="key-point">Megvalósítási módszerek:</span></p>
+                <ul>
+                    <li><span class="highlight">Megszakítások tiltása:</span> A kritikus szekcióban a megszakítások tiltása biztosítja a kölcsönös kizárást.</li>
+                    <li><span class="highlight">Változók zárolása:</span> Speciális változók használata a kritikus szekciók védelmére.</li>
+                    <li><span class="highlight">Szigorú váltogatás:</span> Garantálja, hogy két processzus felváltva lép be a kritikus szekcióba.</li>
+                    <li><span class="highlight">Peterson megoldása:</span> Egy algoritmus, amely biztosítja a kölcsönös kizárást két processzus között.</li>
+                    <li><span class="highlight">TSL utasítás:</span> Egy speciális gépi utasítás, amely megakadályozza a versenyhelyzeteket a kritikus szekciókban.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Altatás és ébresztés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Termelő-fogyasztó probléma:</span> A gyártó adatokat helyez el egy közös tárolóban, a fogyasztó pedig kiveszi azokat.</p>
+                <p><span class="key-point">Szemaforok:</span> Változótípusok, amelyek számlálják az ébresztéseket.</p>
+                <ul>
+                    <li><span class="highlight">Down (Altató):</span> Csökkenti a szemafor értékét, és elaltatja a processzust, ha az érték 0.</li>
+                    <li><span class="highlight">Up (Ébresztő):</span> Növeli a szemafor értékét, és felébreszt egy elaltatott processzust.</li>
+                </ul>
+                <p><span class="key-point">Mutexek (Bináris szemaforok):</span> Egyszerűsített szemaforok, amelyek csak kölcsönös kizárást kezelnek.</p>
+                <p><span class="key-point">Monitorok:</span> Adatszerkezetek és változók együttese, amelyek kölcsönös kizárást biztosítanak a monitor eljárásokban.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Írók és olvasók problémája</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Írók és olvasók problémája:</span> Az adatbázishoz több olvasó hozzáférhet egyszerre, de író hozzáféréskor kizár minden olvasót és más írót is.</p>
+                <p><span class="key-point">Megoldás:</span> Prioritásokat adhatunk az íróknak vagy az olvasóknak, hogy elkerüljük a blokkolásokat.</p>
+                <ul>
+                    <li><span class="highlight">Olvasók prioritása</span></li>
+                    <li><span class="highlight">Írók prioritása</span></li>
+                    <li><span class="highlight">Kiegyensúlyozott megközelítés</span></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Sorompók</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Sorompók:</span> Szinkronizációs primitívek, amelyek biztosítják, hogy egyetlen processzus sem léphet tovább, amíg az összes processzus készen nem áll egy adott fázisban.</p>
+                <p><span class="key-point">Használat:</span> Pl. Nagy mátrixokon végzett párhuzamos műveleteknél hasznosak, ahol minden processzusnak be kell fejeznie a saját munkáját, mielőtt tovább léphetne a következő fázisra.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

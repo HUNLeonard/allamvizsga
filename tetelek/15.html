@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 15 - </title>
+    <title>Tétel 15 - Adatbázisok II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,8 +12,485 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Adatbázisok II - 15. tétel</h1>
 
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Az SQL adatbázisnyelv</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>SQL alapfogalmak</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az SQL?</span> Az SQL (Structured Query Language) a <span class="highlight">relációs adatbázis-kezelés szabványos nyelve</span>, amely lehetővé teszi az adatok létrehozását, módosítását, lekérdezését és törlését.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">SQL jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nem algoritmikus nyelv</span></li>
+                        <li><span class="highlight">Algoritmikus nyelvekbe beépíthető</span> (beágyazott SQL)</li>
+                        <li>Számos <span class="highlight">típusa és bővítése létezik</span> (pl. PostgreSQL, PLSQL)</li>
+                        <li>Nélkülözhetetlen a <span class="highlight">modern informatikában</span> és az adatbázisokkal való munkában</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>SQL fő részei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Az SQL utasításai két fő csoportba sorolhatók:</span></p>
+                
+                <div class="step">
+                    <p><span class="key-point">1. DDL (Data Definition Language):</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatstruktúra definiáló utasítások</span></li>
+                        <li>Az adatbázis szerkezetének meghatározása</li>
+                        <li>Főbb DDL parancsok:
+                            <ul>
+                                <li><span class="highlight">CREATE:</span> Új adatbázis objektum létrehozása</li>
+                                <li><span class="highlight">ALTER:</span> Meglévő objektum módosítása</li>
+                                <li><span class="highlight">DROP:</span> Adatbázis objektum törlése</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. DML (Data Manipulation Language):</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatokon műveletet végző utasítások</span></li>
+                        <li>Az adatok kezelése és manipulálása</li>
+                        <li>Főbb DML parancsok:
+                            <ul>
+                                <li><span class="highlight">INSERT:</span> Új adatok beszúrása</li>
+                                <li><span class="highlight">UPDATE:</span> Meglévő adatok módosítása</li>
+                                <li><span class="highlight">DELETE:</span> Adatok törlése</li>
+                                <li><span class="highlight">SELECT:</span> Adatok lekérdezése</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Összefoglalás:</span> A <span class="highlight">DDL parancsokkal</span> határozzuk meg az adatbázis szerkezetét, míg a <span class="highlight">DML parancsokkal</span> az adatokat kezeljük. Együtt biztosítják az adatbázisok struktúrájának és tartalmának teljes körű kezelését.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Relációsémák definiálása, megszorítások típusai és létrehozásuk</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Relációsémák alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a relációséma?</span> A relációsémák <span class="highlight">határozzák meg a táblák szerkezetét és az adatok közötti kapcsolatokat</span> az adatbázisokban.</p>
+                
+                <p><span class="key-point">Hogyan hozunk létre relációsémát?</span> Relációséma létrehozására a <span class="highlight">CREATE TABLE</span> utasítást használjuk, amely egyben egy üres táblát is létrehoz a sémához.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Adattípusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Leggyakoribb adattípusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">CHAR(n):</span> n hosszúságú karaktersorozat</li>
+                        <li><span class="highlight">VARCHAR(n):</span> legfeljebb n hosszúságú karaktersorozat</li>
+                        <li><span class="highlight">INTEGER:</span> egész szám (röviden INT)</li>
+                        <li><span class="highlight">REAL:</span> valós (lebegőpontos) szám, másnéven FLOAT</li>
+                        <li><span class="highlight">DECIMAL(n[,d]):</span> n jegyű decimális szám, ebből d tizedesjegy</li>
+                        <li><span class="highlight">DATE:</span> dátum (év, hó, nap)</li>
+                        <li><span class="highlight">TIME:</span> idő (óra, perc, másodperc)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Megszorítások típusai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire szolgálnak a megszorítások?</span> A megszorítások segítségével <span class="highlight">biztosíthatjuk az adatok érvényességét és konzisztenciáját</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Oszlopfeltételek:</span></p>
+                    <ul>
+                        <li><span class="highlight">PRIMARY KEY:</span> elsődleges kulcs (csak egy lehet)</li>
+                        <li><span class="highlight">UNIQUE:</span> kulcs (több is lehet)</li>
+                        <li><span class="highlight">REFERENCES tábla(oszlop):</span> külső kulcs</li>
+                        <li><span class="highlight">NOT NULL:</span> NULL érték tiltása</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Táblafeltételek:</span></p>
+                    <ul>
+                        <li><span class="highlight">PRIMARY KEY (oszloplista):</span> elsődleges kulcs</li>
+                        <li><span class="highlight">UNIQUE (oszloplista):</span> kulcs</li>
+                        <li><span class="highlight">FOREIGN KEY (oszloplista) REFERENCES tábla(oszloplista):</span> külső kulcs</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">ON-feltételek:</span> Szabályozzák a rendszer viselkedését külső kulcsok esetén:</p>
+                    <ul>
+                        <li><span class="highlight">ON UPDATE/DELETE CASCADE:</span> módosítás továbbgyűrűzése</li>
+                        <li><span class="highlight">ON UPDATE/DELETE SET NULL:</span> NULL érték beállítása módosításkor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Séma módosítása és törlése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan módosítunk sémát?</span> Relációséma módosítására az <span class="highlight">ALTER TABLE</span> utasítást használjuk.</p>
+                
+                <p><span class="key-point">Hogyan törlünk sémát?</span> Séma és a hozzá tartozó adattábla törlésére a <span class="highlight">DROP TABLE</span> utasítás szolgál.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Új séma létrehozása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan hozunk létre új sémát?</span> Új séma létrehozásához a <span class="highlight">CREATE TABLE</span> utasítást használjuk.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Alapvető szintaxis:</span></p>
+                    <pre><code>CREATE TABLE tabla_neve (
+    oszlop1 adattípus1 [megszorítások],
+    oszlop2 adattípus2 [megszorítások],
+    ...
+    [tábla szintű megszorítások]
+);</code></pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa:</span></p>
+                    <pre><code>CREATE TABLE Dolgozok (
+    id INT PRIMARY KEY,
+    nev VARCHAR(50) NOT NULL,
+    fizetes DECIMAL(10, 2),
+    osztaly_id INT,
+    FOREIGN KEY (osztaly_id) REFERENCES Osztalyok(id)
+);</code></pre>
+                </div>
+                
+                <p><span class="key-point">Mire kell figyelni?</span> A tábla és oszlop nevek egyediek legyenek, és válasszuk meg megfelelően az adattípusokat és megszorításokat.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Adatmanipulációs lehetőségek és lekérdezések</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Adatmanipulációs utasítások</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">INSERT INTO:</span> Értékek beszúrása a megadott tábla megadott oszlopaiba.</p>
+                    <p><code>INSERT INTO táblanév [(oszloplista)] VALUES (értéklista)</code></p>
+                    <p><span class="highlight">Megjegyzés:</span> Ha oszloplista nem szerepel, akkor valamennyi oszlop értéket kap a CREATE TABLE-ben megadott sorrendben.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">UPDATE:</span> Értékek aktualizálása.</p>
+                    <p><code>UPDATE táblanév SET oszlop = kifejezés, ..., oszlop = kifejezés [ WHERE feltétel ]</code></p>
+                    <p><span class="highlight">Megjegyzés:</span> Az értékadás minden olyan soron végrehajtódik, amely eleget tesz a WHERE feltételnek. Ha WHERE feltétel nem szerepel, akkor az értékadás az összes sorra megtörténik.</p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">DELETE FROM:</span> Értékek törlése.</p>
+                    <p><code>DELETE FROM táblanév [ WHERE feltétel ]</code></p>
+                    <p><span class="highlight">Megjegyzés:</span> Hatására azok a sorok törlődnek, amelyek eleget tesznek a WHERE feltételnek. Ha a WHERE feltételt elhagyjuk, akkor az összes sor törlődik.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Lekérdezések (SELECT)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a SELECT utasítás?</span> A SELECT utasítás szolgál lekérdezésre, amely egy vagy több adattáblából egy eredménytáblát állít elő.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">SELECT utasítás alapvető formája:</span></p>
+                    <pre><code>       SELECT [DISTINCT] oszloplista 
+        FROM táblanevek 
+        [WHERE feltétel];</code></pre>
+                    <ul>
+                        <li><span class="highlight">DISTINCT:</span> Csak különböző értékek lekérése</li>
+                        <li><span class="highlight">*:</span> Az összes oszlop kiválasztása</li>
+                        <li><span class="highlight">Kifejezések:</span> A SELECT után nem csak oszlopnevek, hanem tetszőleges kifejezések is állhatnak (pl. COUNT, *, +)</li>
+                        <li><span class="highlight">Alias nevek:</span> AS kulcsszóval adhatunk alias neveket (pl. SELECT table AS t)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Függvények és összesítő függvények:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszerű függvények:</span> ABS, TO_CHAR, TO_DATE, stb.</li>
+                        <li><span class="highlight">Összesítő függvények:</span> AVG, SUM, MAX, MIN, COUNT</li>
+                    </ul>
+                    <p>Példa: <code>SELECT AVG(fizetés) FROM Dolgozó</code></p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Csoportosítás (GROUP BY, HAVING):</span></p>
+                    <p>Ha a tábla sorait csoportonként szeretnénk összesíteni, akkor a SELECT utasítás a GROUP BY oszloplista alparanccsal bővítendő.</p>
+                    <p>Példa: <code>SELECT osztkód, AVG(fizetés) FROM Dolgozó GROUP BY osztkód;</code></p>
+                    <p><span class="highlight">Csoportosítási szabály:</span> A SELECT után összesítő függvényen kívül csak olyan oszlopnév tüntethető fel, amely a GROUP BY-ban is szerepel.</p>
+                    <p><span class="highlight">HAVING:</span> A GROUP BY által képezett csoportok közül válogathatunk.</p>
+                    <p>Példa:</p>
+                    <pre><code>SELECT osztkód, AVG(fizetés)
+FROM Dolgozó
+GROUP BY osztkód HAVING AVG(fizetés) > 180000</code></pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Rendezés (ORDER BY):</span></p>
+                    <p>Az eredménytábla rendezésére szolgál. A SELECT utasítás végére helyezhető.</p>
+                    <p>Szintaxis: <code>ORDER BY oszlopnév [DESC], ..., oszlopnév [DESC]</code></p>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">SELECT utasítás általános alakja:</span></p>
+                    <pre><code>SELECT [DISTINCT] oszloplista
+FROM táblanévlista
+[JOIN táblanév ON t.oszlop = t1.oszlop]
+[WHERE feltétel]
+[GROUP BY oszloplista
+[HAVING feltétel] ]
+[ORDER BY oszloplista];</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Táblaösszekapcsolások:</span></p>
+                    <ul>
+                        <li><span class="highlight">INNER JOIN:</span> Csak azokat a sorokat adja vissza, ahol mindkét táblában van egyezés.
+                            <pre><code>SELECT *
+FROM tabla1
+INNER JOIN tabla2 ON tabla1.id = tabla2.tabla1_id;</code></pre>
+                        </li>
+                        <li><span class="highlight">LEFT JOIN:</span> Az első tábla minden sorát visszaadja, még ha nincs is egyezés a második táblában.
+                            <pre><code>SELECT *
+FROM tabla1
+LEFT JOIN tabla2 ON tabla1.id = tabla2.tabla1_id;</code></pre>
+                        </li>
+                        <li><span class="highlight">RIGHT JOIN:</span> A második tábla minden sorát visszaadja, még ha nincs is egyezés az első táblában.
+                            <pre><code>SELECT *
+FROM tabla1
+RIGHT JOIN tabla2 ON tabla1.id = tabla2.tabla1_id;</code></pre>
+                        </li>
+                        <li><span class="highlight">FULL OUTER JOIN:</span> Mindkét tábla összes sorát visszaadja, függetlenül attól, hogy van-e egyezés.
+                            <pre><code>SELECT *
+FROM tabla1
+FULL OUTER JOIN tabla2 ON tabla1.id = tabla2.tabla1_id;</code></pre>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Alkérdések:</span> Ha egy SELECT utasítás WHERE vagy HAVING feltételében olyan logikai kifejezés szerepel, amely SELECT utasítást tartalmaz, ezt alkérdésnek vagy belső SELECT-nek nevezik.</p>
+                <p>Példa:</p>
+                <pre><code>SELECT név, fizetés FROM Dolgozó WHERE fizetés < (SELECT AVG(fizetés) FROM dolgozó)</code></pre>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Nézettáblák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a nézettábla?</span> A nézettábla (view) egy <span class="highlight">virtuális tábla</span>, amely nem tárol adatokat, hanem egy transzformációs formula segítségével állítja elő az eredményt.</p>
+                
+                <p><span class="key-point">Hogyan hozunk létre nézettáblát?</span></p>
+                <p><code>CREATE VIEW táblanév [(oszloplista)] AS alkérdés;</code></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Nézettáblák alkalmazási lehetőségei:</span></p>
+                    <ul>
+                        <li>Származtatott adattáblák létrehozása, amelyek a törzsadatok módosításakor automatikusan módosulnak (pl. összegzőtáblák)</li>
+                        <li>Bizonyos adatok elrejtése egyes felhasználók elől (adatbiztonság vagy egyszerűsítés céljából)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Beágyazott SQL és API-k</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a beágyazott SQL?</span> Az SQL utasításokat egy hagyományos algoritmikus programnyelv (C, Java, stb.) utasításaival keverten használjuk. Ezt nevezzük beágyazott (embedded) SQL-nek.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">ODBC (Open DataBase Connection):</span></p>
+                    <ul>
+                        <li>Általános API különböző adatbázis-kezelő rendszerekhez való csatlakozásra</li>
+                        <li>Platformfüggetlen és nyelvfüggetlen</li>
+                        <li>Főbb lépések: Connect - Prepare - Execute</li>
+                        <li>Példa függvények:
+                            <ul>
+                                <li><code>SQLDriverConnect(dbc, ...);</code></li>
+                                <li><code>SQLPrepare(stmt, "SELECT cikkszám, egységár FROM Raktár", SQL_NTS);</code></li>
+                                <li><code>SQLExecute(stmt);</code></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">JDBC (Java DataBase Connection):</span></p>
+                    <ul>
+                        <li>Java specifikus API adatbázisokhoz</li>
+                        <li>Az ODBC-hez hasonló, de objektumorientált jellegű</li>
+                        <li>Példa metódusok:
+                            <ul>
+                                <li><code>DriverManager.getConnection(url, user, password)</code></li>
+                                <li><code>CreateStatement(SQL lekérdezés vagy utasítás létrehozása)</code></li>
+                                <li><code>executeQuery(SQL lekérdezés vagy utasítás végrehajtása)</code></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Előkészített SQL lekérdezések előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Biztonság:</span> Csökkenti az SQL Injection kockázatát</li>
+                        <li><span class="highlight">Teljesítmény:</span> Gyorsabb futás optimalizált és cache-elt végrehajtási tervekkel</li>
+                        <li><span class="highlight">Hatékonyság:</span> Erőforrás-takarékosság ismételt végrehajtásnál</li>
+                        <li><span class="highlight">Kód tisztasága:</span> Olvashatóbb és karbantarthatóbb kód, jobb hibakezelés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Az SQL adatbázisnyelv: DDL és DML</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Adatdefiníciós nyelv (DDL)</span></p>
+                    <ul>
+                        <li>A struktúra meghatározása: táblák, indexek stb. létrehozása</li>
+                        <li>Alapvető parancsok: <span class="highlight">CREATE TABLE, ALTER TABLE, DROP TABLE</span> stb.</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">2. Adatmanipulációs nyelv (DML)</span></p>
+                    <ul>
+                        <li>Adatok manipulálása: beszúrás, frissítés, törlés</li>
+                        <li>Alapvető parancsok: <span class="highlight">INSERT, UPDATE, DELETE</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Relációsémák és megszorítások</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Relációsémák</span></p>
+                    <ul>
+                        <li>Táblák létrehozása és attribútumok meghatározása</li>
+                        <li>Kulcsok, indexek és megszorítások hozzáadása</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">2. Megszorítások típusai</span></p>
+                    <ul>
+                        <li><span class="highlight">PRIMARY KEY, UNIQUE, FOREIGN KEY, NOT NULL</span> stb.</li>
+                        <li>Adatintegritás és konzisztencia biztosítása</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Adatmanipulációs lehetőségek és lekérdezések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Adatmanipulációs lehetőségek</span></p>
+                    <ul>
+                        <li>Adatok beszúrása, frissítése és törlése táblákból</li>
+                        <li>Alapvető parancsok: <span class="highlight">INSERT INTO, UPDATE, DELETE</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">2. Lekérdezések</span></p>
+                    <ul>
+                        <li>Adatok lekérdezése táblákból</li>
+                        <li>Filterezés, aggregálás, csoportosítás és rendezés</li>
+                        <li>Alapvető parancs: <span class="highlight">SELECT</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>API-k: ODBC és JDBC</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. ODBC (Open DataBase Connection)</span></p>
+                    <ul>
+                        <li>Általános API különböző adatbázis-kezelő rendszerekhez való csatlakozáshoz</li>
+                        <li>Platform- és nyelvfüggetlen kommunikáció</li>
+                        <li><span class="highlight">Connect - Prepare - Execute</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">2. JDBC (Java DataBase Connection)</span></p>
+                    <ul>
+                        <li>Java specifikus API adatbázisokhoz való kapcsolódáshoz és műveletek végrehajtásához</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Az előkészített SQL lekérdezések szerepe</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li><span class="highlight">Biztonság:</span> Az SQL Injection kockázatának csökkentése</li>
+                        <li><span class="highlight">Teljesítmény:</span> Gyorsabb futás és optimalizált végrehajtási tervek</li>
+                        <li><span class="highlight">Hatékonyság:</span> Ismételt végrehajtás esetén erőforrások takarékossága</li>
+                        <li><span class="highlight">Kód minősége:</span> Olvashatóbb és karbantarthatóbb kód, szintaktikai hibák előzetes felderítése</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Záró gondolatok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p>Az SQL alapok, a DDL és a DML felölelik az adatbázisok szerkezetét és manipulációját. A relációsémák létrehozása és a megszorítások bevezetése biztosítja az adatok integritását és konzisztenciáját. Az adatmanipuláció során az INSERT, UPDATE és DELETE utasításokkal kezeljük az adatokat, míg a lekérdezések segítségével részletesen vizsgálhatjuk azokat. Az API-k, mint az ODBC és JDBC, teljessé teszik az adatbázisok kezelését a különböző programozási nyelvekben, és az előkészített utasítások használata javítja a biztonságot és a teljesítményt.</p>
+                <p>Az SQL helyes használata elengedhetetlen a hatékony adatkezeléshez és az adatbázisokkal való munkához.</p>
+            </div>
+        </div>
+    </div>
+
+    
     <script src="../assets/js/tetel.js"></script>
 </body>
 </html>

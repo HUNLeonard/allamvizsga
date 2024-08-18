@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 14 - </title>
+    <title>Tétel 14 - Adatbázisok I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,418 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Adatbázisok I - 14. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Adatbázis-tervezés: A relációs adatmodell fogalma</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>A relációs adatmodell lényege</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a relációs adatmodell?</span> A relációs adatmodell egy <span class="highlight">adatbázis-kezelési megközelítés</span>, amely az adatokat <span class="highlight">táblázatok formájában szervezi</span>.</p>
+                <p><span class="key-point">Fő jellemzők:</span></p>
+                <ul>
+                    <li><span class="highlight">Adatok táblázatokban (relációkban):</span> Minden táblázat sorokból (rekordokból) és oszlopokból (attribútumokból) áll.</li>
+                    <li><span class="highlight">Kapcsolatok:</span> A táblázatok közötti kapcsolatok meghatározott szabályok szerint jönnek létre.</li>
+                    <li><span class="highlight">Kulcsok:</span> Az egyes rekordok azonosításához és a kapcsolatok meghatározásához használjuk.</li>
+                </ul>
+
+                <img src="../assets/images/relacios_adatmodell.webp" alt="relacios_adatmodell" class="graph-image">
+
+                <p><span class="key-point">Mit jelent a "relációs"?</span> A "relációs" elnevezés arra utal, hogy az adatok <span class="highlight">relációk (táblák) formájában tárolódnak</span>, amelyek közötti kapcsolatok <span class="highlight">matematikai relációk segítségével definiálhatók és kezelhetők</span>.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Adattípusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen adattípusok léteznek?</span></p>
+                <ul>
+                    <li><span class="highlight">Egyszerű (atomi) adat:</span> szám, string, dátum, logikai érték</li>
+                    <li><span class="highlight">Összetett adat:</span> egyszerű adatokból képezhető
+                        <ul>
+                            <li><span class="highlight">Halmaz:</span> egynemű elemek összessége, sorrend vagy hierarchia nélkül (pl. <span class="highlight">vállalat osztályai</span>)</li>
+                            <li><span class="highlight">Lista:</span> egynemű elemek rendezett sorozata (pl. <span class="highlight">könyv szerzői</span>)</li>
+                            <li><span class="highlight">Struktúra:</span> különféle elemek rendezett sorozata (pl. <span class="highlight">lakcím = (helység, utca, házszám)</span>)</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">NULL:</span> definiálatlan adat (<span class="highlight">nem azonos a nulla értékkel!</span>)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Alapfogalmak</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a főbb fogalmak?</span></p>
+                <ul>
+                    <li><span class="highlight">Adatbázis (DB):</span> Adatok strukturált gyűjteménye, melyet bizonyos formátumban tárolnak és kezelnek</li>
+                    <li><span class="highlight">Rekord (feljegyzés):</span> Az adatbázis alapvető adategysége, általában struktúra felépítésű</li>
+                    <li><span class="highlight">Értéktartomány (Domain):</span> Egy attribútum lehetséges értékeinek halmaza az adatbázisban
+                        <ul>
+                            <li>Jelölése x esetén: <span class="highlight">dom(x)</span></li>
+                            <li>Például: <span class="highlight">VARCHAR(255)</span></li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Relációséma:</span> Egy attribútumhalmaz, amelyhez azonosító nevet rendelünk (pl. R(A1,...,An))</li>
+                    <li><span class="highlight">Attribútum:</span> Egy tulajdonság, amelyet megnevezéssel azonosítunk, és értéktartományt rendelünk hozzá</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Adatbázis-alkalmazás szintjei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen szintjei vannak egy adatbázis-alkalmazásnak?</span></p>
+                <ol>
+                    <li><span class="highlight">Felhasználói felület:</span> A végfelhasználók által közvetlenül használt réteg (pl. online vásárlói felület)</li>
+                    <li><span class="highlight">Célalkalmazásként készített program:</span> A felhasználói felület mögött futó alkalmazások (pl. banki alkalmazás)</li>
+                    <li><span class="highlight">Adatmodell (logikai adatstruktúra):</span> Az adatbázis logikai szerkezete (pl. ügyféladatokat tároló adatbázis struktúrája)</li>
+                    <li><span class="highlight">DBMS (Adatbázis-kezelő rendszer):</span> Az adatbázis kezelését, tárolását és lekérdezését végző szoftver (pl. MySQL, PostgreSQL)</li>
+                    <li><span class="highlight">Fizikai adatstruktúra:</span> Az adatok tényleges tárolása a háttértárolókon (pl. adatbázis szerver merevlemezén tárolt fájlok)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>A relációs adatmodell előnyei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért hasznos a relációs adatmodell?</span></p>
+                <ul>
+                    <li><span class="highlight">Adatok egységessége és integritása:</span> Gondoskodik az adatok típusainak konzisztenciájáról és integritásáról</li>
+                    <li><span class="highlight">Redundancia csökkentése:</span> Minimalizálja az adatok felesleges ismétlését kulcsok és táblák közötti kapcsolatok használatával</li>
+                    <li><span class="highlight">Rugalmasság és bővíthetőség:</span> Könnyű az adatbázis szerkezetének módosítása új táblák vagy attribútumok hozzáadásával</li>
+                    <li><span class="highlight">Adatbiztonság:</span> Lehetővé teszi a hozzáférés pontos szabályozását és az engedélyezést</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Példa relációs adatmodellre</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan néz ki egy egyszerű relációs adatmodell?</span></p>
+                <pre>
+<span class="highlight">Vevők tábla:</span>
+vevőazonosító: {1, 2, 3}
+név: {Alice, Bob, Carol}
+
+<span class="highlight">Rendelések tábla:</span>
+rendelésazonosító: {101, 102, 103}
+vevőazonosító: {1, 2, 1}
+terméknév: {Toll, Füzet, Radír}
+
+A két tábla közötti  <span class="highlight">reláció</span> az, hogy melyik vevő melyik rendelést adta le. 
+Ha ezt matematikai relációként nézzük, akkor:
+<span class="highlight">Rendelések</span> = {(1, 101), (2, 102), (1, 103)}
+                </pre>
+                <p>Ez azt jelenti, hogy a <span class="highlight">vevőazonosító (1) (Alice) két rendelést adott le ((101) és (103))</span>, és a <span class="highlight">vevőazonosító (2) (Bob) egy rendelést adott le ((102))</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Egyed-kapcsolat (ER) diagram</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az egyed-kapcsolat diagram?</span> Az egyed-kapcsolat diagram az <span class="highlight">adatok logikai modelljét, egymáshoz viszonyított relációját mutatja meg</span>.</p>
+                <p><span class="key-point">Mik az ER diagram elemei?</span></p>
+                <ul>
+                    <li><span class="highlight">Egyed (entity):</span> Valós világban létező dolog, amit tulajdonságokkal akarunk leírni (jele: téglalap)
+                        <br>Példa: Ügyfél, Termék, Rendelés</li>
+                    <li><span class="highlight">Attribútum:</span> Az egyed egy jellemzője (jele: ellipszis)
+                        <br>Példa: Ügyfél neve, Termék ára, Rendelés dátuma</li>
+                    <li><span class="highlight">Kapcsolat:</span> Két vagy több egyed között határoz meg relációt (jele: rombusz)
+                        <br>Példa: Ügyfél rendelése Termékekkel, Rendelés tartalmaz Terméket</li>
+                    <li><span class="highlight">Összetett attribútum:</span> Maga is attribútumokkal rendelkezik
+                        <br>Példa: Lakcím (Utca, Házszám, Város)</li>
+                    <li><span class="highlight">Többértékű attribútum:</span> Aktuális értéke halmaz vagy lista lehet (jele: kettős ellipszis)
+                        <br>Példa: Rendelés státusza (Feldolgozás alatt, Szállítás alatt, Teljesítve)</li>
+                    <li><span class="highlight">Gyenge egyed:</span> Az attribútumai nem határozzák meg egyértelműen, csak a kapcsolatai révén lesz meghatározott (jele: kettős téglalap)
+                        <br>Példa: Számítógép (Processzor, Memória, Merevlemez, Személyi_szám)</li>
+                    <li><span class="highlight">Meghatározó kapcsolat:</span> Gyenge entitást meghatározó kapcsolat (jele: kettős rombusz)
+                        <br>Példa: Rendeléshez tartozó Címzett</li>
+                    <li><span class="highlight">Specializáló kapcsolatok:</span> Hierarchiát jelöl az egyedek között (jele: háromszög, amelynek csúcsa a főtípus felé mutat)
+                        <br>Példa: Személy típusa (Dolgozó, Ügyfél)</li>
+                </ul>
+
+                <img src="../assets/images/ER_diagram.webp" alt="relacios_adatmodell" class="graph-image">
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>A relációs adatmodell kulcsai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen kulcstípusok léteznek a relációs adatmodellben?</span></p>
+                <ul>
+                    <li><span class="highlight">Szuperkulcs:</span> Olyan attribútumhalmaz, amely <span class="highlight">minden sorban egyedi</span>, az összes sort egyértelműen azonosítja.</li>
+                    <li><span class="highlight">Kulcs:</span> A szuperkulcsnak egy olyan <span class="highlight">minimális részhalmaza</span>, ami még szuperkulcs. Ha csak egy attribútumot tartalmaz, akkor egyszerű, egyébként összetett kulcsról beszélünk.</li>
+                    <li><span class="highlight">Elsődleges kulcs:</span> A relációs sémában meghatározott kulcsok közül az <span class="highlight">egyiket választjuk elsődlegesként</span>. Mindig csak egy elsődleges kulcs lehet egy relációs sémában.</li>
+                    <li><span class="highlight">Külső kulcs:</span> Egy attribútumhalmaz a relációs sémában, ami <span class="highlight">más táblában lévő elsődleges kulcsra hivatkozik</span>. A külső kulcs ezen táblában szereplő kulcselemek vagy NULL lehetnek.</li>
+                </ul>
+                <p><span class="key-point">Megjegyzés:</span> Ha egy adatbázis valamennyi táblájának sémáját felírjuk a kulcsok és külső kulcsok jelölésével együtt, akkor <span class="highlight">relációs adatbázissémát</span> kapunk.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Az EK diagram leképezése relációs modellre</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan képezzük le az EK diagramot relációs modellre?</span></p>
+                <ul>
+                    <li><span class="highlight">Egyedek leképezése:</span> Minden egyedhez felírunk egy relációsémát, amelynek neve az egyed neve, attribútumai az egyed attribútumai, elsődleges kulcsa az egyed kulcs-attribútuma(i).
+                        <br>Példa: <code>Személy (<u>személyi szám</u>, név, születési dátum)</code></li>
+                    <li><span class="highlight">Gyenge entitások leképezése:</span> A gyenge entitás relációsémáját bővíteni kell a meghatározó kapcsolat(ok)ban szereplő egyed(ek) kulcsával.
+                        <br>Példa: 
+                        <code>
+                            Tulajdonos (<u>személyiszám</u>, név, lakcím) <br>
+                            Számítógép (processzor, memória, merevlemez, személyiszám, <u>sorszám</u>)
+                        </code>
+                    </li>
+                    <li><span class="highlight">Összetett attribútumok leképezése:</span> Az összetett attribútumot a részattribútumaival helyettesítjük a leképezés során.
+                        <br>Példa: <code>Személy (személyi szám, név, születési dátum, utca, házszám, város)</code></li>
+                    <li><span class="highlight">Többértékű attribútum leképezése:</span> A többértékű attribútum számára egy külön relációsémát hozunk létre, amelyben feltüntetjük az attribútumot és az egyed kulcsát.
+                        <br>Példa: 
+                        <code>Könyv (ISBN, cím, kiadási év)</code>
+                        <code>Szerző (ISBN, szerző)</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Funkcionális függőség, a normalizálás célja, normálformák</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Funkcionális függőség</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a funkcionális függőség?</span> Funkcionális függőség az, amikor egy <span class="highlight">attribútumhalmaz értéke meghatározza egy másik attribútumhalmaz értékét</span> egy relációsémában.</p>
+                <p><span class="key-point">Példák:</span></p>
+                <ul>
+                    <li><span class="highlight">{osztálykód} → {osztálynév, vezAdószám}</span></li>
+                    <li><span class="highlight">{adószám} → {név, lakcím, osztálykód, osztálynév, vezAdószám}</span></li>
+                </ul>
+                <p>Például az adószám funkcionálisan függ az osztálykódtól, mivel ha két rekordban az osztálykód és a vezető adószám értéke megegyezik, akkor az adószám értéke is megegyezik.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Normalizálás célja</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a normalizálás célja?</span> A normalizálás célja a <span class="highlight">redundancia csökkentése</span> és az <span class="highlight">adatbázis optimalizálása</span>.</p>
+                <p><span class="key-point">Milyen problémákat okozhat a redundancia?</span></p>
+                <ul>
+                    <li><span class="highlight">Módosítási anomália:</span> Ha egy osztály neve vagy vezetője megváltozik, akkor több helyen kell a módosítást elvégezni.</li>
+                    <li><span class="highlight">Beszúrási anomália:</span> Új rekord felvételekor előfordulhat, hogy az osztály nevét rosszul adják meg, vagy új osztály létrehozásakor NULL értékeket tartalmazó rekordot kell beszúrni.</li>
+                    <li><span class="highlight">Törlési anomália:</span> Ha egy osztály összes dolgozóját töröljük, maga az osztály is elveszik.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Normálformák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a főbb normálformák?</span></p>
+                <ul>
+                    <li><span class="highlight">1. Normálforma (1NF):</span> Az attribútumok értéktartománya csak <span class="highlight">egyszerű (atomi) adatokból</span> áll. </li>
+                    <li><span class="highlight">2. Normálforma (2NF):</span> Minden <span class="highlight">másodlagos attribútum teljesen függ bármely kulcstól</span>.</li>
+                    <li><span class="highlight">3. Normálforma (3NF):</span> Minden <span class="highlight">másodlagos attribútum közvetlenül függ bármely kulcstól</span>.</li>
+                </ul>
+                <p><span class="key-point">1. Normálforma (1NF):</span></p>
+                <ul>
+                    <li>Csak <span class="highlight">egyszerű adatokat</span> tartalmaz (nem tartalmaz pl. listát vagy struktúrát).</li>
+                    <li>Minden relációs séma eleve 1NF-nek tekinthető, mivel ez a relációs modell alapfeltétele.</li>
+                </ul>
+                <p><span class="key-point">2. Normálforma (2NF):</span></p>
+                <ul>
+                    <li>Minden <span class="highlight">nem kulcs attribútum teljesen függ a kulcstól</span>.</li>
+                    <li>Nincs <span class="highlight">részleges funkcionális függőség</span>.</li>
+                </ul>
+                <p><span class="key-point">Példa 2NF-re:</span></p>
+                <pre>
+DOLGPROJ (Adószám, Név, Projektkód, Óra, Projektnév, Projekthely)
+
+Függőségek:
+Adószám → Név
+Projektkód → {Projektnév, Projekthely}
+{Adószám, Projektkód} → Óra
+
+2NF megoldás:
+DOLG (Adószám, Név)
+PROJ (Projektkód, Projektnév, Projekthely)
+DP (Adószám, Projektkód, Óra)
+                </pre>
+
+                <p><span class="key-point">Mit jelent, ha egy reláció 2NF-ben van?</span></p>
+                <ul>
+                    <li>Egy reláció akkor van 2NF-ben, ha <span class="highlight">1NF-ben van</span>, és <span class="highlight">minden nem kulcs attribútum teljesen funkcionálisan függ a reláció minden kulcsától</span>.</li>
+                    <li>Ez azt jelenti, hogy <span class="highlight">nincsenek részleges függőségek</span> a relációban.</li>
+                    <li>Részleges függőség akkor áll fenn, ha egy nem kulcs attribútum az összetett kulcs egy részétől függ, nem pedig az egész kulcstól.</li>
+                    <li>A 2NF célja a <span class="highlight">redundancia csökkentése</span> és az <span class="highlight">adatok konzisztenciájának javítása</span>.</li>
+                </ul>
+                <p><span class="key-point">3. Normálforma (3NF):</span></p>
+                <ul>
+                    <li>Nincs <span class="highlight">tranzitív függőség</span> a nem kulcs attribútumok között.</li>
+                    <li>Minden nem kulcs attribútum <span class="highlight">közvetlenül függ a kulcstól</span>.</li>
+                </ul>
+                <p><span class="key-point">Példa 3NF-re:</span></p>
+                <pre>
+Kölcsönzés (leltáriSzám, könyvCím, szerző, kiadó, kiadásiÉv, olvasójegy, kölcsönzésDátuma)
+
+Függőségek:
+{leltáriSzám} → {könyvCím, szerző, kiadó, kiadásiÉv, olvasójegy, kölcsönzésDátuma}
+{könyvCím, szerző, kiadásiÉv} → {kiadó}
+
+3NF megoldás:
+Kölcsönzés2(leltáriSzám, könyvCím, szerző, kiadásiÉv, olvasójegy, kölcsönzésDátuma)
+Könyv(könyvCím, szerző, kiadásiÉv, kiadó)
+                </pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gyakorlati példa: Könyvtári adatbázis tervezése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Feladat:</span> Elemezzük a könyvtári adatbázis egyed-kapcsolat (ER) diagramját, majd képezzük le relációs sémára.</p>
+                
+                <h3>1. ER diagram elemzése</h3>
+                <p>Az alábbi ER diagram egy könyvtári rendszert ábrázol:</p>
+                <img src="../assets/images/konyv.webp" alt="Könyvtári ER diagram" class="graph-image">
+                
+                <p><span class="key-point">A diagram elemei:</span></p>
+                <ul>
+                    <li><span class="highlight">Olvasó egyed:</span>
+                        <ul>
+                            <li>Attribútumok: olvasójegy száma (kulcs), név, lakcím, telefonszám</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Könyv egyed:</span>
+                        <ul>
+                            <li>Attribútumok: leltári szám (kulcs), cím, szerző(k)</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Kölcsönzés kapcsolat:</span>
+                        <ul>
+                            <li>Kapcsolat az Olvasó és Könyv között</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <p><span class="key-point">Megjegyzések:</span></p>
+                <ul>
+                    <li>A <span class="highlight">Kölcsönzés</span> egy több-a-többhöz kapcsolatot jelöl az Olvasó és Könyv között.</li>
+                    <li>Az <span class="highlight">olvasójegy száma</span> és a <span class="highlight">leltári szám</span> kulcs attribútumok, amit az aláhúzás jelöl.</li>
+                </ul>
+                
+                <h3>2. Relációs séma leképezése</h3>
+                <p>Az ER diagram alapján a következő relációs sémákat hozhatjuk létre:</p>
+                <pre>
+        <span class="highlight">Olvasó</span> (<u>olvasójegy_száma</u>, név, lakcím, telefonszám)
+        <span class="highlight">Könyv</span> (<u>leltári_szám</u>, cím, szerző)
+        <span class="highlight">Kölcsönzés</span> (<u>olvasójegy_száma</u>, <u>leltári_szám</u>, kölcsönzés_dátuma)
+            FK: olvasójegy_száma -> Olvasó(olvasójegy_száma)
+            FK: leltári_szám -> Könyv(leltári_szám)
+                </pre>
+                
+                <p><span class="key-point">Jelölések magyarázata:</span></p>
+                <ul>
+                    <li><span class="highlight">Aláhúzás (</span><u>példa</u><span class="highlight">):</span> Elsődleges kulcs</li>
+                    <li><span class="highlight">FK:</span> Külső kulcs (Foreign Key)</li>
+                    <li><span class="highlight">->:</span> "hivatkozik erre"</li>
+                </ul>
+                
+                <p><span class="key-point">Megjegyzések a leképezéshez:</span></p>
+                <ul>
+                    <li>A <span class="highlight">szerző(k)</span> többértékű attribútum miatt külön <span class="highlight">Szerző</span> táblát hoztunk létre.</li>
+                    <li>A <span class="highlight">Kölcsönzés</span> tábla reprezentálja a több-a-többhöz kapcsolatot.</li>
+                    <li>A <span class="highlight">kölcsönzés_dátuma</span> attribútumot hozzáadtuk a Kölcsönzés táblához, bár az eredeti ER diagramon nem szerepelt.</li>
+                </ul>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Az adatbázis-tervezés főbb pontjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Az adatbázis-tervezés fő területei:</span></p>
+                <ol>
+                    <li><span class="highlight">Relációs adatmodell:</span> Az adatokat táblázatokban és azok közti kapcsolatokban írja le.</li>
+                    <li><span class="highlight">Egyed-kapcsolat (ER) diagram:</span> Az adatok logikai modelljét és egymáshoz viszonyított relációját ábrázolja.</li>
+                    <li><span class="highlight">Funkcionális függőség és normalizálás:</span> Meghatározza az attribútumok közötti függőségeket, és optimalizálja az adatbázis szerkezetét.</li>
+                </ol>
+    
+                <h3>1. Adatbázis-tervezés: A relációs adatmodell fogalma</h3>
+                <ul>
+                    <li><span class="highlight">Adatok típusai:</span>
+                        <ul>
+                            <li>Egyszerű (atomi) adat: szám, string, dátum, logikai érték.</li>
+                            <li>Összetett adat: halmaz, lista, struktúra.</li>
+                            <li>NULL: definiálatlan adat.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Elnevezések:</span>
+                        <ul>
+                            <li>Adatbázis (DB): adott formátum és rendszer szerint tárolt adatok együttese.</li>
+                            <li>Rekord: az adatbázis alapvető adategysége.</li>
+                            <li>Értéktartomány (Domain): egy attribútum lehetséges értékeinek halmaza.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Adatbázis-alkalmazás szintjei:</span> Felhasználói felület, célalkalmazás, adatmodell, DBMS, fizikai adatstruktúra.</li>
+                </ul>
+    
+                <h3>2. Az egyed-kapcsolat diagram és leképezése relációs modellre, kulcsok fajtái</h3>
+                <ul>
+                    <li><span class="highlight">ER diagram elemei:</span> Egyed, attribútum, kapcsolat, összetett attribútum, többértékű attribútum, gyenge egyed, meghatározó kapcsolat, specializáló kapcsolatok.</li>
+                    <li><span class="highlight">Kulcsok:</span>
+                        <ul>
+                            <li>Szuperkulcs: egyedi attribútumhalmaz.</li>
+                            <li>Kulcs: minimális szuperkulcs.</li>
+                            <li>Elsődleges kulcs: kiválasztott kulcs a relációs sémában.</li>
+                            <li>Külső kulcs: más táblák elsődleges kulcsára hivatkozó attribútumhalmaz.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Leképezés:</span> Egyedek, gyenge egyedek, összetett és többértékű attribútumok leképezése.</li>
+                </ul>
+    
+                <h3>3. Funkcionális függőség, a normalizálás célja, normálformák</h3>
+                <ul>
+                    <li><span class="highlight">Funkcionális függőség:</span> Egy attribútumhalmaz értéke meghatározza egy másik attribútumhalmaz értékét.</li>
+                    <li><span class="highlight">Normálformák:</span>
+                        <ul>
+                            <li>1NF: Atomi adatok.</li>
+                            <li>2NF: Részleges funkcionális függőségek megszüntetése.</li>
+                            <li>3NF: Tranzitív függőségek megszüntetése.</li>
+                        </ul>
+                    </li>
+                </ul>
+    
+                <p><span class="key-point">A normalizálás célja:</span> A <span class="highlight">redundancia csökkentése</span> és az <span class="highlight">adatbázis optimális állapotának elérése</span>, megszüntetve a részleges vagy tranzitív függőségeket az adatok között.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
