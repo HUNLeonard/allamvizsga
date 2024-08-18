@@ -210,16 +210,17 @@
             <h2>Alapfogalmak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> Az <span class="highlight">ütemező (scheduler)</span> az operációs rendszer azon része, amely eldönti, melyik processzus fusson először. Az erre használt algoritmust <span class="highlight">ütemezési algoritmusnak</span> nevezzük.</p>
+                <p><span class="key-point">Mi az ütemező?</span> Az ütemező az operációs rendszer azon része, amely eldönti, melyik processzus fusson először.
+                    Az erre használt algoritmust <span class="highlight">ütemezési algoritmusnak</span> nevezzük.</p>
+                     Gondoljunk rá úgy, mint egy forgalomirányítóra, aki megmondja, melyik autó mehet először a kereszteződésben.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Ütemezés szükségessége:</span></p>
+                    <p><span class="key-point">Mikor van szükség ütemezésre?</span></p>
                     <ul>
-                        <li>Processzus befejeződésekor</li>
-                        <li>Processzus blokkolódásakor (I/O művelet vagy szemafor miatt)</li>
-                        <li>Új processzus létrejöttekor</li>
-                        <li>I/O megszakítás esetén</li>
-                        <li>Időzítőmegszakítás történésekor</li>
+                        <li>Amikor egy processzus befejezi a munkáját</li>
+                        <li>Ha egy processzus "elakad"/"blokkolódásakor" (például vár egy I/O műveletre)</li>
+                        <li>Új processzus érkezésekor/létrejöttekor</li>
+                        <li>Amikor valamilyen megszakítás történik (például "I/O" VAGY "Időzítőmegszakítás")</li>
                     </ul>
                 </div>
                 
@@ -237,48 +238,48 @@
             <h2>Ütemezési algoritmusok céljai</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <p><span class="key-point">Mit szeretnénk elérni az ütemezéssel?</span> Képzeljük el, hogy egy éttermet vezetünk. A célunk, hogy minden vendég elégedett legyen, gyorsan kapja meg az ételét, és az étterem hatékonyan működjön.</p>
+                
                 <div class="step">
                     <p><span class="key-point">Általános célok:</span></p>
                     <ul>
-                        <li><span class="highlight">Páratlanság:</span> Minden processzusnak megfelelő hozzáférést biztosítani a CPU-hoz.</li>
-                        <li><span class="highlight">Elvek betartása:</span> A meghatározott elvek szerinti működés biztosítása.</li>
-                        <li><span class="highlight">Egyensúly:</span> A rendszer minden részének egyenletes terhelése.</li>
+                        <li><span class="highlight">Páratlanság:</span> Minden processzus kapjon megfelelő hozzáférést biztosítani a CPU-hoz, mint ahogy minden vendégnek jár a kiszolgálás.</li>
+                        <li><span class="highlight">Hatékonyság:</span> A rendszer erőforrásait (CPU, memória) jól használjuk ki, mint ahogy az étteremben is minden asztalt és szakácsot.</li>
+                        <li><span class="highlight">Gyors válaszidő:</span> A felhasználók ne várjanak sokáig a válaszra, minimalizálása a felhasználók interaktív válaszidejént</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Kötegelt rendszerek ütemezése</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Kötegelt rendszerek jellemzői</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a kötegelt rendszer?</span> Olyan, mint egy mosoda, ahol bedobjuk a ruhákat, és később megyünk vissza az eredményért. Nincs azonnali interakció.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Kötegelt rendszerek céljai:</span></p>
+                    <p><span class="key-point">Fő célok:</span></p>
                     <ul>
-                        <li><span class="highlight">Áteresztőképesség:</span> Maximalizálni az időegységenként végrehajtott feladatok számát.</li>
-                        <li><span class="highlight">Áthaladási idő:</span> Minimalizálni a feladat-végrehajtás kezdeményezése és a befejezés között eltelt időt.</li>
-                        <li><span class="highlight">CPU-kihasználtság:</span> A CPU soha nem állhat tétlenül.</li>
-                    </ul>
-                </div>
-                
-                <div class="step">
-                    <p><span class="key-point">Interaktív rendszerek céljai:</span></p>
-                    <ul>
-                        <li><span class="highlight">Válaszidő:</span> A kérésekre gyors válasz biztosítása.</li>
-                        <li><span class="highlight">Arányosság:</span> A felhasználók elvárásainak való megfelelés.</li>
-                    </ul>
-                </div>
-                
-                <div class="step">
-                    <p><span class="key-point">Valós idejű rendszerek céljai:</span></p>
-                    <ul>
-                        <li><span class="highlight">Határidők betartása:</span> Adatvesztés elkerülése.</li>
-                        <li><span class="highlight">Előrejelezhetőség:</span> Minőségromlás elkerülése multimédia-rendszerekben.</li>
+                        <li><span class="highlight">Áteresztőképesség:</span> Minél több feladatot végezzünk el adott idő alatt. <br><em>( Maximalizálni az időegységenként végrehajtott feladatok számát. )</em></li>
+                        <li><span class="highlight">Áthaladási idő:</span> Csökkentsük az időt a feladat beérkezése és befejezése között. <br><em>( Minimalizálni a feladat-végrehajtás kezdeményezése és a befejezés között eltelt időt. )</em></li>
+                        <li><span class="highlight">CPU kihasználtság:</span> A CPU folyamatosan dolgozzon, ne álljon tétlenül.</li>
                     </ul>
                 </div>
             </div>
         </div>
         
         <div class="algorithm">
-            <h2>Kötegelt rendszerek ütemezési stratégiái</h2>
+            <h2>Kötegelt ütemezési stratégiák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
-                    <p><span class="key-point">Sorrendi ütemezés (First-Come, First-Served - FCFS):</span></p>
+                    <p><span class="key-point">1. Sorrendi ütemezés (FCFS):</span></p>
+                    <p>Ez olyan, mint egy sorban állás: aki előbb jött, azt szolgálják ki előbb. Egyszerű, de ha egy hosszú feladat van elöl, a többinek sokáig kell várnia.</p>
                     <ul>
                         <li>A processzusok <span class="highlight">érkezési sorrendben</span> kapják meg a CPU-t.</li>
                         <li><span class="highlight">Előny:</span> Egyszerű megérteni és implementálni.</li>
@@ -287,7 +288,8 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Legrövidebb feladatot először (Shortest Job First - SJF):</span></p>
+                    <p><span class="key-point">2. Legrövidebb feladat először (SJF):</span></p>
+                    <p>Képzeljük el, hogy a pénztárnál állunk, és a legkevesebb árut vásárlót engedik előre. Gyors, de honnan tudjuk előre, melyik feladat mennyi ideig tart?</p>
                     <ul>
                         <li>A <span class="highlight">legrövidebb futásidejű</span> processzus fut először.</li>
                         <li><span class="highlight">Előny:</span> Optimális átlagos várakozási idő.</li>
@@ -296,7 +298,8 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Legrövidebb maradék idő (Shortest Remaining Time - SRT):</span></p>
+                    <p><span class="key-point">3. Legrövidebb hátralévő idő (SRT):</span></p>
+                    <p>Ez olyan, mint az SJF, de ha egy új, rövidebb feladat érkezik, azt beengedjük a sor elejére. Rugalmas, de sok váltás lehet a feladatok között.</p>
                     <ul>
                         <li>Az SJF <span class="highlight">megszakítható változata</span>.</li>
                         <li>Új processzus érkezésekor összehasonlítja annak futásidejét az aktuálisan futó processzus hátralévő idejével.</li>
@@ -306,13 +309,35 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Interaktív rendszerek ütemezése</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Interaktív rendszerek jellemzői</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az az interaktív rendszer?</span> Olyan, mint egy beszélgetés: kérdezünk valamit, és gyors választ várunk. Például amikor használjuk a számítógépünket, és kattintunk valamire.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő célok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gyors válaszidő:</span> A felhasználó ne érezze, hogy várakozik. A kérésekre gyors válasz biztosítása.</li>
+                        <li><span class="highlight">Arányosság:</span> Minden feladat kapjon figyelmet, ne csak a "hangosak". A felhasználók elvárásainak való megfelelés.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         
         <div class="algorithm">
-            <h2>Interaktív rendszerek ütemezési stratégiái</h2>
+            <h2>Interaktív ütemezési stratégiák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
-                    <p><span class="key-point">Round Robin ütemezés:</span></p>
+                    <p><span class="key-point">1. Round Robin ütemezés:</span></p>
+                    <p>Olyan, mint egy forgó étteremasztal: mindenki kap egy kis időt, aztán továbbadja a lehetőséget. Igazságos, de ha rossz az időzítés, nem hatékony.</p>
                     <ul>
                         <li>Minden processzus <span class="highlight">előre meghatározott időszelet</span>et kap.</li>
                         <li>Ha az időszelet lejár, a processzus a sor végére kerül.</li>
@@ -322,7 +347,8 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Prioritásos ütemezés:</span></p>
+                    <p><span class="key-point">2. Prioritásos ütemezés:</span></p>
+                    <p>Mint egy VIP sor: a fontosabb feladatok előbb kerülnek sorra. De vigyázni kell, nehogy a kevésbé fontos feladatok örökre várakozzanak.</p>
                     <ul>
                         <li>Minden processzushoz <span class="highlight">prioritást rendelünk</span>.</li>
                         <li>A legmagasabb prioritású processzus fut először.</li>
@@ -332,7 +358,8 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Többszörös sorok:</span></p>
+                    <p><span class="key-point">3. Többszörös sorok:</span></p>
+                    <p>Képzeljük el, hogy több pénztár van, mindegyik más-más típusú vásárlónak. Rugalmas, de bonyolultabb kezelni.</p>
                     <ul>
                         <li>Processzusok <span class="highlight">különböző prioritási osztályokba</span> sorolása.</li>
                         <li>Osztályonként különböző időszelet alkalmazása.</li>
@@ -342,28 +369,79 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Valós idejű rendszerek ütemezése</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Valós idejű rendszerek jellemzői</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a valós idejű rendszer?</span> Olyan, mint egy légi irányítás: minden feladatnak pontosan időben kell megtörténnie, különben nagy baj lehet.</p>
+                <div class="step">
+                    <p><span class="key-point">Valós idejű rendszerek céljai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Határidők betartása:</span> Adatvesztés elkerülése.</li>
+                        <li><span class="highlight">Előrejelezhetőség:</span> Minőségromlás elkerülése multimédia-rendszerekben.</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Szigorú rendszerek:</span> Ahol nincs bocsánat a késésért (pl. egy atomerőmű vezérlése).
+                            <ul>
+                                <li><span class="highlight">Abszolút határidők</span> betartása kötelező.</li>
+                                <li>Statikus vagy dinamikus ütemezés használata.</li>
+                                <li><span class="highlight">Előny:</span> Garantált válaszidő.</li>
+                                <li><span class="highlight">Hátrány:</span> Komplex tervezés és implementáció.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Toleráns rendszerek:</span> Ahol egy kis késés még elfogadható (pl. videó lejátszás).
+                            <ul>
+                                <li>Néhány határidő <span class="highlight">elmulasztása tolerálható</span>.</li>
+                                <li>Gyakran használt multimédia alkalmazásokban.</li>
+                                <li><span class="highlight">Előny:</span> Rugalmasabb, mint a szigorú valós idejű ütemezés.</li>
+                                <li><span class="highlight">Hátrány:</span> Nem garantálja minden határidő betartását.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         
         <div class="algorithm">
-            <h2>Valós idejű rendszerek ütemezési stratégiái</h2>
+            <h2>Valós idejű ütemezési stratégiák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
-                    <p><span class="key-point">Szigorú valós idejű ütemezés:</span></p>
+                    <p><span class="key-point">1. Rate Monotonic Scheduling (RMS):</span></p>
+                    <p>A gyakrabban ismétlődő feladatok fontosabbak. Mint amikor a szívverést mindig előnyben részesítjük más testi funkcióknál.</p>
                     <ul>
-                        <li><span class="highlight">Abszolút határidők</span> betartása kötelező.</li>
-                        <li>Statikus vagy dinamikus ütemezés használata.</li>
-                        <li><span class="highlight">Előny:</span> Garantált válaszidő.</li>
-                        <li><span class="highlight">Hátrány:</span> Komplex tervezés és implementáció.</li>
+                        <li>Az RMS stratégia szerint a <span class="highlight">gyakrabban ismétlődő feladatoknak magasabb prioritást</span> kell kapniuk.</li>
+                        <li><span class="highlight">Előny:</span> Egyszerű implementálni és elemezni.</li>
+                        <li><span class="highlight">Hátrány:</span> Nem mindig optimális, különösen ha a feladatok futási ideje nagyon változó.</li>
                     </ul>
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Toleráns valós idejű ütemezés:</span></p>
+                    <p><span class="key-point">2. Earliest Deadline First (EDF):</span></p>
+                    <p>Az a feladat jön előbb, aminek hamarabb van a határideje. Olyan, mint amikor a sürgős e-maileket válaszoljuk meg először.</p>
                     <ul>
-                        <li>Néhány határidő <span class="highlight">elmulasztása tolerálható</span>.</li>
-                        <li>Gyakran használt multimédia alkalmazásokban.</li>
-                        <li><span class="highlight">Előny:</span> Rugalmasabb, mint a szigorú valós idejű ütemezés.</li>
-                        <li><span class="highlight">Hátrány:</span> Nem garantálja minden határidő betartását.</li>
+                        <li>Az EDF stratégia mindig a <span class="highlight">legkorábbi határidővel rendelkező feladatot</span> választja ki elsőként.</li>
+                        <li><span class="highlight">Előny:</span> Optimális kihasználtságot biztosít, és jól kezeli a dinamikusan változó feladatokat.</li>
+                        <li><span class="highlight">Hátrány:</span> Túlterhelés esetén nehezen kiszámítható viselkedést mutathat.</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Fixed Priority Scheduling:</span></p>
+                    <p>Minden feladatnak fix fontossági sorrendje van. Mint egy kórházban: a súlyos esetek mindig előnyt élveznek.</p>
+                    <ul>
+                        <li>Ebben a módszerben <span class="highlight">minden feladat fix prioritással rendelkezik</span>, és a magasabb prioritású feladatok mindig előnyben részesülnek.</li>
+                        <li><span class="highlight">Előny:</span> Kiszámítható viselkedés, könnyű implementálni.</li>
+                        <li><span class="highlight">Hátrány:</span> Nem rugalmas, az alacsony prioritású feladatok éhezhetnek.</li>
                     </ul>
                 </div>
             </div>
@@ -371,7 +449,7 @@
     </div>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>4. Kontextus-csere</h2>
+        <h2>7. Kontextus-csere</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
