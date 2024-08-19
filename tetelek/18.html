@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 18 - </title>
+    <title>Tétel 18 - Programozás alapjai II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,482 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Programozás alapjai II - 18. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Egyszerű adattípusok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Egyszerű adattípusok áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az adattípus?</span> Az adattípus olyan egysége a programnak, amely annak <span class="highlight">értékhalmaza és az értékhalmazán végezhető műveletek</span> alapján pontosan meghatározható.</p>
+                
+                <p><span class="key-point">Milyen csoportokra oszthatjuk az adattípusokat?</span> Az adattípusokat <span class="highlight">egyszerű (elemi) és összetett</span> típusokra oszthatjuk.</p>
+                
+                <p><span class="key-point">Mik az elemi adattípusok?</span> Az elemi adattípusok olyan típusok, amelyeket <span class="highlight">nem lehet önmagukban értelmes részekre bontani</span>. Ide tartoznak az egész, valós, logikai és karakter típusok, valamint a felsorolás (enum).</p>
+                <div class="step">
+                    <p><span class="key-point">Melyek az egyszerű adattípusok C-ben?</span></p>
+                    <ul>
+                        <li><span class="highlight">Egész számok (int, short, long, long long)</span></li>
+                        <li><span class="highlight">Valós számok (float, double, long double)</span></li>
+                        <li><span class="highlight">Karakter (char)</span></li>
+                        <li><span class="highlight">Logikai érték (bool - C99 szabványtól)</span></li>
+                        <li><span class="highlight">Felsorolás (enum)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Egész számok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen egész típusok vannak?</span> A C nyelvben többféle <span class="highlight">egész típus létezik, különböző méretekben és előjellel vagy anélkül</span>.</p>
+                
+                <p><span class="key-point">Hány bites egy int C-ben?</span> Általában <span class="highlight">32 bit</span>, de ez platformfüggő lehet. Régebbi rendszereken 16 bit is lehet.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mi a signed és unsigned int értéktartománya?</span></p>
+                    <ul>
+                        <li><span class="highlight">signed int (32 bit):</span> [-2,147,483,648 to 2,147,483,647]</li>
+                        <li><span class="highlight">unsigned int (32 bit):</span> [0 to 4,294,967,295]</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Típusok és jellemzőik:</span></p>
+                    <ul>
+                        <li><span class="highlight">short:</span> 16 bit, [-32,767, 32,767] vagy [0, 65,535] (unsigned)</li>
+                        <li><span class="highlight">int:</span> 16 vagy 32 bit (platformfüggő), [-32,767, 32,767] vagy [0, 65,535] (16 bit esetén)</li>
+                        <li><span class="highlight">long:</span> 32 bit, [-2 milliárd, 2 milliárd] vagy [0, 4 milliárd] (unsigned)</li>
+                        <li><span class="highlight">long long:</span> 64 bit, [-sok, sok] vagy [0, rengeteg] (unsigned)</li>
+                    </ul>
+                </div>
+
+                
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajtuk?</span></p>
+                    <ul>
+                        <li>Aritmetikai: <span class="highlight">+, -, *, /, % (maradékos osztás)</span></li>
+                        <li>Összehasonlító: <span class="highlight">==, !=, <, >, <=, >=</span></li>
+                        <li>Bitműveletek: <span class="highlight">&, |, ^, ~, <<, >></span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi a túlcsordulás?</span> <span class="highlight">Túl- és alulcsordulás előfordulhat</span>, ha a kereten kívül esik a reprezentált érték. Ez hibás eredményekhez vezethet.</p>
+                
+                <p><span class="key-point">Hogyan érjük el a határértékeket?</span> A <span class="highlight">limits.h header fájl</span> tartalmazza az egész típusok határértékeit, például INT_MIN, INT_MAX.</p>
+            
+                <p><span class="key-point">Mi az a kettes komplemens?</span> A <span class="highlight">kettes komplemens</span> a negatív számok ábrázolási módja. A pozitív szám bitjeit invertáljuk, majd hozzáadunk 1-et.</p>
+                
+                <p><span class="key-point">Hogyan néz ki a -1 kettes komplemensben?</span> 32 biten ábrázolva: <span class="highlight">11111111 11111111 11111111 11111111</span></p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Valós számok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a valós számok?</span> A valós számok <span class="highlight">lebegőpontos ábrázolással</span> tárolódnak a számítógép memóriájában.</p>
+                <p><span class="key-point">Hogyan tárolódnak a valós számok a memóriában?</span> A valós számok <span class="highlight">lebegőpontos ábrázolással</span> tárolódnak, amely három részből áll: <span class="highlight">előjel, mantissza és kitevő</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mi a float ábrázolásának felbontása?</span></p>
+                    <ul>
+                        <li><span class="highlight">1 bit előjel</span></li>
+                        <li><span class="highlight">8 bit kitevő</span></li>
+                        <li><span class="highlight">23 bit mantissza</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Típusok és jellemzőik:</span></p>
+                    <ul>
+                        <li><span class="highlight">float:</span> 32 bit (1 előjelbit, 8 bit kitevő, 23 bit mantissza)</li>
+                        <li><span class="highlight">double:</span> 64 bit (1 előjelbit, 11 bit kitevő, 52 bit mantissza)</li>
+                        <li><span class="highlight">long double:</span> 128 bit (1 előjelbit, 15 bit kitevő, 112 bit mantissza)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajtuk?</span></p>
+                    <ul>
+                        <li>Aritmetikai: <span class="highlight">+, -, *, /</span></li>
+                        <li>Összehasonlító: <span class="highlight">==, !=, <, >, <=, >=</span></li>
+                        <li>Matematikai függvények: <span class="highlight">sin, cos, log, exp</span> (math.h)</li>
+                    </ul>Összetett adattípusok</h2>
+                </div>
+                <p><span class="key-point">Hogyan ábrázolunk egy nagyon nagy és egy nagyon kis számot?</span> A <span class="highlight">kitevő</span> segítségével tudjuk kezelni a nagyon nagy és nagyon kis számokat. A nagy számoknál pozitív, a kis számoknál negatív kitevőt használunk.</p>
+                <pre><code>double nagy_szam = 1.0e12;  // 1 billió
+double kis_szam = 1.0e-9;   // 1 milliárdod
+
+printf("%f\n", nagy_szam); // for floating-point format
+printf("%e\n", nagy_szam); // for scientific notation format
+</code></pre>
+                
+                <p><span class="key-point">Mi a pontosság kérdése?</span> A lebegőpontos számok <span class="highlight">korlátozott pontosságúak</span>, kerekítési hibák előfordulhatnak. Összehasonlításnál különös óvatosság szükséges.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Logikai típus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a logikai típus?</span> A logikai típus <span class="highlight">két lehetséges értéket tárolhat: igaz vagy hamis</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Típus:</span> bool</li>
+                        <li><span class="highlight">Értékkészlet:</span> true, false</li>
+                        <li><span class="highlight">Memóriaigény:</span> 8 bit (1 byte)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajta?</span></p>
+                    <ul>
+                        <li>Logikai NOT: <span class="highlight">!</span></li>
+                        <li>Logikai AND: <span class="highlight">&&</span></li>
+                        <li>Logikai OR: <span class="highlight">||</span></li>
+                        <li>Összehasonlítás: <span class="highlight">==, !=</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mikor került be a C nyelvbe?</span> A bool típus a <span class="highlight">C99 szabvánnyal került be</span> a nyelvbe. Használatához szükséges a <span class="highlight">stdbool.h</span> header fájl.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Karakter típus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a karakter típus?</span> A karakter típus <span class="highlight">egy karaktert (betű, szám, írásjel) ábrázol</span>, valójában egy kis egész számként tárolva.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Típus:</span> char, signed char, unsigned char</li>
+                        <li><span class="highlight">Értékkészlet:</span> [-128, 127] vagy [0, 255] (előjeles vagy előjel nélküli)</li>
+                        <li><span class="highlight">Memóriaigény:</span> 8 bit (1 byte)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajta?</span></p>
+                    <ul>
+                        <li>Aritmetikai műveletek (ASCII kód alapján)</li>
+                        <li>Összehasonlítás</li>
+                        <li>Bitműveletek</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan ábrázoljuk a karaktereket?</span> A karakterek <span class="highlight">ASCII kódként tárolódnak</span>. Értékadás történhet karakterkóddal számként vagy aposztrófok közé írt karakterrel.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Felsorolás (enum)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az enum?</span> Az enum egy <span class="highlight">felhasználó által definiált adattípus</span>, amely neveket rendel egész konstansokhoz.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Alapértelmezetten az értékek <span class="highlight">0-tól kezdődnek és növekednek</span></li>
+                        <li><span class="highlight">Explicit értékek</span> is megadhatók</li>
+                        <li>Minden enum konstans <span class="highlight">egyedi kell legyen</span> a saját hatókörében</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mire használjuk?</span> Az enum-ot gyakran használják a <span class="highlight">kód olvashatóságának javítására</span> és állapotok reprezentálására.</p>
+                
+                <p><span class="key-point">Példa:</span></p>
+                <pre><code>enum State {Working = 1, Failed = 0};</code></pre>
+                
+                <p><span class="key-point">Lehet-e azonos értékű két enum név?</span> Igen, <span class="highlight">két enumerációs név azonos értékkel rendelkezhet</span>. Például: <code>enum {Failed = 0, Freezed = 0};</code></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Összetett adattípusok</h2>
+    </div>
+    <div class="main-content">
+
+        <div class="algorithm">
+            <h2>Összetett adattípusok áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik az összetett adattípusok?</span> Az összetett adattípusok <span class="highlight">több adatelemet tartalmaznak</span>, amelyek lehetnek azonos vagy különböző típusúak.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Melyek a C nyelvben elérhető összetett adattípusok?</span></p>
+                    <ul>
+                        <li><span class="highlight">Tömb (Array)</span></li>
+                        <li><span class="highlight">Struktúra (struct)</span></li>
+                        <li><span class="highlight">Unió (union)</span></li>
+                        <li><span class="highlight">Pointer</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Pointer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a pointer?</span> A pointer egy <span class="highlight">változó, amely egy másik változó memóriacímét tárolja</span> értékként.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Hogyan hozzuk létre?</span></p>
+                    <ul>
+                        <li>A <span class="highlight">* operátorral</span> definiáljuk, például: <code>int *p;</code></li>
+                        <li>A <code>p</code> egy int-re mutató pointer, míg a <code>*p</code> a mutatott int érték</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajtuk?</span></p>
+                    <ul>
+                        <li><span class="highlight">NULL:</span> amikor a pointerhez nem tartozik dinamikus változó</li>
+                        <li><span class="highlight">Létesít (malloc):</span> új, dinamikus változó létesítése</li>
+                        <li><span class="highlight">Törlés (free):</span> dinamikus változó törlése, memória felszabadítása</li>
+                        <li><span class="highlight">Dereferencia (*):</span> mutatott érték elérése</li>
+                        <li><span class="highlight">Pointer aritmetika: Pointerek növelése/csökkentése</span></li>
+                        <li><span class="highlight">(Nem)Egyenlő (==, !=):</span> két pointer értékének összehasonlítása</li>
+                        <li><span class="highlight">Cím lekérése (&):</span> változó címének lekérése</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miért fontos a pointer típusa?</span> A pointer típusa meghatározza, <span class="highlight">hogyan értelmezzük a mutatott memóriaterületet</span> és mennyi memóriát foglalunk/szabadítunk fel műveletek során.</p>
+                
+                <p><span class="key-point">Mekkora memóriát foglal egy pointer tömb?</span> Egy pointer tömb mérete függ a rendszertől (32 vagy 64 bit), és a <span class="highlight">tömb elemszámától</span>. Például egy 5 elemű int* tömb 64 bites rendszeren: 5 * 8 byte = 40 byte.</p>
+                
+                <p><span class="key-point">Mire kell figyelni használatuk során?</span> A pointerek használata <span class="highlight">körültekintést igényel</span> a memóriakezelés és a hibák elkerülése érdekében. Fontos a megfelelő <span class="highlight">inicializálás és a NULL-ellenőrzés</span>.</p>
+                
+                <p><span class="key-point">Hogyan foglalunk dinamikusan memóriát?</span> A <span class="highlight">malloc() függvénnyel</span>, például: <code>int *p = (int *)malloc(sizeof(int));</code>. Használat után a <span class="highlight">free() függvénnyel</span> kell felszabadítani a memóriát.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Struktúra (struct) és Unió (union)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a különbség a struct és a union között?</span></p>
+                
+                <div class="step">
+                    <p><span class="highlight">Struct:</span></p>
+                    <ul>
+                        <li>Különböző típusú adatokat tárol együtt</li>
+                        <li>Minden tag saját memóriaterületet kap</li>
+                        <li>Mérete általában a tagok méretének összege (plusz esetleges padding)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="highlight">Union:</span></p>
+                    <ul>
+                        <li>Különböző típusú adatokat tárol ugyanazon a memóriaterületen</li>
+                        <li>Mérete a legnagyobb tag méretével egyezik meg</li>
+                        <li>Egyszerre csak egy tagja használható biztonságosan</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan vannak megvalósítva?</span> A <span class="highlight">struct tagjai egymás után helyezkednek el a memóriában</span>, míg a <span class="highlight">union tagjai ugyanazt a memóriaterületet használják</span>, csak különböző módon értelmezve azt.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Tömb</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a tömb?</span> A tömb <span class="highlight">azonos típusú elemek fix méretű, folytonos gyűjteménye</span> a memóriában.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Rögzített méretű</span></li>
+                        <li><span class="highlight">Elemei azonos típusúak</span></li>
+                        <li><span class="highlight">Indexelés 0-tól kezdődik</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajta?</span></p>
+                    <ul>
+                        <li><span class="highlight">Kiolvas:</span> Adott indexű elem értékének lekérése</li>
+                        <li><span class="highlight">Módosít:</span> Adott indexű elem értékének módosítása</li>
+                        <li><span class="highlight">Értékadás:</span> Teljes tömb másolása (C-ben korlátozottan)</li>
+                    </ul>
+                </div>
+                
+                
+                
+                <p><span class="key-point">Mire kell figyelni használatuk során?</span> A tömbindexelés során <span class="highlight">nincs automatikus határellenőrzés</span>, így könnyen túlindexelhetünk, ami hibákhoz vezethet.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Tömbök és Pointerek összehasonlítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a fő különbség a tömbök és pointerek között?</span></p>
+                
+                <div class="step">
+                    <p><span class="highlight">Tömbök:</span></p>
+                    <ul>
+                        <li>Fix méretűek, fordítási időben meghatározva</li>
+                        <li>Nem lehet újradeklarálni vagy átméretezni</li>
+                        <li>Automatikusan lefoglalt memóriaterületen helyezkednek el</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="highlight">Pointerek:</span></p>
+                    <ul>
+                        <li>Dinamikusan foglalható és felszabadítható memóriára mutatnak</li>
+                        <li>Méretük változtatható futási időben</li>
+                        <li>Null értéket is felvehetnek</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Hogyan kapcsolódnak egymáshoz?</span> C-ben a <span class="highlight">tömbnév gyakran automatikusan pointerre konvertálódik</span>, ami a tömb első elemére mutat. Ez lehetővé teszi a tömbök pointer-szerű használatát.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Rekord (struct)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a struct?</span> A struct egy <span class="highlight">felhasználó által definiált adattípus</span>, amely különböző típusú adatelemeket (mezőket) foglal magában.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Különböző típusú adatelemeket tartalmazhat</span></li>
+                        <li><span class="highlight">Az elemek egymás után helyezkednek el a memóriában</span></li>
+                        <li>A struct mérete általában <span class="highlight">nagyobb vagy egyenlő, mint az elemek méretének összege</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajta?</span></p>
+                    <ul>
+                        <li><span class="highlight">Kiolvas (→):</span> visszaadja az adott komponens értékét</li>
+                        <li><span class="highlight">Módosít (↔):</span> módosítja az adott komponens értékét</li>
+                        <li><span class="highlight">Értékadás (←):</span> értéket ad az adott komponens értékének</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan érjük el a struct mezőit?</span> A mezőket a <span class="highlight">pont (.) operátorral</span> érjük el, például: <code>szemely.nev</code>. Pointer esetén a <span class="highlight">nyíl (->) operátort</span> használjuk: <code>szemely_ptr->nev</code>.</p>
+                
+                <p><span class="key-point">Példa:</span></p>
+                <pre><code>struct Szemely {
+    char nev[50];
+    int kor;
+    float magassag;
+};</code></pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Unió (union)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az unió?</span> Az unió egy <span class="highlight">olyan adatszerkezet, amely több adattag közül egyszerre csak egyet tárol</span> ugyanazon a memóriaterületen.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Több adattag, de csak egy aktív egyszerre</span></li>
+                        <li>Mérete a <span class="highlight">legnagyobb adattag méretével egyezik meg</span></li>
+                        <li><span class="highlight">Memóriatakarékos</span>, ha az adattagok kölcsönösen kizárják egymást</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen műveletek végezhetők rajta?</span></p>
+                    <ul>
+                        <li><span class="highlight">Kiolvas:</span> Aktuális adattag értékének lekérése</li>
+                        <li><span class="highlight">Módosít:</span> Adattag értékének módosítása</li>
+                        <li><span class="highlight">Értékadás:</span> Új érték beállítása (aktív adattag változik)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mire kell figyelni használatuk során?</span> Az unió használata <span class="highlight">óvatosságot igényel</span>, mert nem követi nyomon, melyik adattag aktív éppen. A programozónak kell gondoskodnia erről.</p>
+                
+                <p><span class="key-point">Példa:</span></p>
+                <pre><code>union Adat {
+    int i;
+    float f;
+    char str[20];
+};</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Összefoglalás és Vizsgakérdések</h2>
+    </div>
+    <div class="main-content">
+
+        <div class="algorithm">
+            <h2>Gyakori Vizsgakérdések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Mi az adattípus definíciója?</span></li>
+                    <li><span class="highlight">Hogyan csoportosítjuk az adattípusokat C-ben?</span></li>
+                    <li><span class="highlight">Milyen méretű egy int C-ben? Mi a signed és unsigned értéktartománya?</span></li>
+                    <li><span class="highlight">Hogyan néz ki a -1 kettes komplemens ábrázolásban?</span></li>
+                    <li><span class="highlight">Hogyan tárolódnak a valós számok a memóriában? Mi a float ábrázolásának felbontása?</span></li>
+                    <li><span class="highlight">Mi a különbség a struct és a union között? Hogyan vannak megvalósítva?</span></li>
+                    <li><span class="highlight">Milyen műveletek végezhetők pointerekkel? Miért fontos a pointer típusa?</span></li>
+                    <li><span class="highlight">Mi a fő különbség a tömbök és pointerek között? Hogyan kapcsolódnak egymáshoz?</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Egyszerű adattípusok összefoglalása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Egész számok:</span> Különböző méretű és előjelű változatok, pontos aritmetika</li>
+                    <li><span class="highlight">Valós számok:</span> Lebegőpontos ábrázolás, korlátozott pontosság</li>
+                    <li><span class="highlight">Logikai típus:</span> Igaz/hamis értékek, logikai műveletek</li>
+                    <li><span class="highlight">Karakter:</span> ASCII karakterek tárolása, valójában kis egész szám</li>
+                    <li><span class="highlight">Felsorolás (enum):</span> Névvel ellátott konstansok definiálása</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Összetett adattípusok összefoglalása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">Pointer:</span> Memóriacímek tárolása, dinamikus memóriakezelés</li>
+                    <li><span class="highlight">Tömb:</span> Azonos típusú elemek fix méretű gyűjteménye</li>
+                    <li><span class="highlight">Rekord (struct):</span> Különböző típusú adatelemek csoportosítása</li>
+                    <li><span class="highlight">Unió (union):</span> Több adattípus tárolása ugyanazon memóriaterületen</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Záró gondolatok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p>Az adattípusok megfelelő megválasztása és használata <span class="highlight">kulcsfontosságú a hatékony és megbízható programok írásához</span>. Az egyszerű adattípusok biztosítják az alapvető építőelemeket, míg az összetett adattípusok lehetővé teszik komplex adatstruktúrák létrehozását. A C nyelv erőssége, hogy <span class="highlight">alacsony szintű memóriakezelést tesz lehetővé</span>, ami nagy rugalmasságot biztosít, de egyben felelősséget is ró a programozóra a helyes és biztonságos használat tekintetében.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
