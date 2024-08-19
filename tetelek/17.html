@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 17 - </title>
+    <title>Tétel 17 - Programozás alapjai I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,297 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Programozás alapjai I - 17. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Algoritmusok vezérlési szerkezetei</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Algoritmusok vezérlési szerkezetei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az algoritmus vezérlése?</span> Az algoritmus vezérlése az az előírás, amely <span class="highlight">minden lépésre kijelöli a következő végrehajtandó lépést</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Leírási módok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Természetes nyelvi leírás:</span> Szöveges, mondatokba foglalt leírás</li>
+                        <li><span class="highlight">Pszeudokód:</span> Programozási nyelvhez hasonló, de szabadabb strukturált nyelv</li>
+                        <li><span class="highlight">Folyamatábra:</span> Grafikus, kevésbé strukturált gráf a végrehajtásra</li>
+                        <li><span class="highlight">Szerkezeti ábra:</span> Grafikus, strukturált leírás az algoritmus felépítéséről és működéséről</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan jelöljük a blokkokat C-ben?</span> C-ben a blokkokat <span class="highlight">kapcsos zárójelekkel { }</span> jelöljük. Egy blokk több utasítást foglal magába, amelyeket úgy kezelünk, mintha egyetlen utasítás lennének.</p>
+                
+                <p><span class="key-point">Hogyan zárjuk le az utasításokat?</span> C-ben az utasításokat <span class="highlight">pontosvesszővel ;</span> zárjuk le. Ez jelzi az utasítás végét.</p>
+            
+                <p><span class="key-point">Miért fontosak a vezérlési szerkezetek?</span> A vezérlési szerkezetek határozzák meg, hogy <span class="highlight">egy adott lépés után melyik lépés következik</span>, és milyen feltételek mellett hajtódik végre.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Szekvenciális vezérlés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Szekvenciális vezérlés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a szekvenciális vezérlés?</span> A szekvenciális vezérlés az algoritmus <span class="highlight">alapértelmezett működési módja</span>, ahol az utasítások egymás után, sorrendben hajtódnak végre.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Minden utasítás <span class="highlight">pontosan egyszer</span> kerül végrehajtásra</li>
+                        <li>A végrehajtási sorrend <span class="highlight">azonos az utasítások írási sorrendjével</span></li>
+                        <li>Alapértelmezett működési mód a programokban</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Mikor használjuk?</span> Amikor a műveletek <span class="highlight">egymásra épülnek</span>, és nincs szükség ismétlésre vagy döntéshozatalra.</p>
+                
+                <p><span class="key-point">Példa C nyelven:</span></p>
+                <pre><code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5;
+    int b = 10;
+    int sum = a + b;
+    printf("Sum: %d\n", sum);
+    return 0;
+}
+</code>
+                </pre>
+                
+                <p><span class="key-point">Hogyan működik?</span> Ebben a példában az utasítások <span class="highlight">egymás után hajtódnak végre</span>, a program a változók deklarálása és inicializálása után kiszámítja és kiírja a változók összegét.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Iterációs vezérlés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Iterációs vezérlés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az iterációs vezérlés?</span> Az iterációs vezérlés lehetővé teszi, hogy egy <span class="highlight">adott utasítássorozat többször ismétlődjön</span>, amíg egy bizonyos feltétel teljesül.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Ciklus típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">while ciklus:</span> A ciklus addig ismétlődik, amíg a feltétel igaz marad</li>
+                        <li><span class="highlight">do-while ciklus:</span> A ciklus először mindig végrehajtódik, majd utána ellenőrzi a feltételt</li>
+                        <li><span class="highlight">for ciklus:</span> Egy meghatározott számú iteráció végrehajtására használatos</li>
+                        <li><span class="highlight">foreach ciklus:</span> Egy kollekció minden elemén végighalad (C-ben szimulálható)</li>
+                        <li><span class="highlight">hurok (while-if):</span> Egy hurokban az if szerkezetet használva bizonyos feltételek teljesülése esetén megállíthatjuk a ciklust</li>
+                    
+                    </ul>
+                </div>
+                <p><span class="key-point">Mikor használjuk?</span> Amikor egy műveletsort <span class="highlight">többször kell végrehajtani</span>, például adatfeldolgozásnál vagy számítások ismétlésénél.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mi a break és continue?</span></p>
+                    <ul>
+                        <li><span class="highlight">break:</span> Azonnal kilép a ciklusból</li>
+                        <li><span class="highlight">continue:</span> Megszakítja az aktuális iterációt, és a következőre ugrik</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa break használatára:</span></p>
+                <pre><code>for (int i = 0; i &lt; 10; i++) {
+    if (i == 5) {
+        break; // kilépés, ha i értéke 5
+    }
+    printf("%d ", i);
+}</code>
+                </pre>
+                
+                <p><span class="key-point">Példa continue használatára:</span></p>
+                <pre><code>for (int i = 0; i &lt; 10; i++) {
+    if (i % 2 == 0) {
+        continue; // kihagyja az aktuális iterációt, ha i páros
+    }
+    printf("%d ", i);
+}</code>
+                </pre>
+            </div>
+
+            <p><span class="key-point">Mi a goto és hogyan használjuk?</span> A <span class="highlight">goto</span> egy vezérlésátadó utasítás, amely a program végrehajtását egy megadott címkére irányítja. Használata általában nem ajánlott, mert rontja a kód olvashatóságát. Példa:</p>
+            <pre><code>int i = 0;
+start:
+    printf("%d ", i);
+    i++;
+    if (i < 5) goto start;</code>
+            </pre>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Elágazásos vezérlés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Elágazásos vezérlés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az elágazásos vezérlés?</span> Az elágazásos vezérlés lehetővé teszi, hogy a program <span class="highlight">különböző útvonalakon haladjon tovább</span>, attól függően, hogy egy adott feltétel teljesül-e.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszerű szelekciós vezérlés (if-then)</span></li>
+                        <li><span class="highlight">Többszörös szelekciós vezérlés (if-then-else)</span></li>
+                        <li><span class="highlight">Esetkiválasztásos vezérlés (switch-case)</span></li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Mikor használjuk?</span> Amikor a program végrehajtását <span class="highlight">feltételek alapján kell irányítani</span>, például felhasználói input vagy számítások eredménye alapján.</p>
+                <div class="step">
+                    <p><span class="key-point">Milyen logikai operátorokat használunk?</span></p>
+                    <ul>
+                        <li><span class="highlight">ÉS (&&):</span> Mindkét feltételnek igaznak kell lennie</li>
+                        <li><span class="highlight">VAGY (||):</span> Legalább az egyik feltételnek igaznak kell lennie</li>
+                        <li><span class="highlight">NEM (!):</span> Az operandus logikai értékének megfordítása</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi a különbség a switch és az if között?</span> A <span class="highlight">switch</span> egy érték alapján választ több lehetséges végrehajtási út közül, míg az <span class="highlight">if</span> egy logikai kifejezés kiértékelése alapján dönt. A switch általában átláthatóbb kódot eredményez több feltétel esetén.</p>
+                <p><span class="key-point">Miért használjunk switch-case-t?</span> A switch utasítás használata <span class="highlight">átláthatóbb és könnyebben olvasható kódot</span> eredményez, különösen több elágazásos feltétel esetén.</p>
+                <p><span class="key-point">Van-e C-ben else if kulcsszó?</span> C-ben nincs külön "else if" kulcsszó, de használhatjuk az <span class="highlight">"else { if ... }"</span> szerkezetet hasonló funkcionalitás eléréséhez.</p>
+                
+                <p><span class="key-point">Milyen típusú lehet a switch feltétele?</span> A switch feltételének <span class="highlight">egészre konvertálhatónak</span> kell lennie. Ez lehet int, char, vagy enum típus.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Eljárásvezérlés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Eljárásvezérlés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az eljárásvezérlés?</span> Az eljárásvezérlés lehetővé teszi, hogy <span class="highlight">egy műveletet adott argumentumokra alkalmazzunk</span>, ami az argumentumok értékeinek meghatározott változását eredményezi.</p>
+                <div class="step">
+                    <p><span class="key-point">Mi a különbség függvény és eljárás között?</span></p>
+                    <ul>
+                        <li><span class="highlight">Függvényművelet:</span> Adott paraméterekből számol ki valamit és visszatér egy értékkel</li>
+                        <li><span class="highlight">Eljárásművelet:</span> Parancsok csoportja, amik operálnak a paraméterekkel, de nem feltétlenül adnak vissza értéket (C-ben void típusú függvények)</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Hogyan kezeljük az argumentumokat C-ben?</span></p>
+                    <ul>
+                        <li><span class="highlight">Érték szerinti átadás:</span> Az argumentum értéke másolódik</li>
+                        <li><span class="highlight">Cím szerinti átadás:</span> Az argumentum címe (pointer) adódik át, lehetővé téve az eredeti érték módosítását</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan módosíthatjuk a paramétereket egy függvényen belül?</span> Ha módosítani szeretnénk egy paraméter értékét a függvényen belül úgy, hogy az a hívó oldalon is megváltozzon, <span class="highlight">pointer</span>-eket kell használnunk. Például:</p>
+                <pre><code>void modifyValue(int *value) {
+    *value = *value * 2;
+}
+
+int main() {
+    int x = 5;
+    modifyValue(&x);
+    printf("Modified value: %d\n", x);  // Output: 10
+    return 0;
+}</code>        </pre>
+                
+                <p><span class="key-point">Mi történik függvényhíváskor?</span> Függvényhíváskor a következő lépések történnek:</p>
+                <ol>
+                    <li>Az aktuális végrehajtási pont eltárolódik</li>
+                    <li>Az argumentumok kiértékelődnek és átadódnak</li>
+                    <li>A vezérlés átkerül a hívott függvényre</li>
+                    <li>A függvény lokális változói létrejönnek a stack-en</li>
+                    <li>A függvény utasításai végrehajtódnak</li>
+                    <li>A visszatérési érték (ha van) eltárolódik</li>
+                    <li>A lokális változók megsemmisülnek</li>
+                    <li>A vezérlés visszakerül a hívó függvényhez</li>
+                </ol>
+
+                <p><span class="key-point">Mikor használjuk?</span> Amikor <span class="highlight">ismétlődő vagy komplex műveleteket</span> kell végrehajtani, amelyeket érdemes elkülöníteni a fő programlogikától.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mik a függvények előnyei?</span></p>
+                    <ul>
+                        <li><span class="highlight">Újrafelhasználhatóság:</span> Kód ismétlődés csökkentése</li>
+                        <li><span class="highlight">Modularitás:</span> Könnyebb fejlesztés és karbantartás</li>
+                        <li><span class="highlight">Absztrakció:</span> Komplex műveletek egyszerűsítése</li>
+                        <li>Memóriaigény csökkentése</li>
+                        <li>Programhelyesség</li>
+                    </ul>
+                </div>
+                <pre><code>int add(int a, int b) {
+                    return a + b;
+                }
+                
+                int main() {
+                    int sum = add(5, 10);
+                    printf("Sum: %d\n", sum);
+                    return 0;
+                }</code>       </pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. További tudnivalók</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Prefix és postfix operátorok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a prefix és postfix operátorok?</span> A prefix és postfix operátorok fontos szerepet játszanak a C nyelvben, különösen <span class="highlight">ciklusok és feltételek esetén</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Prefix (++i, --i):</span> Az operátor a változó értékének növelése vagy csökkentése előtt történik meg</li>
+                        <li><span class="highlight">Postfix (i++, i--):</span> Az operátor a változó értékének növelése vagy csökkentése után történik meg</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa:</span></p>
+                <pre>
+<code>
+int i = 5;
+printf("%d\n", ++i);  // Output: 6
+printf("%d\n", i);    // Output: 6
+
+i = 5;
+printf("%d\n", i++);  // Output: 5
+printf("%d\n", i);    // Output: 6
+</code>
+                </pre>
+                <p><span class="key-point">Miért fontosak?</span> A prefix és postfix operátorok használata <span class="highlight">befolyásolja a műveletek végrehajtási sorrendjét</span>, ami kritikus lehet ciklusokban és összetett feltételekben.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Beágyazott vezérlési szerkezetek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a beágyazott vezérlési szerkezetek?</span> A beágyazott vezérlési szerkezetek lehetővé teszik <span class="highlight">komplex algoritmusok megvalósítását</span>.</p>
+                
+                <p><span class="key-point">Példa beágyazott ciklusra:</span></p>
+                <pre><code>for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        printf("(%d, %d) ", i, j);
+    }
+    printf("\n");
+}                </code></pre>
+                <p><span class="key-point">Mire használhatók?</span> A beágyazott if-else szerkezetek <span class="highlight">komplex döntéshozatali folyamatokat</span> hozhatnak létre, míg a beágyazott ciklusok többdimenziós adatstruktúrák feldolgozására alkalmasak.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

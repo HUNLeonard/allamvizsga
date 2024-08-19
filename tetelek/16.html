@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 16 - </title>
+    <title>Tétel 16 - Digitális képfeldolgozás I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,315 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Digitális képfeldolgozás I - 16. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Szűrés képtérben</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Zaj és szűrés alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a zaj?</span> A <span class="highlight">zaj</span> a képpont-intenzitások nemkívánatos változása, amit simítással és szűréssel próbálunk javítani vagy csökkenteni.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Zaj típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gauss-zaj:</span> Az intenzitásváltozás normál eloszlást követ</li>
+                        <li><span class="highlight">Só-bors zaj:</span> Fehér és fekete pontok kvázi random előfordulása</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért simítunk?</span> A simítás célja a képpontok intenzitása által meghatározott függvény <span class="highlight">normalizálása és tompítása</span>, hogy ne legyenek akkora kiugrások.</p>
+
+                <p><span class="key-point">Zaj vs. Hasznos információ?</span> A szűrés kihívása, hogy <span class="highlight">csökkentse a zajt</span>, miközben <span class="highlight">megőrzi a hasznos képi információkat</span>.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Átlagoló szűrők</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan működik az átlagoló szűrő?</span> Az átlagoló szűrők adott területen az intenzitások átlagát számolják, és minden képpontnak ezt az értéket adják.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Átlagoló szűrő jellemzői:</span></p>
+                    <ul>
+                        <li>A képpontok felveszik a <span class="highlight">környezetük átlagát</span></li>
+                        <li>A szűrt kép intenzitásértékei a <span class="highlight">kiindulási kép tartományában</span> maradnak</li>
+                        <li><span class="highlight">Lineáris operátor</span> (mivel a konvolúció az)</li>
+                        <li>Csökkenti a zajt, de <span class="highlight">gyengíti az éleket</span> és homályossá teszi a képet</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen maszkokat használunk?</span></p>
+                    <ul>
+                        <li>3x3-as négyzet</li>
+                        <li>5x5-ös négyzet</li>
+                        <li>1.5 vagy 2-es sugarú kör</li>
+                    </ul>
+                </div>
+                
+                <img src="../assets/images/atlag-szures.webp" alt="Átlag-szűrés példa" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Mi a súlyozott átlagolás?</span> A környezet intenzitásaihoz (általában a távolsággal arányosan csökkenő) súlyokat rendelünk.</p>
+                    <p><span class="key-point">Súlyozott maszkok példái:</span></p>
+                    <pre>
+    [ 1 1 1 ]          [ 1 2 1 ]
+1/9 | 1 1 1 |     1/16 | 2 4 2 |
+    [ 1 1 1 ]          [ 1 2 1 ]
+                    </pre>
+                    <p><span class="highlight">Fontos szabály:</span> Zajszűrő/simító maszkoknál a maszkelemek összege mindig 1.</p>
+                </div>
+                
+                <p><span class="key-point">Átlagolás vs. Súlyozott átlag?</span> Az átlagolás minden pont intenzitását egyforma súllyal veszi figyelembe, míg a súlyozott átlagnál a távolsággal arányosan csökkenő súlyokat alkalmazunk.</p>
+                
+                <img src="../assets/images/atlag-szures-pelda.webp" alt="Átlag-szűrés példa 2" class="graph-image">
+                <img src="../assets/images/atlag-szures-pelda2.webp" alt="Átlag-szűrés példa 3" class="graph-image">
+                
+                <p><span class="key-point">Átlagoló szűrő előnyei és hátrányai?</span></p>
+                <ul>
+                    <li><span class="highlight">Előny:</span> Hatékonyan csökkenti a zajt</li>
+                    <li><span class="highlight">Hátrány:</span> Elmosódottá teszi a képet, gyengíti az éleket</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gauss-simítás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Gauss-simítás?</span> A Gauss-simítás során egy <span class="highlight">Gauss-görbét követő intenzitású maszkkal</span> simítjuk a képet.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Gauss-függvény jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Normál eloszlást</span> mutat</li>
+                        <li>Szimmetrikus a középpontja körül</li>
+                        <li>Folytonosan csökkenő értékek a középponttól távolodva</li>
+                    </ul>
+                </div>
+                
+                <img src="../assets/images/gauss_fuggveny.webp" alt="Gauss függvény 2D-ben" class="graph-image">
+                <img src="../assets/images/1d_gauss_fuggveny.webp" alt="1D Gauss függvény" class="graph-image">
+                
+                <p><span class="key-point">Hogyan néz ki egy Gauss-maszk?</span> Íme egy példa Gauss-maszkra:</p>
+                <pre>
+     [ 1 2 1 ]
+1/16 | 2 4 2 |
+     [ 1 2 1 ]
+                </pre>
+                
+                <p><span class="key-point">Miben különbözik az átlag-simítástól?</span></p>
+                <ul>
+                    <li>A <span class="highlight">közelebbi pontok nagyobb súlyúak</span> (jobban számítanak), mint a távolabbiak</li>
+                    <li>Az átlag-simítás <span class="highlight">új mintákat hozhat be</span> a képbe</li>
+                    <li>A Gauss-simítás <span class="highlight">kevésbé valószínű, hogy új mintákat hoz létre</span></li>
+                </ul>
+                
+                <img src="../assets/images/gauss_zaj.webp" alt="Terhelés Gauss zajjal" class="graph-image">
+                
+                <p><span class="key-point">Hogyan hat a Gauss-simítás a képre?</span></p>
+                <img src="../assets/images/gauss_szures_pelda.webp" alt="Példa Gauss szűrésre" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Gauss-simítás előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hatékonyan csökkenti a zajt</span></li>
+                        <li><span class="highlight">Megőrzi a kép struktúráját</span> jobban, mint az egyszerű átlagolás</li>
+                        <li>Kevésbé valószínű, hogy <span class="highlight">új, nem kívánt mintákat hoz létre</span> a képen</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért használunk Gauss-simítást?</span> A Gauss-simítás <span class="highlight">egyensúlyt teremt a zajcsökkentés és a képrészletek megőrzése között</span>, így gyakran előfeldolgozási lépésként alkalmazzák más képfeldolgozási műveletek előtt.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Medián szűrés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a medián?</span> Az [a1, a2, …, a2n+1] (páratlan elemszámú) számtömb mediánja a <span class="highlight">nagyság szerint rendezett tömb középső, (n+1-edik) eleme</span>. Jelölése: med{a1, a2, …, a2n+1}.</p>
+                
+                <p><span class="key-point">Hogyan működik a mediánszűrés?</span> A mediánszűrést úgy kapjuk, hogy <span class="highlight">vesszük az adott képpont környezetét, azoknak intenzitását sorba rendezzük, majd a képpont új intenzitása a medián érték lesz</span>.</p>
+                
+                <img src="../assets/images/median_szures_pelda.webp" alt="Medián szűrés példa" class="graph-image">
+                
+                <div class="step">
+                    <p><span class="key-point">Mediánszűrés jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Megszünteti az egyedi és kis kiterjedésű kiugrásokat</span></li>
+                        <li>Jobban megőrzi az éleket, mint az átlagolás</li>
+                        <li>Nagy kiterjedésű zajfoltoknál jel-elnyomó</li>
+                        <li>Ideális <span class="highlight">só-bors zaj szűrésére</span></li>
+                    </ul>
+                </div>
+                
+                <img src="../assets/images/so_bors_zaj_szures.webp" alt="Só-bors zaj szűrése" class="graph-image">
+                
+                <p><span class="key-point">Miért jó a só-bors zaj szűrésére?</span> A mediánszűrés hatékonyan eltávolítja a kiugró értékeket (fekete és fehér pontokat), miközben megőrzi az eredeti kép struktúráját és éleit.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Min-max szűrők</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a min-max szűrők?</span> A min-max szűrők <span class="highlight">nemlineáris morfológiai operátorok</span>, amelyek a képpontok környezetében a minimum vagy maximum értéket választják.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Min-max szűrők típusai:</span></p>
+                    <img src="../assets/images/min_max_szurok.png" alt="Min-max szűrők" class="graph-image">
+                </div>
+                
+                <p><span class="key-point">Hogyan implementáljuk az eróziót és dilatációt?</span></p>
+                <ul>
+                    <li>Erózió: Átlag-szűrőhöz hasonlóan, de <span class="highlight">mean helyett min függvényt használunk</span>, és 0-ák helyett 255-ökkel bővítünk a széleken</li>
+                    <li>Dilatáció: Átlag-szűrőhöz hasonlóan, de <span class="highlight">mean helyett max függvényt használunk</span></li>
+                </ul>
+                
+                <img src="../assets/images/erozio_dilatacio_pelda.webp" alt="Erózió és dilatáció példa" class="graph-image">
+                
+                <p><span class="key-point">Mire használhatók a min-max szűrők?</span> Az erózió és dilatáció alapvető műveletei a <span class="highlight">morfológiai képfeldolgozásnak</span>, és használhatók objektumok alakjának módosítására, zajszűrésre, és egyéb képjavítási feladatokra.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Szűrés frekvenciatérben</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Élek detektálása frekvenciatérben</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az éldetektálás?</span> Az éldetektálás során olyan területeket keresünk a képen, ahol az <span class="highlight">intenzitás hirtelen változik</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Éldetektálás típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Pontdetektálás:</span> Lokális környezetben eltérő intenzitású pontok keresése</li>
+                        <li><span class="highlight">Vonaldetektálás:</span> Összefüggő pontok, egységnyi vastagságú görbék kijelölése</li>
+                        <li><span class="highlight">Éldetektálás:</span> Ahol a képfüggvény valamely irány mentén hirtelen változik</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen típusú élek léteznek?</span></p>
+                <ul>
+                    <li><span class="highlight">Ideális él:</span> Lépcsős változás az intenzitásban</li>
+                    <li><span class="highlight">Valós él:</span> Lejtős változás az intenzitásban (gyakoribb a gyakorlatban)</li>
+                </ul>
+                
+                <div class="step">
+                    <p><span class="key-point">Gradiens az éldetektálásban:</span></p>
+                    <ul>
+                        <li>A gradiens a <span class="highlight">többváltozós függvények deriválásának általánosítása</span></li>
+                        <li>Vektormezőt eredményez, ami megmutatja a függvény változását (irány és mérték)</li>
+                        <li>Az <span class="highlight">elsőrendű derivált</span> segítségével lejtős élből lépcsős élt lehet létrehozni</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Diszkrét gradiens operátorok:</span> Ezek az operátorok a kép <span class="highlight">deriváltját közelítik</span> diszkrét különbségek segítségével.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Hogyan készítünk diszkrét gradiens operátorokat?</span></p>
+                    <ul>
+                        <li>Általános alakjuk: <span class="highlight">[p,0,-p|q,0,-q|p,0,-q]</span></li>
+                        <li>Három szabály:
+                            <ol>
+                                <li>A mátrix elemeinek összege 0</li>
+                                <li>Ellentétes előjelű elemek az átló mentén</li>
+                                <li>A mátrix közepe 0</li>
+                            </ol>
+                        </li>
+                    </ul>
+                </div>
+    
+                <p><span class="key-point">Marr-Hildreth módszer:</span> Ez egy éldetektálási módszer, amely a <span class="highlight">LoG (Laplace of Gaussian) függvénnyel való konvolválást</span> használja.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Marr-Hildreth módszer jellemzői:</span></p>
+                    <ul>
+                        <li>LoG = Gauss függvény Laplace transzformáltja</li>
+                        <li><span class="highlight">Másodrendű deriválttal</span> dolgozik</li>
+                        <li>Él detektálása: ahol <span class="highlight">előjelváltás</span> történik</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Alul- és felüláteresztő szűrők frekvencia-maszkjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mit jelent az alul- és felüláteresztő szűrés?</span> Ezek a szűrők a kép <span class="highlight">különböző frekvenciájú komponenseit</span> engedik át vagy szűrik ki.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Aluláteresztő szűrő:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">alacsony frekvenciájú</span> komponenseket engedi át</li>
+                        <li>A magas frekvenciákat (pl. zajt, éles éleket) elnyomja</li>
+                        <li>Eredmény: <span class="highlight">simított, elmosódottabb kép</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Felüláteresztő szűrő:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">magas frekvenciájú</span> komponenseket engedi át</li>
+                        <li>Az alacsony frekvenciákat (pl. háttér, nagy felületek) elnyomja</li>
+                        <li>Eredmény: <span class="highlight">kiemelt élek, kontrasztok</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan néz ki egy frekvencia-maszk?</span> A frekvencia-maszk egy <span class="highlight">2D függvény</span>, amely meghatározza, mely frekvenciákat engedjük át és melyeket szűrjük ki.</p>
+                
+                <img src="../assets/images/alul_felul_atereszto_szurok.webp" alt="Alul- és felüláteresztő szűrők" class="graph-image">
+                
+                <p><span class="key-point">Miért fontosak ezek a szűrők?</span> Az alul- és felüláteresztő szűrők lehetővé teszik a <span class="highlight">kép különböző aspektusainak kiemelését vagy elnyomását</span>, ami hasznos lehet zajcsökkentésben, élkiemelésben vagy más képfeldolgozási feladatokban.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Konvolúciós tétel</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a konvolúciós tétel?</span> A konvolúciós tétel a <span class="highlight">képfeldolgozás egyik alapvető elve</span>, amely összekapcsolja a térbeli és frekvenciatartománybeli műveleteket.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">A tétel lényege:</span></p>
+                    <ul>
+                        <li>Két függvény konvolúciójának <span class="highlight">Fourier-transzformáltja</span> egyenlő a függvények Fourier-transzformáltjainak <span class="highlight">pontonkénti szorzatával</span>.</li>
+                        <li>Matematikailag: 
+                            <pre>
+<code>F(f * h) = F(f) · F(h)</code>
+<code>f * h = F<sup>-1</sup>(F(f) · F(h))</code>
+                            </pre>
+                        </li>
+                        <li>ahol F a Fourier-transzformációt jelöli, * pedig a konvolúciós műveletet</li>
+                    </ul>
+                </div>
+        
+                <img src="../assets/images/konvolucios_tetel.webp" alt="Konvolúciós tétel" class="graph-image">
+                
+                <p><span class="key-point">Mit látunk a képen?</span></p>
+                <ul>
+                    <li>A bal felső sarokban egy gyümölcsökről készült képet látunk.</li>
+                    <li>A jobb felső sarokban egy konvolúciós maszkot láthatunk, amely egy kis méretű fehér pontból áll fekete háttér előtt.</li>
+                    <li>A középső oszlopban a gyümölcskép és a maszk konvolúciójának eredménye látható, ami egy elmosódott változatát adja a gyümölcsképnek.</li>
+                    <li>Az alsó sor bal oldali képén a gyümölcs képének Fourier-transzformáltját látjuk.</li>
+                    <li>Az alsó sor középső képén a konvolúciós maszk Fourier-transzformáltja látható.</li>
+                    <li>Az alsó sor jobb oldali képén a két Fourier-transzformált pontonkénti szorzatát láthatjuk, amely megfelel a konvolúció Fourier-transzformáltjának.</li>
+                </ul>
+
+
+                <p><span class="key-point">Miért fontos ez?</span> A konvolúciós tétel lehetővé teszi, hogy <span class="highlight">komplex térbeli műveleteket egyszerűbb frekvenciatartománybeli műveletekké alakítsunk</span>, ami jelentősen felgyorsíthatja a képfeldolgozási algoritmusokat.</p>
+            </div>
+        </div>
+    </div> 
 
     <script src="../assets/js/tetel.js"></script>
 </body>
