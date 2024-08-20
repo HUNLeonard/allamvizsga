@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 19 - </title>
+    <title>Tétel 19 - Programozás I és II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,398 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Programozás I és II - 19. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Objektum orientált paradigma és annak megvalósítása</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Objektum orientált paradigma alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az OOP?</span> Az objektumorientált programozás (OOP) egy <span class="highlight">programozási paradigma</span>, amely az <span class="highlight">objektumok fogalmán alapul</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li>Az objektumok <span class="highlight">adatokat és műveleteket</span> foglalnak egységbe</li>
+                        <li>Az adatok neve: <span class="highlight">mezők, attribútumok, tulajdonságok</span></li>
+                        <li>A műveletek neve: <span class="highlight">metódusok</span></li>
+                        <li>Az objektum <span class="highlight">saját metódusai végeznek műveletet</span> az adatokon</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Objektum jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Állapot:</span> tulajdonságok aktuális értéke</li>
+                        <li><span class="highlight">Viselkedés:</span> az objektum reakciója más objektumok kéréseire</li>
+                        <li><span class="highlight">Identitás:</span> minden objektum egyedi, még azonos állapot esetén is</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan épül fel egy OOP program?</span> Egy OOP program <span class="highlight">egymással kommunikáló objektumok összessége</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa:</span> A "kutya" fogalma:</p>
+                    <ul>
+                        <li>Egy <span class="highlight">osztály (kutyák osztálya)</span> tagjaként értelmezhető</li>
+                        <li>Rendelkezik <span class="highlight">tulajdonságokkal</span> (szín, méret)</li>
+                        <li>Rendelkezik <span class="highlight">képességekkel</span> (futás, ugatás)</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Mi a különbség osztály és objektum között?</span> Az <span class="highlight">osztály egy absztrakt adattípus</span>, ami meghatározza az objektumok szerkezetét és viselkedését. Az <span class="highlight">objektum az osztály egy konkrét példánya</span>.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Megvalósítás JAVA és C++ nyelvekben</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan valósítják meg az OOP-t?</span> Mind a Java, mind a C++ <span class="highlight">támogatja az objektumorientált programozást</span>, de vannak különbségek a megvalósításban.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Java sajátosságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tisztán objektumorientált</span> nyelv</li>
+                        <li>Minden nem primitív típus <span class="highlight">osztályként definiált</span></li>
+                        <li><span class="highlight">Egyszeres öröklődést</span> támogat osztályok között</li>
+                        <li><span class="highlight">Többszörös öröklődést</span> interface-eken keresztül valósít meg</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">C++ sajátosságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Többparadigmás nyelv</span>, támogatja az OOP-t</li>
+                        <li><span class="highlight">Nagyobb rugalmasságot</span> biztosít az OOP megvalósításában</li>
+                        <li><span class="highlight">Explicit módon kell definiálni</span> a virtuális funkciókat</li>
+                        <li>Lehetővé teszi a <span class="highlight">többszörös öröklődést</span> osztályok között</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miben különbözik a Java és C++ OOP megvalósítása?</span></p>
+                <div class="step">
+                    <p><span class="key-point">Öröklődés:</span></p>
+                    <ul>
+                        <li>Java: <span class="highlight">Egyszeres öröklődés</span> osztályok között, többszörös öröklődés interface-eken keresztül</li>
+                        <li>C++: <span class="highlight">Többszörös öröklődés</span> támogatott osztályok között is</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Metódus hívás többszörös öröklődésnél (C++):</span></p>
+                    <ul>
+                        <li>C++ használja a <span class="highlight">virtuális függvénytáblát (VFT)</span> a megfelelő metódus kiválasztásához</li>
+                        <li>Az <span class="highlight">öröklődési hierarchia</span> és a <span class="highlight">virtual kulcsszó használata</span> befolyásolja a metódus kiválasztását</li>
+                        <li>Névütközés esetén <span class="highlight">explicit minősítés</span> szükséges (pl. BaseClass::method())</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Az absztrakt adattípus, az osztály</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Absztrakt adattípus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az absztrakt adattípus?</span> Az absztrakt adattípus az <span class="highlight">adattípus leírásának legmagasabb szintje</span>, ahol az adattípust úgy specifikáljuk, hogy <span class="highlight">nem adunk előírást</span> az adatok ábrázolására és a műveletek implementációjára.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Osztály</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az osztály?</span> Az osztály egy <span class="highlight">absztrakt adattípus</span>, amely az <span class="highlight">adattagjait és a rajta elvégezhető műveleteket</span> zárja egy logikai egységbe.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Osztály elemei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Adattagok:</span> Az osztály állapotát leíró változók</li>
+                        <li><span class="highlight">Metódusok:</span> Az osztály viselkedését meghatározó függvények</li>
+                        <li><span class="highlight">Konstruktorok:</span> Az objektumok létrehozásáért felelős speciális metódusok. <span class="highlight">class</span> kulcsszóval (Java és C++)</li>
+                        <li><span class="highlight">Destruktorok (C++):</span> Az objektumok megsemmisítéséért felelős metódusok</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Osztály jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Objektumok csoportjának leírása</span></li>
+                        <li>Közös <span class="highlight">attribútumok, operációk és szemantikus viselkedés</span></li>
+                        <li>Úgy viselkedik, mint egy <span class="highlight">primitív típus</span></li>
+                        <li><span class="highlight">Példányosítható</span> (objektumok hozhatók létre belőle)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan hozunk létre osztályt?</span> Java és C++ nyelvekben a <span class="highlight">class kulcsszóval</span> definiálhatunk osztályokat.</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Interface-ek és absztrakt osztályok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Interface-ek (Java)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az interface?</span> Az interface egy <span class="highlight">teljesen absztrakt osztály</span>, amely csak metódus deklarációkat és konstansokat tartalmaz.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Interface jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Többszörös öröklődés:</span> Egy osztály több interface-t is implementálhat</li>
+                        <li><span class="highlight">Nem tartalmazhat állapotot:</span> Csak konstansokat definiálhat</li>
+                        <li><span class="highlight">Implicit public és abstract:</span> Minden metódus alapértelmezetten publikus és absztrakt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Absztrakt osztályok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az absztrakt osztály?</span> Az absztrakt osztály egy <span class="highlight">részben implementált osztály</span>, amely tartalmazhat absztrakt és konkrét metódusokat is.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Absztrakt osztály vs. Interface:</span></p>
+                    <ul>
+                        <li><span class="highlight">Állapot:</span> Absztrakt osztály tartalmazhat állapotot, interface nem</li>
+                        <li><span class="highlight">Öröklődés:</span> Absztrakt osztályból csak egyszeres öröklődés lehetséges</li>
+                        <li><span class="highlight">Implementáció:</span> Absztrakt osztály tartalmazhat implementált metódusokat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Az egységbe zárás, az információ elrejtés, az öröklődés, az újrafelhasználás és a polimorfizmus</h2>
+        <em>(OOP 3 fő pillér)</em>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Egységbe zárás és információ elrejtés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az egységbe zárás?</span> Az egységbe zárás (encapsulation) az <span class="highlight">adatok és műveletek egy egységbe foglalása</span>, valamint az <span class="highlight">adatok elrejtése</span> a külvilág elől.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Láthatósági módosítók:</span></p>
+                    <ul>
+                        <li><span class="highlight">public:</span> Bárhonnan elérhető</li>
+                        <li><span class="highlight">protected:</span> Az osztályon belül és a leszármazott osztályokban elérhető</li>
+                        <li><span class="highlight">private:</span> Csak az osztályon belül elérhető</li>
+                        <li><span class="highlight">package-private (Java):</span> Azonos csomagban lévő osztályok számára elérhető</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos?</span> Az egységbe zárás <span class="highlight">védi az objektumok belső állapotát</span>, és <span class="highlight">kontrollált hozzáférést</span> biztosít az adatokhoz.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Öröklődés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az öröklődés?</span> Az öröklődés egy olyan viszony osztályok között, ahol egy <span class="highlight">általánosabb típusból (ősosztály) egy sajátosabb típust (utódosztály)</span> hozunk létre.</p>
+                <p><span class="key-point">Miért hasznos?</span> Az öröklődés lehetővé teszi, hogy <span class="highlight">új osztályokat hozzunk létre meglévő osztályok alapján</span>, örökölve azok tulajdonságait és viselkedését.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Öröklődés előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kód újrafelhasználhatóság:</span>Az utódosztály <span class="highlight">örökli az ősosztály adatait és műveleteit</span>, csökkenti a redundáns kódot</li>
+                        <li><span class="highlight">Hierarchikus osztálystruktúra:</span> Logikus kapcsolatot teremt az osztályok között</li>
+                        <li><span class="highlight">Polimorfizmus támogatása:</span> Lehetővé teszi a dinamikus metódushívást</li>
+                        <li><span class="highlight">Overwrite:</span> Lehetőség van új adatok és műveletek hozzáadására. Bizonyos műveletek <span class="highlight">felülírhatók</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Java vs C++ öröklődés:</span></p>
+                <ul>
+                    <li>Java: <span class="highlight">egyszeres öröklődés</span> (extends kulcsszó)</li>
+                    <li>C++: <span class="highlight">többszörös öröklődés</span> megengedett</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Újrafelhasználás és polimorfizmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az újrafelhasználás?</span> Az újrafelhasználás lehetővé teszi a <span class="highlight">meglévő kód ismételt alkalmazását</span> új kontextusban.</p>
+                
+                <p><span class="key-point">Mi a polimorfizmus?</span> A polimorfizmus az a jelenség, amikor egy <span class="highlight">változóra nem csak egyfajta típusú objektumként hivatkozhatunk</span>, különböző típusú objektumokat kezeljünk egységes módon</span>.</p></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Polimorfizmus típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Statikus polimorfizmus:</span> korai hozzárendelés, fordítási időben eldöntött (pl. függvény túlterhelés)</li>
+                        <li><span class="highlight">Dinamikus polimorfizmus:</span> késői hozzárendelés, futási időben eldöntött (pl. virtuális függvények)</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Hogyan működik a virtuális függvénytábla (VFT)?</span> A VFT egy <span class="highlight">táblázat, amely tárolja a virtuális függvények címeit</span>. Minden osztály példány tartalmaz egy mutatót a saját VFT-jére, ami lehetővé teszi a megfelelő függvény hívását futási időben.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Az OOP 3 fő pillére</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Melyek az OOP 3 fő pillére?</span> Az objektum-orientált programozás három fő pillére az <span class="highlight">egységbe zárás (encapsulation)</span>, az <span class="highlight">öröklődés (inheritance)</span>, és a <span class="highlight">polimorfizmus (polymorphism)</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">1. Egységbe zárás (Encapsulation):</span></p>
+                    <ul>
+                        <li><span class="highlight">Definíció:</span> Az adatok és a rajtuk végzett műveletek egyetlen egységbe (osztályba) zárása</li>
+                        <li><span class="highlight">Cél:</span> Az adatok védelme és a program komplexitásának csökkentése</li>
+                        <li><span class="highlight">Megvalósítás:</span> Privát adattagok és publikus metódusok (getterek, setterek) használata</li>
+                        <li><span class="highlight">Előny:</span> Növeli a kód biztonságát és karbantarthatóságát</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Öröklődés (Inheritance):</span></p>
+                    <ul>
+                        <li><span class="highlight">Definíció:</span> Új osztályok létrehozása meglévő osztályok tulajdonságainak és viselkedésének átvételével</li>
+                        <li><span class="highlight">Cél:</span> Kód újrafelhasználhatóság és hierarchikus osztálystruktúra kialakítása</li>
+                        <li><span class="highlight">Megvalósítás:</span> Szülő (ősosztály) és gyermek (leszármazott) osztályok definiálása</li>
+                        <li><span class="highlight">Előny:</span> Csökkenti a kód duplikációt és elősegíti a logikus osztályhierarchia kialakítását</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Polimorfizmus (Polymorphism):</span></p>
+                    <ul>
+                        <li><span class="highlight">Definíció:</span> Azonos interfész használata különböző típusú objektumokhoz</li>
+                        <li><span class="highlight">Cél:</span> Rugalmas és újrafelhasználható kód írása</li>
+                        <li><span class="highlight">Megvalósítás:</span> Metódus túlterhelés (overloading) és felülírás (overriding)</li>
+                        <li><span class="highlight">Előny:</span> Növeli a kód rugalmasságát és kiterjeszthetőségét</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Összefüggések:</span> Ez a három pillér <span class="highlight">együttesen biztosítja</span> az OOP rugalmasságát, biztonságát és hatékonyságát. Az egységbe zárás védi az adatokat, az öröklődés elősegíti a kód újrafelhasználását, míg a polimorfizmus rugalmasságot ad a kódnak.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Polimorfizmus feloldásának módszere</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Polimorfizmus feloldása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan oldjuk fel a polimorfizmust?</span> A polimorfizmus feloldása azt jelenti, hogy <span class="highlight">meghatározzuk, melyik metódust kell végrehajtani</span> egy adott objektum esetében.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Feloldási módszerek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kasztolás (type cast):</span> explicit típusmeghatározás</li>
+                        <li><span class="highlight">instanceof kulcsszó (Java):</span> objektum típusának ellenőrzése</li>
+                        <li><span class="highlight">dynamic_cast (C++):</span> futási idejű típusellenőrzés</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Java specifikus módszerek:</span></p>
+                <ul>
+                    <li><span class="highlight">getClass().equals(Object.class):</span> közvetlen osztályellenőrzés</li>
+                    <li><span class="highlight">Wrapper osztályok:</span> primitív típusok objektumként való kezelése</li>
+                </ul>
+                
+                <p><span class="key-point">C++ specifikus módszerek:</span></p>
+                <ul>
+                    <li><span class="highlight">std::is_base_of:</span> öröklődési viszony ellenőrzése</li>
+                    <li><span class="highlight">typeid operátor:</span> futási idejű típusinformáció lekérése</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Virtuális függvények és polimorfizmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a virtuális függvény szerepe?</span> A virtuális függvények lehetővé teszik a <span class="highlight">dinamikus kötést</span>, ami a polimorfizmus alapja.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Java és C++ különbségek:</span></p>
+                    <ul>
+                        <li>Java: <span class="highlight">Minden metódus alapértelmezetten virtuális</span> (kivéve final és private)</li>
+                        <li>C++: <span class="highlight">Explicit virtual kulcsszó</span> szükséges a virtuális függvényekhez</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Virtuális függvénytábla (VFT):</span> C++-ban a <span class="highlight">VFT tárolja a virtuális függvények címeit</span>, lehetővé téve a dinamikus kötést.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Fő koncepciók áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">OOP alapelvek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egységbe zárás:</span> Adatok és műveletek egy egységbe foglalása</li>
+                        <li><span class="highlight">Öröklődés:</span> Osztályok közötti hierarchikus viszony</li>
+                        <li><span class="highlight">Polimorfizmus:</span> Többalakúság, rugalmas típuskezelés</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Java és C++ összehasonlítása:</span></p>
+                    <ul>
+                        <li>Java: <span class="highlight">Tisztán OOP</span>, egyszeres öröklődés, implicit virtuális függvények</li>
+                        <li>C++: <span class="highlight">Többparadigmás</span>, többszörös öröklődés, explicit virtuális függvények</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos az OOP?</span> Az OOP elősegíti a <span class="highlight">kód újrafelhasználhatóságát, modularitását és karbantarthatóságát</span>, ami különösen hasznos nagyobb projektekben.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>7. Gyakori vizsgakérdések</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Lehetséges vizsgakérdések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <ol>
+                        <li>Mi az objektum orientált paradigma lényege?</li>
+                        <li>Miben különbözik az osztály és az objektum?</li>
+                        <li>Sorolja fel és magyarázza meg az OOP 3 fő pillérét!</li>
+                        <li>Hogyan valósítja meg Java és C++ az öröklődést?</li>
+                        <li>Mi a szerepe a virtuális függvénytáblának (VFT)?</li>
+                        <li>Hogyan oldja fel C++ a többszörös öröklődésből adódó névütközéseket?</li>
+                        <li>Mi a különbség az absztrakt osztály és az interface között?</li>
+                        <li>Magyarázza el a polimorfizmus típusait és működését!</li>
+                        <li>Miért fontos az egységbe zárás (encapsulation) az OOP-ban?</li>
+                        <li>Hogyan segíti elő az öröklődés a kód újrafelhasználhatóságát?</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

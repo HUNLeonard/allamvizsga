@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 20 - </title>
+    <title>Tétel 20 - Programozás I, II - 2.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,561 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Programozás I, II - 20. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Objektumok életciklusa</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Objektumok létrehozása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az objektum életciklusa?</span> Az objektum életciklusa magában foglalja az objektum <span class="highlight">létrehozását, inicializálását, használatát és megszüntetését</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Java-ban:</span></p>
+                    <ul>
+                        <li>Objektumok létrehozása a <span class="highlight"><code>new</code> operátorral</span> történik</li>
+                        <li>Példa: <code>MyClass obj = new MyClass();</code></li>
+                        <li>A létrehozás lépései:
+                            <ol>
+                                <li><span class="highlight">Lefoglalja a szükséges memóriát</span></li>
+                                <li><span class="highlight">Meghívja az osztály konstruktorát</span></li>
+                                <li><span class="highlight">Visszaadja az objektumra mutató referenciát</span></li>
+                            </ol>
+                        </li>
+                        <li>Leszármaztatott osztály példányosításakor <span class="highlight">előbb az ősosztály(ok) konstruktorai</span> hívódnak meg</li>
+                        <li>Minden osztálynak van <span class="highlight">default konstruktora</span> az Object osztályból öröklés miatt</li>
+                        <li>Primitív típusokat (int, string) a <span class="highlight">veremben tároljuk</span> (lokálisan)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">C++-ban:</span></p>
+                    <ul>
+                        <li>Objektumok létrehozása hasonló, de a <span class="highlight">new operátor használata opcionális</span></li>
+                        <li>Példa: <code>MyClass obj;</code> vagy <code>MyClass *obj = new MyClass();</code></li>
+                        <li>Az első esetben az objektum a <span class="highlight">veremben</span>, a másodikban a <span class="highlight">heapen</span> jön létre</li>
+                        <li>A konstruktor <span class="highlight">inicializálja az objektumot és feltölti a VFT-t</span> (virtuális függvénytáblázatot)</li>
+                        <li>Lokális objektumokat <span class="highlight">default paraméterrel</span> vagy objektumokat tartalmazó kifejezésekben hozhatunk létre</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Objektumok inicializálása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi történik inicializáláskor?</span> Az inicializálás során a <span class="highlight">konstruktorok felelősek az objektum kezdeti állapotának beállításáért</span>, például az attribútumok értékadásáért.</p>
+            
+                <div class="step">
+                    <p><span class="key-point">Java-ban:</span></p>
+                    <ul>
+                        <li>A konstruktorok <span class="highlight">felelősek az objektum inicializálásáért</span></li>
+                        <li>Példa: <code>MyClass(int x){this.val = x;}</code></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">C++-ban:</span></p>
+                    <ul>
+                        <li>Hasonlóan működik, mint Java-ban</li>
+                        <li>Példa: <code>MyClass(int x) : val(x) {}</code></li>
+                        <li>A new operátorral való létrehozáskor <span class="highlight">nem elegendő csak a memória lefoglalása</span>, a konstruktort is meg kell hívni</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Objektumok másolása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan másolhatunk objektumokat?</span> Az objektumok másolása <span class="highlight">különböző módokon történhet</span> Java-ban és C++-ban:</p>
+                <div class="step">
+                    <p><span class="key-point">Másolás Java-ban:</span></p>
+                    <ul>
+                        <li><span class="highlight">Copy konstruktorok</span> létrehozásával</li>
+                        <li><span class="highlight">Cloneable interfész</span> megvalósításával</li>
+                        <li>Copy konstruktor: azonos típusú objektumot vár paraméterként, és beállítja a saját változóit</li>
+                        <li>Cloneable: a <code>.clone()</code> metódus megvalósítása szükséges</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Másolás C++-ban:</span></p>
+                    <ul>
+                        <li>Támogatja a <span class="highlight">sekély és mély másolást</span> is</li>
+                        <li>Sekély másolás az <span class="highlight">alapértelmezett viselkedés</span></li>
+                        <li>Mély másoláshoz <span class="highlight">saját másoló konstruktort</span> vagy <span class="highlight">másoló operátort</span> kell definiálni</li>
+                        <li>Klónozásra szintén a copy konstruktoros megközelítés használható</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Objektumok megszüntetése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Java-ban:</span></p>
+                    <ul>
+                        <li>Az objektumok <span class="highlight">automatikusan felszabadulnak</span></li>
+                        <li>A <span class="highlight">Garbage Collector</span> felelős a memória felszabadításáért</li>
+                        <li><span class="highlight">Biztonságosabb</span>, de kevesebb kontrollt ad a fejlesztőnek</li>
+                        <li>A szemétgyűjtés <span class="highlight">kézzel is elindítható</span>, de nem egyenlő a destruktorral</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">C++-ban:</span></p>
+                    <ul>
+                        <li>Az objektumok felszabadítása a <span class="highlight">fejlesztő felelőssége</span></li>
+                        <li>A <span class="highlight">delete operátor</span> használatával törölhetők a dinamikus objektumok</li>
+                        <li>A <span class="highlight">destruktor</span> végzi el a takarítást az objektum megszüntetése előtt</li>
+                        <li>A destruktor neve megegyezik az osztály nevével, előtte <span class="highlight">~ (tilde)</span> jellel</li>
+                        <li>Mindig a <span class="highlight">gyerek osztály destruktora hívódik meg először</span>, majd rekurzívan az ősöké</li>
+                        <li>A statikusan létrehozott objektumok az <span class="highlight">adott blokk végén megszűnnek</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Dinamikus, lokális és statikus objektumok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Statikus objektumok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen tárolási módok léteznek?</span> Az objektumok tárolására <span class="highlight">három fő lehetőség</span> van: statikus, lokális és dinamikus.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Statikus objektumok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatszegmensen</span> tárolódnak</li>
+                        <li>Az <span class="highlight">osztály betöltésekor</span> jönnek létre</li>
+                        <li>Az <span class="highlight">alkalmazás végéig élnek</span></li>
+                        <li>Nem rugalmasak, mivel mérete a <span class="highlight">fordítási időben ismert és fix.</span></li>
+                        <li>Gyorsak, mivel a <span class="highlight">memóriaterületet a program indulásakor</span> foglalják le.</li>
+                        <li>Példa Java-ban: <code>static MyObject staticObject = new MyObject("Statikus Objektum");</code></li>
+                        <li>Példa C++-ban: <code>MyObject MyClass::staticObject;</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Lokális objektumok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Lokális objektumok:</span></p>
+                    <ul>
+                        <li>Egy <span class="highlight">metódus belsejében</span> jönnek létre</li>
+                        <li>A <span class="highlight">metódus futásának végéig</span> élnek</li>
+                        <li>A <span class="highlight">veremben</span> tárolódnak</li>
+                        <li><span class="highlight">Automatikusan</span> létrejönnek és megszűnnek metódushívások során.</li>
+                        <li><span class="highlight">Gyorsak</span>, de csak a metódus élettartama alatt élnek.</li>
+                        <li>Példa Java-ban: <code>MyObject localObject = new MyObject("Lokális Objektum");</code></li>
+                        <li>Példa C++-ban: <code>MyObject localObject;</code></li>
+                    </ul>
+                </div>
+            
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Dinamikus objektumok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Dinamikus objektumok:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">heap memóriában</span> jönnek létre</li>
+                        <li>A <span class="highlight"><code>new</code> operátor</span> segítségével hozzuk létre őket</li>
+                        <li><span class="highlight">Futásidő közben</span> keletkeznek</li>
+                        <li><span class="highlight">Rugalmasak</span>, de lassabbak, mivel a memóriaterületet futás közben foglalják le.</li>
+
+                        <li>Java-ban a <span class="highlight">Garbage Collector</span> törli automatikusan</li>
+                        <li>C++-ban a <span class="highlight">delete operátorral</span> kell manuálisan  törölni</li>
+                        <li>Példa Java-ban: <code>MyObject dynamicObject = new MyObject("Dinamikus Objektum");</code></li>
+                        <li>Példa C++-ban: <code>MyObject* dynamicObject = new MyObject();</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Statikus adattagok és metódusok</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Statikus elemek jellemzői</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a statikus elemek?</span> A statikus adattagok és metódusok <span class="highlight">az osztályhoz tartoznak</span>, nem pedig az egyes példányokhoz.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb jellemzők:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">static</span> kulcsszóval jelöljük őket</li>
+                        <li>Csak <span class="highlight">egy példányban jönnek létre</span></li>
+                        <li>Az <span class="highlight">osztályhoz tartoznak</span>, nem az objektumokhoz</li>
+                        <li><span class="highlight">Példányosítás nélkül</span> is használhatóak</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mik a statikus metódusok korlátai?</span></p>
+
+                <div class="step">
+                    <ul>
+                        <li>Nem lehetnek <span class="highlight">virtuálisak</span></li>
+                        <li>Nem hivatkozhatnak az <span class="highlight">adott objektumra (this)</span></li>
+                        <li>Csak <span class="highlight">más statikus memberekre</span> hivatkozhatnak</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Mikor használjuk?</span> Olyan esetekben, amikor az adott elem <span class="highlight">független az objektumoktól</span>, és <span class="highlight">mindenhol megegyezik az implementáció</span>.</p>
+                
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Statikus elemek alkalmazása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mikor használjunk statikus elemeket?</span> Statikus elemek használata akkor előnyös, amikor:</p>
+                
+                <div class="step">
+                    <ul>
+                        <li>Az adott elem <span class="highlight">független az objektumoktól</span></li>
+                        <li>Az implementáció <span class="highlight">mindenhol megegyezik</span></li>
+                        <li><span class="highlight">Globális számlálókat</span> vagy konstansokat akarunk létrehozni</li>
+                        <li><span class="highlight">Segédmetódusokat</span> definiálunk, amelyek nem függnek az objektum állapotától</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa statikus elem használatára:</span></p>
+                
+                <pre><code>public class Player {
+    private static int totalMoney = 0;
+    private int money;
+
+    public Player(int money) {
+        this.money = money;
+        totalMoney += money;
+    }
+
+    public static int getTotalMoney() {
+        return totalMoney;
+    }
+}</code></pre>
+                
+                <p>Ebben a példában a <span class="highlight">totalMoney</span> statikus változó <span class="highlight">közös</span> minden Player objektum számára, és <span class="highlight">nyomon követi</span> az összes játékos pénzét.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Operáció és operátor overloading</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Operáció overloading</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az operáció overloading?</span> Az operáció overloading lehetővé teszi, hogy <span class="highlight">azonos nevű függvényeket</span> többször használjunk <span class="highlight">különböző paraméterlistával</span>.</p>
+                
+                <div class="step">
+                    <ul>
+                        <li>Elérhető mind <span class="highlight">Java-ban</span>, mind <span class="highlight">C++-ban</span></li>
+                        <li>A futtató környezet a <span class="highlight">paraméterek alapján</span> választja ki a megfelelő végrehajtást</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa operáció overloadingra:</span></p>
+                
+                <pre><code>public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+}                </code></pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Operátor overloading</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az operátor overloading?</span> Az operátor overloading lehetővé teszi, hogy <span class="highlight">felülírjuk az operátorok viselkedését</span> saját objektumainkra.</p>
+                
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Csak C++-ban</span> elérhető, Java-ban <span class="highlight">nem támogatott</span></li>
+                        <li>Lehetővé teszi, hogy <span class="highlight">saját típusaink</span> úgy viselkedjenek, mint a beépített típusok</li>
+                        <li>Operátorokat <span class="highlight">osztályok</span> (class) <span class="highlight">rekordok</span> (struct) és <span class="highlight">uniók</span> (union) esetén is alkalmazható</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mire kell figyelni operátor overloadingnál?</span></p>
+                
+                <div class="step">
+                    <ul>
+                        <li>Nem minden operátor <span class="highlight">írható felül</span> (pl. ., ::, ? :, *, #, ##)</li>
+                        <li>Az operátorok <span class="highlight">precedenciája nem változtatható</span></li>
+                        <li>Az <span class="highlight">=</span> operátor kivételével az operátor kiterjesztések <span class="highlight">öröklődnek</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa operátor overloadingra C++-ban:</span></p>
+                
+                <pre><code>Complex operator+ (const Complex&amp; obj) {
+                    Complex temp;
+                    temp.real = real + obj.real;
+                    temp.imag = imag + obj.imag;
+                    return temp;
+                }</code></pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Friend függvények és osztályok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a friend függvények és osztályok?</span> A <span class="highlight">friend</span> kulcsszó lehetővé teszi, hogy <span class="highlight">külső függvények vagy osztályok</span> hozzáférjenek egy osztály privát és védett tagjaihoz.</p>
+                
+                <div class="step">
+                    <ul>
+                        <li>Csak <span class="highlight">C++-ban</span> elérhető</li>
+                        <li>Lehetővé teszi a <span class="highlight">privát adattagok elérését</span> az osztályon kívülről</li>
+                        <li>Hasznos lehet <span class="highlight">operátor overloading</span> esetén</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa friend függvény használatára:</span></p>
+                
+                <pre><code>class MyClass {
+private:
+    int data;
+
+public:
+    MyClass(int d) : data(d) {}
+    friend void displayData(const MyClass& obj);
+};
+
+void displayData(const MyClass& obj) {
+    std::cout << "Data: " << obj.data << std::endl;
+}                </code></pre>
+                
+                <p><span class="key-point">Mikor érdemes friend-et használni?</span></p>
+                
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Operátorok túlterhelésénél</span>(pl. +, -), amikor más operandusát nem az osztály típusa adja meg, akkor a túlterhelt operátor függvénye gyakran barát függvény lesz az osztályban, hogy hozzáférjen az osztály privát adattagjaihoz.</li>
+                        <li><span class="highlight">Szorosan összefüggő osztályok</span> kommunikációjánál</li>
+                        <li>De <span class="highlight">óvatosan használandó</span>, mert gyengítheti az egységbezárást</li>
+                        <li>Általában érdemes alternatív megközelítéseket keresni, például publikus vagy védett interfész használatával, mielőtt a `friend` kulcsszót alkalmaznánk.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Kivételkezelés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Kivételkezelés alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a kivételkezelés?</span> A kivételkezelés lehetővé teszi a <span class="highlight">futás közben fellépő hibák kezelését</span> és a program <span class="highlight">normál működésének fenntartását</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb elemek:</span></p>
+                    <ul>
+                        <li><span class="highlight">try-catch-finally</span> struktúra</li>
+                        <li><span class="highlight">throw</span> utasítás kivételek manuális dobására</li>
+                        <li>Java-ban: <span class="highlight">ellenőrzött</span> és <span class="highlight">nem ellenőrzött</span> kivételek</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Hogyan működik a try-catch-finally?</span> A <span class="highlight">try blokkban</span> helyezzük el a potenciálisan kivételt dobó kódot, a <span class="highlight">catch blokkokban</span> kezeljük a különböző típusú kivételeket, míg a <span class="highlight">finally blokk</span> mindig lefut, függetlenül attól, hogy történt-e kivétel.</p>
+                
+                <p><span class="key-point">Példa kivételkezelésre Java-ban:</span></p>
+                
+                <pre><code>try {
+    throw new Exception("Valami hiba történt!");
+} catch (Exception e) {
+    System.out.println("Kivétel kezelése: " + e.getMessage());
+} finally {
+    System.out.println("Végül futó kód");
+}                </code></pre>
+                
+                <p><span class="key-point">Példa kivételkezelésre C++-ban:</span></p>
+                
+                <pre><code>try {
+    throw std::runtime_error("Valami hiba történt!");
+} catch (std::exception& e) {
+    std::cout << "Kivétel kezelése: " << e.what() << std::endl;
+}                </code></pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kivételkezelés előnyei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért jó a kivételkezelés?</span> A kivételkezelés több szempontból is előnyös:</p>
+                <ul>
+                    <li><span class="highlight">Hibák elkülönítése:</span> Lehetővé teszi a hibakezelő kód elkülönítését a normál programlogikától</li>
+                    <li><span class="highlight">Strukturált hibakezelés:</span> Hierarchikus hibakezelést tesz lehetővé</li>
+                    <li><span class="highlight">Hibaterjedés:</span> A hibák könnyebben terjednek a hívási láncon keresztül</li>
+                    <li><span class="highlight">Csoportosítás:</span> Különböző típusú hibák csoportosíthatók és kezelhetők</li>
+                    <li><span class="highlight">Tisztább kód:</span> A fő programlogika tisztább marad, nem keveredik bele a hibakezelés</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kivételkezelés folyamata</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi történik a try és catch között?</span></p>
+                <ul>
+                    <li>Ha a <span class="highlight">try blokkban kivétel keletkezik</span>, a végrehajtás azonnal megszakad</li>
+                    <li>A program <span class="highlight">keresi a megfelelő catch blokkot</span></li>
+                    <li>Ha nincs megfelelő catch, a kivétel <span class="highlight">továbbadódik</span> a hívási láncban</li>
+                    <li>Közben a <span class="highlight">stack unwinding</span> folyamat zajlik: lokális objektumok destruktorai hívódnak meg</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Garbage Collector típusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Garbage collector típusok:</span></p>
+                <ul>
+                    <li><span class="highlight">Soros (Serial) GC:</span> Egyszerű, egy szálat használ, kis alkalmazásokhoz</li>
+                    <li><span class="highlight">Párhuzamos (Parallel) GC:</span> Több szálat használ a gyűjtéshez, nagyobb alkalmazásokhoz</li>
+                    <li><span class="highlight">Konkurrens (Concurrent) GC:</span> Az alkalmazás futásával párhuzamosan végzi a gyűjtést</li>
+                    <li><span class="highlight">G1 GC:</span> Nagy memóriájú többprocesszoros rendszerekhez optimalizált</li>
+                </ul>
+            </div>
+        </div>
+        
+
+        <div class="algorithm">
+            <h2>Kivételek típusai és kezelésük</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire jó saját kivételeket?</span> Saját kivételek létrehozásával <span class="highlight">specifikus hibakezelést</span> valósíthatunk meg alkalmazásainkban.</p>
+
+                <p><span class="key-point">Milyen típusú kivételek léteznek Java-ban?</span></p>
+                
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Ellenőrzött kivételek:</span> A fordító ellenőrzi, hogy kezeljük-e őket</li>
+                        <li><span class="highlight">Nem ellenőrzött kivételek:</span> Futási idejű kivételek, nem kötelező kezelni</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan hozhatunk létre saját kivételeket?</span></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Java-ban:</span></p>
+                    <ul>
+                        <li>A saját kivételeknek az <span class="highlight">Exception osztályból</span> kell származniuk</li>
+                        <li>Gyakran paraméterként fogadják a <span class="highlight">kivétel üzenetét</span></li>
+                    </ul>
+                    <pre><code>class MyException extends Exception {
+    public MyException(String message) {
+        super(message);
+    }
+}</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">C++-ban:</span></p>
+                    <ul>
+                        <li>Nem szükséges öröklődés, de gyakran a <span class="highlight">std::exception-ből származnak</span></li>
+                        <li>Saját adattagokkal rendelkező osztályok lehetnek</li>
+                    </ul>
+                    <pre><code>class MyException : public std::exception {
+    std::string _msg;
+public:
+    MyException(const std::string&amp; msg) : _msg(msg) {}
+    virtual const char* what() const noexcept override {
+        return _msg.c_str();
+    }
+};</code></pre>
+                </div>
+                
+                <p><span class="key-point">Mi a throws kulcsszó szerepe?</span> A <span class="highlight">throws</span> kulcsszó Java-ban jelzi, hogy egy metódus <span class="highlight">dobhat kivételt</span>, amit a hívónak kell kezelnie.</p>
+                
+                <p><span class="key-point">Mi a különbség a throw és a throws között?</span></p>
+                <ul>
+                    <li><span class="highlight">throw:</span> Kivétel dobására szolgál</li>
+                    <li><span class="highlight">throws:</span> Metódus deklarációjában jelzi a lehetséges kivételeket</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Főbb pontok áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Objektumok életciklusa:</span></p>
+                    <ul>
+                        <li><span class="highlight">Létrehozás:</span> new operátorral, konstruktorok használata</li>
+                        <li><span class="highlight">Inicializálás:</span> konstruktorokban történik</li>
+                        <li><span class="highlight">Másolás:</span> copy konstruktorok, Cloneable interfész (Java)</li>
+                        <li><span class="highlight">Megszüntetés:</span> Garbage Collector (Java), delete operátor (C++)</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Statikus elemek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egy példányban</span> léteznek</li>
+                        <li><span class="highlight">Osztályhoz tartoznak</span>, nem objektumhoz</li>
+                        <li>Használatuk <span class="highlight">globális állapotok</span> kezelésére</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Operáció és operátor overloading:</span></p>
+                    <ul>
+                        <li><span class="highlight">Operáció overloading:</span> azonos nevű függvények különböző paraméterekkel</li>
+                        <li><span class="highlight">Operátor overloading:</span> csak C++-ban, operátorok viselkedésének testreszabása</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">4. Kivételkezelés:</span></p>
+                    <ul>
+                        <li><span class="highlight">try-catch-finally</span> struktúra</li>
+                        <li><span class="highlight">Saját kivételek</span> létrehozása</li>
+                        <li><span class="highlight">throws</span> és <span class="highlight">throw</span> kulcsszavak használata</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

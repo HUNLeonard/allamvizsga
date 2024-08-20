@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 21 - </title>
+    <title>Tétel 21 - Programozás I, II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,502 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Programozás I, II - 21. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Java és C++ programok fordítása és futtatása</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Java fordítás és futtatás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Java fordítás alapelve?</span> A Java fordítás <span class="highlight">többlépcsős folyamat</span>, ahol a forráskódot először <span class="highlight">bájtkódra</span> fordítják, majd ezt a <span class="highlight">Java Virtual Machine (JVM)</span> értelmezi és futtatja.</p>
+                <div class="step">
+                    <p><span class="key-point">Java fordítás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Forráskód (.java)</span> megírása</li>
+                        <li><span class="highlight">Javac compiler</span> fordítja bájtkódra</li>
+                        <li><span class="highlight">Bájtkód (.class)</span> létrehozása</li>
+                        <li><span class="highlight">JVM (Java Virtual Machine)</span> értelmezi és futtatja a bájtkódot</li>
+                    </ol>
+                </div>
+
+                <p><span class="key-point">Mire van szükség Java fejlesztéshez?</span> Java fejlesztéshez <span class="highlight">JDK (Java Development Kit)</span> szükséges, ami tartalmazza a <span class="highlight">fordítót és a fejlesztői eszközöket</span>.</p>
+                <p><span class="key-point">Mi kell a Java programok futtatásához?</span> Futtatáshoz elegendő a <span class="highlight">JRE (Java Runtime Environment)</span>, ami tartalmazza a <span class="highlight">JVM-et</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Java fordítás és futtatás parancsai:</span></p>
+                    <ul>
+                        <li>Fordítás: <code>javac HelloWorld.java</code></li>
+                        <li>Futtatás: <code>java HelloWorld</code></li>
+                    </ul>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Java fordítás és JVM</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a bájtkód és miért előnyös?</span> A Java bájtkód egy <span class="highlight">köztes kód</span> a forráskód és a gépi kód között. Előnyei:</p>
+                <ul>
+                    <li><span class="highlight">Hordozhatóság:</span> Ugyanaz a bájtkód futtatható különböző platformokon</li>
+                    <li><span class="highlight">Biztonság:</span> A JVM ellenőrizheti a kódot futtatás előtt</li>
+                    <li><span class="highlight">Optimalizálás:</span> A JVM futásidőben optimalizálhatja a kódot</li>
+                </ul>
+                
+                <p><span class="key-point">Mi található a .class fájlokban?</span> A .class fájlok <span class="highlight">Java bájtkódot</span> tartalmaznak, amely magában foglalja:</p>
+                <ul>
+                    <li>Az osztály <span class="highlight">metódusainak és mezőinek bytecode reprezentációját</span></li>
+                    <li><span class="highlight">Szimbólum táblázatokat</span> és metaadatokat</li>
+                    <li><span class="highlight">Verzió információkat</span> és egyéb osztály-specifikus adatokat</li>
+                </ul>
+                
+                <p><span class="key-point">Mik a JVM előnyei?</span> A Java Virtual Machine (JVM) előnyei:</p>
+                <ul>
+                    <li><span class="highlight">Platform-függetlenség:</span> "Write Once, Run Anywhere" elv</li>
+                    <li><span class="highlight">Automatikus memóriakezelés:</span> Garbage Collection</li>
+                    <li><span class="highlight">Biztonság:</span> Beépített biztonsági mechanizmusok</li>
+                    <li><span class="highlight">Teljesítmény-optimalizálás:</span> Just-In-Time (JIT) fordítás</li>
+                </ul>
+                <p><span class="key-point">Mi a JIT compiler szerepe?</span> A <span class="highlight">JIT (Just-In-Time) compiler</span> a bájtkódot <span class="highlight">futásidőben fordítja</span> gépi kódra, optimalizálva a teljesítményt.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>C++ fordítás és futtatás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan történik a C++ fordítás?</span> A C++ fordítás <span class="highlight">közvetlenül gépi kódra</span> történik, ami <span class="highlight">platformfüggő</span>, de <span class="highlight">gyorsabb futást</span> eredményez.</p>
+                <div class="step">
+                    <p><span class="key-point">C++ fordítás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Preprocesszor</span>: Makrók és include-ok feldolgozása</li>
+                        <li><span class="highlight">Compiler</span>: Forráskód fordítása assembly kódra</li>
+                        <li><span class="highlight">Assembler</span>: Assembly kód fordítása objektumkódra</li>
+                        <li><span class="highlight">Linker</span>: Objektumfájlok összekapcsolása futtatható állománnyá</li>
+                    </ol>
+                </div>
+
+                <p><span class="key-point">Milyen fordítót használnak C++-hoz?</span> Linux/Unix rendszereken gyakran a <span class="highlight">GCC (GNU Compiler Collection)</span> használatos.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">C++ fordítás és futtatás parancsai:</span></p>
+                    <ul>
+                        <li>Fordítás: <code>g++ -o prog main.cpp class1.cpp class2.cpp</code></li>
+                        <li>Futtatás: <code>./prog</code></li>
+                    </ul>
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>C++ fordítás részletei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Előfordító (Preprocessor) részletei:</span></p>
+                    <ul>
+                        <li>Az előfordító feladata a <span class="highlight">#include direktívák feldolgozása</span></li>
+                        <li>Amikor egy <code>#include</code> direktívát talál, <span class="highlight">beilleszti a megadott fájl tartalmát</span> a forráskódba</li>
+                        <li>Ez lehetővé teszi a <span class="highlight">függvénydeklarációk és definíciók elérését</span> a beillesztett fájlokból</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Mi történik #include esetén?</span> Az előfordító <span class="highlight">beilleszti a megadott header fájl teljes tartalmát</span> a forráskódba. Ha egy függvényt használsz egy include-olt könyvtárból, annak <span class="highlight">deklarációja bekerül a kódba</span>, de a definíciója csak a linkelés során kapcsolódik hozzá.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Összeszerkesztés (linking):</span></p>
+                    <ul>
+                        <li>A <span class="highlight">különálló object fájlok (.o) összekapcsolása</span> egy futtatható programmá</li>
+                        <li>Külső függvények és változók <span class="highlight">címeinek feloldása</span></li>
+                        <li>Statikus és dinamikus könyvtárak <span class="highlight">hozzákapcsolása</span> a programhoz</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Tárgymodulok (.o fájlok):</span></p>
+                    <ul>
+                        <li>A tárgymodulok <span class="highlight">gépi kódot tartalmaznak</span>, de még nem futtathatók</li>
+                        <li>Tartalmaznak <span class="highlight">szimbólumtáblát</span> a függvények és változók neveihez és címeihez</li>
+                        <li>A lefordított kód <span class="highlight">architektúra-specifikus</span>, nem hordozható különböző platformok között</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Azonos-e a lefordított kód minden architektúrán?</span> Nem, a lefordított gépi kód <span class="highlight">architektúra-specifikus</span>. Különböző CPU architektúrákra (pl. x86, ARM) különböző gépi kódot generál a fordító.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Parancssori paraméterek, fordítási opciók, nagyobb projektek fordítása</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Parancssori paraméterek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan kezeljük a parancssori paramétereket?</span> A parancssori paramétereket a <span class="highlight">main függvény argumentumain</span> keresztül érhetjük el mind Java, mind C++ esetén.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Java parancssori paraméterek:</span></p>
+                    <pre><code>public static void main(String[] args) {
+    // args tömb tartalmazza a paramétereket
+}</code></pre>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">C++ parancssori paraméterek:</span></p>
+                    <pre><code>int main(int argc, char* argv[]) {
+    // argc: paraméterek száma
+    // argv: paraméterek tömbje
+}</code></pre>
+                </div>
+                <p><span class="key-point">Mit tartalmaznak a paraméterek?</span> Az <span class="highlight">args</span> (Java) vagy <span class="highlight">argv</span> (C++) tömb tartalmazza az argumentumokat, míg <span class="highlight">argc</span> (C++) az argumentumok számát jelöli.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Fordítási opciók</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a gyakori fordítási opciók?</span> A fordítási opciók <span class="highlight">finomhangolják a fordítási folyamatot</span> és a kimeneti programot.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Java fordítási opciók:</span></p>
+                    <ul>
+                        <li><code>-g</code>: <span class="highlight">Debug információk</span> generálása</li>
+                        <li><code>-s &lt;könyvtár&gt;</code>: Kimeneti <span class="highlight">könyvtár megadása</span></li>
+                        <li><code>-sourcepath &lt;útvonal&gt;</code>: <span class="highlight">Forrásfájlok útvonala</span></li>
+                        <li><code>-Werror</code>: <span class="highlight">Figyelmeztetések hibaként kezelése</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">C++ fordítási opciók (GCC):</span></p>
+                    <ul>
+                        <li><code>-Ob&lt;szint&gt;</code>: <span class="highlight">Optimalizálási szint</span> beállítása (0-3)</li>
+                        <li><code>-o</code>: <span class="highlight">Kimeneti fájl</span> nevének megadása</li>
+                        <li><code>-c</code>: <span class="highlight">Lefordítja és összeállítja a forrást</span>, linkelést nem végez</li>
+                        <li><code>-Wall</code>: <span class="highlight">Összes figyelmeztetés</span> megjelenítése</li>
+                        <li><code>-g</code>: <span class="highlight">Debug információk</span> hozzáadása</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Nagyobb projektek fordítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan kezeljük nagy projektek fordítását?</span> Nagy projekteknél <span class="highlight">build toolokkat</span> használunk a fordítási folyamat automatizálására és optimalizálására.</p>
+                <p><span class="key-point">Miért van szükség build toolokra?</span> Nagyobb projekteknél a <span class="highlight">manuális fordítás nem hatékony</span>, ezért automatizált build toolokat használunk.</p>
+                <div class="step">
+                    <p><span class="key-point">Népszerű build toolok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Maven</span>: Java projektekhez</li>
+                        <li><span class="highlight">Ant</span>: Java projektekhez</li>
+                        <li><span class="highlight">Gradle</span>: Java és Android projektekhez</li>
+                        <li><span class="highlight">CMake</span>: C++ projektekhez</li>
+                        <li><span class="highlight">Makefile</span>: C++ projektekhez</li>
+                        <li><span class="highlight">Make</span>: Általános célú build tool</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért használjunk build toolokat?</span> A build toolok <span class="highlight">automatizálják a függőségek kezelését</span>, <span class="highlight">optimalizálják a fordítási folyamatot</span>, és <span class="highlight">konzisztens build környezetet</span> biztosítanak.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Absztrakt-, interfész- és generikus osztályok, virtuális eljárások</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Absztrakt osztályok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik az absztrakt osztályok?</span> Az absztrakt osztályok olyan osztályok, amelyek <span class="highlight">nem példányosíthatók</span>, és <span class="highlight">tartalmazhatnak absztrakt metódusokat</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Java Absztrakt osztályok jellemzői:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">abstract</span> kulcsszóval definiáljuk</li>
+                        <li>Tartalmazhat <span class="highlight">adattagokat és konkrét metódusokat</span></li>
+                        <li>Legalább egy <span class="highlight">absztrakt metódust</span> tartalmaz</li>
+                        <li><em>( Ha van legalább egy deklaráció, akkor az osztály absztrakt )</em></li>
+                        <li><span class="highlight">Örökölhetők</span> más osztályok által</li>
+                        <li><span class="highlight">Nem példányosíthatók</span></li>
+                        <li>Lehet <span class="highlight">konstruktora</span> és <span class="highlight">statikus metódusai</span></li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">C++ absztrakt osztályok:</span></p>
+                    <ul>
+                        <li>Legalább egy <code>pure virtual</code> függvényt tartalmaz <code>(pl. virtual void foo() = 0;)</code></li>
+                        <li>Nincs külön <span class="highlight">absztrakt kulcsszó</span></li>
+                        <li>Lehet <span class="highlight">konstruktora</span>, de közvetlenül nem példányosítható</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mikor használjunk absztrakt osztályokat?</span> Absztrakt osztályokat használunk, amikor <span class="highlight">közös funkcionalitást</span> akarunk definiálni több kapcsolódó osztály számára.</p>
+                <p><span class="key-point">Mi a különbség Java és C++ absztrakt osztályai között?</span> Java-ban az <code>abstract</code> kulcsszóval jelöljük az absztrakt osztályokat és metódusokat, míg C++-ban a <span class="highlight">pure virtual függvényekkel</span> (pl. <code>virtual void foo() = 0;</code>) hozunk létre absztrakt osztályokat.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Interfészek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik az interfészek?</span> Az interfészek <span class="highlight">tisztán absztrakt osztályok</span>, amelyek csak metódus deklarációkat tartalmaznak.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Interfészek jellemzői:</span></p>
+                    <ul>
+                        <li>Csak <span class="highlight">absztrakt metódusokat</span> tartalmaznak (Java 8 előtt)</li>
+                        <li>Java 8-tól <span class="highlight">default és static metódusokat</span> is tartalmazhatnak</li>
+                        <li>Egy osztály <span class="highlight">több interfészt is implementálhat</span></li>
+                        <li>C++-ban nincs külön interfész koncepció, <span class="highlight">absztrakt osztályokkal</span> helyettesíthető</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Mire használjuk az interfészeket?</span> Interfészeket használunk <span class="highlight">viselkedés definiálására</span> és <span class="highlight">többszörös öröklődés</span> megvalósítására Java-ban.</p>
+                <p><span class="key-point">Mi a különbség az interfész és az absztrakt osztály között?</span> Az interfészek <span class="highlight">tiszta absztrakciókat</span> definiálnak, míg az absztrakt osztályok <span class="highlight">részleges implementációt</span> is tartalmazhatnak.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Generikus osztályok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a generikus osztályok?</span> A generikus osztályok lehetővé teszik <span class="highlight">típusfüggetlen kód írását</span>, növelve az <span class="highlight">újrafelhasználhatóságot.</span></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Generikus osztályok jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Típusparamétereket</span> használnak</li>
+                        <li>Lehetővé teszik a <span class="highlight">típusbiztos kódolást</span></li>
+
+                        <li><span class="highlight">Futásidejű típusellenőrzést</span> biztosítanak</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan definiálunk generikus osztályt?</span> Java-ban <code>&lt;T&gt;</code> szintaxist használunk, C++-ban pedig <code>template&lt;typename T&gt;</code> kulcsszót.</p>
+                <p><span class="key-point">Mire használjuk a generikus osztályokat?</span> Generikus osztályokat használunk <span class="highlight">általános algoritmusok</span> és <span class="highlight">adatstruktúrák</span> implementálására.</p>
+            
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Virtuális eljárások</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a virtuális eljárások?</span> A virtuális eljárások lehetővé teszik a <span class="highlight">polimorfizmust</span>, azaz a metódusok <span class="highlight">dinamikus kötését</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Virtuális eljárások jellemzői:</span></p>
+                    <ul>
+                        <li>Lehetővé teszik a <span class="highlight">futásidejű metódus-kiválasztást</span></li>
+                        <li>Java-ban <span class="highlight">minden metódus alapértelmezetten virtuális</span> (kivéve final és private)</li>
+                        <li>C++-ban a <span class="highlight"><code>virtual</code> kulcsszóval</span> jelöljük</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért használjunk virtuális eljárásokat?</span> Virtuális eljárásokat használunk, amikor azt szeretnénk, hogy egy <span class="highlight">leszármazott osztály felüldefiniálhassa</span> az ősosztály metódusát.</p>
+                <div class="step">
+                    <p><span class="key-point">Mi a különbség virtuális és nem virtuális metódusok között?</span></p>
+                    <ul>
+                        <li><span class="highlight">Nem virtuális metódusok:</span> Statikus kötéssel rendelkeznek, a hívás helye fordítási időben eldől</li>
+                        <li><span class="highlight">Virtuális metódusok:</span> Dinamikus kötéssel rendelkeznek, a konkrét megvalósítás futásidőben dől el</li>
+                        <li>Virtuális metódusok lehetővé teszik a <span class="highlight">polimorfikus viselkedést</span> és az <span class="highlight">override-olást</span> a leszármazott osztályokban</li>
+                    </ul>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Polimorfizmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a polimorfizmus?</span> A polimorfizmus lehetővé teszi, hogy <span class="highlight">különböző osztályok objektumai azonos interfészen keresztül legyenek kezelhetők</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Polimorfizmus típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Statikus polimorfizmus:</span> Fordítási időben eldől (pl. függvény túlterhelés)</li>
+                        <li><span class="highlight">Dinamikus polimorfizmus:</span> Futásidőben dől el (virtuális függvények használatával)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos?</span> A polimorfizmus <span class="highlight">növeli a kód rugalmasságát és újrafelhasználhatóságát</span>, lehetővé téve a kód kiterjesztését új osztályokkal anélkül, hogy a meglévő kódot módosítani kellene.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. A virtuális eljárások megvalósítása, szerepe, használata</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Virtuális eljárások megvalósítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan valósulnak meg a virtuális eljárások?</span> A virtuális eljárások <span class="highlight">virtuális függvénytáblán (VFT)</span> keresztül valósulnak meg.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Virtuális függvénytábla (VFT):</span></p>
+                    <ul>
+                        <li>Minden osztály rendelkezik <span class="highlight">saját VFT-vel</span></li>
+                        <li>A VFT <span class="highlight">tárolja a virtuális függvények címeit</span></li>
+                        <li>Futásidőben a megfelelő függvény <span class="highlight">címe kerül kikeresésre</span></li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Hogyan működik a VFT?</span> A VFT egy <span class="highlight">táblázat, amely az osztály virtuális függvényeinek címeit</span> tartalmazza, és <span class="highlight">öröklődik az alosztályokban</span>.</p>
+                <p><span class="key-point">Mi a különbség a statikus és dinamikus kötés között?</span> A <span class="highlight">statikus kötés</span> fordítási időben, míg a <span class="highlight">dinamikus kötés</span> futásidőben történik.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Virtuális eljárások szerepe</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a virtuális eljárás?</span> A virtuális eljárás egy olyan metódus, amelynek <span class="highlight">pontos végrehajtási címe futási időben</span> dől el.</p>
+                <p><span class="key-point">Mi a virtuális eljárások fő szerepe?</span> A virtuális eljárások fő szerepe a <span class="highlight">polimorfizmus megvalósítása</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Virtuális eljárások előnyei:</span></p>
+                    <ul>
+                        <li>Lehetővé teszik az <span class="highlight">rugalmas kódtervezést</span></li>
+                        <li>Támogatják az <span class="highlight">öröklődés és polimorfizmus</span> hatékony használatát</li>
+                        <li>Elősegítik a <span class="highlight">kód újrafelhasználhatóságát</span> és <span class="highlight">kiterjeszthetőségét</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mikor használjunk virtuális eljárásokat?</span> Virtuális eljárásokat akkor használunk, amikor <span class="highlight">azonos interfészt</span> akarunk biztosítani különböző implementációkhoz.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Virtuális eljárások használata</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan használjuk a virtuális eljárásokat?</span> A virtuális eljárásokat <span class="highlight">röklődési hierarchiában definiáljuk és az alosztályokban felülírjuk.</span></p>
+                
+                <div class="step">
+                    <p><span class="key-point">Virtuális eljárások használatának lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Definiálás </span> az ősosztályban (C++-ban virtual kulcsszóval)</li>
+                        <li><span class="highlight">Felülírás </span> az alosztályokban (C++-ban <code>override</code> kulcsszó ajánlott)</li>
+                        <li><span class="highlight">Polimorfikus </span> használat <code>pointeren</code> vagy referencián keresztül</li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Mire kell figyelni?</span> Fontos a <span class="highlight">helyes öröklődési struktúra</span> kialakítása és a <span class="highlight">destruktorok virtuálissá tétele</span> C++-ban.</p>
+                <p><span class="key-point">Mi a pure virtual függvény?</span> A pure virtual függvény egy <span class="highlight">absztrakt metódus</span> C++-ban, amelynek nincs implementációja az ősosztályban.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa virtuális eljárás használatára (C++):</span></p>
+                    <pre><code>class Animal {
+public:
+    virtual void makeSound() = 0; // Pure virtual function
+};
+
+class Dog : public Animal {
+public:
+    void makeSound() override { cout << "Woof!" << endl; }
+};
+
+class Cat : public Animal {
+public:
+    void makeSound() override { cout << "Meow!" << endl; }
+};
+
+int main() {
+    Animal* animal1 = new Dog();
+    Animal* animal2 = new Cat();
+    
+    animal1->makeSound(); // Outputs: Woof!
+    animal2->makeSound(); // Outputs: Meow!
+    
+    delete animal1;
+    delete animal2;
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Összefoglaló</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p>A témánk végére értünk. Foglaljuk össze röviden, miről volt szó!</p>
+                
+                <p>A programozásban <span class="highlight">kulcsfontosságú a Java és C++ programok helyes fordítása és futtatása</span>. A parancssori paraméterek és fordítási opciók, különösen nagyobb projektek esetén, <span class="highlight">optimalizálják a fordítási folyamatot</span> és növelik a kód rugalmasságát.</p>
+                
+                <p>Az <span class="highlight">absztrakt osztályok, interfészek és generikus osztályok használata javítja a kód újrafelhasználhatóságát és karbantarthatóságát</span>, míg a <span class="highlight">virtuális eljárások lehetővé teszik a polimorfizmust</span>, így különböző objektumok egy közös interfészen keresztül biztosíthatják saját specifikus viselkedésüket.</p>
+                
+                <p>Köszönöm a figyelmet, kérdéseiket most tegyék fel!</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Főbb pontok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Java és C++ programok fordítása és futtatása</span></p>
+                    <ul>
+                        <li><span class="highlight">Java:</span>
+                            <ul>
+                                <li>Fejlesztéshez JDK, futtatáshoz JRE szükséges</li>
+                                <li>Java programokat JVM futtatja</li>
+                                <li>Fordítás folyamata: .java → bájtkód (.class) → JVM értelmezés</li>
+                                <li>Fordítás és futtatás: javac és java parancsokkal</li>
+                                <li>Nagyobb projekteknél build toolok használata (pl. Maven, Gradle)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">C++:</span>
+                            <ul>
+                                <li>Fordítási folyamat: preprocessor → compiler → assembler → linker</li>
+                                <li>Linux rendszereken gcc használata</li>
+                                <li>Kapcsolók: -O[szint], -c, -o, -Wall, -g</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Absztrakt-, interfész- és generikus osztályok</span></p>
+                    <ul>
+                        <li><span class="highlight">Absztrakt osztályok:</span> Nem példányosíthatók, tartalmazhatnak absztrakt metódusokat</li>
+                        <li><span class="highlight">Interfészek:</span> Csak metódusdeklarációkat tartalmaznak, Java 8 óta default implementációkkal</li>
+                        <li><span class="highlight">Generikus osztályok:</span> Típusfüggetlen kód írását teszik lehetővé</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Virtuális eljárások</span></p>
+                    <ul>
+                        <li>Futás közben határozódik meg a memóriacímük</li>
+                        <li>Java-ban minden metódus virtuális</li>
+                        <li>C++-ban lehet statikus és dinamikus virtuális metódus</li>
+                        <li>Lehetővé teszik a polimorfizmust</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/tetel.js"></script>
+</body>
+</html>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
