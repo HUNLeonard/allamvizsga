@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 23 - </title>
+    <title>Tétel 23 - Rendszerfejlesztés I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,616 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Rendszerfejlesztés I - 23. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Szoftverfejlesztési folyamat alapjai</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Szoftverfejlesztési folyamat alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a szoftverfejlesztési folyamat?</span> A szoftverfejlesztési folyamat egy <span class="highlight">bizonyos modell szerinti tevékenységek összessége</span>, amelynek eredménye a szoftvertermék.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő komponensei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Fejlesztési folyamat</span></li>
+                        <li><span class="highlight">Menedzsment</span></li>
+                        <li><span class="highlight">Technikai módszerek</span></li>
+                        <li><span class="highlight">Eszközök használata</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mit kell figyelembe venni?</span> Az elkészült termék esetében nem csak az <span class="highlight">elvárt funkcionalitás és teljesítmény</span> a fontos, hanem az <span class="highlight">üzembiztonság, jó használhatóság és karbantarthatóság</span> is.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>A fejlesztés lépései</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire kell figyelni a tervezésnél?</span> A fejlesztés kezdete előtt <span class="highlight">részletesen meg kell tervezni a lépéseket</span>:</p>
+                
+                <div class="step">
+                    <ol>
+                        <li><span class="highlight">Terv készítése</span>, ami az idő múlásával módosulhat</li>
+                        <li><span class="highlight">Megszorítások összegzése</span> (fejlesztők száma, munkaórák, határidők)</li>
+                        <li><span class="highlight">Paraméterek mérlegelése</span> (szoftver mérete, változtatások nagysága)</li>
+                        <li><span class="highlight">Mérföldkövek és átadandók tervezése</span></li>
+                        <li><span class="highlight">Ütemterv készítése</span> a fejlesztésben résztvevők számára</li>
+                        <li>A terv <span class="highlight">meghatározássá alakítása</span></li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Mi a projekt ütemezés kihívása?</span> A <span class="highlight">tevékenységekhez szükséges idő becslése</span> és a <span class="highlight">munkaerő optimális kihasználása</span> a fejlesztők igényeinek figyelembevételével.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Projekt ütemezése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire kell figyelni az ütemezésnél?</span> A projekt ütemezése <span class="highlight">komoly feladat</span>, ahol több szempontot is figyelembe kell venni:</p>
+                
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Tevékenységekhez szükséges idő becslése</span> (kezdetben érdemesebb pozitívnak lenni: +50%)</li>
+                        <li><span class="highlight">Munkaerő optimális kihasználása</span> (szabadságok, váratlan kimaradások figyelembevétele)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>A szoftverfejlesztési folyamat elemei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Fő elemek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Feladatok (termékek)</span></li>
+                        <li><span class="highlight">Átadandók (határidők)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Kiegészítő elemek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Projektmenedzsment</span> (Project Manager)</li>
+                        <li><span class="highlight">Konfigurációmenedzsment</span> (Business Analyst - BA)</li>
+                        <li><span class="highlight">Dokumentáció</span> (Developers - DEV)</li>
+                        <li><span class="highlight">Minőségbiztosítás</span> (Quality Assurance - QA - tester), kockázatmenedzsment</li>
+                        <li><span class="highlight">Mérés</span> (Testers)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Szoftverfejlesztési folyamat fázisai</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Alapok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">A folyamat fő fázisai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Specifikáció</span> (mit csináljunk)</li>
+                        <li><span class="highlight">Fejlesztés</span> (hogyan csináljuk)</li>
+                        <li><span class="highlight">Validáció, verifikáció</span> (jól csináltuk-e, ellenőrzés)</li>
+                        <li><span class="highlight">Evolúció</span> (karbantartás, felügyelés, "3RD level support")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Specifikáció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a specifikáció célja?</span> A specifikáció során <span class="highlight">meghatározzuk a termék funkcionalitását és az esetleges megszorításokat</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Miért fontos a tervezés?</span></p>
+                    <ul>
+                        <li><span class="highlight">Itt a legkisebb az esetleges változások költsége</span></li>
+                        <li>Nincs még fejlesztés, így nincsenek "kidobott" munkaórák</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi a specifikáció eredménye?</span> A specifikáció eredménye egy <span class="highlight">dokumentum</span> (esetleg spike-ok / prototípusok), ami később a fejlesztők munkáját segíti.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Fejlesztés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi történik a fejlesztési fázisban?</span> A fejlesztés a <span class="highlight">specifikáció megvalósítása</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">A fejlesztés lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Tervezés:</span> A termék struktúrájának, adatszerkezetének és alrendszereinek hierarchiájának (interfészek, osztályok, stb)  megtervezése</li>
+                        <li><span class="highlight">Programozás:</span> A tényleges kódolás</li>
+                        <li><span class="highlight">Nyomonkövetés (debugging):</span> Hibák keresése és javítása</li>
+                    </ol>
+                </div>
+                
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>-Fontosabb tervezési modellek-</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Fontosabb tervezési modellek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Structured Design (SD):</span> 
+                            <p>Célja a rendszer részeinek hierarchikus bontása, amely lehetővé teszi a könnyebb megértést és karbantartást. A módszer kulcselemei közé tartozik az adatfolyam-diagramok használata, amelyek a rendszer folyamatait és adatáramlását ábrázolják.</p>
+                            <img src="../assets/images/structured_design1.webp" alt="Structured Design Diagram 1" class="graph-image">
+                            <img src="../assets/images/structured_design2.webp" alt="Structured Design Diagram 2" class="graph-image">
+                        </li>
+                        <li><span class="highlight">SSADM (Structured Systems Analysis and Design Method):</span>
+                            <p>Az SSADM fázisokra bontja a fejlesztési folyamatot, beleértve az üzleti igények elemzését, a rendszertervezést és a rendszer logikai és fizikai specifikációját. Módszertan segít biztosítja, hogy a fejlesztett rendszerek pontosan megfeleljenek az üzleti követelményeknek.</p>
+                            <img src="../assets/images/ssadm.webp" alt="SSADM Diagram" class="graph-image">
+                        </li>
+                        <li><span class="highlight">OMT (Object Modelling Technique):</span>
+                            <p>Három fő szakaszból áll: elemzés, tervezés és implementáció. Az elemzési fázisban objektumok és kapcsolataik meghatározása, tervezésnél objektumok struktúrájának és viselkedésének kidolgozása, implementációban a fejlesztés. Kiemelkedően jól modellezi az objektumok közötti kapcsolatokat és kölcsönhatásokat.</p>
+                            <img src="../assets/images/omt.webp" alt="OMT Diagram" class="graph-image">
+                        </li>
+                        <li><span class="highlight">UML (Unified Modeling Language):</span>
+                            <p>Az UML egy grafikus modellezési nyelv, objektumorientált rendszerek tervezésére és dokumentálására. Különféle diagramtípusokat kínál, mint az osztály-, használati eset-, aktivitás- és szekvenciadiagramok, segítve ezzel a rendszer struktúrájának és működésének vizualizálását. Széles körben használatos és támogatja az objektumorientált programozás alapelveit.</p>
+                            <img src="../assets/images/uml.webp" alt="UML Diagram" class="graph-image">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Validáció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a validáció és verifikáció célja?</span> A validáció során <span class="highlight">ellenőrizzük, hogy a program megfelel-e az előírt specifikációknak és a megrendelő elvárásainak</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Mi a különbség a validáció és verifikáció között?</span></p>
+                    <ul>
+                        <li><span class="highlight">Verifikáció:</span> "Jól csináljuk-e a dolgot?" - Ellenőrzi, hogy a szoftver megfelel-e a specifikációnak.</li>
+                        <li><span class="highlight">Validáció:</span> "A jó dolgot csináljuk-e?" - Ellenőrzi, hogy a szoftver megfelel-e a felhasználói elvárásoknak és igényeknek.</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Tesztelési típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egységtesztelés (unit test):</span> A komponenst magában, a többitől függetlenül teszteljük</li>
+                        <li><span class="highlight">Modul tesztelés (integration test):</span> A függő és kapcsolódó komponenseket együtt teszteljük</li>
+                        <li><span class="highlight">Alrendszer tesztelése:</span> Több modul közös illeszkedésének vizsgálata</li>
+                        <li><span class="highlight">Rendszer tesztelése:</span> A módosított alrendszereket közösen teszteljük</li>
+                        <li><span class="highlight">Átviteli tesztelés:</span> A megrendelő adataival valós környezetben történő tesztelés</li>
+                        <li><span class="highlight">Béta tesztelés:</span> Olyan hibák keresése, amiket a fejlesztők nem láthattak</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Evolúció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az evolúció fázis célja?</span> Az evolúció fázisban a <span class="highlight">szoftver működésének nyomon követése és az esetleges hibák kezelése</span> történik.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mire kell figyelni?</span></p>
+                    <p>Az itt felmerülő problémák <span class="highlight">már költségesek lehetnek</span> a megrendelőnek, hiszen az átvételt követően a hibák kiküszöbölése <span class="highlight">sokszor plusz kiadással jár</p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. A folyamat különböző modelljei</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Vízesés modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a vízesés modell?</span> A vízesés modell egy <span class="highlight">szekvenciális</span> szoftverfejlesztési modell, ahol a fázisok <span class="highlight">lépcsőzetesen követik egymást</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzői:</span></p>
+                    <ul>
+                        <li>Minden fázis <span class="highlight">teljesen elkészül</span> a következő kezdete előtt</li>
+                        <li>Hibákat a <span class="highlight">fázisok végén gyűjtik össze</span>, és a folyamat végén javítják</li>
+                        <li><span class="highlight">Nagyon jó specifikációt</span> igényel a projekt elején</li>
+                        <li>A megrendelő csak a <span class="highlight">fejlesztés végén</span> találkozik a termékkel</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hátrányok:</span> A specifikációt nehéz pontosan átlátni a projekt elején, és a késői változtatások <span class="highlight">nagy költséggel járnak</span>.</p>
+                
+                <img src="../assets/images/vizeses_modell.webp" alt="Vízesés modell" class="graph-image">
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Iterációs (inkrementális) modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos az iteráció a szoftverfejlesztésben?</span> Az iteráció lehetővé teszi a <span class="highlight">folyamatos fejlesztést és finomhangolást</span> a projekt során.</p>
+                <p><span class="key-point">Mi az iterációs modell?</span> Az iterációs modell egy <span class="highlight">kötetlenebb fejlesztési folyamat</span>, ahol a követelmények változhatnak, a fejlesztési folyamat ismétlődik.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb jellemzők:</span></p>
+                    <ul>
+                        <li>A fejlesztési folyamat <span class="highlight">iterációja elkerülhetetlen</span></li>
+                        <li>Követelmények <span class="highlight">menet közben alakulnak ki</span></li>
+                        <li>Minden iterációban <span class="highlight">javítunk a terméken</span></li>
+                        <li>Az inkremensek <span class="highlight">működésbe helyezhetők</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li><span class="highlight">Rugalmasság:</span> Lehetővé teszi a változó követelményekhez való alkalmazkodást.</li>
+                        <li><span class="highlight">Kockázatcsökkentés:</span> A problémák korai felismerése és kezelése.</li>
+                        <li>Határidő csúszás esetén</span> nem vész el az egész projekt.</li>
+                        <li><span class="highlight">Folyamatos visszajelzés:</span> A megrendelő rendszeresen láthatja és értékelheti a fejlesztés eredményeit.</li>
+                        <li><span class="highlight">Minőségjavítás:</span> Lehetőség van a folyamatos tesztelésre és javításra.</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Kihívások:</span> Az inkremensek meghatározása nem triviális (túl kicsi: nem működőképes, túl nagy: elvész a modell lényege).</p>
+                
+                <img src="../assets/images/inkrementalis_modell.webp" alt="Inkrementális modell" class="graph-image">
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Evolúciós (prototípusos) modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az evolúciós modell?</span> Az evolúciós modell egy <span class="highlight">szélsőséges iterációs modell</span>, ahol gyorsan fejlesztenek prototípusokat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Folyamat:</span></p>
+                    <ol>
+                        <li>Egy <span class="highlight">durva specifikáció</span> alapján <span class="highlight">gyors</span> prototípus fejlesztése</li>
+                        <li>Megrendelő <span class="highlight">kiértékeli a prototípust</span></li>
+                        <li>Új <span class="highlight">követelmények megírása</span> a működés alapján</li>
+                        <li>Folyamat <span class="highlight">ismétlése</span> a végső állapot eléréséig</li>
+                        <li>Az iterációkban <span class="highlight">tetszőleges fejlesztési modell</span> választható</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Kihívások:</span> <span class="highlight">Időigényes</span> a megrendelő részéről <em>( sok prototípust kell megvizsgálni )</em>, és fennáll a veszély, hogy a prototípust kész rendszernek tekintik.</p>
+                
+                <img src="../assets/images/evolucios_modell.webp" alt="Evolúciós modell" class="graph-image">
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Extreme Programming (XP)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az Extreme Programming?</span> Az XP egy <span class="highlight">szélsőséges fejlesztési modell</span>, ahol rövid idő alatt kis funkcionalitású inkremenseket valósítanak meg.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Megrendelő intenzív részvétele</span> szükséges</li>
+                        <li><span class="highlight">Cooperative programming</span>: több fejlesztő dolgozik együtt</li>
+                        <li><span class="highlight">Gyors reagálás</span> a felmerülő kérdésekre</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Kritika:</span> Sokak szerint <span class="highlight">nem hatékony</span> fejlesztési modell, mert "a jó munkához idő kell".</p>
+                
+                <img src="../assets/images/extreme_programming.webp" alt="Extreme Programming" class="graph-image">
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Rapid Application Development (RAD)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a RAD?</span> A RAD egy <span class="highlight">extrém rövid életciklusú</span> fejlesztési modell, ahol gyorsan kell működő rendszert létrehozni.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Extrém rövid életciklus (60-90 nap)</span> alatt kell működő rendszert létrehozni</li>
+                        <li><span class="highlight">Párhuzamos fejlesztés</span> több csapat által</li>
+                        <li><span class="highlight">Intenzív együttműködés</span> a megrendelővel</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Kihívások:</span> <span class="highlight">Nagy emberi erőforrásigény</span>, és nem minden projektre alkalmazható.</p>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Spirális modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a spirális modell?</span> A spirális modell a <span class="highlight">prototípus és a vízesés modell kombinációja</span>, egy általánosabb inkrementációs modell.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nincsenek rögzített fázisok</span></li>
+                        <li>A fejlesztés egy <span class="highlight">spirállal ábrázolható</span></li>
+                        <li>Minden kör kimenete egy <span class="highlight">"release"</span></li>
+                        <li>A körök <span class="highlight">3-6 szektorra</span> oszthatók</li>
+                        <li>A körök célja lehet: <span class="highlight">megvalósíthatóság, követelmények, tervezés, javítás, stb.</span></li>
+                    </ul>
+                </div>
+                
+                <img src="../assets/images/spiralis_modell.webp" alt="Spirális modell" class="graph-image">
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>V-modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a V-modell?</span> A V-modell a <span class="highlight">vízesés modell kibővített változata</span>, amely hangsúlyozza a tesztelés fontosságát.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Felépítés:</span></p>
+                    <ul>
+                        <li><span class="highlight">V-alakú vizuális ábrázolás</span> ( Szekvenciális modell kötetlen lépésekkel )</li>
+                        <li><span class="highlight">Bal oldal:</span> Tervezési fázisok</li>
+                        <li><span class="highlight">Jobb oldal:</span> Tesztelési fázisok</li>
+                        <li>Minden fejlesztési szakasznak <span class="highlight">megfelelő tesztelési szakasz</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Előny:</span> <span class="highlight">Alapos ellenőrzés</span> és verifikáció a fejlesztési folyamat során.</p>
+                
+                <img src="../assets/images/v_modell.webp" alt="V-modell" class="graph-image">
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Tisztaszoba módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Magas színvonalú fejlesztésekhez (pl. banki alkalmazások)</li>
+                        <li>Hangsúly a hibák megelőzésén</li>
+                        <li>Fokozatosan ellenőrzött tervezés és megvalósítás</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Rational Unified Process (RUP)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Jellemzők:</span></p>
+                    <ul>
+                        <li>Több folyamatmodell ötvözete</li>
+                        <li>Komponensek iteratív fejlesztése</li>
+                        <li>Magas minőség és utólagos karbantartás</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Agilis módszertanok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik az agilis módszertanok?</span> Az agilis módszertanok <span class="highlight">rugalmas, iteratív megközelítések</span> a szoftverfejlesztésben.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb agilis módszertanok:</span></p>
+                    <ul>
+                        <li>
+                            <p><span class="key-point">SCRUM:</span></p>
+                            <ul>
+                                <li><span class="highlight">Sprintekre</span> osztott fejlesztés <em>(Kéthetes sprintek)</em></li>
+                                <li><span class="highlight">Napi stand-up meetingek</span></li>
+                                <li>Szerepkörök: <span class="highlight">Scrum master, Product Owner, fejlesztők</span></li>
+                            </ul>
+                        </li>
+                        <li><p><span class="key-point">Kanban:</span></p>
+                            <ul>
+                                <li><span class="highlight">Vizuális tábla</span> a feladatok követésére</li>
+                                <li>Oszlopok: <span class="highlight">TODO, IN PROGRESS, DONE</span></li>
+                                <li>Folyamatos <span class="highlight">frissítés és státuszkövetés</span> a fejlesztés során</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Előnyök:</span> <span class="highlight">Gyors alkalmazkodás</span> a változó követelményekhez, <span class="highlight">folyamatos visszajelzés</span> a megrendelőtől.</p>
+                
+                <img src="../assets/images/agilis_modszertan.webp" alt="Agilis módszertanok" class="graph-image">
+            </div>
+        </div>
+
+        
+        <div class="algorithm">
+            <h2>Az ideális fejlesztési modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Van-e ideális fejlesztési modell?</span> Nincs egyetlen "legjobb" modell, minden projekt <span class="highlight">egyedi igényekkel és kihívásokkal</span> rendelkezik.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mit kell figyelembe venni a modell kiválasztásánál?</span></p>
+                    <ul>
+                        <li><span class="highlight">Projekt mérete és komplexitása</span></li>
+                        <li><span class="highlight">Csapat tapasztalata és készségei</span></li>
+                        <li><span class="highlight">Ügyfél elvárásai és bevonódása</span></li>
+                        <li><span class="highlight">Időbeli és pénzügyi korlátok</span></li>
+                        <li><span class="highlight">Technológiai környezet</span></li>
+                    </ul>
+                </div>
+                <p>Gyakran a <span class="highlight">különböző modellek kombinációja</span> vagy egy <span class="highlight">testre szabott megközelítés</span> lehet a legjobb választás.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>A szoftverfejlesztési folyamat és modellek áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos?</span> A szoftverfejlesztési folyamat részletes megértése és a különböző fejlesztési modellek ismerete <span class="highlight">elengedhetetlen a hatékony szoftverprojektek megvalósításához</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Szoftverfejlesztési folyamat elemei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Fejlesztés = folyamat + menedzsment + technikai módszerek + eszközök használata</span></li>
+                        <li>Fontos szempontok: <span class="highlight">funkcionalitás, teljesítmény, megbízhatóság, használhatóság, karbantarthatóság, továbbfejleszthetőség</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Tervezési folyamat főbb lépései:</span></p>
+                    <ol>
+                        <li>Terv készítése (módosítható, itt még olcsó)</li>
+                        <li>Megszorítások összegzése</li>
+                        <li>Paraméterek becslése</li>
+                        <li>Mérföldkövek és átadandók tervezése</li>
+                        <li>Ütemterv készítése</li>
+                        <li>Rögzítés, átadandók és határidők meghatározása</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Folyamat elemei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Fő elemek:</span> feladatok, termékek, határidők, átadandók</li>
+                        <li><span class="highlight">Kiegészítő elemek:</span> projektmenedzsment, konfigurációmenedzsment, dokumentáció, minőségbiztosítás, kockázatelemzés, mérés</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Fejlesztési folyamat fázisai:</span></p>
+                    <ol>
+                        <li><span class="highlight">Specifikáció</span> (mit csináljunk)</li>
+                        <li><span class="highlight">Fejlesztés</span> (hogyan csináljuk)</li>
+                        <li><span class="highlight">Validáció/verifikáció</span> (jól csináltuk-e)</li>
+                        <li><span class="highlight">Evolúció</span> (karbantartás, felügyelés, "3RD level support")</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Szoftverfejlesztési modellek összehasonlítása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Vízesés modell:</span> 
+                            <ul>
+                                <li>Szekvenciális modell, nincs visszalépés</li>
+                                <li>Hibák javítása a fázisok végén</li>
+                                <li>Nagyon jó kezdeti specifikáció szükséges</li>
+                                <li>A megrendelő csak a projekt végén találkozik a termékkel</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Iterációs (inkrementális) modell:</span>
+                            <ul>
+                                <li>A fejlesztési folyamat iterál</li>
+                                <li>A specifikáció csak nagy vonalakban meghatározott</li>
+                                <li>Minden iterációban javítás történik</li>
+                                <li>Inkremensek meghatározása kihívást jelenthet</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Evolúciós (prototípusos) modell:</span>
+                            <ul>
+                                <li>Az iterációs modell szélsőséges verziója</li>
+                                <li>Gyors prototípus-fejlesztés</li>
+                                <li>Intenzív megrendelői visszajelzés</li>
+                                <li>A prototípus nem feltétlenül lesz végleges termék</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Extreme Programming (XP):</span>
+                            <ul>
+                                <li>Kis funkcionalitású inkremensek megvalósítása</li>
+                                <li>Megrendelő intenzív részvétele</li>
+                                <li>Csoportos fejlesztés (cooperative programming)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Rapid Application Development (RAD):</span>
+                            <ul>
+                                <li>Extrém rövid életciklus (60-90 nap)</li>
+                                <li>"Nagysebességű" vízesés modell</li>
+                                <li>Párhuzamos fejlesztés, nagy erőforrásigény</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Spirális modell:</span>
+                            <ul>
+                                <li>Prototípus és vízesés modell kombinációja</li>
+                                <li>Nincs rögzített fázis, spirállal ábrázolható</li>
+                                <li>Körök kimenete egy "release"</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">V-modell:</span>
+                            <ul>
+                                <li>Szekvenciális modell kötetlen lépésekkel</li>
+                                <li>Sok tervezés és ellenőrzés (verifikáció)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Tisztaszoba módszer:</span>
+                            <ul>
+                                <li>Magas színvonalú fejlesztésekhez (pl. banki alkalmazások)</li>
+                                <li>Hangsúly a hibák megelőzésén</li>
+                                <li>Fokozatosan ellenőrzött tervezés és megvalósítás</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Rational Unified Process (RUP):</span>
+                            <ul>
+                                <li>Több folyamatmodell ötvözete</li>
+                                <li>Komponensek iteratív fejlesztése</li>
+                                <li>Magas minőség és utólagos karbantartás</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Agilis szoftverfejlesztési modellek:</span></p>
+                    <ul>
+                        <li><span class="highlight">SCRUM:</span>
+                            <ul>
+                                <li>Kéthetes sprintekre osztott fejlesztés</li>
+                                <li>Napi megbeszélések (stand-up meeting)</li>
+                                <li>Sprint elején és végén tervezés és értékelés</li>
+                                <li>Scrum master, product owner, team, stakeholders, management</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Kanban:</span>
+                            <ul>
+                                <li>Vizuális tábla a feladatok követésére</li>
+                                <li>Teendő (todo), folyamatban (in progress), kész (done) oszlopok</li>
+                                <li>SCRUMBAN: SCRUM Kanban táblával kombinálva</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Konklúzió:</span> A megfelelő modell kiválasztása és alkalmazása <span class="highlight">növeli a projekt sikerességét és hatékonyságát</span>. A folyamat minden elemének alapos kidolgozása biztosítja, hogy a szoftver megfeleljen a követelményeknek és magas minőségű legyen. Minden projekthez az igényeknek leginkább megfelelő megközelítést kell választani.</p>
+            </div>
+        </div>
+    </div>
+    
 
     <script src="../assets/js/tetel.js"></script>
 </body>
