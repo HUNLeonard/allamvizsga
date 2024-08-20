@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 22 - </title>
+    <title>Tétel 22 - Programozási nyelvek</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,431 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Programozási nyelvek - 22. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. A programozási nyelvek csoportosítása (paradigmák)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Programozási paradigmák alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a programozási nyelv?</span> A programozási nyelv egy <span class="highlight">jelölésrendszer</span> számítógépen megvalósítható <span class="highlight">algoritmusok és adatszerkezetek leírására</span>.</p>
+                
+                <p><span class="key-point">Mi a programozási paradigma?</span> A programozási paradigma egy olyan <span class="highlight">osztályozási forma</span>, amely a programozási nyelvek <span class="highlight">jellemzőin alapul</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb nyelvcsoportok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Imperatív / procedurális</span> (C, C++, Pascal)</li>
+                        <li><span class="highlight">Objektumorientált</span> (C++, Java, Smalltalk)</li>
+                        <li><span class="highlight">Applikatív, funkcionális</span> (Haskell, ML)</li>
+                        <li><span class="highlight">Szabály alapú, logikai</span> (Prolog, HASL)</li>
+                        <li><span class="highlight">Párhuzamos</span> (Occam, PVM, MPI)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért tanuljuk a paradigmákat?</span> A paradigmák segítenek:</p>
+                <ul>
+                    <li>Az ismert nyelvek <span class="highlight">alaposabb megismerésében</span></li>
+                    <li>A <span class="highlight">kifejezőerő növelésében</span> és a módszereink bővítésében</li>
+                    <li>A <span class="highlight">megfelelő nyelv kiválasztásában</span> egy adott feladathoz</li>
+                    <li><span class="highlight">Új nyelvek elsajátításában</span></li>
+                    <li><span class="highlight">Új programozási nyelvek tervezésében</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Imperatív / procedurális paradigma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi jellemzi az imperatív paradigmát?</span> Az imperatív paradigma alapkövét a <span class="highlight">kifejezések képezik</span>, amelyek megváltoztatják a program állapotát.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Utasítások sorozata</span> határozza meg a program működését</li>
+                        <li><span class="highlight">Változók használata</span> az állapot tárolására</li>
+                        <li><span class="highlight">Vezérlési szerkezetek</span> (pl. ciklusok, elágazások) alkalmazása</li>
+                        <li><span class="highlight">Procedúrák</span> (subroutine, functions) használata a kód strukturálására</li>
+                        <li><span class="highlight">Pointer típus</span> a hatékony memóriakezeléshez</li>
+                        <li><span class="highlight">Közvetlen memóriakezelés</span> lehetősége</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Példa nyelvek:</span> C, C++, Pascal</p>
+                <p><span class="key-point">Az imperatív programozás fejlődése:</span></p>
+                <ol>
+                    <li><span class="highlight">Gépi kód és assembly:</span> Közvetlen hardvervezérlés, bonyolult és időigényes.</li>
+                    <li><span class="highlight">Procedurális programozás:</span> Eljárásokra bontás, javítja az olvashatóságot és </li>
+                    <li><span class="highlight">Moduláris programozás:</span> Különálló modulok, könnyebb fejlesztés és hibakezelés.</li>
+                    <li><span class="highlight">Absztrakt adattípusok:</span> Magasabb szintű adatkezelés, belső szerkezet ismerete nélkül.</li>
+                    <li><span class="highlight">Objektumorientáltság:</span> Adatok és műveletek objektumokba szervezése, encapsulation, öröklődés, polimorfizmus.</li>
+                </ol>
+                
+                <p><span class="key-point">Moduláris tervezés céljai:</span></p>
+                <ul>
+                    <li><span class="highlight">Dekompozíció:</span> Feladatok kisebb részfeladatokra bontása</li>
+                    <li><span class="highlight">Kompozíció:</span> Meglévő egységek újrafelhasználása</li>
+                    <li><span class="highlight">Érthetőség:</span> Önálló egységek</li>
+                    <li><span class="highlight">Folytonosság:</span> Kis változtatások egyszerű végrehajtása</li>
+                    <li><span class="highlight">Védelem:</span> Hibák hatásának korlátozása</li>
+                </ul>
+
+                <div class="step">
+                    <p><span class="key-point">Információ elrejtés és bezárás (Encapsulation):</span></p>
+                    <ul>
+                        <li>A belső megvalósítást <span class="highlight">elrejti a felhasználók elől</span></li>
+                        <li>Lehetővé teszi a modulok <span class="highlight">független fejlesztését és tesztelését</span></li>
+                        <li>Javítja a <span class="highlight">szoftver modularitását és karbantarthatóságát</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Absztrakt adattípus:</span> Egy olyan típus, amelyet <span class="highlight">indirekt módon, a műveletei által definiálunk</span>. Például egy "Szamla" adattípus a banki alkalmazásban.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Objektumorientált paradigma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az objektumorientált paradigma lényege?</span> Az OOP az <span class="highlight">objektumok fogalmán alapul</span>, amelyek egységbe foglalják a logikailag összefüggő adatokat és műveleteket.</p>
+                <div class="step">
+                    <p><span class="key-point">Fő koncepciók:</span></p>
+                    <ul>
+                        <li><span class="highlight">Osztályok és objektumok:</span> Az osztályok sablonok, az objektumok ezek példányai</li>
+                        <li><span class="highlight">Objektumok:</span> Adatok és műveletek egysége</li>
+                        <li><span class="highlight">Öröklődés:</span> Lehetővé teszi az osztályok közötti hierarchiát</li>
+                        <li><span class="highlight">Polimorfizmus:</span> Ugyanazt a műveletet különböző módon lehet definiálni</li>
+                        <li><span class="highlight">Encapsulation (adatelrejtés):</span> Az adatok és funkciók elrejtése az objektumokon belül</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Objektum jellemzői:</span></p>
+                <ul>
+                    <li><span class="highlight">Állapot:</span> A tulajdonságok aktuális értéke</li>
+                    <li><span class="highlight">Viselkedés:</span> Az objektum reakciója más objektumok kéréseire (metódusok)</li>
+                    <li><span class="highlight">Identitás:</span> Minden objektum egyedi, még azonos állapot esetén is</li>
+                </ul>
+                <p><span class="key-point">Hogyan működik az öröklődés?</span> Az öröklődés során a <span class="highlight">leszármaztatott osztályok megkapják az őseik változóit és eljárásait</span>, amiket esetlegesen felülírhatnak vagy kiegészíthetnek.</p>
+                <p><span class="key-point">Mi a kapcsolat az osztály és az objektum között?</span> Az objektum az osztály <span class="highlight">példánya</span>.</p>
+                <p><span class="key-point">Példa nyelvek:</span> C++, Java, C#, Smalltalk</p>
+                <p>Java-ban az objektumok <span class="highlight">osztályok példányai</span>, és rendelkeznek saját állapottal és viselkedéssel:</p>
+                <pre><code>public class Car {
+    private String model;
+    public void start() {
+        System.out.println("The car is starting");
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Funkcionális paradigma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a funkcionális paradigma alapja?</span> A funkcionális paradigma <span class="highlight">értékek, kifejezések és függvények</span> kombinációjából épül fel.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tiszta függvények:</span> Mellékhatások nélküli függvények</li>
+                        <li><span class="highlight">Immutábilis adatok:</span> Az adatok nem változtathatók meg létrehozás után</li>
+                        <li><span class="highlight">Rekurzió:</span> Ciklusok helyett rekurzív hívások használata</li>
+                        <li><span class="highlight">Magasabb rendű függvények:</span> Függvények, amelyek más függvényeket fogadnak paraméterként vagy adnak vissza</li>
+                        <li><span class="highlight">Lusta kiértékelés:</span> Kifejezések csak szükség esetén értékelődnek ki</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Funkcionális programozás jellemzői:</span></p>
+                    <ul>
+                        <li>A program maga is egy <span class="highlight">függvény</span></li>
+                        <li><span class="highlight">Nehezebb interakció</span> (input/output kezelés)</li>
+                        <li><span class="highlight">Könnyebb helyességellenőrzés</span></li>
+                        <li>A <span class="highlight">rekurzió gyakran átláthatóbb</span>, mint a ciklusok</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi a különbség az imperatív és a funkcionális megközelítés között?</span> Az imperatív megközelítés a <span class="highlight">"hogyan"</span> kérdésre fókuszál, míg a funkcionális a <span class="highlight">"mi"</span> kérdésre, azaz a feladat leírására koncentrál.</p>
+                
+                <p><span class="key-point">Példa nyelvek:</span> Haskell, ML, Lisp</p>
+                <p>Haskellben a függvények <span class="highlight">tiszták és mellékhatás-mentesek</span>:</p>
+                <pre><code>factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n - 1)</code></pre>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Logikai paradigma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire épül a logikai paradigma?</span> A logikai paradigma az <span class="highlight">adatok és azok közötti összefüggések</span> leírására épül.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tények és szabályok:</span> Az adatok és relációk definiálása</li>
+                        <li><span class="highlight">Következtetési mechanizmus:</span> Beépített rendszer a kérdések megválaszolására</li>
+                        <li><span class="highlight">Deklaratív programozás:</span> A "mit" határozzuk meg, nem a "hogyant"</li>
+                        <li><span class="highlight">Automatikus backtracking:</span> A rendszer automatikusan kipróbál különböző megoldásokat</li>
+                        <li><span class="highlight">Relációk</span> használata objektumok között</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Logikai programozás elemei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Termek:</span> Az adatok alapegységei (pl. alma, 1000, mary)</li>
+                        <li><span class="highlight">Relációk:</span> A termek közötti kapcsolatok (pl. likes(mary, alma))</li>
+                        <li><span class="highlight">Kérdések:</span> Eldöntendő vagy általános kérdések a relációkról</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa nyelvek:</span> Prolog, HASL</p>
+                <p>Prologban <span class="highlight">tényeket és szabályokat</span> definiálunk:</p>
+                <pre><code>likes(mary, apple).
+likes(john, apple).
+fruit(apple).
+
+likes_fruit(X) :- likes(X, Y), fruit(Y).</code></pre>
+                
+                <p><span class="key-point">Kérdések típusai:</span></p>
+                <ul>
+                    <li><span class="highlight">Eldöntendő kérdések:</span> Konkrét értékekre vonatkoznak</li>
+                    <li><span class="highlight">Általános kérdések:</span> Változót tartalmaznak</li>
+                </ul>
+                <p><span class="key-point">Hogyan működik egy logikai program?</span> Egy logikai program <span class="highlight">tények adatbázisát</span> hozza létre, amelyből a beépített következtető rendszer <span class="highlight">válaszol a feltett kérdésekre</span>.</p>
+                <p><span class="key-point">Mi a fő különbség a logikai és a funkcionális programozás között?</span> Bár mindkettő deklaratív, a logikai programozás <span class="highlight">szabályokon és következtetéseken</span> alapul, míg a funkcionális programozás <span class="highlight">függvények kiértékelésén</span>.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Párhuzamos paradigma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a párhuzamos paradigma lényege?</span> A párhuzamos paradigma lehetővé teszi <span class="highlight">több folyamat egyidejű végrehajtását</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő kihívások:</span></p>
+                    <ul>
+                        <li><span class="highlight">Közös hozzáférés:</span> Közös memória kezelése, ahol több végrehajtás módosíthat adatokat</li>
+                        <li><span class="highlight">Folyamatok kezelése:</span> Létrehozás, megszüntetés, és együttműködés</li>
+                        <li><span class="highlight">Kiszámíthatatlanság:</span> A folyamatok relatív sebessége futásonként változhat</li>
+                        <li><span class="highlight">Holtpontok (deadlock):</span> Kölcsönös egymásra várakozás elkerülése, (a rendszer le tu állni)</li>
+                        <li><span class="highlight">Éhezés (starvation):</span> Amikor egy folyamat nem jut hozzá az erőforrásokhoz, ( a rendszer még tud működni )</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa nyelvek:</span> Occam, PVM, MPI</p>
+                <div class="step">
+                    <p><span class="key-point">Occam nyelv jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Imperatív folyamatok</span> saját memóriával</li>
+                        <li><span class="highlight">Üzenetküldés</span> csatornákon keresztül</li>
+                        <li><span class="highlight">Szigorú formai követelmények</span></li>
+                        <li><span class="highlight">Egyszerű és összetett típusok</span> (bool, int, tömb stb.)</li>
+                        <li><span class="highlight">Csatornák:</span> Egyirányú, biztonságos, szinkron adatátvitel</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Párhuzamos programozás kulcsszavai Occam-ban:</span></p>
+                    <ul>
+                        <li><span class="highlight">SEQ:</span> Szekvenciális végrehajtás</li>
+                        <li><span class="highlight">PAR:</span> Párhuzamos végrehajtás</li>
+                        <li><span class="highlight">ALT:</span> Alternatív végrehajtás feltételek alapján</li>
+                    </ul>
+                </div>
+
+                <p>Occam-ban <span class="highlight">párhuzamos folyamatokat</span> definiálhatunk:</p>
+                <pre><code>PROC example()
+  CHAN OF INT c:
+  PAR
+    producer(c!)
+    consumer(c?)
+:
+
+PROC producer(CHAN OF INT out!)
+  SEQ i = 0 FOR 10
+    out ! i
+:
+
+PROC consumer(CHAN OF INT in?)
+  INT x:
+  SEQ i = 0 FOR 10
+    in ? x
+    print(x)
+:</code></pre>
+                
+<p><span class="key-point">Mire kell figyelni párhuzamos programozásnál?</span> Fontos a <span class="highlight">megfelelő szinkronizáció</span>, a <span class="highlight">holtpontok elkerülése</span>, és a <span class="highlight">hatékony erőforrás-megosztás</span> biztosítása a párhuzamos folyamatok között.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Implementációs stratégiák és nyelvek összehasonlítása</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Implementációs stratégiák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik az implementációs stratégiák?</span> Az implementációs stratégiák határozzák meg, <span class="highlight">hogyan alakul át a forráskód futtatható formává</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő stratégiák:</span></p>
+                    <ul>
+                        <li><span class="highlight">Értelmező (Interpreter):</span>
+                            <ul>
+                                <li>Közvetlenül futtatja a forráskódot soronként</li>
+                                <li>Előny: Azonnali végrehajtás, gyors tesztelés</li>
+                                <li>Hátrány: Lassabb futási idő</li>
+                                <li>Példák: Python, JavaScript, Ruby</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Fordító (Compiler):</span>
+                            <ul>
+                                <li>A forráskódot előre lefordítja gépi kódra vagy köztes kódra</li>
+                                <li>Előny: Gyorsabb futási idő</li>
+                                <li>Hátrány: Időigényes fordítási folyamat</li>
+                                <li>Példák: C, C++, Java (köztes bytecode-ra fordít)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Hibrid:</span>
+                            <ul>
+                                <li>Ötvözi az értelmező és a fordító stratégiák előnyeit</li>
+                                <li>Előny: Gyorsabb futás és platformfüggetlenség</li>
+                                <li>Példák: Java (JVM), .NET nyelvek (C#, VB.NET)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Nyelvek összehasonlítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miben különböznek a nyelvek?</span> A nyelvek különböznek <span class="highlight">szintaxisukban, szemantikájukban és támogatott paradigmáikban</span>.</p>
+                <p><span class="key-point">Mi a különbség a szintaxis és a szemantika között?</span> A <span class="highlight">szintaxis</span> a nyelv formai szabályait, míg a <span class="highlight">szemantika</span> a programok jelentését határozza meg.</p>
+                <div class="step">
+                    <p><span class="key-point">Összehasonlítási szempontok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Szintaxis:</span> A nyelv formai szabályai</li>
+                        <li><span class="highlight">Szemantika:</span> A programok jelentése</li>
+                        <li><span class="highlight">Absztrakciós szint:</span> Mennyire áll közel a gépi kódhoz vagy a természetes nyelvhez</li>
+                        <li><span class="highlight">Típusrendszer:</span> Statikus vagy dinamikus típusosság</li>
+                        <li><span class="highlight">Memóriakezelés:</span> Manuális vagy automatikus (garbage collection)</li>
+                        <li><span class="highlight">Párhuzamosság támogatása:</span> Beépített vagy külső könyvtárak</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példák:</span></p>
+                <ul>
+                    <li><span class="highlight">C:</span> Alacsony szintű, manuális memóriakezelés, hatékony</li>
+                    <li><span class="highlight">Python:</span> Magas szintű, dinamikus típusos, könnyen olvasható</li>
+                    <li><span class="highlight">Java:</span> Platformfüggetlen, erős típusosság, automatikus memóriakezelés</li>
+                    <li><span class="highlight">Haskell:</span> Tisztán funkcionális, erős típusrendszer, lusta kiértékelés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Alkalmazási területek és speciális nyelvi jellemzők és vizsgakérdések</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Paradigmák alkalmazási területei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Melyik paradigma mire alkalmas?</span> Minden paradigmának megvannak a <span class="highlight">saját erősségei</span> és ideális alkalmazási területei.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Jellemző alkalmazások:</span></p>
+                    <ul>
+                        <li><span class="highlight">Imperatív:</span> Rendszerprogramozás, beágyazott rendszerek, teljesítményigényes alkalmazások</li>
+                        <li><span class="highlight">OOP:</span> Nagy méretű alkalmazások, GUI fejlesztés, üzleti szoftverek</li>
+                        <li><span class="highlight">Funkcionális:</span> Matematikai számítások, adatfeldolgozás, párhuzamos programozás</li>
+                        <li><span class="highlight">Logikai:</span> Mesterséges intelligencia, szakértői rendszerek, természetes nyelvfeldolgozás</li>
+                        <li><span class="highlight">Párhuzamos:</span> Nagy teljesítményű számítások, szerver alkalmazások, elosztott rendszerek</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Smalltalk nyelv sajátosságai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a Smalltalk fő jellemzői?</span> A Smalltalk egy <span class="highlight">tisztán objektumorientált nyelv</span>, amely az üzenetküldéses modellt használja.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb koncepciók:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszerű kifejezések:</span> send, receive, skip, stop, értékadás</li>
+                        <li><span class="highlight">Összetett kifejezések:</span> feltételes elágazás, ciklusok</li>
+                        <li><span class="highlight">Üzenetküldés:</span> Az objektumok üzeneteket küldenek egymásnak, Minden művelet üzenetküldésként értelmezhető</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan néz ki egy feltételes elágazás Smalltalkban?</span></p>
+                <pre><code>aCondition 
+    ifTrue: [ trueBlock ] 
+    ifFalse: [ falseBlock ]</code></pre>
+                
+                <p><span class="key-point">Mi történik, ha a feltétel hamisan értékelődik ki?</span> Ebben az esetben a <span class="highlight">falseBlock</span> hajtódik végre.</p>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Párhuzamos programozás és szinkronizáció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a főbb kihívások a párhuzamos programozásban?</span> A párhuzamos programozás fő kihívásai közé tartozik az <span class="highlight">erőforrások megosztása</span>, a <span class="highlight">szinkronizáció</span>, és a <span class="highlight">versenyfeltételek kezelése</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Szinkronizációs technikák:</span></p>
+                    <ul>
+                        <li><span class="highlight">Mutex:</span> Kölcsönös kizárást biztosít a kritikus szakaszokhoz</li>
+                        <li><span class="highlight">Szemafor:</span> Több folyamat szinkronizálására és erőforrás-kezelésre használt</li>
+                        <li><span class="highlight">Csatornák:</span> Folyamatok közötti kommunikációra (pl. Occamban)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik a szemafor?</span> A szemafor egy <span class="highlight">számláló mechanizmus</span>, amely szabályozza az erőforrásokhoz való hozzáférést:</p>
+                <ul>
+                    <li><span class="highlight">P (wait) művelet:</span> Csökkenti a számlálót, ha 0, akkor blokkolja a folyamatot</li>
+                    <li><span class="highlight">V (signal) művelet:</span> Növeli a számlálót, és feloldja a várakozó folyamatokat</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Funkcionális programozás és polimorfizmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Van-e polimorfizmus a funkcionális programozásban?</span> Igen, a funkcionális nyelvekben is létezik polimorfizmus, többféle formában is.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Polimorfizmus típusai funkcionális nyelvekben:</span></p>
+                    <ul>
+                        <li><span class="highlight">Parametrikus polimorfizmus:</span> Általános típusú függvények</li>
+                        <li><span class="highlight">Ad-hoc polimorfizmus:</span> Típusosztályok és függvény túlterhelés</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa polimorf függvényre Haskellben:</span></p>
+                <pre><code>length :: [a] -&gt; Int
+length [] = 0
+length (_:xs) = 1 + length xs</code></pre>
+                <p>Ez a függvény bármilyen típusú lista hosszát képes meghatározni.</p>
+            </div>
+        </div>
+        
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
