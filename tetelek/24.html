@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 24 - </title>
+    <title>Tétel 24 - Rendszerfejlesztés I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,513 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Rendszerfejlesztés I - 24. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Projektmenedzsment</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Projektmenedzsment alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a projektmenedzsment?</span> A projektmenedzsment a <span class="highlight">projektek tervezésének, szervezésének és irányításának</span> folyamata, amely több részből áll:</p>
+                
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Emberek menedzselése</span></li>
+                        <li><span class="highlight">Minőségellenőrzés és biztosítás</span></li>
+                        <li><span class="highlight">Folyamat továbbfejlesztése</span></li>
+                        <li><span class="highlight">Konfigurációkezelés</span></li>
+                        <li><span class="highlight">Rendszerépítés</span></li>
+                        <li><span class="highlight">Hibamenedzsment</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Mit csinál egy projektmenedzser, amikor új projekt érkezik?</span></p>
+                    <ul>
+                        <li><span class="highlight">Projekt specifikáció áttekintése és elemzése</span></li>
+                        <li><span class="highlight">Erőforrások felmérése és allokálása</span></li>
+                        <li><span class="highlight">Ütemterv és mérföldkövek meghatározása</span></li>
+                        <li><span class="highlight">Kockázatelemzés elvégzése</span></li>
+                        <li><span class="highlight">Csapat összeállítása és feladatok kiosztása</span></li>
+                        <li><span class="highlight">Kommunikációs terv kidolgozása</span></li>
+                    </ul>
+                </div>
+
+                
+                <div class="step">
+                    <p><span class="key-point">Mi az a Gantt-diagram és mire használjuk?</span></p>
+                    <ul>
+                        <li>A Gantt-diagram egy <span class="highlight">vizuális ütemezési eszköz</span></li>
+                        <li>Az x-tengelyen az <span class="highlight">idő</span>, az y-tengelyen a <span class="highlight">feladatok vagy erőforrások</span> szerepelnek</li>
+                        <li>Segít <span class="highlight">nyomon követni a projekt előrehaladását</span> és a feladatok közötti függőségeket</li>
+                        <li>Megmutatja, hogy <span class="highlight">ki végzi az adott feladatot</span> és mennyi ideig</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Miért bukhat el egy projekt?</span></p>
+                    <ul>
+                        <li>A szükséges <span class="highlight">ráfordítások alulbecslése</span></li>
+                        <li><span class="highlight">Technikai nehézségek</span></li>
+                        <li>A projekt csapatban nem <span class="highlight">megfelelő a kommunikáció</span></li>
+                        <li>A <span class="highlight">projektmenedzsment hibái</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Emberek menedzselése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos az emberek menedzselése?</span> Az <span class="highlight">emberek a szoftverfejlesztő szervezet legnagyobb vagyonát</span> képezik. A rossz humánmenedzsment a projekt bukásához vezethet.</p>
+                
+                <p><span class="key-point">Mire kell figyelni az emberek menedzselésénél?</span></p>
+                <ul>
+                    <li><span class="highlight">Pozitív visszajelzések</span> adása</li>
+                    <li>A munkások <span class="highlight">igényeinek figyelembevétele</span></li>
+                    <li>Megfelelő <span class="highlight">fizetés és megbecsülés</span> biztosítása</li>
+                    <li><span class="highlight">Hatékony együttműködés</span> és <span class="highlight">erős csapatszellem</span> kialakítása</li>
+                    <li><span class="highlight">Jó kommunikáció</span> fenntartása a csapaton belül</li>
+                </ul>
+                
+                <div class="step">
+                    <p><span class="key-point">Hogyan mérjük az emberek teljesítményét?</span></p>
+                    <ul>
+                        <li><span class="highlight">Emberhónap:</span> Egy ember egy hónap alatt elvégzett munkája</li>
+                        <li>Fontos megjegyezni, hogy az emberhónap <span class="highlight">nem egyértelmű mérték</span>, mert:
+                            <ul>
+                                <li>Az emberek <span class="highlight">produktivitása eltérő</span> lehet</li>
+                                <li>A feladatok <span class="highlight">komplexitása változó</span></li>
+                                <li>Nem veszi figyelembe a <span class="highlight">csapatmunka szinergiáit</span></li>
+                            </ul>
+                        </li>
+                        <li>Más mérőszámok is használatosak, mint például:
+                            <ul>
+                                <li><span class="highlight">Elkészült kódsorok száma</span> (LOC)</li>
+                                <li><span class="highlight">Megoldott hibák száma</span></li>
+                                <li><span class="highlight">Teljesített mérföldkövek</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Minőségellenőrzés és biztosítás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a minőségbiztosítás célja?</span> A projekt összes tagjának közös célja a termék (vagy szolgáltatás) <span class="highlight">magas szinten tartása</span>.</p>
+                
+                <p><span class="key-point">Mik a minőségbiztosítás főbb szempontjai?</span></p>
+                <ul>
+                    <li>A projekt <span class="highlight">megfeleljen a specifikációknak</span></li>
+                    <li>Legyen <span class="highlight">karbantartható</span></li>
+                    <li>Legyen <span class="highlight">áttekinthető</span> (clean-code)</li>
+                    <li>Legyen <span class="highlight">továbbfejleszthető</span></li>
+                    <li>Feleljen meg a <span class="highlight">fejlesztők és a megrendelő belső igényeinek</span></li>
+                </ul>
+                <p><span class="key-point">Mi jelent kihívást a minőség biztosításában?</span> Egyes jellemzőket (mint például az <span class="highlight">átláthatóság</span>) nem könnyű specifikálni, viszont sokszor mégis fontos a <span class="highlight">személyes preferenciáknak</span> is megfelelni.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Folyamat továbbfejlesztése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a CMM(I)?</span> A CMM(I) (Capability Maturity Model (Integration)) a <span class="highlight">szoftver folyamat mérése</span>, aminek célja a szoftverfejlesztési folyamat hatékonyságának <span class="highlight">számokkal történő reprezentálása</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Mik a CMM(I) besorolási szintjei?</span></p>
+                    <ol>
+                        <li><span class="highlight">Kezdeti:</span> Csak néhány folyamat definiált</li>
+                        <li><span class="highlight">Reprodukálható:</span> Alapvető projektmenedzsment folyamatok definiáltak</li>
+                        <li><span class="highlight">Definiált:</span> A menedzsment és fejlesztés folyamatai dokumentáltak</li>
+                        <li><span class="highlight">Ellenőrzött:</span> A termék minőségének részletes mérése és ellenőrzése</li>
+                        <li><span class="highlight">Optimalizált:</span> Folyamatos javítás, új technológiák ellenőrzött bevezetése</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Miért fontos a folyamatos javítás?</span> A <span class="highlight">szoftver folyamat javításán állandóan dolgozni kell</span> a minőség és hatékonyság növelése érdekében.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Konfigurációkezelés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a konfigurációkezelés lényege?</span> A konfigurációkezelés a <span class="highlight">rendszer változásainak kezelése</span> és azok <span class="highlight">felügyelettel követése</span>, ami a szoftverek evolúciója miatt kiemelkedő fontossággal bír.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen szoftverváltozatokat különböztetünk meg?</span></p>
+                    <ul>
+                        <li><span class="highlight">Verziók</span></li>
+                        <li><span class="highlight">Kiadások (release)</span></li>
+                        <li><span class="highlight">Alapvonal (baseline)</span></li>
+                        <li><span class="highlight">Főág (mainline, trunk)</span></li>
+                        <li><span class="highlight">Fejlesztési ágak (branch)</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mit tartalmaz egy konfigurációs adatbázis?</span> Egy jó konfigurációs adatbázis <span class="highlight">mindent tárol</span> (forráskód, dokumentumok, építési folyamat, szkriptek, hibák adatbázisa, változások története, verziók), amit egy adott konfigurációról tudni kell.</p>
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Rendszerépítés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos a rendszerépítés?</span> A kód struktúrája projektenként más, ezért a benne lévő komponensek <span class="highlight">fordítása, szerkesztése, és lokális futtatása nem mindig triviális</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen kihívásokat jelent a rendszerépítés?</span></p>
+                    <ul>
+                        <li><span class="highlight">Komplex építési függőségek</span> nagyobb projekteknél</li>
+                        <li><span class="highlight">Hosszú fordítási idő</span> nagy projekteknél</li>
+                        <li><span class="highlight">Inkrementális fejlesztés</span> szükségessége</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen eszközök segíthetik a rendszerépítést?</span> Számos <span class="highlight">IDE (Integrated Development Environment)</span> rendelkezik beépített futtatási konfigurációkkal, valamint léteznek <span class="highlight">CI (Continuous Integration)</span> felületek is (például Jenkins).</p>
+                <p><span class="key-point">Miért fontos a rendszerépítés automatizálása?</span> A <span class="highlight">komplex szerkezet és hosszú fordítási idő</span> miatt fontos az automatizálás, például CI (Continuous Integration) felületekkel.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Hibamenedzsment</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                
+                <p><span class="key-point">Miért fontos a hibamenedzsment?</span> A termék fejlesztése során fontos a <span class="highlight">jelentkező hibák követése</span>, mert sajnos sok lehet belőlük.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mit tartalmaz egy jó hibaadatbázis?</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyedi azonosító</span> minden hibához</li>
+                        <li><span class="highlight">Bejelentő neve és bejelentés ideje</span></li>
+                        <li><span class="highlight">Rövid összegzés</span> a hibáról</li>
+                        <li>Probléma <span class="highlight">súlyossága</span> (triviális, kicsi, nagy)</li>
+                        <li>Előidézéshez szükséges <span class="highlight">platform és operációs rendszer</span></li>
+                        <li>Termék<span class="highlight"> verziószáma</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos a hiba életútjának rögzítése?</span> A <span class="highlight">hiba életútjának rögzítése</span> segít nyomon követni a javítási folyamatot és magyarázni az esetleges kellemetlenségeket.</p>
+           
+                <div class="step">
+                    <p><span class="key-point">Hogyan priorizáljuk a hibákat?</span></p>
+                    <ul>
+                        <li><span class="highlight">Súlyosság:</span> Mennyire kritikus a hiba a rendszer működése szempontjából?</li>
+                        <li><span class="highlight">Hatás:</span> Hány felhasználót érint a probléma?</li>
+                        <li><span class="highlight">Sürgősség:</span> Mennyire sürgős a hiba javítása?</li>
+                        <li><span class="highlight">Erőforrásigény:</span> Mennyi erőforrás szükséges a javításhoz?</li>
+                        <li><span class="highlight">Üzleti érték:</span> Milyen hatással van a hiba az üzleti folyamatokra?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Költségbecslés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Költségbecslés alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos a költségbecslés?</span> A költségbecslés <span class="highlight">szoros kapcsolatban áll a projekt munka-, idő- és pénzköltségével</span>, amire becslést kell adni.</p>
+                
+                <p><span class="key-point">Hogyan számoljuk ki egy projekt összköltségét?</span> Egy tetszőleges projekt összköltségét megkaphatjuk a következők összegeként:</p>
+                <ul>
+                    <li><span class="highlight">Hardveres költségek</span></li>
+                    <li><span class="highlight">Szoftveres költségek</span></li>
+                    <li><span class="highlight">Karbantartási költségek</span></li>
+                    <li><span class="highlight">Utazási költségek</span></li>
+                    <li><span class="highlight">Képzési költségek</span></li>
+                    <li><span class="highlight">Munkaköltség</span></li>
+                </ul>
+                
+                <p><span class="key-point">Mi jelenti a legnagyobb kihívást a költségbecslésnél?</span> A <span class="highlight">munka költségének kiszámítása</span> nem feltétlenül triviális, ugyanis ebbe az értékbe beleszámoljuk a fejlesztők fizetését, az őket kisegítő személyzet fizetését, az iroda bérleti díját, az infrastruktúra használatát, járulékokat, adókat… egyszóval <span class="highlight">mindent, ami akármilyen közvetett, vagy közvetlen módon kapcsolatban áll a fejlesztéssel</span>.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Költségbecslési  módszerek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen becslési módszerek léteznek?</span> Többféle módszer áll rendelkezésünkre:</p>
+                
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Hasonló projektek </span>alapján</li>
+                        <li><span class="highlight">Egyszerű dekompozíciós </span>technika</li>
+                        <li><span class="highlight">Szoftver mérete </span>alapján</li>
+                        <li><span class="highlight">Probléma alapú </span>becslés (funkciókra bontás, LOC, FP)</li>
+                        <li><span class="highlight">Folyamat alapú </span>becslés</li>
+                        <li><span class="highlight">Algoritmikus </span></li>
+                        <li><span class="highlight">Tapasztalati modellek</span></li>
+                        <li><span class="highlight">Szakértői vélemények</span></li>
+                        <li><span class="highlight">Parkinson törvénye</span></li>
+                        <li><span class="highlight">Nyerő ár</span> (a legnagyobb összeg, amit a vevő fizetni képes)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>COCOMO modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                
+                <p><span class="key-point">Mi az a COCOMO modell?</span> A COCOMO (Constructive Cost Model)  egy <span class="highlight">objektumpontok segítségével</span> működő költségbecslési modell, amely az <span class="highlight">emberhónap és termelékenység függvényében</span> számolja ki a költségeket.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen verziói vannak a COCOMO-nak?</span></p>
+                    <ul>
+                        <li><span class="highlight">COCOMO I:</span> Egyszerűbb modell, KLOC alapú becslés</li>
+                        <li><span class="highlight">COCOMO II:</span> Továbbfejlesztett változat, részletesebb modellekkel
+                            <ul>
+                                <li><span class="highlight">Alapmodell:</span> A projekt méretére és termelékenységre koncentrál</li>
+                                <li><span class="highlight">Köztes modell:</span> Részletesebb becsléseket tesz lehetővé</li>
+                                <li><span class="highlight">Részletes modell:</span> A legpontosabb és legkomplexebb verzió</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért előnyös a COCOMO II?</span> A COCOMO II <span class="highlight">jobban illeszkedik a modern szoftverfejlesztési módszerekhezés körülményekhez</span>, figyelembe veszi a <span class="highlight">fejlesztői képességeket</span>, a <span class="highlight">projektkörnyezetet</span> és a <span class="highlight">fejlesztési módszertant</span> ezért általánosabban elfogadott.</p>
+            
+                <div class="step">
+                    <p><span class="key-point">Miért nem egyértelmű a személynap?</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyéni különbségek:</span> A fejlesztők tapasztalata, képességei és hatékonysága eltérő lehet.</li>
+                        <li><span class="highlight">Feladatok komplexitása:</span> Különböző feladatok eltérő időt igényelhetnek.</li>
+                        <li><span class="highlight">Munkakörnyezet:</span> A munkakörülmények befolyásolhatják a produktivitást.</li>
+                        <li><span class="highlight">Technológiai változások:</span> Új eszközök és módszerek változtathatják a munka sebességét.</li>
+                        <li><span class="highlight">Csapatmunka hatása:</span> A csapat dinamikája befolyásolhatja az egyéni teljesítményt.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Szoftvermérés</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Szoftvermérés alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a szoftvermérés célja?</span> A szoftvermérés során a termék vagy folyamat valamely jellemzőjét próbáljuk <span class="highlight">numerikusan kifejezni (metrika)</span>. A kapott értékekből <span class="highlight">következtetések vonhatók le a minőségre vonatkozóan</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Milyen fő metrika típusok vannak?</span></p>
+                    <ul>
+                        <li><span class="highlight">Vezérlési metrikák:</span> Folyamattal kapcsolatosak (pl. egy hiba javításához szükséges átlagos idő)</li>
+                        <li><span class="highlight">Prediktor metrikák:</span> Termékkel kapcsolatosak (pl. LOC, ciklomatikus komplexitás)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>LOC (Lines of Code) mérés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a LOC?</span> A <span class="highlight">Lines of Code</span> egy mérőszám, amelyet többféleképpen is számolhatunk (nem üres sorok, végrehajtható sorok), de nem mindig releváns különböző programozási nyelvek összehasonlításánál.</p>
+                <p><span class="key-point">Hogyan mérhetjük a kódsorok számát?</span> LOC mérésére több technikát is alkalmazhatunk: számolhatjuk csak a <span class="highlight">nem üres sorokat</span> vagy csak a <span class="highlight">végrehajtható sorokat</span> is.</p>
+                
+                <p><span class="key-point">Mik a LOC mérés korlátai?</span> A LOC mérés <span class="highlight">nem feltétlenül releváns</span> bizonyos esetekben, mivel különböző programozási nyelvekben ugyanaz a funkcionalitás eltérő számú sorból állhat.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Metrika típusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Milyen termék metrikákat ismerünk?</span></p>
+                    <ul>
+                        <li><span class="highlight">Dinamikus metrikák:</span> Szoros kapcsolat a minőségi jellemzőkkel (pl. teljesítmény, hibák száma)</li>
+                        <li><span class="highlight">Statikus metrikák:</span> Közvetett kapcsolat, sok konkrét metrikát javasoltak már (pl. méret, komplexitás, kohézió, objektumorientáltsággal kapcsolatos metrikák)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen méret alapú metrikákat ismerünk?</span> Bár alkalmazásuk vitatott, gyakran használják a következőket:</p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Hibák / KLOC</span> (KLOC = 1000 Lines of Code)</li>
+                        <li><span class="highlight">Defekt / KLOC</span></li>
+                        <li><span class="highlight">Költség / LOC</span></li>
+                        <li><span class="highlight">Dokumentációs oldalak / KLOC</span></li>
+                        <li><span class="highlight">Hibák / emberhónap</span></li>
+                        <li><span class="highlight">LOC / emberhónap</span></li>
+                        <li><span class="highlight">Költség / dokumentációs oldal</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Funkció alapú és 3D metrikák</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen funkció alapú metrikákat ismerünk?</span></p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Felhasználói inputok száma</span> (alkalmazáshoz szükséges adatok)</li>
+                        <li><span class="highlight">Felhasználói outputok száma</span> (riportok, képernyőképek, hibaüzenetek)</li>
+                        <li><span class="highlight">Felhasználói kérdések száma</span> (on-line input és output)</li>
+                        <li><span class="highlight">Fájlok száma</span> (adatok logikai csoportja)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi az a 3D mérték?</span> A 3D mérték <span class="highlight">három dimenzióban tekint a szoftvertermék tulajdonságaira</span>:</p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Adatdimenzió:</span> Az adatok bevitelével, kimenetével és feldolgozásával kapcsolatos metrikák (I, O, Q)</li>
+                        <li><span class="highlight">Strukturális dimenzió:</span> A fájlok, külső interfészek és más strukturális elemek számát méri (F, E)</li>
+                        <li><span class="highlight">Funkcionális dimenzió:</span> Az adatok transzformációjával és az alkalmazás állapotváltozásaival kapcsolatos metrikákat foglalja magában (T, R)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan számoljuk a 3D indexet?</span> A számítás: Index = I + O + Q + F + E + T + R, ahol I = input, O = output, Q = lekérdezés, F = fájlok, E = külső interfész, T = transzformáció, R = átmenetek.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Minőség mérése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan mérjük a szoftver minőségét?</span> A minőség mérésére több módszert is használunk:</p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Integritás:</span> Külső támadások elleni védelem</li>
+                        <li><span class="highlight">Fenyegetettség:</span> Annak valószínűsége, hogy egy adott típusú támadás bekövetkezik</li>
+                        <li><span class="highlight">Biztonság:</span> Annak valószínűsége, hogy egy adott típusú támadást visszaver a rendszer</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan számoljuk az integritást?</span> Integritás = Σ [1-(fenyegetettség x (1-biztonság))], ahol az összegzés a különböző támadástípusokra történik.</p>
+                
+                <p><span class="key-point">Mi az a DRE?</span> A <span class="highlight">Defect Removal Efficiency</span> (DRE) azt mutatja, hogy <span class="highlight">előbbi hibák közül mennyit fedeztek fel az átadás előtt</span> (E), és mennyit utána (D).</p>
+                
+                <p><span class="key-point">Hogyan számoljuk a DRE-t?</span> DRE = E / (E + D), ahol 
+                    <ul>
+                        <li><span class="highlight">E</span> az átadás <span class="highlight">előtt</span> felfedezett hibák száma,</li>
+                        <li><span class="highlight">D</span> az átadás <span class="highlight">után</span> a felhasználó által észlelt hiányosságok száma.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Projekt haladásának követése</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Mérföldkövek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az a mérföldkő?</span> A mérföldkő egy <span class="highlight">jelentős pont vagy esemény a projekt időbeli lefolyásában</span>, amely jelzi egy fontos szakasz vagy feladat befejezését.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Miért fontosak a mérföldkövek?</span></p>
+                    <ul>
+                        <li><span class="highlight">Haladás mérése:</span> Segítenek nyomon követni a projekt előrehaladását</li>
+                        <li><span class="highlight">Célok kitűzése:</span> Rövid távú célokat biztosítanak a csapatnak</li>
+                        <li><span class="highlight">Kommunikáció:</span> Segítenek az érintettekkel való kommunikációban</li>
+                        <li><span class="highlight">Kockázatkezelés:</span> Lehetővé teszik a korai problémák azonosítását</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan határozzuk meg a mérföldköveket?</span> A mérföldköveket általában a <span class="highlight">projekt tervezési fázisában</span> határozzák meg, figyelembe véve a projekt céljait, ütemtervét és a kulcsfontosságú eredményeket.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mire kell figyelni a mérföldkövek meghatározásánál?</span></p>
+                    <ul>
+                        <li><span class="highlight">Specifikusság:</span> Jól definiált, mérhető eredmények</li>
+                        <li><span class="highlight">Realisztikusság:</span> Elérhető, de kihívást jelentő célok</li>
+                        <li><span class="highlight">Időzítés:</span> Megfelelő időközönként elhelyezett mérföldkövek</li>
+                        <li><span class="highlight">Rugalmasság:</span> Szükség esetén módosítható mérföldkövek</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért problémás a "60% projekt készség" jelentése?</span> Az ilyen százalékos készültségi jelentések gyakran <span class="highlight">félrevezetőek lehetnek</span>, mert:
+                    <ul>
+                        <li>Nehéz pontosan meghatározni, mit jelent a 60%</li>
+                        <li>Nem veszi figyelembe a projekt komplexitását és a fennmaradó munka nehézségét</li>
+                        <li>Túlzott optimizmusra adhat okot, ami késésekhez vezethet</li>
+                        <li>Nem ad információt a minőségről vagy a tényleges haladásról</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Projektmenedzsment</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a projektmenedzsment fő területei?</span></p>
+                <ul>
+                    <li><span class="highlight">Emberek menedzselése:</span> A szervezet legnagyobb vagyona, hatékony együttműködés és kommunikáció kialakítása</li>
+                    <li><span class="highlight">Minőségellenőrzés és biztosítás:</span> A termék magas szinten tartása, specifikációknak való megfelelés</li>
+                    <li><span class="highlight">Folyamat továbbfejlesztése:</span> CMM(I) modell alkalmazása, folyamatos javítás</li>
+                    <li><span class="highlight">Konfigurációkezelés:</span> Változások kezelése és követése, verziók és kiadások menedzselése</li>
+                    <li><span class="highlight">Rendszerépítés:</span> Komponensek fordítása, szerkesztése, automatizálás és CI használata</li>
+                    <li><span class="highlight">Hibamenedzsment:</span> Hibák követése, kategorizálása és kezelése</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Költségbecslés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a költségbecslés fő elemei?</span></p>
+                <ul>
+                    <li><span class="highlight">Projekt összköltség:</span> Hardver, szoftver, karbantartás, utazás, képzés és munkaköltség</li>
+                    <li><span class="highlight">Becslési módszerek:</span> Hasonló projektek, dekompozíció, méret alapú, probléma alapú, folyamat alapú, algoritmikus, tapasztalati és szakértői becslések</li>
+                    <li><span class="highlight">COCOMO modell:</span> Objektumpontok alapján számolja a költségeket, figyelembe véve a projekt méretét, komplexitását és egyéb tényezőket</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Szoftvermérés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a szoftvermérés főbb aspektusai?</span></p>
+                <ul>
+                    <li><span class="highlight">Metrikák típusai:</span> Vezérlési (folyamattal kapcsolatos) és prediktor (termékkel kapcsolatos) metrikák</li>
+                    <li><span class="highlight">Méret alapú metrikák:</span> LOC, hibák/KLOC, költség/LOC, stb.</li>
+                    <li><span class="highlight">Funkció alapú metrikák:</span> Felhasználói inputok, outputok, kérdések és fájlok száma</li>
+                    <li><span class="highlight">3D mérték:</span> Adat-, strukturális és funkcionális dimenziók figyelembevétele</li>
+                    <li><span class="highlight">Minőség mérése:</span> Integritás, fenyegetettség, biztonság és hibák eltávolításának hatékonysága (DRE)</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Végső gondolatok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p>A projektmenedzsment, költségbecslés és szoftvermérés <span class="highlight">kulcsfontosságú területek</span> a szoftverfejlesztésben. Ezek együttes alkalmazása segít a <span class="highlight">projektek sikeres végrehajtásában</span>, a <span class="highlight">költségek hatékony kezelésében</span> és a <span class="highlight">szoftver minőségének biztosításában</span>. A megfelelő technikák és modellek használata lehetővé teszi a fejlesztőcsapatok számára, hogy <span class="highlight">pontosabb becsléseket készítsenek</span>, <span class="highlight">jobban kövessék a projekt előrehaladását</span>, és <span class="highlight">magasabb minőségű szoftvereket állítsanak elő</span>.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

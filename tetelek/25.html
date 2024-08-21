@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 25 - </title>
+    <title>Tétel 25 - Számítógép-hálózatok I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,398 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Számítógép-hálózatok I - 25. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Számítógép-hálózati architektúrák</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Hálózati architektúrák alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a hálózati architektúra lényege?</span> A hálózati architektúrák <span class="highlight">meghatározzák a számítógépes hálózatok felépítését és működését</span>. Számos cég foglalkozik hálózatok építésével és üzemeltetésével, mindegyiknek <span class="highlight">saját elképzelése van</span> a helyes megvalósításról.</p>
+                <div class="step">
+                    <p><span class="key-point">Miért van szükség szabványosításra?</span> Számos hálózatépítéssel és hálózatüzemeltetéssel foglalkozó cég létezik, és mindegyiknek <span class="highlight">saját elképzelése van</span> arról, hogy hogyan kell a dolgokat csinálni.</p>
+                    <ul>
+                        <li>A <span class="highlight">káosz elkerülése</span> érdekében</li>
+                        <li><span class="highlight">Kompatibilitás biztosítása</span> különböző rendszerek között</li>
+                        <li>A <span class="highlight">piac bővítése</span> a szabványhoz kapcsolódó termékek számára</li>
+                        <li><span class="highlight">Gazdaságosabb gyártás</span> és alacsonyabb árak elérése</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Szabványosítás előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Lehetővé teszi a különböző számítógépek közötti kommunikációt</span></li>
+                        <li><span class="highlight">Bővíti a szabványhoz kapcsolódó termékek piacát</span></li>
+                        <li>Vezethet <span class="highlight">tömegtermeléshez és gazdaságosabb gyártáshoz</span></li>
+                        <li>Az árakat <span class="highlight">csökkenti</span>, a szabvány <span class="highlight">elfogadhatóságát növeli</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Szabványok típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">De facto szabványok:</span> Hivatalos leírás nélkül, maguktól alakultak ki (pl. IBM PC)</li>
+                        <li><span class="highlight">De jure szabványok:</span> Hivatalos szabványok, amelyeket szabványosítási szervezetek fogadtak el</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Szabványosítási szervezetek típusai:</span> A nemzetközi szabványosítási szervezeteket általában <span class="highlight">két nagy csoportra</span> oszthatjuk:</p>
+                <ul>
+                    <li>Államközi szerződések útján létrejött szervezetek</li>
+                    <li>Önkéntesen, nem szerződéses alapon létrehozott szervezetek</li>
+                </ul>
+
+                <p><span class="key-point">Miért fontosak a hálózati architektúrák?</span> A hálózati architektúrák <span class="highlight">meghatározzák a kommunikáció szabályait és struktúráját</span> a különböző rendszerek között, lehetővé téve a <span class="highlight">hatékony és megbízható adatcserét</span>.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>OSI modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az OSI modell?</span> Az Open Systems Interconnection (OSI) Reference Model egy <span class="highlight">rétegekbe szervezett rendszer absztrakt leírása</span>, amely a számítógépek kommunikációjához szükséges <span class="highlight">hálózati protokollt határozza meg</span>.</p>
+                
+                <p><span class="key-point">Miért fontos az OSI modell?</span> Az OSI modell <span class="highlight">standardizálja a hálózati kommunikációt</span>, lehetővé téve a <span class="highlight">különböző gyártók eszközeinek együttműködését</span> és megkönnyítve a hálózati problémák diagnosztizálását.</p>
+                <p><span class="key-point">Megvalósult-e az OSI modell a gyakorlatban?</span> Az OSI modell teljes egészében <span class="highlight">nem valósult meg a gyakorlatban</span>. Ehelyett egy <span class="highlight">egyszerűsített változata, a TCP/IP modell</span> terjedt el, ahol bizonyos rétegek összevonásra kerültek. Például a viszony, megjelenítési és alkalmazási rétegek funkcióit gyakran egyetlen alkalmazási rétegben valósítják meg.</p></p>
+
+                <div class="step">
+                    <p><span class="key-point">OSI modell rétegei:</span></p>
+                    <ol>
+                        <li><span class="highlight">Fizikai réteg:</span> Bitek továbbítása
+                            <ol>
+                                <li>Feladata a <span class="highlight">nyers bitek átvitele</span> a kommunikációs csatornán</li>
+                                <li>Foglalkozik a <span class="highlight">feszültségszintekkel, bit időzítéssel, kábelezéssel</span> és hasonló fizikai dolgokkal</li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Adatkapcsolati réteg:</span> Bitek adatkeretekbe tördelése
+                            <ol>
+                                <li><span class="highlight">Megbízható átvitelt</span> biztosít a fizikai réteg felett</li>
+                                <li>Kezeli a <span class="highlight">hibák észlelését és javítását</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Hálózati réteg:</span> Útvonal meghatározása
+                            <ol>
+                                <li>Feladata a <span class="highlight">csomagok útválasztása</span> a forrástól a célig</li>
+                                <li>Kezeli a <span class="highlight">hálózati forgalmat, torlódásokat</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Szállítási réteg:</span> Forgalomszabályozás, hibajavítás
+                            <ol>
+                                <li>Biztosítja a <span class="highlight">megbízható adatátvitelt</span> a végpontok között</li>
+                                <li>Kezeli a <span class="highlight">folyamvezérlést és a hibák javítását</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Viszony réteg:</span> Kapcsolat létesítése és bontása
+                            <ol>
+                                <li>Lehetővé teszi a <span class="highlight">munkamenetek létrehozását</span> a folyamatok között</li>
+                                <li>Kezeli a <span class="highlight">dialógus vezérlését</span> és a szinkronizációt</li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Megjelenítési réteg:</span> Adatszerkezetek definiálása és átvitele
+                            <ol>
+                                <li>Foglalkozik az adatok <span class="highlight">formátumával és kódolásával</span></li>
+                                <li>Biztosítja az adatok <span class="highlight">megfelelő értelmezését</span> a különböző rendszerek között</li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Alkalmazási réteg:</span> Különböző protokollok (pl. HTTP, SMTP)
+                            <ol>
+                                <li>Biztosítja a <span class="highlight">hálózati szolgáltatások</span> elérését az alkalmazások számára</li>
+                                <li>Olyan protokollokat tartalmaz, mint a <span class="highlight">HTTP, FTP, SMTP</span> stb.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik a fizikai réteg?</span> A fizikai réteg feladata, hogy <span class="highlight">továbbítsa a biteket</span> a kommunikációs csatornán. Biztosítania kell, hogy az egyik oldalon elküldött 1-es a másik oldalon is <span class="highlight">1-esként érkezzen meg</span>. Ez a réteg foglalkozik olyan kérdésekkel, mint a <span class="highlight">feszültségszintek, adatátviteli sebesség, fizikai csatlakozók</span> és hasonlók.</p>
+                
+                <p><span class="key-point">Mi az adatkapcsolati réteg szerepe?</span> Az adatkapcsolati réteg fő feladata, hogy a fizikai réteg szerény adottságait <span class="highlight">egy olyan vonallá alakítsa</span>, amely a hálózati réteg számára <span class="highlight">felderítetlen</span>. Ezt adatkeretek használatával oldja meg, amelyek <span class="highlight">hibaellenőrzést és -javítást</span> tesznek lehetővé.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>TCP/IP modell</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a TCP/IP modell?</span> A TCP/IP (Transmission Control Protocol/Internet Protocol) modell az <span class="highlight">internet szabványos kommunikációs protokollja</span>. Ez a modell <span class="highlight">négy rétegből</span> áll, és az OSI modell egyszerűsített változatának tekinthető.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mely rétegek kerültek összevonásra a TCP/IP modellben?</span></p>
+                    <ul>
+                        <li>Az OSI modell <span class="highlight">felső három rétege</span> (Alkalmazási, Megjelenítési, Viszony) a TCP/IP modellben <span class="highlight">egyetlen Alkalmazási rétegbe</span> került összevonásra</li>
+                        <li>Az OSI modell <span class="highlight">alsó két rétege</span> (Fizikai és Adatkapcsolati) a TCP/IP modellben <span class="highlight">a Hálózati hozzáférési rétegbe</span> került</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">TCP/IP modell rétegei:</span></p>
+                    <ol>
+                        <li><span class="highlight">Hálózati hozzáférési réteg:</span> 
+                            <ol>
+                                <li>Megfelel az OSI modell <span class="highlight">fizikai és adatkapcsolati rétegeinek</span></li>
+                                <li>Kezeli a <span class="highlight">fizikai átvitelt és a címzést</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Internet réteg:</span>
+                            <ol>
+                                <li>Megfelel az OSI modell <span class="highlight">hálózati rétegének</span></li>
+                                <li>Az <span class="highlight">IP protokoll</span> működik ezen a szinten</li>
+                                <li>Feladata a <span class="highlight">csomagok útválasztása</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Szállítási réteg:</span>
+                            <ol>
+                                <li>Megegyezik az OSI modell <span class="highlight">szállítási rétegével</span></li>
+                                <li>A <span class="highlight">TCP és UDP protokollok</span> működnek itt</li>
+                                <li>Biztosítja a <span class="highlight">megbízható adatátvitelt</span></li>
+                            </ol>
+                        </li>
+                        <li><span class="highlight">Alkalmazási réteg:</span>
+                            <ol>
+                                <li>Magába foglalja az OSI modell <span class="highlight">felső három rétegét</span></li>
+                                <li>Olyan protokollokat tartalmaz, mint a <span class="highlight">HTTP, FTP, SMTP</span></li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Melyik réteghez tartoznak a főbb protokollok?</span></p>
+                    <ul>
+                        <li><span class="highlight">TCP (Transmission Control Protocol):</span> A <span class="highlight">Szállítási réteghez</span> tartozik</li>
+                        <li><span class="highlight">IP (Internet Protocol):</span> Az <span class="highlight">Internet réteghez</span> tartozik</li>
+                        <li><span class="highlight">HTTP, FTP, SMTP:</span> Az <span class="highlight">Alkalmazási réteghez</span> tartoznak</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miben különbözik a TCP/IP az OSI modelltől?</span> A TCP/IP modell <span class="highlight">gyakorlatiasabb megközelítést</span> alkalmaz, és <span class="highlight">kevesebb réteget</span> használ. Míg az OSI modell egy elméleti keret, a TCP/IP az internet tényleges működését tükrözi.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Szabványosítók (ISO/OSI, Internet, ITU, IEEE)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>ISO (International Standards Organization)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az ISO?</span> Az ISO egy <span class="highlight">1946-ban alakult, önkéntes, nem államközi szerződéseken alapuló szervezet</span>, amely nemzetközi szabványokat ad ki.</p>
+                <p><span class="key-point">Nemzetközi-e az ISO?</span> Igen, az ISO egy <span class="highlight">nemzetközi szervezet</span>. A neve is erre utal: International Organization for Standardization. Tagjai különböző országok nemzeti szabványügyi szervezetei, és globális hatáskörrel működik.</p>
+                <div class="step">
+                    <p><span class="key-point">ISO jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">89 tagállam</span> nemzeti szabványügyi szervezete alkotja</li>
+                        <li>Tagok között: ANSI (USA), BSI (UK), AFNOR (Franciaország), DIN (Németország)</li>
+                        <li><span class="highlight">Több mint 5000 szabványt</span> adtak ki, beleértve az OSI szabványokat is</li>
+                        <li>Szabványok témái: A <span class="highlight">csavaroktól a telefonpóznák bevonatáig</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik az ISO?</span> Az ISO-nak közel <span class="highlight">200 Műszaki Bizottsága</span> van, amelyek <span class="highlight">albizottságokra és munkacsoportokra</span> oszlanak, hogy <span class="highlight">különböző szakterületekkel</span> foglalkozhassanak.</p>
+
+                <div class="step">
+                    <p><span class="key-point">ISO szabványok jelentősége:</span></p>
+                    <ul>
+                        <li>Biztosítják a <span class="highlight">termékek és szolgáltatások minőségét, biztonságát és hatékonyságát</span></li>
+                        <li>Elősegítik a <span class="highlight">nemzetközi kereskedelmet</span> az egységes szabványok által</li>
+                        <li>Hozzájárulnak a <span class="highlight">technológiai fejlődéshez és innovációhoz</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>Internet</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az Internet?</span> Az Internet az <span class="highlight">összekapcsolt számítógépes hálózatok globális rendszere</span>, amely az <span class="highlight">Internet Protocol Suite (TCP/IP)</span> protokollt használja a hálózatok és az eszközök közötti kommunikációhoz.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Internet jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Magán-, állami, tudományos, üzleti és kormányzati hálózatokból</span> áll</li>
+                        <li><span class="highlight">Lokális és globális kiterjedésű</span> hálózatokat kapcsol össze</li>
+                        <li><span class="highlight">Közös protokollokat</span> és szolgáltatásokat használ</li>
+                        <li><span class="highlight">Nincs központosított irányítása</span></li>
+                        <li>A hálózatok <span class="highlight">elektronikus, vezeték nélküli és optikai technológiákat</span> használnak</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik az Internet?</span> Az Internet <span class="highlight">csomagkapcsolt hálózatként</span> működik, ahol az adatok kisebb egységekben, <span class="highlight">csomagokban utaznak</span> a hálózaton keresztül.</p>
+
+                <p><span class="key-point">Mi az ARPANET?</span> Az ARPANET az Internet <span class="highlight">elődje</span>, az első szélesebb körben kiépített <span class="highlight">nagy kiterjedésű csomag-kapcsolt hálózat</span>. Az 1970-es években <span class="highlight">tudományos és katonai hálózatok</span> összekapcsolására szolgált.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Az Internet fejlődése:</span></p>
+                    <ul>
+                        <li>1983: A <span class="highlight">TCP/IP lett az egyetlen hivatalos protokoll</span> az ARPANET-en</li>
+                        <li>1980-as évek közepe: Az összekapcsolt hálózatokat kezdték <span class="highlight">"internetnek"</span> nevezni</li>
+                        <li>Növekedés: A <span class="highlight">NSFNET és ARPANET összekapcsolása</span> exponenciális növekedést eredményezett</li>
+                        <li>Globalizáció: Kapcsolatok épültek <span class="highlight">Kanada, Európa és a csendes-óceáni térség</span> felé</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik a modem?</span> A modem egy kártya a számítógépben, amely a <span class="highlight">digitális jeleket analóg jelekké alakítja</span>, hogy azok akadály nélkül átmehessenek a telefonhálózaton. Az ISP (Internet Service Provider) POP-jánál (Point of Presence) ezeket a jeleket <span class="highlight">visszaalakítják digitális jelekké</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Internet szolgáltatás folyamata:</span></p>
+                    <ol>
+                        <li>A számítógép <span class="highlight">digitális jeleket küld</span> a modemnek</li>
+                        <li>A modem <span class="highlight">analóg jelekké alakítja</span> ezeket</li>
+                        <li>Az analóg jelek <span class="highlight">áthaladnak a telefonhálózaton</span></li>
+                        <li>Az ISP POP-jánál a jelek <span class="highlight">visszaalakulnak digitálissá</span></li>
+                        <li>A digitális jelek <span class="highlight">továbbítódnak az ISP hálózatán</span></li>
+                        <li>Innen a jelek <span class="highlight">eljutnak az internetre</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>ITU (International Telecommunication Union)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az ITU feladata?</span> Az ITU eredeti feladata a <span class="highlight">nemzetközi távközlés szabványosítása</span> volt, amelynek feladata a <span class="highlight">nemzetközi távközlés szabványosítása</span>. <em>(kezdve a távírástól a telefonrendszerekig.)</em></p>
+                
+                <div class="step">
+                    <p><span class="key-point">ITU fő ágazatai:</span></p>
+                    <ul>
+                        <li><span class="highlight">ITU-R (Rádiókommunikációs ágazat):</span> 
+                            <ul>
+                                <li>Kezeli a <span class="highlight">nemzetközi rádiófrekvenciás spektrumot</span> és műholdpályákat</li>
+                                <li>Feladata a <span class="highlight">rádiófrekvenciák kiosztása</span> világszerte</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">ITU-T (Távközlési szabványosítási ágazat):</span>
+                            <ul>
+                                <li>Egységesíti a <span class="highlight">globális távközlést</span></li>
+                                <li>Műszaki javaslatokat tesz <span class="highlight">telefonok, távírók és adatkommunikációs interfészekre</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">ITU-D (Fejlesztési ágazat):</span>
+                            <ul>
+                                <li>Elősegíti az <span class="highlight">információs és kommunikációs technológiákhoz (IKT) való hozzáférést</span></li>
+                                <li>Célja a <span class="highlight">fenntartható és megfizethető hozzáférés</span> biztosítása</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos az ITU-T?</span> Az ITU-T <span class="highlight">műszaki javaslatai</span> gyakran válnak <span class="highlight">nemzetközileg elfogadott szabványokká</span>. Ezek a javaslatok azonban csak ajánlások, az egyes országok dönthetnek azok elfogadásáról vagy elutasításáról.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">ITU története és jelentősége:</span></p>
+                    <ul>
+                        <li>Az ITU <span class="highlight">egyik legrégebbi nemzetközi szervezet</span></li>
+                        <li>Kezdetben a <span class="highlight">távíró szabványosítására</span> jött létre</li>
+                        <li>Később kiterjesztette tevékenységét a <span class="highlight">telefonrendszerekre</span> is</li>
+                        <li>Ma kulcsszerepet játszik a <span class="highlight">modern távközlési technológiák</span> szabványosításában</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>IEEE (Institute of Electrical and Electronics Engineers)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az IEEE?</span> Az IEEE a <span class="highlight">világ legnagyobb szakmai szervezete</span>, amely szabványokat dolgoz ki a villamosmérnöki tudományok és az informatika területén.</p>
+                <p><span class="key-point">Mit jelent az IEEE rövidítés?</span> Az IEEE az <span class="highlight">Institute of Electrical and Electronics Engineers</span> (Villamos- és Elektronikai Mérnökök Intézete) rövidítése.</p>
+                <div class="step">
+                    <p><span class="key-point">IEEE 802-es bizottság:</span></p>
+                    <ul>
+                        <li>Sok <span class="highlight">LAN-fajtát szabványosított</span></li>
+                        <li>Jelentős szabványok:
+                            <ul>
+                                <li><span class="highlight">802.3 - Ethernet:</span> A legelterjedtebb vezetékes LAN technológia</li>
+                                <li><span class="highlight">802.11 - Wireless LAN:</span> Wi-Fi hálózatok alapja</li>
+                            </ul>
+                        </li>
+                        <li>A 802.x számozás <span class="highlight">nem garantálja a sikert</span>, de néhány szabvány nagy hatással volt a hálózati technológiákra</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Melyek a legfontosabb IEEE szabványok a hálózatok területén?</span></p>
+                    <ul>
+                        <li><span class="highlight">IEEE 802.3 (Ethernet):</span> Vezetékes helyi hálózatok (LAN) szabványa</li>
+                        <li><span class="highlight">IEEE 802.11 (Wi-Fi):</span> Vezeték nélküli helyi hálózatok (WLAN) szabványa</li>
+                        <li><span class="highlight">IEEE 802.15 (Bluetooth):</span> Rövid hatótávolságú vezeték nélküli technológiák szabványa</li>
+                        <li><span class="highlight">IEEE 802.16 (WiMAX):</span> Szélessávú vezeték nélküli hálózatok szabványa</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miért fontosak az IEEE szabványai?</span> Az IEEE szabványai <span class="highlight">biztosítják a különböző gyártók eszközeinek kompatibilitását</span> és interoperabilitását. Ezek a szabványok alapvető fontosságúak a modern számítógépes hálózatok működésében és fejlődésében.</p>
+                
+                <p><span class="key-point">Mi az IEEE célja?</span> Az IEEE célja az <span class="highlight">elektromos és elektronikai mérnöki, telekommunikációs, számítógépes mérnöki és rokon tudományágak oktatási és műszaki fejlődésének</span> elősegítése.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">IEEE tevékenységei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Folyóiratok kiadása:</span> Számos tudományos és szakmai publikáció</li>
+                        <li><span class="highlight">Konferenciák szervezése:</span> Évi több száz szakmai esemény</li>
+                        <li><span class="highlight">Szabványok kidolgozása:</span> Kulcsfontosságú technológiai szabványok létrehozása</li>
+                        <li><span class="highlight">Oktatás támogatása:</span> Szakmai fejlődés és képzések elősegítése</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">IEEE jelentősége a hálózatokban:</span> Az IEEE szabványai, különösen a 802-es sorozat, <span class="highlight">alapvető fontosságúak a modern számítógépes hálózatok</span> működésében és fejlődésében. Ezek a szabványok biztosítják a <span class="highlight">különböző gyártók eszközeinek kompatibilitását</span> és interoperabilitását.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Számítógép-hálózati architektúrák és szabványosítók</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hálózati architektúrák lényege:</span> A hálózati architektúrák <span class="highlight">meghatározzák a számítógépes hálózatok felépítését és működését</span>. A szabványosítás kulcsfontosságú a <span class="highlight">kompatibilitás és együttműködés</span> biztosításához.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb modellek:</span></p>
+                    <ul>
+                        <li><span class="highlight">OSI modell:</span> 7 réteges elméleti modell, teljes neve <span class="highlight">Open Systems Interconnection</span></li>
+                        <li><span class="highlight">TCP/IP modell:</span> 4 réteges gyakorlati modell, az internet alapja</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Fontos szabványosító szervezetek:</span></p>
+                    <ul>
+                        <li><span class="highlight">ISO (International Organization for Standardization):</span> Nemzetközi szabványügyi szervezet</li>
+                        <li><span class="highlight">ITU (International Telecommunication Union):</span> Nemzetközi távközlési szabványok</li>
+                        <li><span class="highlight">IEEE (Institute of Electrical and Electronics Engineers):</span> Műszaki szabványok, többek között LAN és WLAN területén</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Kulcsfontosságú protokollok:</span></p>
+                    <ul>
+                        <li><span class="highlight">TCP:</span> Szállítási réteg protokollja, megbízható adatátvitel</li>
+                        <li><span class="highlight">IP:</span> Internet réteg protokollja, csomagok útválasztása</li>
+                        <li><span class="highlight">HTTP, FTP, SMTP:</span> Alkalmazási réteg protokolljai</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Internet fejlődése:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">ARPANET</span>-ből nőtte ki magát</li>
+                        <li><span class="highlight">TCP/IP protokoll</span> bevezetése kulcsfontosságú volt</li>
+                        <li>Exponenciális növekedés a <span class="highlight">NSFNET és ARPANET összekapcsolása</span> után</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Vizsgán fontos:</span> Ismerje a <span class="highlight">rövidítések teljes nevét</span>, tudja, mely <span class="highlight">protokollok mely rétegekhez</span> tartoznak, és ismerje a <span class="highlight">főbb IEEE szabványokat</span> (pl. 802.3 Ethernet, 802.11 Wi-Fi).</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
