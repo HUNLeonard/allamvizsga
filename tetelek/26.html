@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 26 - </title>
+    <title>Tétel 26 - Számítógép-hálózatok-2</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,421 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Számítógép-hálózatok-2 - 26. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. PPP (Point-to-Point Protocol)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>PPP alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a PPP?</span> A PPP egy <span class="highlight">adatkapcsolati rétegbeli protokoll</span>, amely <span class="highlight">közvetlen kapcsolatot biztosít</span> két hálózati csomópont között.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">PPP jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">WAN protokoll</span>, gyakran használják internet kapcsolatokhoz</li>
+                        <li>Az <span class="highlight">adatkapcsolati rétegben</span> működik</li>
+                        <li>Alkalmas <span class="highlight">nagy mennyiségű adat</span> gyors átvitelére</li>
+                        <li>Lehetővé teszi <span class="highlight">többféle protokoll adatainak</span> átvitelét két összekötött számítógép között</li>
+                        <li>Támogatja a <span class="highlight">dinamikus IP-cím kiosztást</span></li>
+                        <li>Biztosítja a <span class="highlight">kapcsolat hitelesítését</span> (pl. PAP, CHAP protokollokkal)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mire használják?</span> A PPP-t gyakran használják <span class="highlight">router-ek közötti kommunikációra</span> és <span class="highlight">internet-szolgáltatók</span> a felhasználók csatlakoztatására.</p>
+                <p><span class="key-point">PPP működése:</span> A PPP <span class="highlight">keretek segítségével továbbítja az adatokat</span>. Minden keret tartalmaz egy <span class="highlight">fejlécet és egy adatmezőt</span>. A fejléc információkat hordoz a keret típusáról és a használt protokollról, míg az adatmező tartalmazza a tényleges adatokat.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>PPP keret felépítése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan épül fel egy PPP keret?</span> A PPP keret <span class="highlight">több mezőből</span> áll, amelyek meghatározott sorrendben követik egymást.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">PPP keret részei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Flag (1 byte):</span> Jelzi a keret elejét és végét (01111110)</li>
+                        <li><span class="highlight">Address (1 byte):</span> Általában broadcast cím (11111111)</li>
+                        <li><span class="highlight">Control (1 byte):</span> Konstans érték (11111111)</li>
+                        <li><span class="highlight">Protocol (1-2 byte):</span> Meghatározza az adat típusát a Payload-ban</li>
+                        <li><span class="highlight">Payload (≤ 1500 byte):</span> A hálózati rétegből származó információk</li>
+                        <li><span class="highlight">Checksum (változó):</span> Hibaellenőrzés (Internet checksum)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos a bit-stuffing?</span> A <span class="highlight">bit-stuffing</span> technikát használják, hogy <span class="highlight">megkülönböztessék a flag sorozatot</span> az adattól, ezzel <span class="highlight">elkerülve a téves keret-határok felismerését</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Bit-stuffing működése:</span></p>
+                    <ul>
+                        <li>Ha az adatban <span class="highlight">öt egymást követő 1-es bit</span> fordul elő, a küldő automatikusan <span class="highlight">beszúr egy 0-át</span></li>
+                        <li>A fogadó fél <span class="highlight">eltávolítja a beszúrt 0-át</span> öt egymást követő 1-es után</li>
+                        <li>Ez biztosítja, hogy a <span class="highlight">01111110 flag sorozat</span> csak a keret határain fordulhasson elő</li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>PPP alap kérdések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Mit jelent a PPP rövidítés?</span> A PPP a <span class="highlight">Point-to-Point Protocol</span> rövidítése, ami magyarul Pont-pont Protokollt jelent.</p>
+        
+                    <p><span class="key-point">Mi a protokoll?</span> A protokoll egy <span class="highlight">szabályrendszer</span>, amely meghatározza, hogyan kommunikálnak egymással az eszközök vagy programok egy hálózaton.</p>
+
+                    <p><span class="key-point">Milyen rétegben működik a PPP?</span> A PPP az <span class="highlight">adatkapcsolati rétegben (Layer 2)</span> működik, biztosítva a megbízható kommunikációt két hálózati csomópont között.</p>
+                
+                    <p><span class="key-point">Mik a PPP fő előnyei?</span> A PPP fő előnyei közé tartozik a <span class="highlight">rugalmasság</span> (többféle protokoll támogatása), a <span class="highlight">megbízhatóság</span> (hibadetektálás és -javítás), valamint a <span class="highlight">biztonság</span> (hitelesítés és titkosítás lehetősége).</p>
+                
+                    <p><span class="key-point">Hogyan biztosítja a PPP a biztonságos kapcsolatot?</span> A PPP biztonságos kapcsolatot biztosít <span class="highlight">hitelesítési protokollok</span> (például PAP, CHAP) használatával, valamint támogatja a <span class="highlight">titkosítási és tömörítési</span> protokollokat is.</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Ethernet</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Ethernet alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az Ethernet?</span> Az Ethernet egy <span class="highlight">széles körben használt LAN technológia</span>, amely <span class="highlight">gyors és megbízható</span> adatátvitelt biztosít.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Ethernet jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kapcsolatmentes kommunikációt</span> használ</li>
+                        <li><span class="highlight">Nem indít kézfogást</span> a kommunikáló felek között</li>
+                        <li><span class="highlight">Megbízhatatlan</span>, a fogadó fél nem küld megerősítéseket</li>
+                        <li>Az esetleges <span class="highlight">veszteségeket a felsőbb rétegek protokolljai</span> kezelik</li>
+                        <li>Lehetővé teszi a <span class="highlight">full-duplex kommunikációt</span> switch-elt hálózatokban</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Ethernet előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Költséghatékonyság:</span> Viszonylag olcsó implementálni és fenntartani</li>
+                        <li><span class="highlight">Széles körű támogatottság:</span> Szinte minden eszköz támogatja</li>
+                        <li><span class="highlight">Skálázhatóság:</span> Különböző sebességeket támogat (10 Mbps - 400 Gbps)</li>
+                        <li><span class="highlight">Egyszerűség:</span> Könnyen telepíthető és kezelhető</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Ethernet működése:</span> Az Ethernet a <span class="highlight">CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</span> protokollt használja a hálózati forgalom kezelésére. Ez lehetővé teszi, hogy több eszköz <span class="highlight">osszon meg egy közös kommunikációs csatornát</span>.</p>
+                
+                <p><span class="key-point">Milyen topológiákat használ?</span> Az Ethernet eredetileg <span class="highlight">busz topológiát</span> használt, de ma már inkább a <span class="highlight">csillag topológia</span> jellemző, ahol a csomópontok egy központi eszközön keresztül kapcsolódnak.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">CSMA/CD működése:</span></p>
+                    <ul>
+                        <li><span class="highlight">Carrier Sense:</span> Az állomás figyeli, hogy a közeg szabad-e</li>
+                        <li><span class="highlight">Multiple Access:</span> Több állomás osztozik ugyanazon a médián</li>
+                        <li><span class="highlight">Collision Detection:</span> Ütközés esetén az állomások leállítják az adást és véletlen ideig várnak</li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Ethernet keret felépítése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan épül fel egy Ethernet keret?</span> Az Ethernet keret <span class="highlight">több mezőből</span> áll, amelyek meghatározott információkat hordoznak.</p>
+                <p><span class="key-point">Hogyan működik?</span> Az Ethernet <span class="highlight">keretekbe csomagolja</span> az adatokat, és ezeket továbbítja a hálózaton. A hálózati eszközök (pl. kapcsolók) ezeket a kereteket használják az adatok <span class="highlight">megfelelő célponthoz való irányítására</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Ethernet keret részei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Előtag (8 byte):</span> Óraszinkronizációt szolgál</li>
+                        <li><span class="highlight">Cél MAC-cím (6 byte):</span> A fogadó eszköz fizikai címe</li>
+                        <li><span class="highlight">Forrás MAC-cím (6 byte):</span> A küldő eszköz fizikai címe</li>
+                        <li><span class="highlight">Típus/Hossz (2 byte):</span> A felsőbb szintek által meghatározott protokoll vagy a keret hossza</li>
+                        <li><span class="highlight">Adat (payload) (46-1500 byte):</span> Az átvinni kívánt adat</li>
+                        <li><span class="highlight">CRC (4 byte):</span> Ciklikus redundancia ellenőrző összeg a hibák detektálására</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mire szolgál a CRC?</span> A CRC (Cyclic Redundancy Check) <span class="highlight">hibaellenőrzésre szolgál</span>, segítségével a fogadó fél <span class="highlight">detektálhatja az esetleges adatátviteli hibákat</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">MAC-címek jelentősége:</span></p>
+                    <ul>
+                        <li>A MAC-címek <span class="highlight">globálisan egyediek</span>, gyártó által hozzárendeltek</li>
+                        <li>Lehetővé teszik az <span class="highlight">eszközök egyértelmű azonosítását</span> a hálózaton</li>
+                        <li>A <span class="highlight">switch-ek MAC-címek alapján</span> továbbítják a kereteket</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Ethernet alap kérdések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Mi a különbség a MAC-cím és az IP-cím között?</span> A <span class="highlight">MAC-cím</span> egy <span class="highlight">fizikai, hardvercím</span>, amely az eszközt azonosítja a helyi hálózaton, míg az <span class="highlight">IP-cím</span> egy <span class="highlight">logikai cím</span>, amely az eszköz hálózati azonosítására szolgál és változhat.</p>
+                
+                    <p><span class="key-point">Miért van szükség minimum 46 byte-os adatmezőre?</span> A minimum 46 byte-os adatmező biztosítja, hogy az <span class="highlight">Ethernet keret legalább 64 byte hosszú legyen</span> (a fejléccel és CRC-vel együtt), ami szükséges az <span class="highlight">ütközések megbízható detektálásához</span> a CSMA/CD mechanizmusban.</p>
+                
+                    <p><span class="key-point">Hogyan működik a CRC hibaellenőrzés?</span> A CRC (Cyclic Redundancy Check) egy <span class="highlight">matematikai módszer</span>, amely a küldő által generált ellenőrző összeget hasonlítja össze a fogadó által újraszámolt értékkel, így <span class="highlight">detektálva az esetleges átviteli hibákat</span>.</p>
+                
+                    <p><span class="key-point">Miért nevezik az Ethernetet kapcsolatmentes protokollnak?</span> Az Ethernet <span class="highlight">nem épít ki dedikált kapcsolatot</span> az eszközök között a kommunikáció előtt, és <span class="highlight">nem garantálja az adatok megérkezését</span> vagy sorrendjét, ezért nevezik kapcsolatmentesnek.</p>
+                
+                    <p><span class="key-point">Hogyan kezeli az Ethernet az ütközéseket?</span> Az Ethernet a <span class="highlight">CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</span> mechanizmust használja, amely lehetővé teszi az eszközöknek, hogy <span class="highlight">érzékeljék az ütközéseket</span>, leállítsák az adást, és <span class="highlight">véletlenszerű várakozás után újrapróbálkozzanak</span>.</p>
+                
+                    <p><span class="key-point">Mi a különbség a hub és a switch között Ethernet hálózatokban?</span> A <span class="highlight">hub</span> minden beérkező adatot <span class="highlight">minden portra továbbít</span>, míg a <span class="highlight">switch</span> <span class="highlight">intelligensen irányítja</span> az adatokat csak a célportokra, így növelve a hálózat hatékonyságát és biztonságát.</p>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. IP (Internet Protocol)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>IP alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az IP?</span> Az IP (Internet Protocol) egy <span class="highlight">hálózati réteg protokoll</span>, amely meghatározza, hogyan kell az adatcsomagokat a forrás és a cél között irányítani.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">IP jellemzői:</span></p>
+                    <ul>
+                        <li>Minden eszköz <span class="highlight">egyedi IP-címmel</span> rendelkezik</li>
+                        <li>Az IP-cím általában <span class="highlight">négy decimális számból</span> áll (pl. 192.168.1.1)</li>
+                        <li>A <span class="highlight">subnet mask</span> meghatározza a hálózati és host részt az IP-címben</li>
+                        <li>A <span class="highlight">default gateway</span> lehetővé teszi a kapcsolatot más hálózatokkal</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">IP verziók:</span> Jelenleg két fő IP verzió van használatban: <span class="highlight">IPv4 és IPv6</span>. Az IPv6 bevezetésének fő oka az IPv4 címek kimerülése volt, és nagyobb címtartományt, valamint jobb biztonsági funkciókat kínál.</p>
+
+                <p><span class="key-point">Hogyan működik?</span> Az IP <span class="highlight">csomagokba szervezi</span> az adatokat, amelyeket aztán <span class="highlight">útvonalválasztók</span> segítségével továbbít a hálózaton keresztül a célállomásig. Ez lehetővé teszi a <span class="highlight">különböző hálózatok közötti kommunikációt</span>.</p>
+                <p><span class="key-point">Mi a DHCP szerepe?</span> A DHCP (Dynamic Host Configuration Protocol) <span class="highlight">automatikusan osztja ki</span> az IP-címeket és más hálózati beállításokat az eszközöknek.</p>
+            
+            
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>IP címzés és routing</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan működik az IP címzés?</span> Az IP címzés <span class="highlight">hierarchikus rendszert</span> használ a hálózatok és eszközök azonosítására.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">IP címzés és routing jellemzői:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">hálózati rész</span> azonosítja a hálózatot</li>
+                        <li>A <span class="highlight">host rész</span> azonosítja az adott eszközt a hálózaton belül</li>
+                        <li>A <span class="highlight">routerek</span> a hálózati rész alapján irányítják a csomagokat</li>
+                        <li>A <span class="highlight">routing táblák</span> tartalmazzák az útvonal-információkat</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi a NAT szerepe?</span> A NAT (Network Address Translation) <span class="highlight">lehetővé teszi</span>, hogy több eszköz <span class="highlight">osszon meg egy nyilvános IP-címet</span>, növelve a biztonságot és csökkentve a szükséges nyilvános IP-címek számát.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>IP címek típusai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan csoportosítjuk az IP címeket?</span> Az IP címeket általában <span class="highlight">osztályokba</span> soroljuk (A, B, C, D, E), illetve megkülönböztetünk <span class="highlight">publikus és privát</span> IP címeket.</p>
+                
+                <p><span class="key-point">Honnan tudjuk, hogy milyen típusú IP címet kaptunk?</span> Az IP cím <span class="highlight">első bitjei</span> határozzák meg a típusát. Például, az A osztályú címek első bitje 0, a B osztályúaké 10, és így tovább.</p>
+                
+                <p><span class="key-point">Mi azonosítja a felhasználókat az IP protokoll esetén?</span> Az IP protokoll esetén a felhasználókat az <span class="highlight">IP cím</span> azonosítja. Bár az IP cím nem kifejezetten egy protokoll, hanem egy címzési rendszer, kulcsfontosságú az IP kommunikációban.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. TCP (Transmission Control Protocol)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>TCP alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a TCP?</span> A TCP egy <span class="highlight">kapcsolatorientált, megbízható</span> szállítási réteg protokoll, amely <span class="highlight">garantálja az adatok sorrendhelyes és hibamentes</span> átvitelét.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">TCP jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kapcsolat kiépítése</span> három lépéses kézfogással történik</li>
+                        <li><span class="highlight">Megbízható adatátvitelt</span> biztosít az IP felett</li>
+                        <li><span class="highlight">Torlódásvezérlést</span> alkalmaz a hálózat túlterhelésének elkerülésére</li>
+                        <li><span class="highlight">Folyamvezérlést</span> használ a fogadó túlterhelésének elkerülésére</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">TCP szegmens felépítése:</span></p>
+                    <ul>
+                        <li><span class="highlight">Forrás és cél port</span>: Azonosítja az alkalmazásokat</li>
+                        <li><span class="highlight">Szekvencia és nyugta számok</span>: Adatok sorrendjének és átvitelének követése</li>
+                        <li><span class="highlight">Ablakméret</span>: Folyamvezérléshez használt</li>
+                        <li><span class="highlight">Ellenőrző összeg</span>: Hibadetektálás</li>
+                        <li><span class="highlight">Opciók</span>: További beállítások</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Hogyan működik?</span> A TCP <span class="highlight">három lépéses kézfogással</span> hozza létre a kapcsolatot, majd <span class="highlight">szegmensekbe szervezi</span> az adatokat. Használja a <span class="highlight">csúszóablak mechanizmust</span> a hatékony adatátvitelhez, és <span class="highlight">nyugtázásokkal</span> biztosítja a megbízható átvitelt.</p>
+                <p><span class="key-point">Mire szolgál a szekvencia és nyugta szám?</span> A <span class="highlight">szekvencia szám</span> az elküldött adatok sorrendjét jelzi, míg a <span class="highlight">nyugta szám</span> a sikeresen fogadott adatokat nyugtázza.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>TCP torlódásvezérlés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan működik a TCP torlódásvezérlés?</span> A TCP torlódásvezérlés <span class="highlight">dinamikusan szabályozza</span> a küldési sebességet a hálózat állapotának megfelelően.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">TCP torlódásvezérlés fázisai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Lassú indulás:</span> A küldési sebesség exponenciálisan nő</li>
+                        <li><span class="highlight">Torlódás elkerülés:</span> A sebesség lineárisan nő</li>
+                        <li><span class="highlight">Gyors helyreállítás:</span> Gyors reakció a csomagvesztésre</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi az AIMD elv?</span> Az AIMD (Additive Increase, Multiplicative Decrease) elv szerint a TCP <span class="highlight">lineárisan növeli</span> a küldési sebességet, de <span class="highlight">exponenciálisan csökkenti</span> torlódás esetén.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>TCP és UDP összehasonlítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a fő különbség a TCP és UDP között?</span> A TCP <span class="highlight">kapcsolat-orientált, megbízható</span> átvitelt biztosít, míg az UDP <span class="highlight">kapcsolat nélküli, gyorsabb</span>, de kevésbé megbízható protokoll.</p>
+                
+                <p><span class="key-point">Mikor használjuk inkább az UDP-t?</span> Az UDP-t olyan alkalmazásoknál használjuk, ahol <span class="highlight">a sebesség fontosabb, mint a megbízhatóság</span>, például valós idejű játékoknál vagy streaming szolgáltatásoknál.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. HTTP (Hypertext Transfer Protocol)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>HTTP alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a HTTP?</span> A HTTP egy <span class="highlight">alkalmazási réteg protokoll</span>, amely a <span class="highlight">World Wide Web alapját</span> képezi.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">HTTP jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Állapotmentes protokoll</span>, minden kérés független</li>
+                        <li><span class="highlight">Kliens-szerver modellt</span> követ</li>
+                        <li>Lehetővé teszi <span class="highlight">különböző típusú adatok</span> átvitelét</li>
+                        <li>Támogatja a <span class="highlight">kérés-válasz mechanizmust</span> </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik?</span> A kliens <span class="highlight">HTTP kérést küld</span> a szervernek, amely feldolgozza azt és <span class="highlight">HTTP választ küld vissza</span>. Ez lehetővé teszi a <span class="highlight">weboldalak betöltését</span>, <span class="highlight">űrlapok beküldését</span>, és egyéb webes interakciókat.</p>
+
+                <p><span class="key-point">Mik a főbb HTTP metódusok?</span> A leggyakoribb HTTP metódusok a <span class="highlight">GET (adatok lekérése), POST (adatok küldése), PUT (adatok frissítése) és DELETE (adatok törlése)</span>.</p>
+
+                <p><span class="key-point">Miért állapotmentes a HTTP?</span> A HTTP <span class="highlight">nem tart fenn információt</span> a korábbi kérésekről, ami <span class="highlight">egyszerűbbé teszi a szerverek működését</span>, de szükségessé teszi más megoldások (pl. cookie-k) használatát az állapot megőrzéséhez.</p>
+
+                <p><span class="key-point">Hogyan biztosítja a HTTP a biztonságos kommunikációt?</span> A HTTP önmagában nem biztonságos, de a <span class="highlight">HTTPS (HTTP Secure)</span> verzió <span class="highlight">SSL/TLS titkosítást</span> használ a biztonságos adatátvitelhez.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>HTTP kérések és válaszok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan épül fel egy HTTP kérés és válasz?</span> Mind a HTTP kérés, mind a válasz <span class="highlight">három fő részből</span> áll.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">HTTP kérés és válasz részei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kérés/Válasz sor:</span> Tartalmazza a metódust, URL-t vagy státuszkódot</li>
+                        <li><span class="highlight">Fejlécek:</span> További információkat tartalmaznak a kérésről vagy válaszról</li>
+                        <li><span class="highlight">Törzs:</span> Opcionális, a küldendő vagy fogadott adatokat tartalmazza</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mik a főbb HTTP státuszkódok?</span> A leggyakoribb státuszkódok: <span class="highlight">200 (OK), 404 (Not Found), 500 (Internal Server Error)</span>.</p>
+
+                <p><span class="key-point">Mire szolgálnak a HTTP fejlécek?</span> A HTTP fejlécek <span class="highlight">metaadatokat biztosítanak</span> a kérésről vagy válaszról, például <span class="highlight">content-type, cache-control, vagy authorization</span> információkat.</p>
+
+                <p><span class="key-point">Hogyan kezeli a HTTP a session-öket?</span> Mivel a HTTP állapotmentes, a <span class="highlight">session-kezelést általában cookie-k vagy URL paraméterek</span> segítségével oldják meg, amelyek <span class="highlight">azonosítókat tárolnak</span> a kliens és szerver közötti állapot megőrzéséhez.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. RSA (Rivest-Shamir-Adleman)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>RSA alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az RSA?</span> Az RSA egy <span class="highlight">aszimmetrikus titkosítási algoritmus</span>, amely <span class="highlight">kulcspárt használ</span> az adatok titkosítására és visszafejtésére.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RSA jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Publikus kulcsú</span> kriptográfiai rendszer</li>
+                        <li>A <span class="highlight">publikus kulcs</span> nyilvánosan elérhető</li>
+                        <li>A <span class="highlight">privát kulcs</span> titkos, csak a tulajdonosa ismeri</li>
+                        <li><span class="highlight">Matematikai problémák</span> nehézségén alapul (prímfaktorizáció)</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mire használják az RSA-t?</span> Az RSA-t gyakran használják <span class="highlight">digitális aláírásokhoz</span> és <span class="highlight">biztonságos kommunikációs csatornák</span> létrehozásához, például az SSL/TLS protokollban.</p>
+
+                <p><span class="key-point">Miért biztonságos az RSA?</span> Az RSA biztonságossága azon alapul, hogy <span class="highlight">nagyon nehéz nagy számokat prímtényezőkre bontani</span>, különösen korlátozott idő alatt.</p>
+
+                <p><span class="key-point">Hogyan különbözik az RSA a szimmetrikus titkosítástól?</span> Az RSA <span class="highlight">különböző kulcsokat használ</span> a titkosításhoz és visszafejtéshez, míg a szimmetrikus titkosítás <span class="highlight">ugyanazt a kulcsot</span> használja mindkét művelethez.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>RSA működése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">RSA működése:</span> Az RSA <span class="highlight">két nagy prímszám szorzatán alapul</span>. A nyilvános kulcs ezekből származtatható, de a privát kulcs kiszámításához szükséges lenne a prímtényezőkre bontás, ami nagyon nehéz feladat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RSA titkosítás lépései:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kulcsgenerálás:</span> Két nagy prímszám választása és műveletek</li>
+                        <li><span class="highlight">Titkosítás:</span> Az üzenet kódolása a publikus kulccsal</li>
+                        <li><span class="highlight">Visszafejtés:</span> A titkosított üzenet dekódolása a privát kulccsal</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen hosszú kulcsokat használ az RSA?</span> Az RSA általában <span class="highlight">1024, 2048 vagy 4096 bites kulcsokat</span> használ, ahol a <span class="highlight">hosszabb kulcsok nagyobb biztonságot</span> nyújtanak, de lassabb feldolgozást eredményeznek.</p>
+
+                <p><span class="key-point">Hogyan használják az RSA-t digitális aláírásokhoz?</span> Digitális aláírásoknál az aláíró a <span class="highlight">privát kulcsával titkosítja</span> az üzenet hash-ét, amit aztán bárki <span class="highlight">ellenőrizhet a publikus kulccsal</span>.</p>
+
+                <p><span class="key-point">Mik az RSA korlátai?</span> Az RSA <span class="highlight">relatíve lassú nagy mennyiségű adat titkosítására</span>, ezért gyakran kombinálják <span class="highlight">szimmetrikus titkosítással</span> a hatékonyság növelése érdekében.</p>
+            </div>
+        </div>
+    </div>
+
 
     <script src="../assets/js/tetel.js"></script>
 </body>

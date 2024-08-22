@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 27 - </title>
+    <title>Tétel 25 - Számítógép architektúra I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
 </head>
@@ -12,7 +12,443 @@
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Számítógép architektúra I - 25. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Neumann-elvű gép egységei</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Neumann-elv alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+            
+                <p><span class="key-point">Mitől Neumann-elvű egy gép?</span> A Neumann-elv szerint a számítógépeknek <span class="highlight">közös memóriát kell használniuk</span> az utasítások(programkód) és az adatok tárolására. Ez az elv képezi a modern számítógépek tervezésének alapját.</p>
+                <p><span class="key-point">Miért fontos a közös memória?</span> A közös memória használata lehetővé teszi a <span class="highlight">rugalmas programozást</span> és a <span class="highlight">hatékony erőforrás-kezelést</span>. Ez azt jelenti, hogy a programok és az adatok dinamikusan változtathatók, ami a modern számítástechnika alapja.</p>
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li>Adatok és utasítások <span class="highlight">bináris formában</span> való tárolása, ami lehetővé teszi az egységes kezelésüket</li>
+                        <li><span class="highlight">Tárolt program</span> koncepciója, amely forradalmasította a számítástechnikát</li>
+                        <li>Szekvenciális utasítás-végrehajtás, ami egyszerűsíti a processzor tervezését</li>
+                        <li><span class="highlight">Univerzalitás:</span> Ugyanaz a hardver különböző feladatok végrehajtására is alkalmas</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontos?</span> A Neumann-architektúra lehetővé teszi a <span class="highlight">rugalmas programozást</span> és a <span class="highlight">hatékony adatfeldolgozást</span>, ami a modern számítástechnika alapja. Ez az architektúra tette lehetővé a általános célú számítógépek fejlődését.</p>
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Neumann-architektúra főbb egységei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Öt fő funkcionális egység:</span></p>
+                    <ol>
+                        <li><span class="highlight">Központi memória:</span> A program kódját és adatait tárolja számokként. Ez teszi lehetővé a gyors hozzáférést és módosítást.</li>
+                        <li><span class="highlight">Központi feldolgozóegység (CPU):</span> A memóriában tárolt utasításokat beolvassa és végrehajtja. Ez az "agy" a számítógépben.</li>
+                        <li><span class="highlight">Külső sín:</span> A részegységeket köti össze, adatokat, címeket, vezérlőjeleket továbbít. Ez biztosítja a kommunikációt a komponensek között.</li>
+                        <li><span class="highlight">Belső sín:</span> CPU részegységei közötti kommunikációt biztosítja, gyorsítva a belső műveleteket.</li>
+                        <li><span class="highlight">Be- és kiviteli eszközök:</span> Kapcsolatot teremt a felhasználóval, adatokat tárol a háttértáron. Ez teszi interaktívvá a számítógépet.</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Milyen kiegészítő elemek szükségesek?</span> A működést biztosító járulékos eszközök, például <span class="highlight">gépház, tápellátás, hűtés</span> is elengedhetetlenek. Ezek biztosítják a stabil működési környezetet a számítógép számára.</p>
+                
+                <p><span class="key-point">Hogyan kommunikálnak az egységek?</span> Az egységek közötti kommunikáció a <span class="highlight">sínrendszeren</span> keresztül történik, ami lehetővé teszi az adatok, címek és vezérlőjelek gyors és hatékony továbbítását.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>CPU részegységei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    
+
+                    <p><span class="key-point">Mik a CPU fő részei?</span> A CPU három fő részből áll:</p>
+                    <ul>
+                        <li><span class="highlight">Vezérlőegység (CU):</span> Utasításokat olvas be és vezérli az ALU és a regiszterek működését. Ez a "karmester" a CPU-ban.</li>
+                        <li><span class="highlight">Aritmetikai-logikai egység (ALU):</span> Elvégzi az aritmetikai és logikai műveleteket. Ez a "számológép" a CPU-ban.</li>
+                        <li><span class="highlight">Regiszterek:</span> Gyors, kis méretű memóriaegységek az ideiglenes adattároláshoz. Ezek a CPU "jegyzetfüzetei".</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Hogyan működnek együtt?</span> A vezérlőegység <span class="highlight">irányítja</span> az ALU-t és a regisztereket, az ALU <span class="highlight">végzi a számításokat</span>, míg a regiszterek <span class="highlight">ideiglenes tárolóként</span> szolgálnak a műveletek során. Ez a szoros együttműködés teszi lehetővé a gyors és hatékony műveletvégzést.</p>
+                <p><span class="key-point">Miért fontosak a regiszterek?</span> A regiszterek <span class="highlight">gyors adathozzáférést</span> biztosítanak, ami kritikus a CPU teljesítménye szempontjából. Nélkülük a CPU-nak folyamatosan a lassabb memóriához kellene fordulnia.</p>
+                <p><span class="key-point">Mi az ALU szerepe?</span> Az ALU végzi az <span class="highlight">összeadást, kivonást és egyéb aritmetikai műveleteket</span>, valamint a <span class="highlight">logikai operációkat</span> (AND, OR, NOT, stb.). Ez teszi lehetővé a komplex számítások elvégzését.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. CPU, adatút, utasítás-végrehajtás, párhuzamosság</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Adatút működése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az adatút?</span> Az adatút az <span class="highlight">adatok áramlásának útja</span> a CPU-n belül. Alapfeladata, hogy <span class="highlight">kiválasszon regisztereket</span>, az ALU-val műveletet végeztessen el rajtuk, és az eredményt tárolja. Ez a folyamat kritikus a CPU hatékony működéséhez.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Adatút ciklus lépései:</span></p>
+                    <ol>
+                        <li>Az ALU két bemenő regisztere (A és B) feltöltődik a regiszter készletből</li>
+                        <li>Az ALU elvégzi a műveletet</li>
+                        <li>Az eredmény az ALU kimenő regiszterébe kerül</li>
+                        <li>A kimenő regiszterből az eredmény a kijelölt regiszterbe kerül</li>
+                    </ol>
+                    <p>Ez a ciklus lehetővé teszi a gyors és hatékony adatfeldolgozást a CPU-n belül.</p>
+                </div>
+                
+                <p><span class="key-point">Mi az adatútciklus?</span> Az adatútciklus a <span class="highlight">két operandus ALU-n történő átfutásából és az eredmény regiszterbe tárolásából</span> álló folyamat. Ez a ciklus alapvető fontosságú a CPU működésében, mivel ez biztosítja az adatok feldolgozását és mozgatását.</p>
+                
+                <img src="../assets/images/adatut.webp" alt="ALU és regiszterek kapcsolata" class="graph-image">
+                <p>A fenti ábra szemlélteti az ALU és a regiszterek kapcsolatát az adatútban.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Utasítás-végrehajtás folyamata</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az utasítás betöltés folyamata?</span> Az utasítás betöltés kulcsfontosságú része a <span class="highlight">program counter (utasításszámláló)</span>, amely nyilvántartja a következő végrehajtandó utasítás memóriacímét. A CPU ezt használja az utasítások sorrendben történő beolvasására a memóriából.</p>
+
+                <p><span class="key-point">Hogyan hajtódik végre egy utasítás?</span> Az utasítás-végrehajtás egy <span class="highlight">ciklikus folyamat</span>, amely több lépésből áll. Ez a folyamat biztosítja, hogy a CPU pontosan és hatékonyan hajtsa végre a programutasításokat.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Utasítás-végrehajtás lépései:</span></p>
+                    <ol>
+                        <li>Utasítás <span class="highlight">beolvasása</span> a memóriából az utasításregiszterbe</li>
+                        <li>Utasításszámláló <span class="highlight">növelése</span>, beállítása a következő utasítás címére</li>
+                        <li>Utasítás <span class="highlight">dekódolása</span>, típusának meghatározása</li>
+                        <li>Operandusok <span class="highlight">beolvasása</span> (ha szükséges)</li>
+                        <li>Utasítás <span class="highlight">végrehajtása</span></li>
+                        <li>Eredmény <span class="highlight">tárolása</span> (ha van)</li>
+                        <li>Visszatérés az 1. lépéshez</li>
+                    </ol>
+                    <p>Ez a ciklus biztosítja, hogy a CPU folyamatosan és hatékonyan hajtsa végre a programutasításokat.</p>
+                </div>
+                
+                <p><span class="key-point">Mi a betöltő-dekódoló-végrehajtó ciklus?</span> Ez a ciklus a <span class="highlight">központi szerepet játszik minden számítógép működésében</span>, és az utasítás-végrehajtás alapját képezi. Ez a folyamat teszi lehetővé, hogy a számítógép rugalmasan és hatékonyan hajtson végre különböző programokat.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Párhuzamosság szintjei</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos a párhuzamosság?</span> A párhuzamosság lehetővé teszi a <span class="highlight">processzor teljesítményének növelését</span> az órajel frekvencia emelése nélkül. Ez kulcsfontosságú a modern processzorok teljesítményének növelésében, mivel az órajel frekvencia növelése fizikai korlátokba ütközik.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Párhuzamosság típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Utasításszintű párhuzamosság:</span> Több utasítás egyidejű végrehajtása (pl. csővezeték). Ez lehetővé teszi, hogy a CPU egyszerre több utasítást dolgozzon fel különböző végrehajtási fázisokban.</li>
+                        <li><span class="highlight">Processzorszintű párhuzamosság:</span> Több processzor együttes használata (pl. többmagos CPU-k). Ez lehetővé teszi, hogy több független feladatot hajtsunk végre egyidejűleg.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Utasításszintű párhuzamosság típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Csővezeték (Pipeline):</span> Az utasítás-végrehajtás fázisainak párhuzamosítása</li>
+                        <li><span class="highlight">Párhuzamos csővezeték:</span> Több csővezeték párhuzamos működtetése</li>
+                        <li><span class="highlight">Szuperskaláris architektúra:</span> Több utasítás egyidejű kiadása és végrehajtása</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Processzorszintű párhuzamosság típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tömbszámítógép:</span> Azonos műveletek végrehajtása több adaton</li>
+                        <li><span class="highlight">Multiprocesszor:</span> Több CPU közös memóriával</li>
+                        <li><span class="highlight">Multiszámítógép:</span> Több, saját memóriával rendelkező számítógép összekapcsolása</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mi a csővezeték (pipeline)?</span> A csővezeték az utasítás-végrehajtást <span class="highlight">több részre osztja</span>, amelyeket párhuzamosan lehet végrehajtani, növelve a hatékonyságot. Ez olyan, mintha egy gyártósor lenne, ahol minden állomás egy-egy lépést végez el az utasítás feldolgozásában.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Csővezeték (Pipeline) részletesebben:</span></p>
+                    <ul>
+                        <li>A csővezeték <span class="highlight">több szakaszra osztja</span> az utasítás végrehajtását</li>
+                        <li>Tipikus szakaszok: <span class="highlight">betöltés, dekódolás, végrehajtás, memória hozzáférés, visszaírás</span></li>
+                        <li>Lehetővé teszi, hogy <span class="highlight">több utasítás különböző fázisai</span> egyszerre legyenek folyamatban</li>
+                        <li>Növeli az <span class="highlight">átbocsátóképességet</span>, de nem csökkenti az egy utasítás végrehajtásához szükséges időt</li>
+                        <li><span class="highlight">Kihívások:</span> adatfüggőségek, vezérlési függőségek kezelése</li>
+                    </ul>
+                </div>
+
+                <img src="../assets/images/pipeline.webp" alt="Párhuzamos csővezeték" class="graph-image">
+                <p>A fenti ábra szemlélteti a párhuzamos csővezeték működését, ahol több utasítás különböző fázisai egyszerre zajlanak.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Korszerű számítógépek tervezési elvei</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Tervezési alapelvek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+
+
+                
+                <p><span class="key-point">Mik a fő tervezési elvek?</span> A modern számítógépek tervezésénél számos elvet követnek a <span class="highlight">teljesítmény és hatékonyság maximalizálása</span> érdekében. Ezek az elvek határozzák meg a processzorok architektúráját és működését.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Modern CPU tervezési elvek:</span></p>
+                    <ul>
+                        <li>Minden utasítást közvetlenül a hardver hajtson végre</li>
+                        <li>Maximalizálni kell az utasítások kiadási ütemét</li>
+                        <li>Az utasítások könnyen dekódolhatók legyenek</li>
+                        <li>Csak a betöltő és tároló utasítások hivatkozzanak a memóriára</li>
+                        <li>Sok regiszter legyen</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">1. Közvetlen hardveres végrehajtás:</span></p>
+                    <ul>
+                        <li>Cél: <span class="highlight">Minden utasítást közvetlenül a hardver hajtson végre</span></li>
+                        <li>A gyakran használt utasításokat (pl. egyszerű matematikai műveletek) mindenképpen</li>
+                        <li>Kerüljük az <span class="highlight">interpretált mikroutasításokat</span>, mert ezek lassítják a végrehajtást</li>
+                        <li>Az interpretáció plusz időt vesz igénybe, ami csökkenti a teljesítményt</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Magas utasításkiadási ütem:</span></p>
+                    <ul>
+                        <li>Cél: <span class="highlight">Maximalizálni az utasítások kiadási ütemét</span></li>
+                        <li>Törekedni kell a <span class="highlight">párhuzamos utasításkiadásra</span></li>
+                        <li>Ez azt jelenti, hogy a processzor több utasítást ad ki és hajt végre egyidejűleg</li>
+                        <li>Kihasználja a processzor belső párhuzamosságát a teljesítmény növelése érdekében</li>
+                        <li>Ez az elv különösen fontos a modern, többmagos processzoroknál</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Egyszerű utasítás-dekódolás:</span></p>
+                    <ul>
+                        <li>Cél: Az utasítások <span class="highlight">könnyen dekódolhatók legyenek</span></li>
+                        <li>Az utasítások kevés mezőből álljanak, legyenek szabályosak és egyforma hosszúak</li>
+                        <li>Ez <span class="highlight">gyorsítja az utasítás-végrehajtást</span> és csökkenti a CPU komplexitását</li>
+                        <li>Az egyszerű dekódolás lehetővé teszi a <span class="highlight">gyorsabb feldolgozást</span> és a hatékonyabb pipeline működést</li>
+                        <li>Ez az elv különösen jellemző a RISC architektúrákra</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">4. Optimalizált memóriahozzáférés:</span></p>
+                    <ul>
+                        <li>Cél: <span class="highlight">Csak a betöltő és tároló utasítások hivatkozzanak a memóriára</span></li>
+                        <li>A betöltő utasítások adatot olvasnak be a memóriából a regiszterekbe</li>
+                        <li>A tároló utasítások a regiszterek tartalmát írják vissza a memóriába</li>
+                        <li>Ez az elv <span class="highlight">egyszerűsíti a memóriakezelést</span> és segíti az utasítások párhuzamosítását</li>
+                        <li>Csökkenti a memória-hozzáférések számát, ami gyakran a teljesítmény szűk keresztmetszete</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">5. Bőséges regiszterkészlet:</span></p>
+                    <ul>
+                        <li>Cél: <span class="highlight">Sok regiszter álljon rendelkezésre</span> a gyors adatkezeléshez</li>
+                        <li>A regiszterek kis méretű, gyors memóriablokkok közvetlenül a processzorban</li>
+                        <li>A bőséges regiszterkészlet lehetővé teszi, hogy a <span class="highlight">számítások során ne kelljen a lassú memóriába írni</span></li>
+                        <li>Ez jelentősen <span class="highlight">gyorsítja a műveletek végrehajtását</span> és csökkenti a memória-hozzáférések számát</li>
+                        <li>Különösen fontos a RISC architektúrákban, de a modern CISC processzorok is alkalmazzák</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontosak ezek az elvek?</span> Ezek az elvek együttesen biztosítják, hogy a modern processzorok <span class="highlight">gyorsabban és hatékonyabban</span> hajtsák végre az utasításokat, maximalizálva a teljesítményt és minimalizálva az erőforrás-felhasználást. A tervezési elvek alkalmazása teszi lehetővé, hogy a processzorok lépést tartsanak a növekvő teljesítményigényekkel.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Korszerű számítógépek tervezési elvei és a RISC/CISC kapcsolat</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Melyik áll közelebb a modern tervezési elvekhez?</span> A korszerű tervezési elvek általában <span class="highlight">közelebb állnak a RISC filozófiához</span>, de a modern processzorok gyakran ötvözik mindkét megközelítés előnyeit.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RISC elvek a modern tervezésben:</span></p>
+                    <ul>
+                        <li>Egyszerű, gyorsan végrehajtható utasítások</li>
+                        <li>Sok regiszter használata</li>
+                        <li>Load-store architektúra</li>
+                        <li>Hatékony pipeline használat</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">CISC előnyök a modern tervezésben:</span></p>
+                    <ul>
+                        <li>Visszafelé kompatibilitás</li>
+                        <li>Komplex műveletek hatékony végrehajtása</li>
+                        <li>Kisebb kódméret bizonyos alkalmazásokban</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Modern megközelítés:</span> A mai processzorok gyakran <span class="highlight">CISC utasításkészletet használnak, de belül RISC-szerű mikroarchitektúrával</span> működnek, így ötvözve mindkét megközelítés előnyeit.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. RISC és CISC architektúrák</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>RISC architektúra</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a RISC?</span> A RISC (Reduced Instruction Set Computer) egy <span class="highlight">csökkentett utasításkészletű számítógép-architektúra</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RISC jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Kevés, egyszerű utasítás:</span> Tipikusan 50 körüli utasítás, ami egyszerűsíti a processzor tervezését és gyorsítja a végrehajtást</li>
+                        <li><span class="highlight">Gyors végrehajtás:</span> Egy utasítás egy órajel alatt végrehajtható, ami jelentősen növeli a teljesítményt</li>
+                        <li><span class="highlight">Sok regiszter:</span> Csökkenti a memóriaműveletek számát, gyorsítva a végrehajtást</li>
+                        <li><span class="highlight">Pipeline architektúra:</span> Párhuzamos utasítás-végrehajtás, ami növeli az átbocsátóképességet</li>
+                        <li><span class="highlight">Load-Store architektúra:</span> Csak speciális utasítások férhetnek hozzá a memóriához, egyszerűsítve a végrehajtást</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa RISC architektúrára:</span> Az <span class="highlight">UltraSPARC</span> egy jó példa a RISC architektúrára. Ez a processzor kiválóan szemlélteti a RISC elvek gyakorlati alkalmazását.</p>
+                
+                <p><span class="key-point">Előnyök:</span> A RISC architektúra <span class="highlight">gyorsabb végrehajtást</span> és <span class="highlight">alacsonyabb energiafogyasztást</span> tesz lehetővé, ami különösen előnyös mobil eszközökben és nagy teljesítményű szerverekben.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>CISC architektúra</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a CISC?</span> A CISC (Complex Instruction Set Computer) egy <span class="highlight">összetett utasításkészletű számítógép-architektúra</span>. Ez a megközelítés a rugalmasságra és a komplex műveletek hatékony végrehajtására összpontosít.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">CISC jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Sok, összetett utasítás:</span> Akár több száz utasítás is lehet, ami lehetővé teszi komplex műveletek egyetlen utasítással való végrehajtását</li>
+                        <li><span class="highlight">Összetett utasítások:</span> Egy utasítás több műveletet is végezhet, ami csökkentheti a programok méretét</li>
+                        <li><span class="highlight">Mikroprogram vezérlés:</span> Az összetett utasításokat mikroutasításokra bontja, ami rugalmasságot biztosít, de lassíthatja a végrehajtást</li>
+                        <li><span class="highlight">Kevesebb regiszter:</span> Nagyobb mértékű memóriahasználat, ami egyszerűsítheti a programozást, de lassíthatja a végrehajtást</li>
+                        <li><span class="highlight">Komplex címzési módok:</span> Rugalmasabb memóriakezelés, ami hasznos lehet bizonyos alkalmazásokban</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Példa CISC architektúrára:</span> A <span class="highlight">Pentium 4</span> processzor jól szemlélteti a CISC architektúrát. Ez a processzor kombinálja a CISC elveket modern technológiákkal a teljesítmény optimalizálása érdekében.</p>
+                
+                <p><span class="key-point">Előnyök:</span> A CISC architektúra <span class="highlight">rugalmasabb programozást</span> tesz lehetővé és <span class="highlight">hatékonyabb lehet komplex műveletek végrehajtásában</span>. Emellett a visszafelé kompatibilitás miatt továbbra is széles körben használják.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>RISC vs CISC összehasonlítás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miben különböznek?</span> A RISC és CISC architektúrák különböző megközelítést alkalmaznak a processzor tervezésében és működésében. Mindkettőnek megvannak a maga előnyei és hátrányai.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RISC és CISC történeti kontextusa:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">CISC architektúra</span> volt előbb, az 1960-as és 1970-es években fejlődött ki</li>
+                        <li>A <span class="highlight">RISC koncepció</span> az 1980-as években jelent meg, válaszként a CISC komplexitására</li>
+                        <li>RISC célja: <span class="highlight">Egyszerűbb, gyorsabb végrehajtás</span> kevesebb, de optimalizált utasítással</li>
+                        <li>Napjainkban: A két megközelítés <span class="highlight">konvergenciája</span> figyelhető meg a modern processzorokban</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Főbb különbségek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Utasításkészlet:</span> RISC kevesebb, CISC több utasítással rendelkezik. Ez befolyásolja a processzor komplexitását és a programozás módját.</li>
+                        <li><span class="highlight">Végrehajtási sebesség:</span> RISC általában gyorsabb egyszerű műveletekben, CISC hatékonyabb lehet komplex műveletekben.</li>
+                        <li><span class="highlight">Kódméret:</span> CISC általában kisebb kódméret, ami előnyös lehet memóriakorlátozott rendszerekben.</li>
+                        <li><span class="highlight">Memóriahasználat:</span> RISC több regisztert használ, CISC inkább a memóriára támaszkodik. Ez befolyásolja a teljesítményt és az energiafogyasztást.</li>
+                        <li><span class="highlight">Programozás:</span> CISC könnyebb magas szintű programozást tesz lehetővé, RISC hatékonyabb gépi kódot eredményez, ami optimalizálást igényelhet.</li>
+                    </ul>
+                </div>
+                
+                
+                <p><span class="key-point">Melyik jobb?</span> Mindkét architektúrának megvan a <span class="highlight">saját előnye és alkalmazási területe</span>. A választás függ a konkrét felhasználási céltól és követelményektől. Napjainkban sok processzor kombinálja mindkét architektúra előnyeit.</p>
+                <p><span class="key-point">RISC vs CISC a modern processzoroknál:</span> A mai processzorok gyakran <span class="highlight">hibrid megközelítést</span> alkalmaznak. Az Intel és AMD asztali processzorok alapvetően CISC architektúrájúak a visszafelé kompatibilitás miatt, de belső működésükben RISC-szerű elveket is alkalmaznak. A mobiltelefonokban használt processzorok (pl. ARM) inkább a RISC elveket követik, mert nem kell a régi architektúrákkal kompatibilisnek lenniük.</p>
+                
+        <p><span class="key-point">Mobil processzorok:</span> A mobiltelefonokban használt processzorok többnyire <span class="highlight">RISC architektúrát</span> követnek (pl. ARM processzorok), mert ezeket úgy tervezhették, hogy nem kellett a régi architektúrákkal kompatibilisnek lenniük, és az energiahatékonyság kiemelt szempont.</p>
+            
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Főbb pontok áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Kulcsfogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Neumann-architektúra:</span> Modern számítógépek alapja</li>
+                        <li><span class="highlight">CPU és adatút:</span> Utasítások végrehajtásának központi elemei</li>
+                        <li><span class="highlight">Párhuzamosság:</span> Teljesítménynövelés kulcsa</li>
+                        <li><span class="highlight">Tervezési elvek:</span> Hatékonyság és teljesítmény optimalizálása</li>
+                        <li><span class="highlight">RISC és CISC:</span> Eltérő megközelítések a processzor-architektúrában</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">1. Neumann-elvű gép egységei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Központi memória</span></li>
+                        <li><span class="highlight">Központi feldolgozóegység (CPU)</span></li>
+                        <li><span class="highlight">Külső és belső sín</span></li>
+                        <li><span class="highlight">Beviteli/kiviteli eszközök</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. CPU és utasítás-végrehajtás:</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatút működése</span></li>
+                        <li><span class="highlight">Utasítás-végrehajtási ciklus</span></li>
+                        <li><span class="highlight">Utasítás- és processzorszintű párhuzamosság</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Korszerű tervezési elvek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hardveres végrehajtás</span></li>
+                        <li><span class="highlight">Maximális utasítás-kiadás</span></li>
+                        <li><span class="highlight">Egyszerű dekódolás</span></li>
+                        <li><span class="highlight">Sok regiszter használata</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">4. RISC és CISC architektúrák:</span></p>
+                    <ul>
+                        <li><span class="highlight">RISC: egyszerű, gyors utasítások</span></li>
+                        <li><span class="highlight">CISC: összetett, sokrétű utasítások</span></li>
+                        <li><span class="highlight">Előnyök és hátrányok mindkét oldalon</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Záró gondolat:</span> A számítógép-architektúrák folyamatosan fejlődnek, de az <span class="highlight">alapelvek és koncepciók</span> megértése kulcsfontosságú a modern rendszerek tervezéséhez és használatához.</p>
+                
+                <p><span class="key-point">Miért fontos mindez?</span> Ezen elvek és koncepciók megértése elengedhetetlen a <span class="highlight">modern számítógép-architektúrák tervezéséhez és fejlesztéséhez</span>, valamint a számítógépek működésének mélyebb megértéséhez.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>
