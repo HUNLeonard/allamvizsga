@@ -4,16 +4,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 28 - </title>
+    <title>Tétel 28 - Számítógépes Architektúrák II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
-    <script defer data-domain="allamvizsga.netlify.app" src="https://plausible.io/js/script.js"></script>
 </head>
 <body class="dark-mode">
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1></h1>
+    <h1>Számítógépes Architektúrák II - 28. tétel</h1>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Számítógép perifériák: Háttértárak</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Háttértárak feladata és típusai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a háttértárak feladata?</span> A háttértárolók feladata az <span class="highlight">adatok és programok hosszabb ideig tartó tárolása</span>. Tartalmuk a számítógép kikapcsolása után is megmarad.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Háttértárak típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Mágneses tárolók:</span> pl. merevlemez (HDD)</li>
+                        <li><span class="highlight">Flash memória:</span> pl. SSD, pendrive</li>
+                        <li><span class="highlight">Optikai tárolók:</span> pl. CD, DVD, Blu-ray</li>
+                        <li><span class="highlight">Szalagos tárolók:</span> pl. mágnesszalag</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Mágneses tárolás elve:</span> A mágneses adattárolás során <span class="highlight">mágneslemezen tárolunk adatokat</span>. Egy vagy több mágnesezhető bevonattal ellátott alumíniumkorong alkotja a lemezt. Egy <span class="highlight">indukciós fej lebeg a lemez felszíne felett</span> egy vékony légpárnán. Ha áram folyik az indukciós tekercsben, a fej alatt a lemez magnetizálódik, így bitsorozatokat lehet felírni és később visszaolvasni.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mágneses tárolás főbb fogalmai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Sáv:</span> Egy teljes körülfordulás alatt felírt bitsorozat</li>
+                        <li><span class="highlight">Szektor:</span> Általában 512 bájt méretű adategység, fejléccel és hibajavító kóddal</li>
+                        <li><span class="highlight">Cilinder:</span> Egy adott sugárirányú pozícióhoz tartozó sávok összessége az összes lemezfelületen</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Merevlemez működése:</span> A lemezegység <span class="highlight">több, egymás felett elhelyezett korongból</span> áll. Minden felülethez tartozik egy fej és egy mozgatókar. A karok <span class="highlight">rögzítve vannak egymáshoz</span>, így a fejek mindig ugyanarra a sugárirányú pozícióra állnak be. Egy szektor beolvasásához vagy kiírásához először a fejet a megfelelő pozícióba kell állítani, ezt <span class="highlight">keresésnek (seek)</span> hívják.</p>
+                
+                <p><span class="key-point">Flash memória működése:</span> A flash memória <span class="highlight">nem-felejtő (non-volatile) memória</span>, amely az adatokat elektromos töltés formájában tárolja memóriacellákban. A NAND flash memória cellái blokkokba és oldalakba rendeződnek. Főbb típusai:</p>
+                <ul>
+                    <li><span class="highlight">SLC (Single Level Cell):</span> Egy cella 1 bit értéket tárol</li>
+                    <li><span class="highlight">MLC (Multi Level Cell):</span> Egy cella több bitnyi információt tárol</li>
+                    <li><span class="highlight">TLC (Triple Level Cell):</span> Még több bit tárolására képes cellánként</li>
+                </ul>
+
+                <p><span class="key-point">Mi a flash memória előnye?</span> A flash meghajtók, mint az SSD-k és USB stickek, <span class="highlight">gyorsabbak, megbízhatóbbak és tartósabbak</span>, mint a hagyományos mágneses merevlemezek, és nem igényelnek mozgó alkatrészeket.</p>
+                
+                <p><span class="key-point">Optikai tárolás elve:</span> Az optikai adattárolók <span class="highlight">kör alakú lemezek</span>, amelyek felületén helyezkedik el az adattárolásra alkalmas réteg. A lemezek írása és olvasása <span class="highlight">lézersugárral történik</span> a lemez forgatása közben. Az adatrögzítéskor apró mélyedéseket (pit) hozunk létre spirál alakú vonalban, az érintetlen területeket pedig szintnek (land) nevezzük.</p>
+                
+                <p><span class="key-point">Optikai tárolók előnyei:</span></p>
+                <ul>
+                    <li><span class="highlight">Nagyobb adatsűrűség:</span> A fény kisebb területre fókuszálható, mint a mágneses részecskék</li>
+                    <li><span class="highlight">Hosszú élettartam:</span> A megfelelően kezelt optikai lemezek élettartama évszázadokban mérhető</li>
+                    <li><span class="highlight">Ellenállóság:</span> Nem érzékenyek az elektromágneses behatásokra</li>
+                </ul>
+
+                <p><span class="key-point">Típusai: </span> CD, DVD, Blu-ray</p>
+                
+                <p><span class="key-point">Szalagos tárolás jellemzői:</span> A mágnesszalag <span class="highlight">szekvenciális adattárolást</span> tesz lehetővé, és főként <span class="highlight">adatmentésre használják</span> céges környezetben. Előnyei:</p>
+                <ul>
+                    <li><span class="highlight">Alacsony költség:</span> Gigabájtra vetítve a legolcsóbb adattárolási mód</li>
+                    <li><span class="highlight">Nagy kapacitás:</span> Akár több terabájtos tárolókapacitás</li>
+                    <li><span class="highlight">Megbízhatóság:</span> Ideális hosszú távú adatarchiválásra</li>
+                </ul>
+
+                <p><span class="key-point">Mire használják a mágnesszalagot?</span> A mágnesszalagos tárolás <span class="highlight">főleg archiválásra és adatmentésre</span> szolgál, mivel ez a legolcsóbb adattárolási mód gigabájtra vetítve, de a hozzáférés szekvenciális.</p>
+            
+                <div class="step">
+                    <p><span class="key-point">Miben különbözik a CD, DVD és Blu-ray technológia?</span></p>
+                    <ul>
+                        <li><span class="highlight">Lézer hullámhossza:</span> CD (780 nm), DVD (650 nm), Blu-ray (405 nm)</li>
+                        <li><span class="highlight">Adatsűrűség:</span> A rövidebb hullámhossz kisebb pit-eket és nagyobb adatsűrűséget tesz lehetővé</li>
+                        <li><span class="highlight">Kapacitás:</span> CD (700 MB), DVD (4.7 GB - 17 GB), Blu-ray (25 GB - 128 GB)</li>
+                        <li><span class="highlight">Rétegek száma:</span> CD (1), DVD (1-2), Blu-ray (1-4)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Háttértárak RAID szervezése</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>RAID rendszerek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a RAID?</span> A RAID (Redundant Array of Independent Disks) egy <span class="highlight">tárolási technológia</span>, amely lehetővé teszi az adatok <span class="highlight">elosztását vagy replikálását</span> több fizikailag független merevlemezen, egy logikai lemez létrehozásával.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RAID főbb céljai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatbiztonság növelése:</span> Redundancia révén véd az adatvesztés ellen</li>
+                        <li><span class="highlight">Teljesítmény javítása:</span> Párhuzamos írás/olvasás több lemezen</li>
+                        <li><span class="highlight">Kapacitás növelése:</span> Több lemezt egyetlen logikai egységként kezel</li>
+                        <li><span class="highlight">Rendelkezésre állás javítása:</span> Egyes RAID szintek lehetővé teszik a rendszer működését meghibásodott lemez esetén is</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Alkalmazása: </span>Használják szerverekben, adatközpontokban, és olyan helyeken, ahol fontos az adatok biztonsága és a gyors hozzáférés.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">RAID alapfogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Csík (Stripe):</span> Az adatok kisebb blokkokra osztása, amelyeket az egyes lemezeken helyeznek el</li>
+                        <li><span class="highlight">Paritás:</span> Redundáns információ az adatok helyreállításához hiba esetén</li>
+                        <li><span class="highlight">Tükrözés:</span> Adatok teljes másolatának tárolása másik lemezen</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Leggyakoribb RAID szintek:</span></p>
+                    <ul>
+                        <li><span class="highlight">RAID 0 (Csíkozás):</span> Adatok elosztása több lemezen, nincs redundancia</li>
+                        <li><span class="highlight">RAID 1 (Tükrözés):</span> Adatok duplikálása két vagy több lemezen</li>
+                        <li><span class="highlight">RAID 5:</span> Elosztott paritás használata redundanciaként</li>
+                        <li><span class="highlight">RAID 6:</span> Kettős paritás használata magasabb adatbiztonságért</li>
+                        <li><span class="highlight">RAID 10:</span> RAID 1 és RAID 0 kombinációja</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Melyik a legelterjedtebb?</span> A <span class="highlight">RAID 5 és RAID 6</span> a leggyakrabban használt szintek vállalati környezetben.</p>
+
+                <p><span class="key-point">RAID 0 működése:</span> A RAID 0 <span class="highlight">csíkokra osztja az adatokat</span> és elosztja azokat a lemezek között. Ez növeli a sebességet, de egy lemez meghibásodása esetén az összes adat elveszhet. <span class="highlight">Nincs redundancia</span>, így nem biztosít hibatűrést.</p>
+                
+                <p><span class="key-point">RAID 1 előnyei:</span> A RAID 1 <span class="highlight">tükrözi az adatokat</span> két vagy több lemezen, így biztosítva a redundanciát. Ez kiváló adatvédelmet nyújt, de <span class="highlight">csökkenti a hasznos tárolókapacitást</span>. Bármely meghajtó meghibásodása esetén folytatódhat a működés.</p>
+                
+                <p><span class="key-point">RAID 5 működése:</span> A RAID 5 a <span class="highlight">paritás információt nem egy kitüntetett meghajtón</span>, hanem egyenletesen az összes meghajtón elosztva tárolja. Mind az írási, mind az olvasási műveletek párhuzamosan végezhetőek. Egy meghajtó meghibásodása esetén az adatok sértetlenül visszaolvashatóak.</p>
+                
+                <p><span class="key-point">RAID 6 előnyei:</span> A RAID 6 <span class="highlight">két paritásbit-et használ</span>, így akár két lemez egyidejű meghibásodását is túléli. Ez magasabb adatbiztonságot nyújt, mint a RAID 5, de több tárolókapacitást igényel a redundanciához.</p>
+                
+                <p><span class="key-point">RAID szintek összehasonlítása:</span></p>
+                <ul>
+                    <li>RAID 0: <span class="highlight">Legjobb teljesítmény</span>, de nincs adatvédelem</li>
+                    <li>RAID 1: <span class="highlight">Kiváló adatvédelem</span>, de magas tárolóigény</li>
+                    <li>RAID 5: <span class="highlight">Jó kompromisszum</span> teljesítmény és adatvédelem között</li>
+                    <li>RAID 6: <span class="highlight">Magas adatbiztonság</span>, de magasabb költségek</li>
+                </ul>
+
+                <p><span class="key-point">Megjegyzés:</span> A RAID használata <span class="highlight">nem helyettesíti a rendszeres adatmentést</span>, de jelentősen növeli az adatbiztonságot és a teljesítményt.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Nyomtatók (tintasugaras, lézer)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Nyomtatók típusai és működésük</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Tintasugaras nyomtatók működése:</span> A tintasugaras nyomtatók <span class="highlight">tintacseppeket juttatnak a papírra</span> egy porlasztó segítségével.</p>
+                
+                <p><span class="key-point">Milyen színeket használ a színes tintasugaras nyomtató?</span> Általában <span class="highlight">négy alapszínt használ: ciánkék, bíborvörös, sárga és fekete</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Tintasugaras nyomtatás lépései:</span></p>
+                    <ol>
+                        <li>A <span class="highlight">patronban lévő porlasztó</span> megfelelő méretű tintacseppekre alakítja a tintát</li>
+                        <li>A tintacseppek <span class="highlight">precízen a papírra jutnak</span> a nyomtatófej apró fúvókáon keresztül</li>
+                        <li>A <span class="highlight">színek keverése</span> a papíron történik a négy alapszín használatával</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Tintasugaras nyomtatók jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Porlasztó</span> alakítja megfelelő méretű cseppekre a tintát</li>
+                        <li><span class="highlight">Jó minőségű színes nyomatok</span>, akár fotóminőség</li>
+                        <li><span class="highlight">Viszonylag alacsony kezdeti költség</span></li>
+                        <li><span class="highlight">Magasabb oldalankénti költség</span> a tintapatronok ára miatt</li>
+                        <li><span class="highlight">Csendes működés</span></li>
+                        <li>Alkalmas <span class="highlight">különleges papírtípusokra</span> való nyomtatásra</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Lézernyomtatók működése:</span> A lézernyomtatók egy <span class="highlight">fényérzékeny anyaggal bevont forgó hengert és lézerrel</span> működnek. A lézer fénye elektromosan feltölti a henger felületét, majd a toner por hozzátapad a feltöltött részekhez, végül a papírra kerül és hő hatására rögzül.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Lézernyomtatás lépései:</span></p>
+                    <ol>
+                        <li>A <span class="highlight">fényérzékeny henger elektromosan feltöltődik</span></li>
+                        <li>Egy <span class="highlight">lézer fénye pásztázza végig</span> a hengert, egy nyolcszögletű tükör segítségével</li>
+                        <li>A fény <span class="highlight">modulálásával világos és sötét pontokat</span> hoznak létre</li>
+                        <li>A henger elfordul, és a <span class="highlight">toner hozzátapad</span> a még feltöltött pontokhoz</li>
+                        <li>A toner <span class="highlight">átkerül a papírra</span>, majd felmelegített görgők között halad el</li>
+                        <li>A hő hatására a <span class="highlight">festék véglegesen hozzátapad</span> a papírhoz</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Lézernyomtatók jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gyors nyomtatás</span>, különösen nagy mennyiségű dokumentumok esetén</li>
+                        <li><span class="highlight">Kiváló szövegminőség</span></li>
+                        <li><span class="highlight">Alacsonyabb oldalankénti költség</span>, különösen nagy mennyiségű nyomtatás esetén</li>
+                        <li><span class="highlight">Magasabb kezdeti beruházás</span></li>
+                        <li>Alkalmas <span class="highlight">nagy igénybevételre</span> irodai környezetben</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Összehasonlítás:</span> A tintasugaras nyomtatók általában <span class="highlight">jobb színes képminőséget</span> nyújtanak és alkalmasabbak fotók nyomtatására. A lézernyomtatók <span class="highlight">gyorsabbak és gazdaságosabbak</span> nagy mennyiségű szöveg nyomtatása esetén, és általában jobb szövegminőséget biztosítanak.</p>
+                
+                <p><span class="key-point">Felhasználási területek:</span></p>
+                <ul>
+                    <li><span class="highlight">Tintasugaras:</span> Otthoni használat, kis irodák, fotónyomtatás</li>
+                    <li><span class="highlight">Lézer:</span> Nagy irodák, magas volumenű nyomtatás, professzionális dokumentumok</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Telekommunikációs berendezések</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Modem, ADSL, KábelTV-s internet</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Modem funkciója:</span> A modem (modulátor-demodulátor) <span class="highlight">digitális jeleket alakít át analóg jelekké</span> és vissza, lehetővé téve az adatátvitelt hagyományos telefonvonalakon keresztül.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Modem jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hagyományos telefonvonalon</span> keresztül biztosít internetkapcsolatot</li>
+                        <li>Általában <span class="highlight">alacsony sebességű</span> (56 kbps körül)</li>
+                        <li><span class="highlight">Moduláció és demoduláció</span> folyamatát végzi</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Modem működése:</span></p>
+                    <ul>
+                        <li><span class="highlight">Moduláció:</span> Digitális jel átalakítása analóg jellé</li>
+                        <li><span class="highlight">Demoduláció:</span> Analóg jel visszaalakítása digitális jellé</li>
+                        <li>A moduláció során a <span class="highlight">vivőhullám amplitúdóját, fázisát vagy frekvenciáját</span> módosítják</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">ADSL működése:</span> Az ADSL technológia <span class="highlight">csavart rézérpárú telefonkábelt</span> használ az adatátvitelre. A rendszer a <span class="highlight">különböző frekvenciatartományokat</span> elkülöníti a hagyományos telefonhívások és az adatátvitel számára, így lehetővé téve az egyidejű használatot.</p>
+                <div class="step">
+                    <p><span class="key-point">ADSL technológia:</span></p>
+                    <ul>
+                        <li><span class="highlight">Aszimmetrikus Digitális Előfizetői Vonal</span></li>
+                        <li>Lehetővé teszi a <span class="highlight">nagysebességű internetkapcsolatot</span> meglévő telefonvonalakon</li>
+                        <li><span class="highlight">Különböző le- és feltöltési sebességek</span></li>
+                        <li>Általában <span class="highlight">1 Mbps-tól 24 Mbps-ig</span> terjedő letöltési sebesség</li>
+                        <li>Feltöltési sebesség <span class="highlight">128 kbps-tól 3 Mbps-ig</span> terjedhet</li>
+                    </ul>
+                </div>
+                
+                
+                <p><span class="key-point">ADSL előnyei:</span></p>
+                <ul>
+                    <li><span class="highlight">Nem zavarja a hagyományos telefonhívásokat</span></li>
+                    <li><span class="highlight">Állandó kapcsolat</span> az internethez</li>
+                    <li><span class="highlight">Nagyobb sebesség</span>, mint a hagyományos modemek</li>
+                    <li><span class="highlight">Dedikált kapcsolat</span> minden felhasználónak</li>
+                </ul>
+                
+                <p><span class="key-point">KábelTV-s internet működése:</span> A szolgáltatók <span class="highlight">fő telephellyel</span> rendelkeznek, valamint <span class="highlight">fejállomásokkal</span> a működési területükön. A fejállomások <span class="highlight">nagy sávszélességű kábelekkel vagy üvegszálas kapcsolatokkal</span> csatlakoznak a fő telephelyhez. Az előfizetők a hozzájuk legközelebbi kábelhez csatlakoznak.</p>
+                <div class="step">
+                    <p><span class="key-point">KábelTV-s internet jellemzői:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">kábeltelevízió hálózatát használja</span> az internetkapcsolat biztosítására</li>
+                        <li><span class="highlight">Hibrid száloptikai-koaxiális (HFC)</span> hálózatokat használ</li>
+                        <li><span class="highlight">Nagy sávszélességet</span> biztosít (750 MHz)</li>
+                        <li>Általában <span class="highlight">megosztott kapcsolat</span> az előfizetők között</li>
+                        <li>Sebessége akár <span class="highlight">100 Mbps-tól több száz Mbps-ig</span> terjedhet</li>
+                    </ul>
+                </div>
+                
+                
+                <p><span class="key-point">KábelTV-s internet előnyei:</span></p>
+                <ul>
+                    <li><span class="highlight">Nagy sebesség</span>, különösen letöltés esetén</li>
+                    <li><span class="highlight">Nem függ a telefonközponttól való távolságtól</span></li>
+                    <li>Alkalmas <span class="highlight">nagy adatforgalmú alkalmazásokhoz</span>, például HD videostreaming és online játékok</li>
+                </ul>
+
+                <p><span class="key-point">Mi a hátránya?</span> A sebesség <span class="highlight">függhet a hálózat terheltségétől</span>, mivel több felhasználó osztozik ugyanazon az infrastruktúrán.</p>
+                
+                <p><span class="key-point">Összehasonlítás:</span> Míg az ADSL <span class="highlight">dedikált kapcsolatot</span> biztosít minden felhasználónak, a kábeles internet <span class="highlight">megosztott sávszélességet</span> használ, ami csúcsidőben lassulást okozhat. Az ADSL sebessége függ a központtól való távolságtól, míg a kábeles internet sebessége általában stabilabb, de változhat a hálózat terheltsége függvényében.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Összefoglalás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Főbb pontok áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Háttértárak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Mágneses</span> (HDD): Nagy kapacitás, mechanikus alkatrészek</li>
+                        <li><span class="highlight">Flash</span> (SSD): Gyors, nincs mozgó alkatrész</li>
+                        <li><span class="highlight">Optikai</span> (CD, DVD, Blu-ray): Olcsó, de kisebb kapacitás</li>
+                        <li><span class="highlight">Szalagos</span>: Nagy kapacitás, lassú elérés, archiválásra</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">RAID:</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatbiztonság</span> és <span class="highlight">teljesítmény</span> növelése</li>
+                        <li>Különböző szintek: RAID 0, 1, 5, 6, 10</li>
+                        <li>RAID 5 és 6 a <span class="highlight">legelterjedtebb vállalati környezetben</span></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Nyomtatók:</span></p>
+                    <ul>
+                        <li><span class="highlight">Tintasugaras:</span> Jó színes nyomtatás, olcsóbb</li>
+                        <li><span class="highlight">Lézer:</span> Gyors, kiváló minőség, nagyobb mennyiségekhez</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Telekommunikációs berendezések:</span></p>
+                    <ul>
+                        <li><span class="highlight">Modem:</span> Alacsony sebesség, hagyományos telefonvonal</li>
+                        <li><span class="highlight">ADSL:</span> Nagyobb sebesség, aszimmetrikus</li>
+                        <li><span class="highlight">KábelTV:</span> Nagy sebesség, megosztott sávszélesség</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/js/tetel.js"></script>
 </body>

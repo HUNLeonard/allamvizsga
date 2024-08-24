@@ -15,12 +15,12 @@
 
     <h1>Logika és informatikai alkalmazásai I - 7. tétel</h1>
 
-    <div class="main-topic" onclick="toggleMainContent(this)">
+        <div class="main-topic" onclick="toggleMainContent(this)">
         <h2>1. Normálformák az ítéletkalkulusban</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>CNF és DNF</h2>
+            <h2>1. CNF és DNF</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi a normálforma célja?</span> A normálformák <span class="highlight">egyszerűsítik és egységesítik</span> az ítéletkalkulus kifejezéseit, ami <span class="highlight">csökkenti az algoritmusokra vonatkozó esetek számát</span>.</p>
@@ -45,29 +45,29 @@
         </div>
 
         <div class="algorithm">
-            <h2>CNF-re hozás</h2>
+            <h2>2. CNF-re hozás</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Hogyan hozzuk CNF-re a formulákat?</span></p>
                 <ol>
                     <li>Implikáció (→) és ekvivalencia (↔) eliminálása:
                         <ol>
-                            <li>F → G ≡ ¬F ∨ G</li>
-                            <li>F ↔ G ≡ (¬F ∨ G) ∧ (F ∨ ¬G)</li>
+                            <li><code>F → G ≡ ¬F ∨ G</code></li>
+                            <li><code>F ↔ G ≡ (¬F ∨ G) ∧ (F ∨ ¬G)</code></li>
                         </ol>
                     </li>
                     <li>Negáció (¬) bevitele a változók mellé (De Morgan azonosságok):
                         <ol>
-                            <li>¬(F ∨ G) ≡ ¬F ∧ ¬G</li>
-                            <li>¬(F ∧ G) ≡ ¬F ∨ ¬G</li>
-                            <li>¬¬F ≡ F</li>
+                            <li><code>¬(F ∨ G) ≡ ¬F ∧ ¬G</code></li>
+                            <li><code>¬(F ∧ G) ≡ ¬F ∨ ¬G</code></li>
+                            <li><code>¬¬F ≡ F</code></li>
                         </ol>
                     </li>
                     <p>Ekkor a formula <span class="highlight">negációs normálformában (NNF)</span> van.</p>
                     <li>Diszjunkció (∨) bevitele a konjunkció (∧) alá:
                         <ol>
-                            <li>F ∨ (G ∧ H) ≡ (F ∨ G) ∧ (F ∨ H)</li>
-                            <li>(F ∧ G) ∨ H ≡ (F ∨ H) ∧ (G ∨ H)</li>
+                            <li><code>F ∨ (G ∧ H) ≡ (F ∨ G) ∧ (F ∨ H)</code></li>
+                            <li><code>(F ∧ G) ∨ H ≡ (F ∨ H) ∧ (G ∨ H)</code></li>
                         </ol>
                     </li>
                 </ol>
@@ -76,7 +76,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>SAT-probléma</h2>
+            <h2>3. SAT-probléma</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi az a SAT-probléma?</span> A SAT (satisfiability) egy <span class="highlight">CNF-eken értelmezett probléma</span>, amely azt vizsgálja, hogy egy adott CNF <span class="highlight">kielégíthető-e</span>.</p>
@@ -121,7 +121,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>SAT Példa</h2>
+            <h2>4. SAT Példa</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
@@ -136,13 +136,13 @@
                             <pre>Σ = { {p}, {p, q}, {¬p, ¬q}, {p, ¬p, r} }</pre>
                         </li>
                         <li><span class="highlight">Egység propagáció alkalmazása (l = ¬p):</span>
-                            <ul>
+                            <ol>
                                 <li>Eltávolítjuk a ¬p-t tartalmazó klózokat</li>
                                 <li>Töröljük p-t a többi klózból</li>
-                            </ul>
+                            </ol>
                         </li>
                         <li><span class="highlight">Végrehajtás:</span>
-                            <ul>
+                            <ol>
                                 <li>{p} klóz: p törlése után üres klóz marad
                                     <pre>Σ = { {}, {p, q}, {¬p, ¬q}, {p, ¬p, r} }</pre>
                                 </li>
@@ -155,7 +155,7 @@
                                 <li>{p, ¬p, r} klóz: Teljes klóz törlése (¬p miatt)
                                     <pre>Σ = { {}, {q} }</pre>
                                 </li>
-                            </ul>
+                            </ol>
                         </li>
                         <li><span class="highlight">Végső állapot:</span>
                             <pre>Σ|¬p = { {}, {q} }</pre>
@@ -166,7 +166,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>DPLL algoritmus</h2>
+            <h2>5. DPLL algoritmus</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi az a DPLL algoritmus?</span> A DPLL (Davis-Putnam-Logemann-Loveland) algoritmus a <span class="highlight">SAT-probléma egyik leghatékonyabb megoldási módszere</span>.</p>
@@ -191,17 +191,17 @@
         </div>
 
         <div class="algorithm">
-            <h2>DPLL algoritmus példa</h2>
+            <h2>6. DPLL algoritmus példa</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
                     <p><span class="key-point">DPLL Algoritmus Példa:</span></p>
-                    <p>Tegyük fel, hogy van egy CNF formulánk: (A ∨ B) ∧ (¬A ∨ C) ∧ (B ∨ ¬C) ∧ (¬B ∨ C)</p>
+                    <p>Tegyük fel, hogy van egy CNF formulánk: <code>(A ∨ B) ∧ (¬A ∨ C) ∧ (B ∨ ¬C) ∧ (¬B ∨ C)</code></p>
                     <ol>
                         <li><span class="highlight">Egység propagáció:</span> Nincs egység klóz.</li>
                         <li><span class="highlight">Tiszta literál elimináció:</span> Nincs tiszta literál.</li>
                         <li><span class="highlight">Döntés:</span> Válasszunk egy literált, például `A`. Próbáljuk meg először `A`-t igaznak beállítani.</li>
-                        <li>Az új formula: (B) ∧ (C) ∧ (B ∨ ¬C) ∧ (¬B ∨ C)</li>
+                        <li>Az új formula: <code>(B) ∧ (C) ∧ (B ∨ ¬C) ∧ (¬B ∨ C)</code></li>
                         <li><span class="highlight">Egység propagáció:</span> `B` igaz, `C` igaz.</li>
                         <li>Az új formula üres, mivel az összes klóz igaz lett.</li>
                     </ol>
@@ -218,7 +218,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Boole-függvények teljes rendszerei</h2>
+            <h2>1. Boole-függvények teljes rendszerei</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi az a teljes rendszer?</span> Egy Boole-függvények H rendszere <span class="highlight">teljes vagy adekvát</span>, ha <span class="highlight">minden n-változós függvény előáll</span> a következőkből:</p>
@@ -230,8 +230,8 @@
 
                 <div class="step">
                     <p><span class="key-point">Mi az a kompozíció?</span></p>
-                    <p>Ha f/n és g1/k, …, gn/k Boole-függvények, akkor az f ० 〈g1, …, gn〉 az a k-változós Boole-függvény, melyre:</p>
-                    <p><span class="highlight">(f ०〈g1, . . . , gn〉(x1, . . . , xk) = f(g1〈x1, . . . , xk〉, ..., gn〈x1, . . . , xk〉)</span></p>
+                    <p>Ha f/n és g<sub>1</sub>/k, …, g<sub>n</sub>/k Boole-függvények, akkor az f ० 〈g<sub>1</sub>, …, g<sub>n</sub>〉 az a k-változós Boole-függvény, melyre:</p>
+                    <p><span class="highlight">(f ०〈g<sub>1</sub>, . . . , g<sub>n</sub>〉(x<sub>1</sub>, . . . , x<sub>k</sub>) = f(g<sub>1</sub>〈x<sub>1</sub>, . . . , x<sub>k</sub>〉, ..., g<sub>n</sub>〈x<sub>1</sub>, . . . , x<sub>k</sub>〉)</span></p>
                 </div>
 
                 <div class="step">
@@ -241,7 +241,18 @@
 
                 <div class="step">
                     <p><span class="key-point">Hogyan alkalmazhatunk megszorításokat Boole-függvényekre?</span></p>
-                    <p>Ha b ∈ {0, 1} igazságérték, akkor <span class="highlight">f|Xn=b jelöli azt az (n-1)-változós Boole-függvényt</span>, amelyet úgy kapunk, hogy <span class="highlight">f inputjában xn értékét b-re rögzítjük</span>.</p>
+                    <p>Ha b ∈ {0, 1} igazságérték, akkor <span class="highlight">f|<sub>X<sub>n</sub>=b</sub> jelöli azt az (n-1)-változós Boole-függvényt</span>, amelyet úgy kapunk, hogy <span class="highlight">f</span> inputjában <span class="highlight">x<sub>n</sub> értékét b-re rögzítjük</span>.</p>
+                </div>
+
+                <p><span class="key-point">Formálisan</span>: <code>f|<sub>x<sub>n</sub>=b</sub>(x<sub>1</sub>,...,x<sub>n-1</sub>) := f(x<sub>1</sub>,...,x<sub>n-1</sub>,b).</code></p>
+
+                <div class="step">
+                    <p><span class="key-point">Például:</span> Megszorítások adott változókra</p>
+                    <ol>
+                        <li>V|x<sub>2</sub>=1 a konstans 1 függvény: V|x<sub>2</sub>=1(x<sub>1</sub>) = V(x<sub>1</sub>,1) = 1.</li>
+                        <li>Λ|x<sub>2</sub>=0 a konstans 0 függvény</li>
+                        <li>Λ|x<sub>2</sub>=1 az identikus (x<sub>1</sub> ↦ x<sub></sub>1) függvény</li>
+                    </ol>
                 </div>
 
                 <div class="step">
@@ -249,7 +260,7 @@
                     <p>A Shannon expanzió szerint <span class="highlight">minden Boole-függvény előáll a projekciók és a {¬, ∨, ∧} Boole-függvények alkalmas kompozíciójaként</span>. Ezt n szerinti teljes indukcióval bizonyíthatjuk:</p>
                     <ul>
                         <li>Ha n = 0, akkor <span class="highlight">f/0 az vagy konstans 0, vagy konstans 1</span></li>
-                        <li>Ha n > 0, akkor az <span class="highlight">indukciós feltevés szerint</span> az f|Xn=b(x1, …, xn-1) Boole-függvények előállnak ilyen alakban, és a Shannon expanzióban <span class="highlight">szintén csak ezt a három műveletet használjuk</span></li>
+                        <li>Ha n > 0, akkor az <span class="highlight">indukciós feltevés szerint</span> az f|<sub>X<sub>n</sub>=b</sub>(x<sub>1</sub>, …, x<sub>n-1</sub>) Boole-függvények előállnak ilyen alakban, és a Shannon expanzióban <span class="highlight">szintén csak ezt a három műveletet használjuk</span></li>
                     </ul>
                 </div>
 
@@ -265,7 +276,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Hilbert rendszer</h2>
+            <h2>1. Hilbert rendszer</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi az a Hilbert rendszer?</span> A Hilbert rendszer egy <span class="highlight">deduktív (következtető) rendszer</span>, amellyel az <span class="highlight">input Σ összes következményét (és csak azokat) lehet levezetni</span>.</p>
@@ -283,9 +294,9 @@
                 <div class="step">
                     <p><span class="key-point">Melyek a Hilbert rendszer axiómái?</span> A rendszer <span class="highlight">három axiómát</span> tartalmaz, amelyek mind <span class="highlight">tautológiák</span>:</p>
                     <ul>
-                        <li>Ax1: <span class="highlight">(F → (G → H)) → ((F → G) → (F → H))</span></li>
-                        <li>Ax2: <span class="highlight">F → (G → F)</span></li>
-                        <li>Ax3: <span class="highlight">((F → ↓) → ↓) → F</span></li>
+                        <li>Ax<sub>1</sub>: <span class="highlight">(F → (G → H)) → ((F → G) → (F → H))</span></li>
+                        <li>Ax<sub>2</sub>: <span class="highlight">F → (G → F)</span></li>
+                        <li>Ax<sub>3</sub>: <span class="highlight">((F → ↓) → ↓) → F</span></li>
                     </ul>
                     <p><span class="highlight">Fontos a sorrend</span>, mivel a → nem asszociatív!</p>
                 </div>
@@ -337,7 +348,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Rezolúciós algoritmus</h2>
+            <h2>1. Rezolúciós algoritmus</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi a rezolúció célja?</span> A rezolúció egy <span class="highlight">következtetési módszer</span>, amely egy <span class="highlight">klózhalmaz kielégíthetetlenségét</span> vizsgálja.</p>

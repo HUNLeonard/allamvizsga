@@ -23,13 +23,16 @@
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
     <h1>Mesterséges Intelligencia I - 8. tétel</h1>
+    <p><em><span class="highlight">Keresési feladat:</span> feladatreprezentáció, vak keresés, informált keresés, heurisztikák. <br>
+        <span class="highlight"> Kétszemélyes zéró összegű játékok:</span> minimax, alfa-béta eljárás. <br>
+        <span class="highlight">Korlátozás kielégítési feladat.</span></em></p>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
         <h2>1. Keresési feladat</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Feladatreprezentáció</h2>
+            <h2>1. Feladatreprezentáció</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A keresési feladatok alapvető részét képezik a mesterséges intelligencia és a számítástudomány különböző területeinek. Ezek a feladatok arra irányulnak, hogy meghatározzák az <span class="highlight">optimális cselekvéssorozatot</span> egy adott probléma megoldásához.</p>
@@ -54,15 +57,17 @@
                 </div>
 
                 <div class="step">
-                    <p><span class="key-point">Problémamodellezés elemei:<br><em>(súlyozott gráffal reprezentál)</em></span></p>
+                    <p><span class="key-point">Hogyan reprezentáljuk a keresési feladatot?</span> A keresési feladatot általában egy <span class="highlight">súlyozott gráffal reprezentáljuk</span>, amely a következő elemekből áll:</p>
                     <ul>
-                        <li><span class="highlight">Lehetséges állapotok halmaza:</span> A gráf csúcsai.</li>
-                        <li><span class="highlight">Kezdőállapot:</span> Az ágens ebből kezdi a cselekvését.</li>
+                        <li><span class="highlight">Lehetséges állapotok halmaza:</span> Ezek alkotják a gráf csúcsait.</li>
+                        <li><span class="highlight">Kezdőállapot:</span> Az a csúcs, ahonnan az ágens kezdi a cselekvését.</li>
                         <li><span class="highlight">Lehetséges cselekvések halmaza:</span> Állapotátmenet függvény, amely minden állapothoz hozzárendel egy (cselekvés, utódállapot) párok halmazát.</li>
                         <li><span class="highlight">Állapotátmenet költségfüggvénye:</span> (állapot, cselekvés, utódállapot) hármashoz hozzárendel egy valós számot, a költséget.</li>
                         <li><span class="highlight">Célállapotok halmaza:</span> Az állapottér részhalmaza.</li>
                     </ul>
                 </div>
+
+                <img src="../assets/images/sulyozott_graf.webp" alt="sulyozott_graf" class="graph-image">
 
                 <p><span class="key-point">Fontos megjegyzések:</span></p>
                 <ul>
@@ -70,6 +75,15 @@
                     <li>Ez a gráf az <span class="highlight">állapottér</span>.</li>
                     <li>A probléma megoldásának bonyolultsága függ az alkalmazott modelltől.</li>
                     <li>A gyakorlatban fontos, hogy minél <span class="highlight">hatékonyabban, minél kevesebb állapottal</span> modellezzük a problémákat, mert ez nagyban csökkenti megoldásuk bonyolultságát.</li>
+                </ul>
+
+                <p><span class="key-point">Miért fontos a gráf reprezentáció?</span> A gráf reprezentáció, amit <span class="highlight">állapottérnek</span> nevezünk, lehetővé teszi a probléma <span class="highlight">vizualizálását és algoritmikus megközelítését</span>. Ez segít a különböző keresési stratégiák alkalmazásában és az optimális megoldás megtalálásában.</p>
+                <p><span class="key-point">Milyen feltételezésekkel élünk?</span> A keresési feladatok modellezésénél általában feltételezzük, hogy:</p>
+                <ul>
+                    <li>Az <span class="highlight">állapotok száma véges vagy megszámlálható</span></li>
+                    <li>Egy állapotnak <span class="highlight">legfeljebb véges számú szomszédja</span> lehet</li>
+                    <li>A környezet <span class="highlight">statikus és teljesen megfigyelhető</span></li>
+                    <li>A probléma <span class="highlight">determinisztikus</span>, azaz egy adott cselekvés mindig ugyanazt az eredményt produkálja</li>
                 </ul>
             </div>
         </div>
@@ -80,10 +94,10 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Alapfogalmak</h2>
+            <h2>1. Alapfogalmak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> Az informálatlan keresés azt jelenti, hogy ezeknek a stratégiáknak <span class="highlight">semmilyen információjuk nincs az állapotokról</span> a probléma definíciójában megadott információn kívül.</p>
+                <p><span class="key-point">Mit jelent a vak keresés?</span> A vak vagy informálatlan keresés olyan keresési stratégiákat jelent, <span class="highlight">amelyek  semmilyen információja nincs az állapotokról</span> a probléma definíciójában megadott információn kívül. Ezek a módszerek <span class="highlight">csak az állapottér struktúráját használják</span> a keresés során.</p>
 
                 <div class="step">
                     <p><span class="key-point">Jellemzők:</span></p>
@@ -103,15 +117,26 @@
                 <div class="step">
                     <p><span class="key-point">Cél:</span> Adott kezdőállapotból <span class="highlight">minimális költségű utat</span> találni egy célállapotba</p>
                 </div>
+
+                <div class="step">
+                    <p><span class="key-point">Milyen fő vak keresési stratégiákat ismerünk?</span></p>
+                    <ul>
+                        <li><span class="highlight">Szélességi keresés (BFS)</span></li>
+                        <li><span class="highlight">Mélységi keresés (DFS)</span></li>
+                        <li><span class="highlight">Iteratívan mélyülő keresés</span></li>
+                        <li><span class="highlight">Egyenletes költségű keresés</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="algorithm">
-            <h2>Keresőfa</h2>
+            <h2>2. Keresőfa</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A keresőfa a kezdőállapotból növesztett fa, amely a szomszédos állapotok hozzávételével bővül, amíg célállapotot nem találunk.</p>
+                <p><span class="key-point">Mi a keresőfa?</span> A keresőfa egy olyan struktúra, ahol <span class="highlight">a kezdőállapotból növesztünk egy fát a szomszédos állapotok hozzáadásával</span>, amíg célállapotot nem találunk.</p>
 
+                <p><span class="key-point">Mire kell figyelni a keresőfánál?</span> Fontos megjegyezni, hogy <span class="highlight">a keresőfa nem azonos a feladat állapotterével</span>. Például az állapottér nem feltétlenül fa, a keresőfa <span class="highlight">végtelenre nőhet</span>, még véges állapottér esetén is.</p>
                 <div class="step">
                     <p><span class="key-point">Fontos megjegyzések:</span></p>
                     <ul>
@@ -126,7 +151,7 @@
                         <li><span class="highlight">Állapot:</span> Az állapottérnek a csomóponthoz tartozó állapota</li>
                         <li><span class="highlight">Szülő-csomópont:</span> A keresési fa azon csomópontja, amely a kérdéses csomópontot generálta</li>
                         <li><span class="highlight">Cselekvés:</span> A csomópont szülő-csomópontjára alkalmazott cselekvés</li>
-                        <li><span class="highlight">Út-költség:</span> A kezdeti állapotból a kérdéses csomópontig vezető út költsége (g(n))</li>
+                        <li><span class="highlight">Út-költség:</span> A kezdeti állapotból a kérdéses csomópontig vezető út általában g(n)-nel jelölt költsége</li>
                         <li><span class="highlight">Mélység:</span> A kezdeti állapotból vezető út lépéseinek a száma</li>
                     </ul>
                 </div>
@@ -134,7 +159,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>Fakeresés algoritmus</h2>
+            <h2>3. Fakeresés algoritmus</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
@@ -152,23 +177,23 @@
                 <p><span class="key-point">Fontos fogalmak:</span></p>
                 <ul>
                     <li><span class="highlight">csúcs.kiterjeszt():</span> Generálja az aktuális állapotból elérhető állapotok halmazát</li>
-                    <li><span class="highlight">perem (nyílt halmaz):</span> Prioritási sor, ami a már legenerált, de még kifejtésre váró csomópontokat tárolja</li>
+                    <li><span class="highlight">perem (más néven nyílt halmaz):</span> egy prioritási sor, ami a már legenerált, de még kifejtésre váró csomópontokat tárolja. </li>
                     <li><span class="highlight">elsőkivesz():</span> A perem függvénye, amely definiálja a keresési stratégiát</li>
                 </ul>
             </div>
         </div>
 
         <div class="algorithm">
-            <h2>Gráfkeresés</h2>
+            <h2>4. Gráfkeresés</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A gráfkeresés bevezetésére azért van szükség, mert ha az állapottér egy gráf körökkel, a fakeresés végtelen ciklusba kerülhet.</p>
+                <p><span class="key-point">Miért van szükség gráfkeresésre?</span> A gráfkeresés bevezetésére azért van szükség, mert ha <span class="highlight">nem fa az állapottér, hanem egy gráf, amiben van kör</span>, a fakereséssel könnyen végtelen ciklusba kerülhetünk.</p>
 
                 <div class="step">
                     <p><span class="key-point">Végtelen ciklusok elkerülése:</span></p>
                     <ul>
                         <li>Bevezetjük a <span class="highlight">zárt halmaz</span> fogalmát</li>
-                        <li>A már egyszer kiterjesztett csúcsokat tároljuk a zárt halmazban</li>
+                        <li>Ahol a már egyszer kiterjesztett csúcsokat tároljuk a zárt halmazban</li>
                         <li>Ha később újra találkozunk ezekkel, <span class="highlight">nem vesszük fel újra a verembe</span></li>
                     </ul>
                 </div>
@@ -176,16 +201,17 @@
         </div>
 
         <div class="algorithm">
-            <h2>Keresési stratégiák</h2>
+            <h2>5. Keresési stratégiák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">
                     <p><span class="key-point">Szélességi keresés:</span></p>
                     <ul>
                         <li>A kezdőcsúcsot betesszük egy <span class="highlight">verembe</span></li>
-                        <li>Kivesszük a következő elemet a veremből <span class="highlight">(FIFO szerint)</span></li>
-                        <li>Kiterjesztjük, és betesszük a gyerekeit a verembe</li>
+                        <li>Ezt követően mindig <span class="highlight">kivesszük a következő elemet a veremből (FIFO szerint)</span></li>
+                        <li>Majd kiterjesztjük és <span class="highlight">betesszük a gyerekeit a verembe</span></li>
                         <li>Addig keresünk, amíg van csúcs a veremben, vagy találunk célállapotot</li>
+                        <li>Ez biztosítja, hogy először a kezdőállapothoz közelebb lévő állapotokat vizsgálja.</li>
                     </ul>
                 </div>
 
@@ -194,6 +220,7 @@
                     <ul>
                         <li>Hasonló a szélességi kereséshez, de <span class="highlight">sort használ verem helyett</span></li>
                         <li>Addig keresünk, amíg van elem a sorban, vagy találunk végállapotot</li>
+                        <li>Ez a stratégia <span class="highlight">egy ágon halad lefelé, amíg lehet, majd visszalép és új ágat próbál</span>.</li>
                     </ul>
                 </div>
 
@@ -202,7 +229,8 @@
                     <ul>
                         <li><span class="highlight">Mélységi keresések sorozata</span>, egy bizonyos mélységig korlátozva</li>
                         <li>Az első szinteket többször bejárjuk, de javítunk a futásidőn</li>
-                        <li>Ez a <span class="highlight">legjobb vak kereső</span> algoritmus</li>
+                        <li>Ez a stratégia <span class="highlight">kombinálja a mélységi és szélességi keresés előnyeit</span></li>
+                        <li>Általában <span class="highlight">ez a legjobb vak kereső algoritmus</span>.</li>
                     </ul>
                 </div>
 
@@ -212,6 +240,7 @@
                         <li>A peremben <span class="highlight">költség alapú prioritással</span> rendezzük az elemeket</li>
                         <li>Minden iterációban a <span class="highlight">legkisebb költségű elemet</span> vesszük ki</li>
                         <li>Az idő- és tárigénye nagyban függ a költségfüggvénytől</li>
+                        <li>Ez a módszer <span class="highlight">garantálja az optimális megoldás megtalálását</span>, ha minden lépés költsége pozitív.</li>
                     </ul>
                 </div>
             </div>
@@ -223,7 +252,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Alapfogalmak</h2>
+            <h2>1. Alapfogalmak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> Az <span class="highlight">informált kereső algoritmusok</span> a probléma definícióján túlmenően <span class="highlight">problémaspecifikus tudást</span> is felhasználnak, és ennek segítségével <span class="highlight">hatékonyabban</span> találnak megoldást, mint az informálatlan keresők.</p>
@@ -246,7 +275,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>Legjobbat-először keresés <em>(best-first search)</em></h2>
+            <h2>2. Legjobbat-először keresés <em>(best-first search)</em></h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=DB1HFCEdLxA" class="algorithm-link" target="_blank">
@@ -258,12 +287,12 @@
                     <p><span class="key-point">Jellemzők:</span></p>
                     <ul>
                         <li>Mindig a <span class="highlight">legjobbnak tűnő csomópontot</span> fejti ki</li>
-                        <li>Nem feltétlenül a <span class="highlight">ténylegesen legjobb</span> csomópontot választja</li>
+                        <li>És nem feltétlenül a <span class="highlight">ténylegesen legjobb</span> csomópontot választja</li>
                         <li><span class="highlight">Általános megközelítés</span>, több változata létezik</li>
                     </ul>
                 </div>
 
-                <p><span class="key-point">Változatok:</span></p>
+                <p><span class="key-point">Milyen változatai léteznek?</span></p>
                 <ul>
                     <li><span class="highlight">Mohó legjobbat-először keresés</span></li>
                     <li><span class="highlight">A* keresés</span></li>
@@ -272,10 +301,13 @@
         </div>
 
         <div class="algorithm">
-            <h2>Mohó legjobbat-először keresés</h2>
+            <h2>3. Mohó legjobbat-először keresés</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A mohó legjobbat-először keresés során a peremben a csomópontok az <span class="highlight">f(n) = h(n)</span> függvény szerint vannak rendezve.</p>
+                <a href="https://www.youtube.com/watch?v=dv1m3L6QXWs" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p><span class="key-point">Hogyan működik?</span> A mohó legjobbat-először keresés során a peremben a csomópontok az <span class="highlight">f(n) = h(n)</span> függvény szerint vannak rendezve.</p>
 
                 <div class="step">
                     <p><span class="key-point">Működése:</span></p>
@@ -288,27 +320,30 @@
                 <div class="step">
                     <p><span class="key-point">Tulajdonságok:</span></p>
                     <ul>
-                        <li><span class="highlight">Teljes:</span> Ha a keresési fa véges mélységű (m véges)</li>
+                        <li><span class="highlight">Teljes:</span> Csak ha a keresési fa véges mélységű (m véges)</li>
                         <li><span class="highlight">Nem optimális</span></li>
                         <li><span class="highlight">Időigény = tárigény = O(b^m)</span>, ahol b az elágazási faktor, m a maximális mélység</li>
                     </ul>
                 </div>
 
-                <p><span class="key-point">Megjegyzés:</span> A legrosszabb eset nagyon rossz, de <span class="highlight">jó h(n)-nel javítható</span>.</p>
+                <p><span class="key-point">Mi a hátránya?</span> A legrosszabb eset nagyon rossz, de <span class="highlight">jó h(n)-nel javítható</span>.</p>
             </div>
         </div>
 
         <div class="algorithm">
-            <h2>A* algoritmus</h2>
+            <h2>4. A* algoritmus</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> Az A* algoritmus a heurisztikus függvényen kívül használ egy <span class="highlight">g(n) függvényt</span> is, ami megadja az aktuális csomópontig megtett út költségét.</p>
+                <a href="https://youtu.be/vP5TkF0xJgI?t=71" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p><span class="key-point">Mi az A* algoritmus lényege?</span> Az A* algoritmus a heurisztikus függvényen kívül használ egy <span class="highlight">g(n) függvényt</span> is, ami megadja az aktuális csomópontig megtett út költségét.</p>
 
                 <div class="step">
                     <p><span class="key-point">Működése:</span></p>
                     <ul>
                         <li>A peremben a csomópontok az <span class="highlight">f(n) = g(n) + h(n)</span> függvény szerint vannak rendezve</li>
-                        <li>Az algoritmus azt a csomópontot fejti ki, amelyiken keresztül vezető <span class="highlight">legolcsóbb megoldás becsült költsége</span> a legkisebb</li>
+                        <li>Az algoritmus azt a csomópontot fejti ki, amelyiken keresztül vezető <span class="highlight">legolcsóbb megoldás becsült költsége</span> a legkisebb.</li>
                     </ul>
                 </div>
 
@@ -332,7 +367,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Bevezetés a heurisztikákba</h2>
+            <h2>1. Bevezetés a heurisztikákba</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A heurisztikák olyan <span class="highlight">problémaspecifikus tudást</span> alkalmaznak, amelyek segítenek a <span class="highlight">keresési tér gyorsabb és hatékonyabb bejárásában</span>.</p>
@@ -342,7 +377,7 @@
                 </div>
                 
                 <div class="step">
-                    <p><span class="key-point">Működési elv:</span> A heurisztikák <span class="highlight">becsült értékeket</span> használnak a döntéshozatalhoz, <span class="highlight">csökkentve a vizsgálandó lehetőségek számát</span>.</p>
+                    <p><span class="key-point">Működési elv:</span> A heurisztikák <span class="highlight">becsült értékeket</span> használnak a döntéshozatalhoz, amely megbecsüli az adott állapotból a célállapotba jutás költségét ,<span class="highlight">csökkentve a vizsgálandó lehetőségek számát</span>.</p>
                 </div>
                 
                 <p>A heurisztikus keresésben két fő függvényt használunk:</p>
@@ -359,10 +394,12 @@
         </div>
         
         <div class="algorithm">
-            <h2>Heurisztikus függvények</h2>
+            <h2>2. Heurisztikus függvények</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                
+                <a href="https://youtu.be/dvWk0vgHijs" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
                 
                 <p><span class="key-point">Definíció:</span> A heurisztikus függvény <span class="highlight">h(n)</span> megbecsüli az <span class="highlight">aktuális állapot és a célállapot közötti távolságot vagy költséget</span>.</p>
                 
@@ -382,7 +419,7 @@
         </div>
         
         <div class="algorithm">
-            <h2>Heurisztikus keresési algoritmusok</h2>
+            <h2>3. Heurisztikus keresési algoritmusok</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A heurisztikus keresési algoritmusok, mint az <span class="highlight">A* algoritmus</span>, egy <span class="highlight">h(n) heurisztikus függvényt</span> használnak a keresés irányítására.</p>
@@ -442,7 +479,7 @@
         </div>
         
         <div class="algorithm">
-            <h2>Keresés levágása</h2>
+            <h2>4. Keresés levágása</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A keresés levágása olyan technikák összessége, amelyek <span class="highlight">csökkentik a keresési tér méretét</span> heurisztikus értékelés segítségével.</p>
@@ -479,7 +516,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Alapfogalmak</h2>
+            <h2>1. Alapfogalmak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A <span class="highlight">kétszemélyes, zéró összegű játékok</span> a mesterséges intelligencia egyik <span class="highlight">klasszikus problématerülete</span>, amelyet főként a <span class="highlight">sakk motivált</span>.</p>
@@ -513,9 +550,12 @@
         </div>
     
         <div class="algorithm">
-            <h2>Minimax algoritmus</h2>
+            <h2>2. Minimax algoritmus</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <a href="https://youtu.be/tDv7lrklaQE?t=214" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
                 <p><span class="key-point">Definíció:</span> A minimax algoritmus a <span class="highlight">tökéletes racionalitás hipotézisén</span> alapul, feltételezve, hogy <span class="highlight">mindkét játékos ismeri</span> a teljes játékgráfot és <span class="highlight">optimálisan játszik</span>.</p>
     
                 <div class="step">
@@ -552,10 +592,13 @@
         </div>
     
         <div class="algorithm">
-            <h2>Alfa-béta eljárás</h2>
+            <h2>3. Alfa-béta eljárás</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> Az alfa-béta eljárás a minimax algoritmus <span class="highlight">optimalizált változata</span>, amely <span class="highlight">jelentősen csökkenti</span> a vizsgálandó csomópontok számát.</p>
+                <a href="https://youtu.be/_i-lZcbWkps" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
+                <p><span class="key-point">Definíció:</span> Az alfa-béta eljárás a minimax algoritmus <span class="highlight">optimalizált változata</span>, amely <span class="highlight">jelentősen csökkenti</span> a vizsgálandó csomópontok számát, anélkül, hogy befolyásolná a végső döntést.</p>
     
                 <div class="step">
                     <p><span class="key-point">Alapelv:</span></p>
@@ -599,7 +642,7 @@
             </div>
         </div>
         <div class="algorithm">
-            <h2>Alfa-béta nyereség (Gain)</h2>
+            <h2>4. Alfa-béta nyereség (Gain)</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> Az alfa-béta nyereség (gain) az a <span class="highlight">hatékonyságnövekedés</span>, amit az alfa-béta vágás eredményez a hagyományos minimax algoritmushoz képest.</p>
@@ -624,7 +667,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Alapfogalmak</h2>
+            <h2>1. Alapfogalmak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A <span class="highlight">Korlátozás Kielégítési Feladat</span> (KKF) olyan <span class="highlight">állapotot keres</span>, amely <span class="highlight">megfelel bizonyos feltételeknek</span>. Ez a feladat az <span class="highlight">állapottérrel adott keresési problémák</span> és az <span class="highlight">optimalizálási problémák</span> jellemzőit ötvözi.</p>
@@ -651,7 +694,7 @@
         </div>
     
         <div class="algorithm">
-            <h2>Példa: Gráfszínezési probléma</h2>
+            <h2>2. Példa: Gráfszínezési probléma</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A <span class="highlight">gráfszínezési problémában</span> egy gráf csúcsait kell <span class="highlight">különböző színekkel kiszínezni</span> úgy, hogy <span class="highlight">két szomszédos csúcs ne legyen azonos színű</span>.</p>
@@ -677,7 +720,7 @@
         </div>
     
         <div class="algorithm">
-            <h2>Megoldási stratégiák</h2>
+            <h2>3. Megoldási stratégiák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div class="step">

@@ -24,13 +24,16 @@
             <h2>1. Mohó algoritmusok</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Alapelv:</span> A mohó algoritmus <span class="highlight">minden lépésben az aktuálisan optimálisnak tűnő döntést hozza meg</span>, anélkül hogy figyelembe venné a jövőbeli következményeket.</p>
-                <p><span class="key-point">Hatékonyság:</span> <span class="highlight">Nem minden</span> problémára alkalmazható, viszont ahol igen, ott <span class="highlight">rendkívül gyors és hatékony</span> megoldást nyújt.</p>
+                <p><span class="key-point">Mi a mohó algoritmus? </span>A mohó algoritmus <span class="highlight">minden lépésben az aktuálisan optimálisnak tűnő döntést hozza meg</span>, anélkül hogy figyelembe venné a jövőbeli következményeket.</p>
+                <p><span class="key-point">Mikor alkalmazható? </span>A mohó algoritmus <span class="highlight">nem minden</span> problémára alkalmazható, viszont ahol igen, ott <span class="highlight">rendkívül gyors és hatékony</span> megoldást nyújt.</p>
                 <p><span class="key-point">Cél:</span> A mohó választás <span class="highlight">egyetlen részproblémát eredményezzen</span>, amelyből közvetlenül következik az eredeti probléma optimális megoldása.</p>
                 <p><span class="key-point">Előny:</span> <span class="highlight">Minimalizálja a rekurzív hívások számát</span>, csökkentve a probléma komplexitását.</p>
                 <p><span class="key-point">Korlát:</span> Nem mindig találja meg a globális optimumot, mert <span class="highlight">a lokális optimumokat globálisként azonosíthatja</span>. Ezért körültekintően kell alkalmazni optimalizálási problémákra.</p>
                 
                 <h3>Példa: Töredékes hátizsák probléma</h3>
+                <a href="https://www.youtube.com/watch?v=DB1HFCEdLxA" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
+                </a>
                 <p><span class="key-point">Probléma leírása:</span> Van egy <span class="highlight">hátizsákunk és különböző tárgyaink</span>, amiket bele szeretnénk tenni. Minden tárgynak van <span class="highlight">értéke és súlya</span>, de a tárgyakat fel is darabolhatjuk.</p>
                 <p><span class="key-point">Cél:</span> A lehető <span class="highlight">legtöbb értéket</span> vigyük magunkkal a hátizsák súlykorlátján belül.</p>
                 <div class="step">
@@ -55,24 +58,25 @@
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Lényeg:</span> A problémát <span class="highlight">kisebb, hasonló jellegű és független </span><strong>(diszjunkt)</strong><span class="highlight"> részfeladatokra bontja</span>.</p>
-                <p><span class="key-point">Folyamat:</span> A részfeladatokat <span class="highlight">rekurzívan oldja meg</span>, szükség esetén tovább bontva őket.</p>
-                <p><span class="key-point">Végső lépés:</span> A <span class="highlight">részfeladatok megoldásait összevonja</span> az eredeti probléma megoldásává.</p>
-                <p><span class="key-point">Hatékonyság feltétele:</span> A részfeladatok <span class="highlight">valóban függetlenek egymástól és nincsenek ismétlődések</span>.</p>
+
+                <p><span class="key-point">Mikor hatékony?</span> A részfeladatok <span class="highlight">valóban függetlenek egymástól és nincsenek ismétlődések</span>.</p>
                 <div class="step">
                     <p><span class="key-point">Az algoritmus három fő lépése:</span></p>
                     <ol>
                         <li><span class="highlight">Felosztás (Divide):</span> A probléma kisebb részproblémákra bontása.</li>
-                        <li><span class="highlight">Megoldás (Conquer):</span> A részproblémák önálló megoldása, rekurzív vagy iteratív módon.</li>
-                        <li><span class="highlight">Összevonás:</span> A részmegoldások kombinálása a teljes megoldás érdekében.</li>
+                        <li><span class="highlight">Megoldás (Conquer):</span> A részfeladatokat <span class="highlight">rekurzívan oldja meg</span>, szükség esetén tovább bontva őket.</li>
+                        <li><span class="highlight">Összevonás:</span> A <span class="highlight">részfeladatok megoldásait összevonja</span> az eredeti probléma megoldásává.</li>
                     </ol>
                 </div>
-                <h3>Példa: Bináris keresés</h3>
+                <p><span class="key-point">Mi a rekurzió?</span> Egy olyan programozási technika, ahol egy függvény <span class="highlight">közvetlenül vagy közvetve meghívja önmagát</span> a probléma megoldása során.</p>
+
+                <h3>Példa: Felező-csúcskereső algoritmus</h3>
                 <div class="step">
                     <p><span class="key-point">Probléma:</span> Rendezett adathalmazban keresünk egy elemet.</p>
                     <p><span class="key-point">Lépések:</span></p>
                     <ol>
                         <li><span class="highlight">Felezzük le</span> a keresési tartomány. <br>(Osszuk két részre)</li>
-                        <li><span class="highlight">Hasonlítsuk össze</span>a keresett elemet a középső elemmel.</li>
+                        <li><span class="highlight">Hasonlítsuk össze</span> a keresett elemet a középső elemmel.</li>
                         <li><span class="highlight">Válasszuk ki </span>a megfelelő <span class="highlight">felet</span> további keresésre.</li>
                         <li>Az 1-3 lépések <span class="highlight">ismétlése</span>, amíg meg nem találjuk az elemet vagy ki nem derül, hogy nincs benne.</li>
                     </ol>
@@ -118,6 +122,60 @@
                     </ol>
                 </div>
                 <p><span class="key-point">Eredmény:</span> <span class="highlight">Jelentősen csökkenti a számítási időt</span> a rekurzív megoldáshoz képest, különösen nagyobb számok esetén.</p>
+                <img src="../assets/images/fibonacci.webp" alt="Fibonacci" class="graph-image">
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>4. D&C vs DP</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a fő különbség?</span> Bár mindkét módszer <span class="highlight">részproblémákra bontja</span> a feladatot, a megközelítésük és a részproblémák kezelése eltérő. A dinamikus programozás <span class="highlight">tárolja és újrahasználja</span> a részeredményeket, míg az oszd-meg-és-uralkodj <span class="highlight">minden részproblémát függetlenül old meg</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Példa: Fibonacci számítás</span></p>
+                    <ul>
+                        <li><span class="highlight">Oszd-meg-és-uralkodj:</span> 
+                            <ul>
+                                <li>Minden Fibonacci számot <span class="highlight">többször számol ki</span></li>
+                                <li>Például: Fibonacci(5) = Fibonacci(4) + Fibonacci(3), és Fibonacci(4) = Fibonacci(3) + Fibonacci(2), stb.</li>
+                                <li>Eredmény: <span class="highlight">Sok ismétlődő számítás és rekurzív hívás</span></li>
+                                <li>Időkomplexitás: <span class="highlight">O(2^n)</span>, ami exponenciális növekedést jelent</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Dinamikus programozás:</span>
+                            <ul>
+                                <li><span class="highlight">Táblázatot használ</span> az összes Fibonacci szám tárolására 1-től n-ig</li>
+                                <li>A <span class="highlight">korábbi eredményeket újrafelhasználja</span></li>
+                                <li>Például: Fibonacci(5) kiszámításánál felhasználja a már tárolt Fibonacci(4) és Fibonacci(3) értékeket</li>
+                                <li>Időkomplexitás: <span class="highlight">O(n)</span>, ami lineáris időben oldja meg a problémát</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Összefoglalás:</span></p>
+                    <ul>
+                        <li><span class="highlight">Oszd-meg-és-uralkodj:</span>
+                            <ul>
+                                <li>Részproblémák <span class="highlight">függetlenek és diszjunktak</span></li>
+                                <li><span class="highlight">Nincs tárolás</span> vagy memorizálás</li>
+                                <li>Minden részproblémát <span class="highlight">újra megoldanak</span></li>
+                                <li>Alkalmas olyan problémákra, ahol a részfeladatok <span class="highlight">nem fednek át</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Dinamikus programozás:</span>
+                            <ul>
+                                <li>Részproblémák <span class="highlight">átfedhetnek</span></li>
+                                <li><span class="highlight">Tárolja</span> a részeredményeket (memorizálás)</li>
+                                <li><span class="highlight">Elkerüli az ismétlődő számításokat</span></li>
+                                <li>Két fő megközelítése: <span class="highlight">felülről lefelé (memorizálás)</span> és <span class="highlight">alulról felfelé (tabuláció)</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Melyik hatékonyabb?</span> Mindkét módszer <span class="highlight">hatékony lehet</span> a megfelelő problématípusoknál. Az oszd-meg-és-uralkodj jól működik <span class="highlight">független részproblémáknál</span>, mint a gyorsrendezés. A dinamikus programozás <span class="highlight">különösen hasznos</span> olyan problémáknál, ahol sok az ismétlődő részprobléma, mint a hátizsák probléma vagy a legrövidebb út keresése. A dinamikus programozás <span class="highlight">jelentős teljesítménynövekedést</span> érhet el az eredmények újrafelhasználásával, különösen nagy és komplex problémáknál.</p>
             </div>
         </div>
 	</div>
@@ -144,9 +202,8 @@
                 </a>
                 <p><span class="key-point">Definíció:</span> A <span class="highlight">beszúró rendezés</span> egy <span class="highlight">egyszerű, de hatékony</span> algoritmus, különösen <span class="highlight">kisebb adathalmazok</span> esetén.</p>
                 
-                <div class="step">
-                    <p><span class="key-point">Működési elv:</span> Az algoritmus <span class="highlight">lépésenként építi fel a rendezett listát</span>, minden elemet a megfelelő helyre illesztve.</p>
-                </div>
+
+                <p><span class="key-point">Működési elv:</span> Az algoritmus <span class="highlight">lépésenként építi fel a rendezett listát</span>, minden elemet a megfelelő helyre illesztve.</p>
                 
                 <div class="step">
                     <p><span class="key-point">Algoritmus lépései:</span></p>
@@ -159,12 +216,11 @@
                         <li>Ezt a folyamatot <span class="highlight">ismétli minden elemre</span>, balról jobbra haladva.</li>
                     </ol>
                 </div>
-                <div class="step">
-                    <p><span class="key-point">Alkalmazás:</span> Hatékony <span class="highlight">kis adathalmazokra</span> vagy <span class="highlight">majdnem rendezett tömbökre</span>. Gyakran használják más, összetettebb rendezési algoritmusok részeként.</p>
-                </div>
-                <div class="step">
-                    <p><span class="key-point">Futási idő:</span> Az algoritmus <span class="highlight">n-szer fut le</span>, ahol n a tömb elemeinek száma.</p>
-                </div>
+
+                <p><span class="key-point">Alkalmazás:</span> Hatékony <span class="highlight">kis adathalmazokra</span> vagy <span class="highlight">majdnem rendezett tömbökre</span>. Gyakran használják más, összetettebb rendezési algoritmusok részeként.</p>
+
+                <p><span class="key-point">Futási idő:</span> Az algoritmus <span class="highlight">n-szer fut le</span>, ahol n a tömb elemeinek száma.</p>
+
                 <div class="step">
                     <p><span class="key-point">Időkomplexitás:</span></p>
                     <ul>
@@ -193,9 +249,7 @@
                 
                 <p><span class="key-point">Definíció:</span> Az <span class="highlight">összefésülő rendezés</span> egy <span class="highlight">"oszd meg és uralkodj"</span> elven működő hatékony rendezési algoritmus.</p>
                 
-                <div class="step">
-                    <p><span class="key-point">Működési elv:</span> Az algoritmus a problémát kisebb részekre bontja, megoldja azokat, majd egyesíti a megoldásokat.</p>
-                </div>
+                <p><span class="key-point">Működési elv:</span> Az algoritmus a problémát kisebb részekre bontja, megoldja azokat, majd egyesíti a megoldásokat.</p>
                 
                 <div class="step">
                     <p><span class="key-point">*Összefésülési folyamat (by ATTILA):</span></p>
@@ -227,10 +281,8 @@
                         <li><span class="highlight">Garantált futásidő </span> minden esetben.</li>
                     </ul>
                 </div>
-        
-                <div class="step">
-                    <p><span class="key-point">Alkalmazások:</span> Gyakran használják nagy adatbázisok rendezésére, külső rendezésre és olyan helyzetekben, ahol stabil rendezésre van szükség.</p>
-                </div>
+
+                <p><span class="key-point">Alkalmazások:</span> Gyakran használják nagy adatbázisok rendezésére, külső rendezésre és olyan helyzetekben, ahol stabil rendezésre van szükség.</p>
             </div>
         </div>
         <div class="algorithm">
@@ -544,7 +596,8 @@
                         <li>Lépésenként a <span class="highlight">legkisebb súlyú élet</span> húzza be, ami két fát összeköt, és nem hoz létre 'cicle'</li>
                         <li>Időbonyolultság: <span class="highlight">O(E log E)</span>, ahol E az élek száma</li>
                     </ul>
-                    
+                </div>
+                <div class="step">
                     <h3>2. Prim algoritmus</h3>
                     <a href="https://youtu.be/cplfcGZmX7I" class="algorithm-link" target="_blank">
                         <i class="fas fa-video"></i> Youtube vizuális elmagyarázva
@@ -574,7 +627,7 @@
             <h2>Legrövidebb utak</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A legrövidebb utak probléma célja, hogy megtaláljuk a <span class="highlight">minimális költségű utat</span> egy adott kezdőcsúcsból az összes többi csúcsba egy súlyozott gráfban.</p>
+                <p><span class="key-point">Definíció:</span> A legrövidebb utak <span class="highlight">(dinam. prog.)</span> probléma célja, hogy megtaláljuk a <span class="highlight">minimális költségű utat</span> egy adott kezdőcsúcsból az összes többi csúcsba egy súlyozott gráfban.</p>
                 
                 <div class="step">
                     <p><span class="key-point">Bemenet:</span> Irányított, súlyozott G=(V, E) gráf, ahol V a csúcsok halmaza, E az élek halmaza, w(u, v) az (u, v) él súlya, és egy s kezdőcsúcs.</p>

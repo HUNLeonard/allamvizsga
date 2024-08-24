@@ -20,7 +20,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Halmaz</h2>
+            <h2>1. Halmaz</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A halmaz szerepe <span class="highlight">alapvető</span> a számítástudományban, hasonlóan a matematikához. A számítástechnikában a halmazok <span class="highlight">dinamikusak</span> lehetnek, azaz  <span class="highlight">bővülhetnek, zsugorodhatnak</span> vagy módosulhatnak az algoritmusok során.</p>
@@ -58,14 +58,16 @@
                     </ul>
                 </div>
                 <p><span class="key-point">Előny:</span> A halmazműveletek <span class="highlight">rugalmas</span> és <span class="highlight">hatékony adatkezelést</span> tesznek lehetővé.</p>
+                <p><span class="key-point">Mi a dinamikus halmaz?</span> Egy olyan halmaz, amely <span class="highlight">bővülhet, zsugorodhat vagy módosulhat</span> az algoritmus végrehajtása során, ellentétben a matematikai halmazokkal.</p>
             </div>
         </div>
     
         <div class="algorithm">
-            <h2>Verem</h2>
+            <h2>2. Verem</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A verem egy <span class="highlight">speciális halmaz</span>, amely a <span class="highlight">LIFO (Last In First Out)</span> elvet követi.</p>
+                <p><span class="key-point">Mi a LIFO elv?</span> A LIFO (Last In First Out) azt jelenti, hogy az <span class="highlight">utoljára behelyezett elem kerül ki először</span> a veremből.</p>
                 <p><span class="key-point">Működési elv:</span> Működése hasonló egy <span class="highlight">földbe ásott veremhez</span>: csak a <span class="highlight">tetején</span> lehet elemeket betenni és kivenni.</p>
                 <div class="step">
                     <p><span class="key-point">Megvalósítás:</span> Egy n elemű verem megvalósítható egy <span class="highlight">V[1..n] tömbbel</span></p>
@@ -83,19 +85,21 @@
                     <p><span class="key-point">Hibalehetőségek:</span></p>
                     <ul>
                         <li><span class="highlight">Alulcsordulás:</span> Ha <span class="highlight">üres veremből</span> próbálunk elemet kivenni</li>
-                        <li><span class="highlight">Túlcsordulás:</span> Ha tető[V] értéke <span class="highlight">meghaladja n-t</span></li>
+                        <li><span class="highlight">Túlcsordulás:</span>  Ha a <span class="highlight">tető[V] értéke meghaladja n-t</span>, vagyis több elemet próbálunk a verembe tenni, mint amennyi a kapacitása.</li>
                     </ul>
                 </div>
                 <p><span class="key-point">Műveletek időigénye:</span> <span class="highlight">O(1)</span></p>
                 <p><span class="key-point">Előny:</span> <span class="highlight">Gyors és hatékony adatkezelés</span> bizonyos típusú problémáknál, például <span class="highlight">függvényhívások kezelésénél</span>.</p>
+                
             </div>
         </div>
     
         <div class="algorithm">
-            <h2>Sor</h2>
+            <h2>3. Sor</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A sor egy olyan adatszerkezet, amely a <span class="highlight">FIFO (First In First Out)</span> elvet követi.</p>
+                <p><span class="key-point">Mi a FIFO elv?</span> A FIFO (First In First Out) azt jelenti, hogy az <span class="highlight">először behelyezett elem kerül ki először</span> a sorból.</p>
                 <div class="step">
                     <p><span class="key-point">Fontos fogalmak:</span></p>
                     <ul>
@@ -106,8 +110,8 @@
                 <div class="step">
                     <p><span class="key-point">Műveletek:</span></p>
                     <ul>
-                        <li><span class="highlight">Sorba:</span> Új elem <span class="highlight">beszúrása</span> a sor végére</li>
-                        <li><span class="highlight">Sorból:</span> Elem <span class="highlight">kivétele</span> a sor elejéről</li>
+                        <li><span class="highlight">Sorba:</span> Új elem <span class="highlight">beszúrása</span> a sor végére (nincs argumentum)</li>
+                        <li><span class="highlight">Sorból:</span> Elem <span class="highlight">kivétele</span> a sor elejéről (nincs argumentum)</li>
                     </ul>
                 </div>
                 <div class="step">
@@ -131,11 +135,12 @@
                 </div>
                 <p><span class="key-point">Műveletek időigénye:</span> <span class="highlight">O(1)</span></p>
                 <p><span class="key-point">Előny:</span> Ideális olyan feladatokhoz, ahol az adatok feldolgozása <span class="highlight">érkezési sorrendben</span> történik, például <span class="highlight">feladatütemezésnél</span>.</p>
+            
             </div>
         </div>
     
         <div class="algorithm">
-            <h2>Láncolt lista</h2>
+            <h2>4. Láncolt lista</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A láncolt lista olyan adatszerkezet, melyben az objektumok <span class="highlight">lineáris sorrendben</span> követik egymást.</p>
@@ -168,7 +173,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Bináris keresőfák alapjai</h2>
+            <h2>1. Bináris keresőfák alapjai</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A bináris keresőfák célja, hogy minden művelet (keresés, beszúrás, törlés) <span class="highlight">O(log n)</span> időben végrehajtható legyen.</p>
@@ -216,7 +221,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>Kiegyensúlyozott keresőfák</h2>
+            <h2>2. Kiegyensúlyozott keresőfák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=DB1HFCEdLxA" class="algorithm-link" target="_blank">
@@ -244,7 +249,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>Bináris keresőfa műveletek</h2>
+            <h2>3. Bináris keresőfa műveletek</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <div>
@@ -333,7 +338,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Hasító táblák</h2>
+            <h2>1. Hasító táblák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <a href="https://www.youtube.com/watch?v=knV86FlSXJ8" class="algorithm-link" target="_blank">
@@ -375,7 +380,7 @@
         </div>
 
         <div class="algorithm">
-            <h2>Ütközéskezelés</h2>
+            <h2>2. Ütközéskezelés</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíciója:</span> Ütközésről beszélünk, amikor <span class="highlight">két különböző kulcs</span> ugyanarra a táblaindexre képződik le</p>
@@ -408,7 +413,7 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Fák reprezentációja</h2>
+            <h2>1. Fák reprezentációja</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A fák reprezentációjánál a <span class="highlight">csúcsokat</span> és az <span class="highlight">éleket</span> kell ábrázolni. Maga a fa lényegében egy <span class="highlight">mutató a gyökérre</span>.</p>
@@ -440,7 +445,7 @@
         </div>
     
         <div class="algorithm">
-            <h2>Gráfok ábrázolása</h2>
+            <h2>2. Gráfok ábrázolása</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi az a gráf?</span> A gráf egy olyan <span class="highlight">adatszerkezet</span>, amely <span class="highlight">csúcsokból (vertices)</span> és az ezeket összekötő <span class="highlight">élekből (edges)</span> áll. A gráfok alkalmasak komplex kapcsolatok és hálózatok modellezésére.</p>
