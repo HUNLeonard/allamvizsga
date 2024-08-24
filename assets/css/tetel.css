@@ -17,6 +17,12 @@ h2 {
     transition: color 0.3s;
 }
 
+.desc{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+
 .algorithm {
     background-color: #fdf9e5;
     border-radius: 10px;
