@@ -34,19 +34,17 @@
                 <div class="step">
                     <p><span class="key-point">Primál feladat általános alakja:</span></p>
                     <pre>
-    Ax <= b
-    x >= 0 
-    Max cTx = z
-                    </pre>
+    Ax ≤ b
+    x ≥ 0 
+    Max c<sup>T</sup>x = z</pre>
                 </div>
                 
                 <div class="step">
                     <p><span class="key-point">Duál feladat általános alakja:</span></p>
                     <pre>
-    ATy >= c
-    y >= 0
-    Min bTy = w
-                    </pre>
+    A<sup>T</sup>y ≥ c
+    y ≥ 0
+    Min b<sup>T</sup>y = w</pre>
                 </div>
                 
                 <div class="step">
@@ -58,9 +56,20 @@
                         <li><span class="highlight">Max</span> helyett <span class="highlight">Min</span> feladatot írunk fel</li>
                     </ul>
                 </div>
+                <p><span class="key-point">Miért hasznos a dualitás?</span></p>
+                <ul>
+                    <li>A <span class="highlight">feladatok rugalmas kezelését</span> - ha az egyik nehéz, megoldhatjuk a másikat</li>
+                    <li>Az <span class="highlight">optimális megoldás ellenőrzését</span> mindkét feladatra</li>
+                    <li>A <span class="highlight">szimplex algoritmus hatékonyabb alkalmazását</span>, különösen ha sok feltétel és kevés változó van</li>
+                </ul>
+
                 <div class="step">
-                    <p><span class="key-point">Előnyök:</span></p>
-                    <p>A dualitás <span class="highlight">rugalmas megközelítést</span> tesz lehetővé az LP feladatok megoldására, és segít a <span class="highlight">bemeneti adatok változásainak hatását</span> elemezni az optimumra.</p>
+                    <p><span class="key-point">Fontos összefüggések:</span></p>
+                    <ul>
+                        <li>Ha a primál <span class="highlight">nem korlátos</span>, akkor a duálnak <span class="highlight">nincs lehetséges megoldása</span></li>
+                        <li>Ha a duál <span class="highlight">nem korlátos</span>, akkor a primálnak <span class="highlight">nincs lehetséges megoldása</span></li>
+                        <li>Ha mindkét feladatnak van <span class="highlight">lehetséges megoldása</span>, akkor <span class="highlight">mindkettőnek van optimális megoldása</span> is</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -73,8 +82,10 @@
                 
                 <div class="step">
                     <p><span class="key-point">Gyenge dualitás tétele:</span></p>
+                    <p><span class="key-point">A tétel állítása:</span> Ha x vektor egy lehetséges bázismegoldása a primál feladatnak, és y vektor egy lehetséges megoldása a duálnak, akkor <span class="highlight">c^T x ≤ b^T y</span>.</p>
+                    <p><span class="key-point">Mit jelent ez a gyakorlatban?</span> A tétel következményei:</p>
                     <ul>
-                        <li>Ha x lehetséges megoldása a primálnak és y a duálnak, akkor <span class="highlight">cT x ≤ bTy</span></li>
+                        <li>A duál feladat bármely lehetséges megoldása <span class="highlight">felső korlátot ad</span> a primál bármely lehetséges megoldására</li>
                         <li>Ha a primál <span class="highlight">nem korlátos</span>, akkor a duálnak <span class="highlight">nincs lehetséges megoldása</span></li>
                         <li>Ha a duál <span class="highlight">nem korlátos</span>, akkor a primálnak <span class="highlight">nincs lehetséges megoldása</span></li>
                     </ul>
@@ -82,10 +93,13 @@
                 
                 <div class="step">
                     <p><span class="key-point">Erős dualitás tétele:</span></p>
+                    <p><span class="key-point">A tétel állítása:</span> Ha x* vektor egy optimális megoldása a primál feladatnak, és y* vektor egy optimális megoldása a duálnak, akkor <span class="highlight">c^T x* = b^T y*</span>.</p>
+                    <p><span class="key-point">Mit jelent ez a gyakorlatban?</span> A tétel következményei:</p>
                     <ul>
-                        <li>Ha x optimális megoldása a primálnak és y a duálnak, akkor <span class="highlight">cT x = bTy</span></li>
                         <li>Ha a primálnak és duálnak is van lehetséges megoldása, akkor az <span class="highlight">optimumok megegyeznek</span></li>
-                        <li>A primál természetes változóinak a duál mesterséges változók célfüggvénybeli együtthatói felelnek meg, <span class="highlight">ellentétes előjellel</span></li>
+                        <li>A primál természetes változóinak a duál <span class="highlight">mesterséges változók célfüggvénybeli együtthatói felelnek meg</span>, ellentétes előjellel</li>
+                        <li>Ha ismerjük az egyik feladat optimális megoldását, <span class="highlight">következtethetünk a másik feladat optimumára</span></li>
+                    </ul>
                 </div>
                 
                 <p><span class="key-point">Megjegyzés:</span> A primál természetes változóinak a duál mesterséges változók célfüggvénybeli együtthatói felelnek meg, ellentétes előjellel.</p>
@@ -111,7 +125,17 @@
                         <li><span class="highlight">0-1 IP:</span> Minden változó bináris (0 vagy 1)</li>
                     </ul>
                 </div>
-                <p><span class="key-point">Kihívás:</span> Az egészértékűség követelménye <span class="highlight">jelentősen megnehezíti</span> a feladat megoldását.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Nehezebb vagy könnyebb az egész értékű feladat?</span> Bár első ránézésre könnyebbnek tűnhet (hiszen kevesebb lehetséges megoldás van), valójában az egész értékű feladatok <span class="highlight">általában nehezebbek</span> a folytonos változójú feladatoknál:</p>
+                    <p><span class="key-point">Az egész értékű programozás kihívásai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Komplexitás növekedése:</span> Az egészértékűség miatt NP-nehéz problémák</li>
+                        <li><span class="highlight">Hagyományos LP módszerek nem alkalmazhatók:</span> Új algoritmusok szükségesek</li>
+                        <li><span class="highlight">Diszkrét megoldási tér:</span> A folytonos relaxáció nem mindig ad használható megoldást</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
         <div class="algorithm">
@@ -128,6 +152,13 @@
                         <li>Az LP-lazítás megoldása <span class="highlight">nem garantáltan kerekíthető</span> az ILP optimális megoldásává</li>
                     </ul>
                 </div>
+                <p><span class="key-point">Miért fontos a relaxált feladat?</span> A relaxált feladat:</p>
+                <ul>
+                    <li><span class="highlight">Gyors becslést ad</span> az IP optimumára</li>
+                    <li><span class="highlight">Alapot szolgáltat</span> számos IP megoldó algoritmushoz</li>
+                    <li>Segít <span class="highlight">eldönteni</span>, hogy érdemes-e az IP-vel foglalkozni</li>
+                </ul>
+
                 <p><span class="key-point">LP-lazítás és IP-lehetséges megoldások</span></p>
                 <img src="../assets/images/ilp_vs_lp.webp" alt="Relaxált és egész optimum" class="graph-image">
             </div>
@@ -143,6 +174,7 @@
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A Branch and Bound (B&amp;B) egy <span class="highlight">általános algoritmus</span> optimalizálási problémák megoldására, különösen hasznos egész értékű programozási feladatoknál.</p>
+                <p><span class="key-point">Mi a Branch and Bound másik neve?</span> A Branch and Bound módszert gyakran "Korlátozás és szétválasztás" módszernek is nevezik magyarul.</p>
                 <div class="step">
                     <p><span class="key-point">Alapelv:</span> Az <span class="highlight">"Oszd meg, és uralkodj!"</span> stratégia alkalmazása ILP feladatokra.</p>
                     <ul>
@@ -174,9 +206,9 @@
                 <div class="step">
                     <p><span class="key-point">Lehetséges kimenetelek a 3. lépésben:</span></p>
                     <ul>
-                        <li><span class="highlight">Nincs lehetséges megoldás</span> → ág lezárása</li>
-                        <li><span class="highlight">Egész szám az optimális megoldás</span> → összehasonlítás az eddigi legjobb megoldással</li>
-                        <li>A megoldás <span class="highlight">rosszabb, mint az eddigi legjobb</span> → ág lezárása</li>
+                        <li><span class="highlight">Nincs lehetséges megoldás</span> → ág lezárása és térjünk vissza a 3-as lépéshez.</li>
+                        <li><span class="highlight">Egész szám az optimális megoldás</span> → összehasonlítás az eddigi legjobb megoldással -||-</li>
+                        <li>A megoldás <span class="highlight">rosszabb, mint az eddigi legjobb</span> → ág lezárása -||-</li>
                         <li><span class="highlight">Jobb, de nem egész értékű megoldás</span> → visszatérés a 2. lépéshez</li>
                     </ul>
                 </div>
@@ -216,6 +248,9 @@
             <h2>LP-lazítás a hátizsák problémában</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <p><span class="key-point">Mit jelent a "relatív hasznosság" a hátizsák feladatban?</span> A relatív hasznosság a tárgy értékének és súlyának hányadosa (érték/súly). Ez alapján rendezzük sorba a tárgyakat a mohó algoritmusnál.</p>
+                <p><span class="key-point">Mi a töredékes hátizsák feladat?</span> A töredékes hátizsák a hátizsák probléma relaxált verziója, ahol megengedjük a tárgyak törtrészeinek bevételét is. Ezt általában <span class="highlight">mohó algoritmussal</span> oldjuk meg, a tárgyakat a relatív hasznosságuk szerint csökkenő sorrendbe rendezve.</p>
+
                 <div class="step">
                     <p><span class="key-point">LP-lazítás megoldása:</span></p>
                     <ul>
@@ -275,65 +310,132 @@
         </div>
     
         <div class="algorithm">
-            <h2>Alkalmazási területek</h2>
+            <h2>Hátizsák probléma megoldási módszerei</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <p><span class="key-point">Hogyan oldjuk meg a hátizsák problémát?</span> Több módszer is létezik, a probléma méretétől és jellegétől függően:</p>
+                
+                <div class="step">
+                    <p><span class="key-point">1. Dinamikus programozás:</span></p>
+                    <ul>
+                        <li><span class="highlight">Elv:</span> Kisebb részproblémák megoldásából építjük fel a teljes megoldást</li>
+                        <li><span class="highlight">Előny:</span> Garantáltan optimális megoldást ad</li>
+                        <li><span class="highlight">Hátrány:</span> Nagy memóriaigény nagyobb problémáknál</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">2. Branch and Bound:</span></p>
+                    <ul>
+                        <li><span class="highlight">Elv:</span> A problématér szisztematikus felosztása és korlátozása</li>
+                        <li><span class="highlight">Előny:</span> Hatékony nagy problémáknál is</li>
+                        <li><span class="highlight">Hátrány:</span> Legrosszabb esetben exponenciális futásidő</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">3. Mohó algoritmus:</span></p>
+                    <ul>
+                        <li><span class="highlight">Elv:</span> Tárgyak sorba rendezése érték/súly arány szerint, majd sorrendi kiválasztás</li>
+                        <li><span class="highlight">Előny:</span> Gyors és egyszerű</li>
+                        <li><span class="highlight">Hátrány:</span> Nem mindig ad optimális megoldást</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">4. Approximációs algoritmusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Elv:</span> Közel optimális megoldás keresése gyorsan</li>
+                        <li><span class="highlight">Előny:</span> Gyakorlati alkalmazásokban gyakran elegendő</li>
+                        <li><span class="highlight">Hátrány:</span> Nem garantál optimális megoldást</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Melyik módszert válasszuk?</span> A választás függ:</p>
                 <ul>
-                    <li><span class="highlight">Erőforrás-allokáció</span> optimalizálása</li>
-                    <li><span class="highlight">Pénzügyi befektetések</span> portfólió optimalizálása</li>
-                    <li><span class="highlight">Logisztikai problémák</span> megoldása</li>
-                    <li><span class="highlight">Projektmenedzsment</span> erőforrás-tervezése</li>
-                    <li><span class="highlight">Gyártási folyamatok</span> optimalizálása</li>
+                    <li><span class="highlight">A probléma méretétől:</span> Kis problémáknál dinamikus programozás, nagyobbaknál B&amp;B vagy approximáció</li>
+                    <li><span class="highlight">Az időkorláttól:</span> Ha gyors megoldás kell, mohó vagy approximációs algoritmus</li>
+                    <li><span class="highlight">A pontosság igényétől:</span> Ha feltétlenül optimális megoldás kell, dinamikus programozás vagy B&amp;B</li>
+                </ul>
+                
+                <p><span class="key-point">Milyen kihívásokkal szembesülünk a hátizsák probléma megoldása során?</span></p>
+                <ul>
+                    <li><span class="highlight">Skálázhatóság:</span> Nagy méretű problémáknál a futásidő exponenciálisan nőhet</li>
+                    <li><span class="highlight">Memóriakorlátok:</span> A dinamikus programozás nagy memóriaigénye korlátozó tényező lehet</li>
+                    <li><span class="highlight">Többdimenziós kiterjesztések:</span> Több korlát vagy cél esetén a probléma komplexitása jelentősen nő</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>5. Összegzés</h2>
+        <h2>5. Összefoglalás</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Operációkutatás II összefoglalás</h2>
+            <h2>Főbb pontok áttekintése</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <div class="step">
-                    <p><span class="key-point">Primál-duál feladatpár:</span></p>
-                    <ul>
-                        <li>Rugalmas megközelítés LP feladatok megoldására</li>
-                        <li>Gyenge és erős dualitás tételei</li>
-                        <li>Hatékony problémamegoldás és érzékenységvizsgálat</li>
-                    </ul>
-                </div>
+                <p><span class="key-point">Milyen fő témákat érintettünk?</span> Az Operációkutatás II tétel során a következő kulcsfontosságú területeket tárgyaltuk:</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Egész értékű programozás (ILP):</span></p>
-                    <ul>
-                        <li>Változók egészértékűségének követelménye</li>
-                        <li>LP-lazítás és annak tulajdonságai</li>
-                        <li>Komplexebb, de valósághűbb modellek</li>
-                    </ul>
+                    <ol>
+                        <li><span class="highlight">Primál-duál feladatpár:</span>
+                            <ul>
+                                <li>A primál és duál feladatok kapcsolata</li>
+                                <li>A dualitás jelentősége az optimalizálásban</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Dualitási komplementaritási tételek:</span>
+                            <ul>
+                                <li>Gyenge és erős dualitás tételei</li>
+                                <li>Komplementaritási feltételek és jelentőségük</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Egész értékű feladatok és jellemzőik:</span>
+                            <ul>
+                                <li>Egész értékű programozás alapjai</li>
+                                <li>Relaxált feladatok és kapcsolatuk az IP-vel</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Branch and Bound módszer:</span>
+                            <ul>
+                                <li>A B&B algoritmus működési elve</li>
+                                <li>Alkalmazása egész értékű feladatokra</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Hátizsák feladat:</span>
+                            <ul>
+                                <li>A probléma definíciója és jelentősége</li>
+                                <li>Megoldási módszerek és kihívások</li>
+                            </ul>
+                        </li>
+                    </ol>
                 </div>
                 
-                <div class="step">
-                    <p><span class="key-point">Branch and Bound:</span></p>
-                    <ul>
-                        <li>Általános algoritmus diszkrét optimalizálásra</li>
-                        <li>Elágazás, korlátozás és metszés lépései</li>
-                        <li>Garantált optimum találása</li>
-                    </ul>
-                </div>
+                <p><span class="key-point">Miért fontosak ezek a témák az operációkutatásban?</span></p>
+                <ul>
+                    <li><span class="highlight">Elméleti alapok:</span> Mélyebb megértést nyújtanak az optimalizálási problémák természetéről</li>
+                    <li><span class="highlight">Gyakorlati alkalmazások:</span> Valós problémák modellezésére és megoldására használhatók</li>
+                    <li><span class="highlight">Algoritmusfejlesztés:</span> Alapot szolgáltatnak új, hatékonyabb megoldási módszerek kidolgozásához</li>
+                    <li><span class="highlight">Döntéstámogatás:</span> Segítenek a komplex döntési helyzetekben optimális stratégiák kialakításában</li>
+                </ul>
                 
-                <div class="step">
-                    <p><span class="key-point">Hátizsák probléma:</span></p>
-                    <ul>
-                        <li>Klasszikus optimalizálási feladat</li>
-                        <li>Különböző megoldási módszerek</li>
-                        <li>Széles körű gyakorlati alkalmazások</li>
-                    </ul>
-                </div>
+                <p><span class="key-point">Milyen készségeket fejlesztettünk?</span></p>
+                <ul>
+                    <li><span class="highlight">Analitikus gondolkodás:</span> Komplex problémák strukturált elemzése</li>
+                    <li><span class="highlight">Modellezési képesség:</span> Valós helyzetek matematikai megfogalmazása</li>
+                    <li><span class="highlight">Algoritmikus gondolkodás:</span> Hatékony megoldási stratégiák tervezése</li>
+                    <li><span class="highlight">Optimalizálási szemlélet:</span> Erőforrások hatékony felhasználásának megközelítése</li>
+                </ul>
                 
-                <p><span class="key-point">Összefoglalás:</span> Az Operációkutatás II témakör <span class="highlight">komplex optimalizálási technikákat</span> mutat be, amelyek lehetővé teszik valós problémák pontosabb modellezését és hatékony megoldását.</p>
+                <p><span class="key-point">Hogyan kapcsolódnak ezek a témák egymáshoz?</span></p>
+                <ul>
+                    <li>A <span class="highlight">primál-duál elmélet</span> alapot nyújt az optimalizálási problémák mélyebb megértéséhez</li>
+                    <li>Az <span class="highlight">egész értékű programozás</span> kiterjeszti a lineáris programozás koncepcióját gyakorlati alkalmazásokra</li>
+                    <li>A <span class="highlight">Branch and Bound</span> egy általános megközelítés, amely az egész értékű problémák megoldására is alkalmazható</li>
+                    <li>A <span class="highlight">hátizsák probléma</span> egy konkrét példa, amely illusztrálja az egész értékű programozás kihívásait és megoldási módszereit</li>
+                </ul>
             </div>
         </div>
     </div>
