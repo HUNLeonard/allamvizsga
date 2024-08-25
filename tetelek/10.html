@@ -38,11 +38,8 @@
                 <a href="https://www.youtube.com/watch?v=0rZFAHWIXws&list=PLDeiJeeT0bkgHr44CTt5cxmsKwR1-aB0u&index=3" class="algorithm-link" target="_blank">
                     <i class="fas fa-video"></i> Youtube videó a témáról 3
                 </a>
-                <p><span class="key-point">Mi az LP alapfeladat?</span> A lineáris programozás (LP) alapfeladata egy <span class="highlight">optimalizálási probléma</span>, ahol egy <span class="highlight">lineáris célfüggvény</span> szélsőértékét (maximumát vagy minimumát) keressük, miközben a változóink <span class="highlight">lineáris egyenlőtlenségekkel megadott feltételeknek</span> kell megfeleljenek.</p>
-
-
-                <p><span class="key-point">Miért lineáris?</span> Mert mind a célfüggvény, mind a feltételek <span class="highlight">elsőfokú kifejezések</span> a változókban. Például: 2x + 3y lineáris, de x^2 vagy xy már nem.</p>
-
+                <p><span class="key-point">Definíció:</span> Az LP egy <span class="highlight">optimalizálási probléma</span>, ahol egy <span class="highlight">lineáris célfüggvény</span> szélsőértékét keressük <span class="highlight">lineáris feltételek mellett</span>.</p>
+                
                 <div class="step">
                     <p><span class="key-point">Standard alak:</span></p>
                     <img src="../assets/images/lp_alapfeladat.webp" alt="LP alapfeladat felírása" class="graph-image">
@@ -58,27 +55,14 @@
             <h2>Példa - Termékgyártási probléma</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <div class="step">
-                    <p><span class="key-point">Példa: Termékgyártási probléma</span></p>
-                    <p>Egy gyár <span class="highlight">katonákat és vonatokat</span> gyárt. A céljuk a <span class="highlight">profit maximalizálása</span>.</p>
-                    <ul>
-                        <li>Egy katona 3$-ba kerül és 1$-ért adják el</li>
-                        <li>Egy vonat 2$-ba kerül és 1$-ért adják el</li>
-                        <li>Összesen 80 egységnyi alapanyag áll rendelkezésre</li>
-                        <li>A gyártási kapacitás 100 egység</li>
-                        <li>Legalább 40 katonát kell gyártani</li>
-                    </ul>
-                </div>
-                <div class="step">
-                    <p><span class="key-point">Hogyan írjuk fel az LP feladatot?</span></p>
-                    <img src="../assets/images/mix.bmp" alt="mix" class="graph-image">
-                    <p><span class="key-point">Képen látható:</span> (célfüggvény: profit maximalizálása) |  <span class="highlight">(alapanyag korlát)</span> | (gyártási kapacitás) | <span class="highlight">(minimum katona követelmény)</span> |  (nem-negativitási feltétel)</p>
-                    <p>Ahol x₁ a katonák száma, x₂ a vonatok száma.</p>
-                </div>
-                <p><span class="key-point">Mi a megoldás?</span> A feladat <span class="highlight">optimális megoldása</span>: x* = (20, 60), azaz <span class="highlight">20 katona és 60 vonat gyártása</span>. Az <span class="highlight">optimum értéke</span>: z* = 180, vagyis 180$ profit érhető el.</p>
+                <img src="../assets/images/mix.bmp" alt="mix" class="graph-image">
+                <ul>
+                    <li><span class="highlight">Lehetséges megoldás:</span> x(20,20) - 20 katona, 20 vonat</li>
+                    <li><span class="highlight">Optimális megoldás:</span> x* = (20,60) - 20 katona, 60 vonat</li>
+                    <li><span class="highlight">Optimum értéke:</span> z* = 180 ($180 profit)</li>
+                </ul>
             </div>
         </div>
-    </div>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
         <h2>2. Szimplex algoritmus</h2>
@@ -153,7 +137,7 @@
     </div>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>3. Az LP Geometriája</h2>
+        <h2>2. Az LP Geometriája</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
@@ -193,14 +177,18 @@
                     <pre>
 [0 0 0| 4 5] → [0 0 5| 4 0] → [2 0 5| 0 0] → [0 4 5| 0 0]</pre>
                 </div>
-
-                <p><span class="key-point">Mit jelentenek ezek a lépések geometriailag?</span> Ezek a bázismegoldások rendre a következő <span class="highlight">poliéder csúcsoknak</span> felelnek meg:</p>
-                <pre>
-[0 0 0] → [0 0 5] → [2 0 5] → [0 4 5]</pre>
-
-                <p><span class="key-point">Mi a pivot lépés geometriai jelentése?</span> Egy pivot lépés az <span class="highlight">aktuális bázismegoldásból induló valamelyik él mentén történő ellépés</span> egy "szomszédos" bázismegoldásba (azaz csúcsba).</p>
-
-                <p><span class="key-point">Miért hatékony ez a módszer?</span> A szimplex algoritmus hatékonysága abból ered, hogy <span class="highlight">csak a csúcspontokat vizsgálja</span>, amelyek a lehetséges optimális megoldások helyei.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Szimplex algoritmus és geometria:</span></p>
+                    <img src="../assets/images/szimplex_algorithm.bmp" alt="Szimplex algoritmus" class="graph-image">
+                    <p>A példán végrehajtva a szimplex algoritmust a klasszikus pivot stratégiával:</p>
+                    <p>[ 0 0 0 | 4 5 ] -> [ 0 0 5 | 4 0] -> [2 0 5 | 0 0] -> [0 4 5 | 0 0]</p>
+                    <p><span class="highlight">Bázismegoldások adódnak:</span> <br>
+                        [0 0 0 ] -> [0 0 5] -> [2 0 5] -> [0 4 5]<br>
+                        <span class="highlight">poliéder csúcsoknak</span> felelnek meg.</p>
+                </div>
+                
+                <img src="../assets/images/szimplex_algoritmus.webp" alt="Szimplex algoritmus" class="graph-image">
             </div>
         </div>
 
@@ -303,47 +291,33 @@
                 <p><span class="key-point">Miért fontos a hányadosteszt?</span> A hányadosteszt biztosítja, hogy a <span class="highlight">new bázismegoldás is megengedett legyen</span>, azaz ne sértse meg a feltételeket.</p>
                 
                 <img src="../assets/images/generaloelem_valasztasi_szabalyok.bmp" alt="Generálóelem választási szabályok példa" class="graph-image">
-            </div>
-        </div>
-        <div class="algorithm">
-            <h2>Generálóelem választási szabályok</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Milyen szabályok léteznek?</span> Több szabály létezik a generálóelem kiválasztására, mindegyiknek megvan a maga előnye és alkalmazási területe.</p>
-
+                
                 <div class="step">
-                    <p><span class="key-point">1. Klasszikus szabály:</span></p>
+                    <p><span class="key-point">Klasszikus módszer:</span></p>
                     <ul>
-                        <li><span class="highlight">Belépő változó:</span> A "legpozitívabb" konstansú változó a célfüggvényben</li>
-                        <li><span class="highlight">Kilépő változó:</span> Hányadosteszt alapján, ütközés esetén a legkisebb indexű egyenlet bázisváltozója</li>
+                        <li><span class="highlight">Belépő változó:</span> A "legpozitívabb" konstansú, pozitív előjelű a célfüggvényben</li>
+                        <li><span class="highlight">Kilépő változó:</span> Hányadosteszt, ütközésnél a legkisebb indexű egyenlet bázisváltozója</li>
                     </ul>
                 </div>
 
                 <div class="step">
-                    <p><span class="key-point">2. Bland szabály:</span></p>
+                    <p><span class="key-point">Bland módszer:</span></p>
                     <ul>
-                        <li><span class="highlight">Belépő változó:</span> A legkisebb indexű lehetséges belépő változó</li>
-                        <li><span class="highlight">Kilépő változó:</span> Hányadosteszt alapján, ütközés esetén a legkisebb indexű egyenlet bázisváltozója</li>
-                        <li><span class="highlight">Előnye:</span> Garantáltan véges számú lépésben véget ér az algoritmus. <span class="highlight">Ciklizáció elkerülésére</span> fejlesztették ki.</li>
+                        <li><span class="highlight">Belépő változó:</span> A legkisebb indexű a lehetséges belépő változók közül</li>
+                        <li><span class="highlight">Kilépő változó:</span> Hányadosteszt, ütközésnél a legkisebb indexű egyenlet bázisváltozója</li>
                     </ul>
                 </div>
 
                 <div class="step">
-                    <p><span class="key-point">3. Legnagyobb növekmény szabály:</span></p>
+                    <p><span class="key-point">Legnagyobb növekmény módszere:</span></p>
                     <ul>
-                        <li><span class="highlight">Cél:</span> A célfüggvény értékét legjobban növelő változó kiválasztása</li>
-                        <li><span class="highlight">Módszer:</span> Hányadosteszt minden lehetséges belépő változóra, a legnagyobb növekményt adó választása</li>
-                        <li><span class="highlight">Előnye:</span> Gyorsabb konvergencia az optimum felé</li>
+                        <li><span class="highlight">Hányadosteszt minden lehetséges belépő változóra</span></li>
+                        <li>A <span class="highlight">legnagyobb növekményt</span> adó változópárt választjuk</li>
+                        <li>Egyszerre határozza meg a be- és kilépő változókat</li>
                     </ul>
                 </div>
 
-                <div class="step">
-                    <p><span class="key-point">Miben különbözik a Bland-szabály és a legnagyobb növekmény szabály?</span></p>
-                    <ul>
-                        <li><span class="highlight">Bland-szabály:</span> Garantálja a véges futást, de lehet lassabb</li>
-                        <li><span class="highlight">Legnagyobb növekmény:</span> Általában gyorsabb konvergencia, de nem garantál véges futást</li>
-                    </ul>
-                </div>
+                <p><span class="key-point">Miért fontosak ezek a szabályok?</span> A megfelelő generálóelem választási szabály <span class="highlight">felgyorsíthatja az algoritmus konvergenciáját</span>, és segíthet elkerülni bizonyos problémákat, mint például a <span class="highlight">ciklizáció</span>.</p>
             </div>
         </div>
 
@@ -478,154 +452,75 @@ z = 6.5 - 1.5x4 - 0.5x3</pre>
             <h2>Ciklizáció-degeneráció</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Mi a ciklizáció?</span> A ciklizáció az a jelenség, amikor a szimplex algoritmus <span class="highlight">ugyanazokat a bázismegoldásokat ismétli végtelenül</span>, anélkül hogy elérné az optimális megoldást.</p>
-
-                <p><span class="key-point">Mi a degeneráció?</span> Egy bázismegoldás <span class="highlight">degeneráltnak</span> nevezhető, ha a változói közül <span class="highlight">legalább az egyik értéke 0</span>.</p>
-                
                 <div class="step">
                     <p><span class="key-point">Degenerált bázismegoldás:</span> Egy bázismegoldás <span class="highlight">degeneráltnak</span> nevezhető, ha a változói közül <span class="highlight">legalább az egyik értéke 0</span>.</p>
                 </div>
 
                 <div class="step">
-                    <p><span class="key-point">Degenerált iterációs lépés:</span> Olyan szimplex iteráció, amelyben <span class="highlight">nem változik a bázismegoldás értéke</span>.</p>
-                </div>
-
-                <p><span class="key-point">Mi az összefüggés a ciklizáció és a degeneráció között?</span> A degeneráció gyakran <span class="highlight">vezethet ciklizációhoz</span>, mivel a degenerált megoldások lehetővé teszik, hogy az algoritmus "egy helyben topogjon".</p>
-
-                <p><span class="key-point">Hogyan hat ez az algoritmusra?</span> A ciklizáció azt eredményezi, hogy az algoritmus <span class="highlight">ugyanazokat a lépéseket ismétli</span> végtelenül, anélkül hogy elérné az optimális megoldást.</p>
-
-                <div class="step">
-                    <p><span class="key-point">Példa ciklizációra:</span></p>
-                    <pre>
-1. iteráció:
-x₅ = -½x₁ + 11/2x₂ + 5/2x₃ - 9x₄
-x₆ = -½x₁ + 3/2x₂ + ½x₃ - x₄
-x₇ = 1 - x₁
-z = 10x₁ - 57x₂ - 8x₃ - 24x₄
-
-...
-
-7. iteráció:
-x₅ = -½x₁ + 11/2x₂ + 5/2x₃ - 9x₄
-x₆ = -½x₁ + 3/2x₂ + ½x₃ - x₄
-x₇ = 1 - x₁
-z = 10x₁ - 57x₂ - 8x₃ - 24x₄
-                    </pre>
-                    <p>Látható, hogy a 7. iteráció után <span class="highlight">visszakaptuk a kiindulási feladatot</span>.</p>
-                </div>
-
-                <p><span class="key-point">Hogyan kerülhető el a ciklizáció?</span> A ciklizáció elkerülhető <span class="highlight">megfelelő pivot szabály alkalmazásával</span>, például a Bland-szabály használatával, amely garantálja, hogy az algoritmus véges számú lépésben véget ér.</p>
-            </div>
-        </div>
-
-        <div class="algorithm">
-            <h2>Nem korlátos feladat</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Mikor nem korlátos egy feladat?</span> Ha a feladatnak <span class="highlight">nincs optimális megoldása</span>, mert a célfüggvény értéke tetszőlegesen nagy (maximalizálás esetén) vagy kicsi (minimalizálás esetén) lehet.</p>
-
-                <div class="step">
-                    <p><span class="key-point">Hogyan ismerjük fel?</span></p>
+                    <p><span class="key-point">2. Nem korlátos feladat:</span></p>
                     <ul>
-                        <li>Ha van olyan <span class="highlight">nem bázisváltozó pozitív együtthatóval</span> a célfüggvényben</li>
-                        <li>És <span class="highlight">nincs negatív együttható</span> ugyanennél a változónál a feltételekben</li>
-                        <li>Akkor a feladat <span class="highlight">nem korlátos</span></li>
+                        <li>A <span class="highlight">célfüggvényben lévő lehetséges belépőváltozók</span> vizsgálata</li>
+                        <li>Ha a <span class="highlight">nem bázisváltozók is pozitívak</span>, a feladat nem korlátos</li>
+                        <li>A célfüggvény tetszőlegesen nagy (vagy kicsi) értéket vehet fel</li>
                     </ul>
                 </div>
-
+                
                 <div class="step">
-                    <p><span class="key-point">Példa nem korlátos feladatra:</span></p>
-                    <pre>
-x₃ = 5 + 2x₂ - ⅓x₄
-x₁ = 3 + 3x₂ + ⅓x₄
-max z = 21 + 25x₂ - 7/3x₄
-
-II. iteráció:
-A legpozitívabb együtthatójú változó: x₂
-A legkisebb korlátot adó egyenlet: Nincs, mert mindkét
-egyenletben x₂ együtthatója pozitív.
-                    </pre>
-                    <p>Ebben az esetben az egyenletrendszer nem korlátos.</p>
-
-                    <p><span class="key-point">Mit jelent ez geometriailag?</span> Geometriailag ez azt jelenti, hogy a <span class="highlight">lehetséges megoldások halmaza "nyitott"</span> abban az irányban, amerre a célfüggvény növekszik.</p>
-                    
-                    <p><span class="key-point">Hogyan kezeljük?</span> Ha nem korlátos feladatot észlelünk, <span class="highlight">megállítjuk az algoritmust</span> és jelezzük, hogy a feladatnak nincs véges optimuma. Gyakran ez arra utal, hogy a <span class="highlight">probléma megfogalmazása hibás</span> vagy hiányos.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="algorithm">
-            <h2>Nincs lehetséges megoldás</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Mit jelent, ha nincs lehetséges megoldás?</span> Ez azt jelenti, hogy <span class="highlight">nem létezik olyan megoldás</span>, amely az összes feltételt egyszerre kielégítené. Másképpen fogalmazva, a <span class="highlight">feltételrendszer ellentmondásos</span>.</p>
-                <div class="step">
-                    <p><span class="key-point">Hogyan derül ki, hogy nincs megoldás?</span></p>
+                    <p><span class="key-point">3. Nincs lehetséges megoldás:</span></p>
                     <ul>
-                        <li>A <span class="highlight">kétfázisú szimplex módszer első fázisában</span></li>
-                        <li>Ha a <span class="highlight">segédfeladat optimuma nem 0</span></li>
-                        <li>Vagy ha <span class="highlight">nem tudjuk eltávolítani az összes mesterséges változót</span> a bázisból</li>
+                        <li>Ha a <span class="highlight">kétfázisú szimplex módszer</span> segédfeladata nem hozható ki 0-ra</li>
+                        <li>Ha a <span class="highlight">lehetséges megoldások halmaza üres</span></li>
+                        <li><span class="highlight">Tucker tétele:</span> Egy lineáris egyenlőtlenség-rendszer megoldhatatlan akkor és csak akkor, ha inkonzisztens (az egyenletek és egyenlőtlenségek ellentmondanak egymásnak)</li>
                     </ul>
                 </div>
-                <p><span class="key-point">Mit tegyünk, ha nincs megoldás?</span> Ha kiderül, hogy a feladatnak nincs lehetséges megoldása, akkor:</p>
-                <ul>
-                    <li><span class="highlight">Ellenőrizzük a feltételrendszert</span> esetleges hibák vagy ellentmondások miatt</li>
-                    <li><span class="highlight">Lazítsunk a feltételeken</span>, ha lehetséges</li>
-                    <li><span class="highlight">Újrafogalmazzuk a problémát</span>, ha szükséges</li>
-                </ul>
-
-                <p><span class="key-point">Mi Tucker tétele?</span> Tucker tétele kimondja, hogy <span class="highlight">lineáris egyenlőtlenségek és egyenletek egy rendszere megoldhatatlan akkor és csak akkor, ha inkonzisztens</span>.</p>
-
-                <div class="step">
-                    <p><span class="key-point">Példa lehetséges megoldás nélküli feladatra:</span></p>
-                    <pre>
-Max z = x₁ - x₂ + x₃
-2x₁ - x₂ + x₃ ≤ 4
-2x₁ - 3x₂ + x₃ ≤ -5
--x₁ + x₂ - 2x₃ ≤ -1
-x₁, x₂, x₃ ≥ 0
-                    </pre>
-                    <p>Ebben a példában a feltételek ellentmondanak egymásnak, így nincs lehetséges megoldás.</p>
-                </div>
+                
+                <p><span class="key-point">Fontos megjegyzés:</span> Ha a <span class="highlight">lehetséges megoldások halmaza korlátos</span>, akkor az LP-nek <span class="highlight">van optimális megoldása</span>.</p>
             </div>
         </div>
-    </div>
 
-    <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>7. Összefoglalás és Gyakori Kérdések</h2>
-    </div>
-    <div class="main-content">
         <div class="algorithm">
-            <h2>Összefoglaló kérdések és válaszok</h2>
+            <h2>Példa: Ciklizáció</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <p><span class="key-point">Definíció:</span> A <span class="highlight">ciklizáció</span> olyan jelenség, amikor a <span class="highlight">szimplex algoritmus</span> ismételten ugyanazokat a <span class="highlight">bázismegoldásokat</span> generálja, anélkül, hogy elérné az <span class="highlight">optimális megoldást</span> vagy felismerné, hogy a feladat <span class="highlight">nem megoldható</span>.</p>
+                
                 <div class="step">
-                    <p><span class="key-point">Mi az LP feladat lényege?</span> Az LP feladat egy <span class="highlight">optimalizálási probléma</span>, ahol egy lineáris célfüggvény szélsőértékét keressük lineáris feltételek mellett.</p>
+                    <p><span class="key-point">Lépések:</span></p>
+                    <ol>
+                        <li><span class="highlight">Kezdeti szótár felírása:</span> Az LP feladat kezdeti egyenletrendszerének felírása <span class="highlight">szótár alakban</span>.</li>
+                        <li><span class="highlight">Iterációk végrehajtása:</span> A szimplex algoritmus <span class="highlight">iterációinak</span> végrehajtása, minden lépésben új <span class="highlight">bázismegoldást</span> keresve.</li>
+                        <li><span class="highlight">Ciklus detektálása:</span> Annak felismerése, hogy az algoritmus <span class="highlight">visszatért</span> egy korábbi bázismegoldáshoz.</li>
+                        <li><span class="highlight">Megoldás:</span> Megfelelő <span class="highlight">pivot szabály</span> alkalmazása a ciklizáció elkerülésére.</li>
+                    </ol>
                 </div>
-
+    
+                <p><span class="key-point">Példa magyarázat:</span> Az alábbi példában láthatjuk, hogyan alakul ki a ciklizáció egy <span class="highlight">degenerált bázismegoldás</span> esetén.</p>
+                
                 <div class="step">
-                    <p><span class="key-point">Miből áll az LP alapfeladat?</span> Az LP alapfeladat <span class="highlight">célfüggvényből, feltételekből és nem-negativitási kikötésekből</span> áll.</p>
+                    <p><span class="key-point">1. iteráció:</span></p>
+                    <pre>
+    x5 = -1/2 x1 + 11/2 x2 + 5/2 x3 - 9x4
+    x6 = -1/2 x1 + 3/2 x2 + 1/2 x3 - x4
+    x7 = 1 - x1
+    z = 10x1 - 57x2 - 8x3 - 24x4
+                    </pre>
+                    <p>Ez a <span class="highlight">kezdeti szótár</span>. Figyeljük meg, hogy <span class="highlight">x7 értéke 1</span>, ami egy <span class="highlight">degenerált megoldáshoz</span> vezethet.</p>
                 </div>
-
+                
                 <div class="step">
-                    <p><span class="key-point">Mi a szimplex algoritmus bemenete és kimenete?</span> A bemenete egy <span class="highlight">szótár alakú feladat</span>, a kimenete pedig vagy az <span class="highlight">optimális megoldás</span>, vagy jelzés, hogy <span class="highlight">nincs megoldás / nem korlátos a feladat</span>.</p>
+                    <p><span class="key-point">2. iteráció:</span></p>
+                    <pre>
+    x1 = 11x2 + 5x3 - 18x4 - 2x5
+    x6 = -4x2 - 2x3 + 8x4 + x5
+    x7 = 1 - 11x2 - 5x3 + 18x4 + x5
+    z = 53x2 + 41x3 - 204x4 - 20x5
+                    </pre>
+                    <p>Az <span class="highlight">x1 belépett a bázisba</span>. Vegyük észre, hogy <span class="highlight">x7 értéke még mindig 1</span>, ami jelzi, hogy ez egy <span class="highlight">degenerált lépés</span> volt.</p>
                 </div>
-
-                <div class="step">
-                    <p><span class="key-point">Mi a kétfázisú szimplex módszer lényege?</span> A kétfázisú módszer először egy <span class="highlight">lehetséges kezdeti megoldást keres</span> (1. fázis), majd ebből kiindulva <span class="highlight">optimalizál</span> (2. fázis).</p>
-                </div>
-
-                <div class="step">
-                    <p><span class="key-point">Mi a különbség a degeneráció és a ciklizáció között?</span> A <span class="highlight">degeneráció</span> egy állapot, ahol egy bázisváltozó értéke 0, míg a <span class="highlight">ciklizáció</span> egy folyamat, ahol az algoritmus ugyanazokat a lépéseket ismétli végtelenül.</p>
-                </div>
-
-                <div class="step">
-                    <p><span class="key-point">Mikor mondjuk, hogy egy LP feladat nem korlátos?</span> Amikor a <span class="highlight">célfüggvény értéke tetszőlegesen nagy lehet</span> a feltételek megsértése nélkül.</p>
-                </div>
-
-                <div class="step">
-                    <p><span class="key-point">Hogyan ismerjük fel, ha egy feladatnak nincs lehetséges megoldása?</span> Ha a <span class="highlight">kétfázisú szimplex első fázisában</span> nem tudunk 0 értéket elérni a segédfüggvénynél.</p>
-                </div>
+                
+                <p>A példa további iterációkon keresztül bemutatja, hogyan jut vissza az algoritmus a <span class="highlight">kezdeti szótárhoz</span>, ami a <span class="highlight">ciklizáció jelenségét</span> szemlélteti.</p>
+                
+                <p><span class="key-point">Megoldás:</span> A ciklizáció elkerülhető megfelelő <span class="highlight">pivot szabályok</span> alkalmazásával, például a <span class="highlight">Bland-szabály</span> vagy a <span class="highlight">legnagyobb növekmény módszere</span>. Ezek a szabályok biztosítják, hogy az algoritmus ne ragadjon be egy <span class="highlight">végtelen ciklusba</span>.</p>
             </div>
         </div>
     </div>
