@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 13 - Operációs rendszerek I.</title>
+    <title>Tétel 13 - Operációs rendszerek II.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
     <script defer data-domain="allamvizsga.netlify.app" src="https://plausible.io/js/script.js"></script>
@@ -28,60 +28,26 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Processzusok kommunikációja (IPC)</h2>
+            <h2>1. Processzusok kommunikációja</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content show">
-                <p><span class="key-point">Definíció:</span> Az IPC (InterProcess Communication) lehetővé teszi a processzusok közötti <span class="highlight">információcserét és együttműködést</span>. <br><em>( A processzusoknak gyakran szükségük van az egymással való kommunikációra )</em></p>
+            <div class="content">
+                <p><span class="key-point">Mi a processzusok közti kommunikáció?</span> A processzusok közti kommunikáció (IPC – InterProcess Communication) <span class="highlight">lehetővé teszi a processzusok számára az információcsere és együttműködés megvalósítását</span>. Ez alapvető fontosságú a modern operációs rendszerekben, ahol számos folyamat fut párhuzamosan és szükség van az összehangolt működésre.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Főbb területek:</span></p>
-                    <ul>
-                        <li><span class="highlight">Információküldés:</span> Hogyan küldhet egy processzus adatot egy másiknak?</li>
-                        <li><span class="highlight">Kritikus tevékenységek koordinálása:</span> Hogyan biztosítható, hogy a processzusok ne zavarják egymást?</li>
-                        <li><span class="highlight">Függőségek kezelése:</span> Hogyan állítsuk sorrendbe a processzusokat, ha egymásra várnak?</li>
-                    </ul>
+                    <p><span class="key-point">IPC fő területei:</span></p>
+                    <ol>
+                        <li><span class="highlight">Információküldés:</span> Hogyan tud egy processzus adatot küldeni egy másiknak?</li>
+                        <li><span class="highlight">Kritikus tevékenységek szinkronizálása:</span> Hogyan biztosítható, hogy a processzusok ne zavarják egymást kritikus műveletek során?</li>
+                        <li><span class="highlight">Processzusok sorrendezése:</span> Hogyan állítsuk sorrendbe a processzusokat függőségek esetén?</li>
+                    </ol>
                 </div>
-                
                 <p><span class="key-point">Példa:</span> Egy parancsértelmező adatcsőben az első processzus kimenete a második processzus bemenete lesz, és így tovább. Ezért <span class="highlight">szükséges a processzusok közti kommunikáció, előnyben részesítve egy megszakítások nélküli, jól strukturált módot.</span></p>
-                <p><span class="key-point">Megjegyzés:</span> Vannak operációs rendszerek, ahol az együtt dolgozó processzusok <span class="highlight">közös tárolóterületen osztozhatnak</span>. Ez lehet a főmemóriában vagy egy megosztott fájlban.</p>
+                <p><span class="key-point">Hogyan valósul meg a kommunikáció?</span> A processzusok kommunikálhatnak <span class="highlight">közös memóriaterületen keresztül</span>, amely lehet a főmemóriában vagy egy megosztott fájlban. A kommunikáció módja nem változtat a felmerülő problémák természetén.</p>
             </div>
         </div>
 
         <div class="algorithm">
-            <h2>Versenyhelyzetek</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Definíció:</span> Versenyhelyzetnek nevezzük azokat az eseteket, amikor <span class="highlight">kettő vagy több processzus olvas vagy ír megosztott adatokat</span>, és a végeredmény attól függ, hogy ki és pontosan mikor fut.</p>
-                
-                <div class="step">
-                    <p><span class="key-point">Jellemzők:</span></p>
-                    <ul>
-                        <li>A versenyhelyzeteket tartalmazó programokat <span class="highlight">nehéz nyomon követni</span></li>
-                        <li>Tesztelés során <span class="highlight">furcsa és látszólag megmagyarázhatatlan dolgok</span> fordulhatnak elő</li>
-                    </ul>
-                </div>
-                
-                <div class="step">
-                    <p><span class="key-point">Megoldás versenyhelyzetekre:</span></p>
-                    <ul>
-                        <li>A kritikus szakaszok <span class="highlight">szinkronizálása</span> szükséges</li>
-                        <li>Cél: Biztosítani, hogy <span class="highlight">egyszerre csak egy processzus férhessen hozzá</span> és módosíthassa a megosztott változókat</li>
-                        <li>Szinkronizációs mechanizmusok:
-                            <ul>
-                                <li><span class="highlight">Szemaforok:</span> Jelzik, hogy egy erőforrás szabad vagy foglalt</li>
-                                <li><span class="highlight">Mutexek:</span> Egyszerű zárolási mechanizmusok <br><em>( biztosítják, hogy egyszerre csak egy folyamat férhessen hozzá egy adott erőforráshoz. )</em></li>
-                                <li><span class="highlight">Monitorok:</span> Automatikus szinkronizációt kezelő programozási konstrukciók</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                
-                <p><span class="key-point">Megjegyzés:</span> Ha két processzus <span class="highlight">soha nincs egyszerre a kritikus szekciójában</span>, a versenyhelyzet elkerülhető.</p>
-            </div>
-        </div>
-        
-        <div class="algorithm">
-            <h2>Háttérnyomtatás példa</h2>
+            <h2>2. Háttérnyomtatás példa</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Definíció:</span> A háttérnyomtatás egy olyan megoldás, amely lehetővé teszi, hogy a <span class="highlight">nyomtatási feladatokat a rendszer a háttérben</span>, a felhasználói tevékenységtől függetlenül végezze el.</p>
@@ -104,18 +70,53 @@
         </div>
 
         <div class="algorithm">
-            <h2>Kölcsönös kizárás</h2>
+            <h2>3. Versenyhelyzetek</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A kölcsönös kizárás egy mód a <span class="highlight">versenyhelyzetek elkerülésére</span>. Célja, hogy megakadályozza, hogy egy időben egynél több processzus olvassa és írja a megosztott adatokat.</p>
+                <p><span class="key-point">Mi a versenyhelyzet?</span> Versenyhelyzetnek nevezzük azokat az eseteket, amikor <span class="highlight">két vagy több processzus egyidejűleg próbál hozzáférni vagy módosítani megosztott adatokat</span>, és a végeredmény attól függ, hogy melyik processzus mikor és hogyan fér hozzá az adatokhoz.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Megvalósítás:</span></p>
+                    <p><span class="key-point">Versenyhelyzetek jellemzői:</span></p>
                     <ul>
-                        <li>Az operációs rendszer tervezésénél fontos szempont az <span class="highlight">alkalmas primitív műveletek</span> megválasztása a kölcsönös kizárás eléréséhez</li>
-                        <li>A konkrét megvalósítási módszereket a későbbi szakaszokban részletezzük</li>
+                        <li><span class="highlight">Nem determinisztikus viselkedés:</span> Az eredmény függ a processzusok időzítésétől.</li>
+                        <li><span class="highlight">Nehéz nyomon követni:</span> A hibák nem konzisztensen jelentkeznek, ami megnehezíti a hibakeresést.</li>
+                        <li><span class="highlight">Potenciálisan súlyos következmények:</span> Adatvesztéshez vagy inkonzisztens állapotokhoz vezethetnek.</li>
                     </ul>
                 </div>
+                
+                <p><span class="key-point">Hogyan kerülhetők el a versenyhelyzetek?</span> A versenyhelyzetek elkerülhetők, ha <span class="highlight">biztosítjuk, hogy két processzus soha nincs egyszerre a kritikus szekciójában</span>. Ez a kölcsönös kizárás alapelve.</p>
+                <div class="step">
+                    <p><span class="key-point">Megoldás versenyhelyzetekre:</span></p>
+                    <ul>
+                        <li>A kritikus szakaszok <span class="highlight">szinkronizálása</span> szükséges</li>
+                        <li>Szinkronizációs mechanizmusok:
+                            <ul>
+                                <li><span class="highlight">Szemaforok:</span> Jelzik, hogy egy erőforrás szabad vagy foglalt</li>
+                                <li><span class="highlight">Mutexek:</span> Egyszerű zárolási mechanizmusok <br><em>( biztosítják, hogy egyszerre csak egy folyamat férhessen hozzá egy adott erőforráshoz. )</em></li>
+                                <li><span class="highlight">Monitorok:</span> Automatikus szinkronizációt kezelő programozási konstrukciók</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>4. Kölcsönös kizárás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a kölcsönös kizárás?</span> A kölcsönös kizárás egy olyan mechanizmus, amely <span class="highlight">biztosítja, hogy egyszerre csak egy processzus férhessen hozzá egy megosztott erőforráshoz vagy kritikus szekcióhoz</span>. Ez kulcsfontosságú a versenyhelyzetek elkerülésében és a konzisztens adatállapotok fenntartásában.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Kölcsönös kizárás követelményei:</span></p>
+                    <ol>
+                        <li><span class="highlight">Exkluzivitás:</span> Egyszerre csak egy processzus lehet a kritikus szekcióban.</li>
+                        <li><span class="highlight">Haladás:</span> Ha nincs processzus a kritikus szekcióban, és van várakozó processzus, akkor valamelyiknek be kell jutnia.</li>
+                        <li><span class="highlight">Korlátozott várakozás:</span> Egy processzus sem várhat végtelen ideig a kritikus szekcióba való belépésre.</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Miért fontos a kölcsönös kizárás?</span> A kölcsönös kizárás <span class="highlight">megakadályozza az adatok inkonzisztens állapotba kerülését</span>, és biztosítja a processzusok közötti biztonságos együttműködést. Ez alapvető a megbízható és kiszámítható rendszerműködés szempontjából.</p>
             </div>
         </div>
     </div>
@@ -125,10 +126,81 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Konkurens és kooperatív processzusok összehasonlítása</h2>
+            <h2>1. Konkurens processzusok</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <img src="../assets/images/kunkurens.webp" alt="random"  class="graph-image">
+                <p><span class="key-point">Mik a konkurens processzusok?</span> A konkurens processzusok olyan folyamatok, amelyek <span class="highlight">párhuzamosan futnak és versenyeznek a rendszer erőforrásaiért, különösen a CPU-időért</span>. Ezek a processzusok függetlenül működnek egymástól, és az operációs rendszer feladata a közöttük való váltás és az erőforrások elosztása.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Konkurens processzusok jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Párhuzamos végrehajtás:</span> Látszólag egyidejűleg futnak, valójában gyorsan váltakozva használják a CPU-t.</li>
+                        <li><span class="highlight">Erőforrásokért való versengés:</span> Minden processzus igyekszik minél több CPU-időt és egyéb erőforrást megszerezni.</li>
+                        <li><span class="highlight">Preemptív ütemezés:</span> Az operációs rendszer bármikor megszakíthatja és felfüggesztheti a futó processzust egy másik javára.</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Miért fontosak a konkurens processzusok?</span> A konkurens processzusok lehetővé teszik a <span class="highlight">rendszer erőforrásainak hatékony kihasználását és a többfeladatos működést</span>. Ez javítja a rendszer teljesítményét és válaszképességét, különösen többmagos processzorok esetén.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>2. Kooperatív processzusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a kooperatív processzusok?</span> A kooperatív processzusok olyan folyamatok, amelyek <span class="highlight">együttműködnek egymással és önként adják át a vezérlést más processzusoknak</span>. Ebben a modellben a processzusok maguk döntenek arról, mikor engedik át a CPU használatát más folyamatoknak.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Kooperatív processzusok jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Önkéntes vezérlésátadás:</span> A processzusok saját maguk határozzák meg, mikor adják át a vezérlést.</li>
+                        <li><span class="highlight">Nem preemptív ütemezés:</span> Az operációs rendszer nem szakítja meg erőszakosan a futó processzust.</li>
+                        <li><span class="highlight">Kiszámíthatóbb végrehajtás:</span> A processzusok jobban kontrollálhatják a végrehajtás menetét.</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen kockázatai vannak a kooperatív processzusoknak?</span> A kooperatív modell <span class="highlight">kockázata, hogy egy rosszul viselkedő processzus blokkolhatja a teljes rendszert</span>, ha nem adja át a vezérlést. Ez a modell nagyobb felelősséget ró a programozókra a helyes működés biztosításában.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>3. Konkurens vs. Kooperatív processzusok összehasonlítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a fő különbségek?</span> A konkurens és kooperatív processzusok közötti fő különbségek a <span class="highlight">vezérlésátadás módjában, az ütemezésben és a rendszer stabilitásában</span> mutatkoznak meg.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Összehasonlítás:</span></p>
+                    <table>
+                        <tr>
+                            <th>Szempont</th>
+                            <th>Konkurens Processzusok</th>
+                            <th>Kooperatív Processzusok</th>
+                        </tr>
+                        <tr>
+                            <td>Vezérlésátadás</td>
+                            <td><span class="highlight">OS által kikényszerített</span></td>
+                            <td><span class="highlight">Önkéntes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ütemezés</td>
+                            <td><span class="highlight">Preemptív</span></td>
+                            <td><span class="highlight">Nem preemptív</span></td>
+                        </tr>
+                        <tr>
+                            <td>Rendszer stabilitás</td>
+                            <td><span class="highlight">Magasabb</span></td>
+                            <td><span class="highlight">Alacsonyabb</span></td>
+                        </tr>
+                        <tr>
+                            <td>Programozói felelősség</td>
+                            <td><span class="highlight">Alacsonyabb</span></td>
+                            <td><span class="highlight">Magasabb</span></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <p><span class="key-point">Melyik jobb?</span> Mindkét modellnek megvan a maga <span class="highlight">előnye és hátránya</span>. A konkurens modell általában jobban alkalmazható modern, többfeladatos környezetekben, míg a kooperatív modell egyszerűbb rendszerekben vagy speciális alkalmazásokban lehet előnyös.</p>
             </div>
         </div>
     </div>
@@ -138,11 +210,11 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Kritikus szekciók</h2>
+            <h2>1. Kritikus szekciók</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A kritikus szekció a programnak az a része, amelyben a <span class="highlight">megosztott memóriát használja</span>.</p>
-                <p><span class="key-point">Megjegyzés: </span>Ha úgy tudnánk rendezni a dolgokat, hogy <span class="highlight">soha ne legyen azonos időben két processzus</span> a kritikus szekciójában, akkor <span class="highlight">elkerülhetnénk a versenyhelyzeteket</span>. Bár ez a követelmény megóv a versenyhelyzetektől, mégsem elegendő ahhoz, hogy <span class="highlight">korrekten együttműködő párhuzamos processzusaink</span> legyenek, és azok hatékonyan használják a megosztott adatokat.</p>
+                <p><span class="key-point">Mi a kritikus szekció?</span> A kritikus szekció a program azon része, ahol <span class="highlight">a processzus megosztott erőforrásokat vagy adatokat ér el vagy módosít</span>. Ez a rész különös figyelmet igényel, mert itt alakulhatnak ki versenyhelyzetek több processzus egyidejű hozzáférése esetén.</p>
+                
                 <div class="step">
                     <p><span class="key-point">Kritikus szekciók kezelésének feltételei:</span></p>
                     <ol>
@@ -152,31 +224,70 @@
                         <li>Egyetlen processzusnak se kelljen <span class="highlight">örökké arra várni</span>, hogy belépjen a kritikus szekciójába</li>
                     </ol>
                 </div>
+                
+                <p><span class="key-point">Miért fontosak a kritikus szekciók?</span> A kritikus szekciók megfelelő kezelése <span class="highlight">kulcsfontosságú a rendszer integritásának és stabilitásának megőrzéséhez</span>. Helyes implementációjuk biztosítja, hogy a megosztott erőforrások konzisztens állapotban maradjanak.</p>
+                
+                <img src="../assets/images/kritikus_szekcio.webp" alt="Kritikus szekció példa" class="graph-image">
+                <p>A fenti ábra szemlélteti, hogyan lépnek be és hagyják el a processzusok a kritikus szekciót.</p>
             </div>
         </div>
-    
+
         <div class="algorithm">
-            <h2>Kölcsönös kizárás megvalósítási módszerei</h2>
+            <h2>1,5. Kritikus szekció vs. Kölcsönös kizárás</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <p><span class="key-point">Mi a különbség a kritikus szekció és a kölcsönös kizárás között?</span> Bár szorosan kapcsolódnak egymáshoz, fontos megkülönböztetni ezt a két fogalmat:</p>
+                
                 <div class="step">
-                    <p><span class="key-point">1. Megszakítások tiltása:</span></p>
-                    <p><span class="key-point">Definíció:</span> Ez a módszer arra épül, hogy a <span class="highlight">folyamatok megszakítását ideiglenesen letiltjuk</span>, amikor egy processzus a kritikus szekcióba lép. Így más folyamatok <span class="highlight">nem tudnak megzavarni vagy versenyhelyzetet létrehozni</span>. </p>
-                    <p><span class="highlight">Konkretabban:</span></p>
+                    <p><span class="key-point">Kritikus szekció:</span></p>
+                    <ul>
+                        <li>A program azon <span class="highlight">része, ahol a processzus megosztott erőforrást ér el vagy módosít</span></li>
+                        <li>Egy <span class="highlight">kódrészlet</span>, amely potenciálisan versenyhelyzethez vezethet</li>
+                        <li>Például: egy globális változó módosítása, fájlírás, adatbázis-művelet</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <p><span class="key-point">Kölcsönös kizárás:</span></p>
+                    <ul>
+                        <li>Egy <span class="highlight">mechanizmus vagy protokoll</span>, amely biztosítja, hogy egyszerre csak egy processzus léphessen be a kritikus szekcióba</li>
+                        <li>A cél a <span class="highlight">versenyhelyzetek elkerülése</span> és az adatok konzisztenciájának megőrzése</li>
+                        <li>Például: zárak, szemaforok, mutexek használata</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Összefoglalva:</span> A kritikus szekció <span class="highlight">azonosítja a problémás kódrészletet</span>, míg a kölcsönös kizárás <span class="highlight">megoldja a problémát</span> azáltal, hogy szabályozza a hozzáférést ehhez a kódrészlethez.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>2. Megszakítások tiltása - k.k. módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan működik a megszakítások tiltása?</span> Ez a módszer <span class="highlight">letiltja az összes megszakítást, amíg egy processzus a kritikus szekcióban tartózkodik</span>. Ezáltal megakadályozza, hogy más processzusok megszakítsák a végrehajtást és hozzáférjenek a megosztott erőforrásokhoz.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Lépések:</span></p>
                     <ul>
                         <li>Minden processzus <span class="highlight">letiltja az összes megszakítást</span> a kritikus szekcióba lépés után</li>
                         <li>A processzus <span class="highlight">újraengedélyezi a megszakításokat</span>, mielőtt elhagyná a kritikus szekciót</li>
                         <li>Ezáltal nem fordulhat elő <span class="highlight">óramegszakítás</span> a kritikus szekcióban.</li>
                         <li>A CPU nem vált másik processzusra a megszakítások letiltása alatt.</li>
-                        <li><span class="highlight">Előny:</span> Egyszerű megoldás <span class="highlight">egy processzoros rendszerekben</span></li>
-                        <li><span class="highlight">Hátrány:</span> Nem ideális <span class="highlight">többprocesszoros környezetben</span></li>
                     </ul>
                 </div>
                 
+                <p><span class="key-point">Mik a korlátai?</span> Bár egyszerű megoldás, a megszakítások tiltása <span class="highlight">nem alkalmazható többprocesszoros rendszerekben</span>, és hosszú ideig tartó kritikus szekciók esetén jelentősen csökkentheti a rendszer válaszképességét.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>3. Változók zárolása - k.k. módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a változók zárolása?</span> Ez a módszer <span class="highlight">egy vagy több változót használ a kritikus szekció foglaltságának jelzésére</span>. Ezek a változók segítenek <span class="highlight">koordinálni a folyamatokat</span> és elkerülni a versenyhelyzeteket. </p>
+                
                 <div class="step">
-                    <p><span class="key-point">2. Zárolásváltozók:</span></p>
-                    <p><span class="key-point">Definíció:</span> Egy vagy több változó használatával, amelyeket a folyamatok ellenőriznek, hogy <span class="highlight">megtudják, ki tartózkodik éppen a kritikus szekcióban</span>. Ezek a változók segítenek <span class="highlight">koordinálni a folyamatokat</span> és elkerülni a versenyhelyzeteket. </p>
-                    <p><span class="highlight">Konkretabban:</span></p>
+                    <p><span class="key-point">Működési elv:</span></p>
                     <ul>
                         <li>Egyetlen osztott <span class="highlight">zárolási változót</span> használ</li>
                         <li>A zárolási változó <span class="highlight">kezdeti értéke 0</span></li>
@@ -186,10 +297,18 @@
                     </ul>
                 </div>
                 
+                <p><span class="key-point">Mik a problémák?</span> Ez a módszer <span class="highlight">nem garantálja a kölcsönös kizárást</span>, mert versenyhelyzet alakulhat ki a változó ellenőrzése és módosítása között. Emellett <span class="highlight">tevékeny várakozást</span> eredményezhet, ami pazarolja a CPU-időt.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>4. Szigorú váltogatás - k.k. módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a szigorú váltogatás?</span> A szigorú váltogatás egy olyan megoldás, ahol <span class="highlight">a processzusok felváltva léphetnek be a kritikus szekcióba</span>. Ez biztosítja a kölcsönös kizárást, de nem hatékony megoldás.</p>
+                
                 <div class="step">
-                    <p><span class="key-point">3. Szigorú váltogatás:</span></p>
-                    <p><span class="key-point">Definíció:</span> Ez a módszer olyan algoritmusokra épül, amelyek biztosítják, hogy egy processzus <span class="highlight">csak akkor léphet be a kritikus szekcióba</span>, ha senki más nem tartózkodik éppen benne. Ennek az alapja az, hogy a processzusok <span class="highlight">kizárólag egymást követik</span> a kritikus szekcióban.</p>
-                    <p><span class="highlight">Konkretabban:</span></p>
+                    <p><span class="key-point">Működési elv:</span></p>
                     <ul>
                         <li>A processzusok <span class="highlight">kizárólag egymást követik</span> a kritikus szekcióban</li>
                         <li><span class="highlight">Előny:</span> Egyszerű megvalósítás</li>
@@ -199,10 +318,18 @@
                     </ul>
                 </div>
                 
+                <p><span class="key-point">Mik a hátrányai?</span> A szigorú váltogatás <span class="highlight">nem hatékony, ha az egyik processzus lassabb</span> vagy ritkábban igényli a kritikus szekciót. Ez szükségtelen várakozáshoz és az erőforrások pazarlásához vezethet.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>5. Peterson megoldása - k.k. módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi Peterson megoldása?</span> Peterson megoldása egy <span class="highlight">szoftveres algoritmus a kölcsönös kizárás megvalósítására</span> két processzus esetén. Ez a módszer kombinálja a zászlók és a turn változó használatát.</p>
+                
                 <div class="step">
-                    <p><span class="key-point">4. Peterson megoldása:</span></p>
-                    <p><span class="key-point">Definíció:</span> Egy algoritmus, amely segítségével <span class="highlight">két processzus együttműködhet</span> a kölcsönös kizárás megvalósításában. Az algoritmus használja az <span class="highlight">összehasonlító műveleteket és változókat</span> annak biztosítására, hogy csak egy processzus léphet be a kritikus szekcióba. </p>
-                    <p><span class="highlight">Konkretabban:</span></p>
+                    <p><span class="key-point">Az algoritmus elemei:</span></p>
                     <ul>
                         <li>Kombinálja az <span class="highlight">egymás váltogatását, zárolási változókat és figyelmeztető változókat</span></li>
                         <li>Két C eljárást használ: <code>enter_region</code> és <code>leave_region</code></li>
@@ -210,10 +337,18 @@
                     </ul>
                 </div>
                 
+                <p><span class="key-point">Miért hatékony?</span> Peterson megoldása <span class="highlight">garantálja a kölcsönös kizárást és elkerüli a holtpontot</span>. Emellett <span class="highlight">fair megoldást biztosít</span>, mert mindkét processzusnak egyenlő esélyt ad a belépésre.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>6. TSL utasítás - k.k. módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a TSL utasítás?</span> A TSL (Test and Set Lock) egy <span class="highlight">hardveres utasítás, amely atomikusan ellenőrzi és beállítja egy memóriacím értékét</span>. Ez az utasítás kulcsfontosságú a kölcsönös kizárás hatékony megvalósításában.</p>
+                
                 <div class="step">
-                    <p><span class="key-point">5. TSL utasítás:</span></p>
-                    <p><span class="key-point">Definíció:</span> A TSL (Test and Set Lock) egy olyan utasítás, amely segítségével <span class="highlight">egyetlen processzus biztonságosan ellenőrizheti és beállíthatja</span> egy zárolási változó állapotát. Ez a módszer hasznos lehet a kölcsönös kizárás elérésében, mivel <span class="highlight">garantálja a zárolás atomi műveletét</span>, és így elkerülhetővé teszi a versenyhelyzeteket. </p>
-                    <p><span class="highlight">Konkretabban:</span></p>
+                    <p><span class="key-point">TSL működése:</span></p>
                     <ul>
                         <li>A Test and Set Lock (TSL) utasítás <span class="highlight">hardveres segítséggel</span> működik</li>
                         <li>Beolvassa a LOCK memória szót az RX regiszterbe, és <span class="highlight">nem nulla értéket ír</span> a memória címre egyetlen oszthatatlan művelettel</li>
@@ -222,52 +357,24 @@
                         <li><span class="highlight">Hátrány:</span> Szigorú betartást igényel a <span class="highlight">kölcsönös kizárás biztosításához</span></li>
                     </ul>
                 </div>
-    
-                <p><span class="key-point">Tevékeny várakozás: </span>Amikor <span class="highlight">folyamatosan tesztelünk egy változót</span> egy bizonyos érték megjelenéséig.</p>
-                <p><span class="key-point">Megjegzés:</span> Általában <span class="highlight">tartózkodni kellene a tevékeny várakozástól</span>, mert pazarolja a CPU időt. Csak akkor használjuk a tevékeny várakozást, ha <span class="highlight">ésszerűen elvárható, hogy a várakozás rövid lesz</span>. A tevékeny várakozást használó zárolásokat <span class="highlight">aktív várakozásnak</span> hívjuk.</p>
+                
+                <p><span class="key-point">Miért előnyös?</span> A TSL utasítás <span class="highlight">hatékony és biztonságos megoldást nyújt</span> a kölcsönös kizárásra, különösen többprocesszoros rendszerekben. Kiküszöböli a szoftveres megoldások versenyhelyzeteit.</p>
             </div>
         </div>
     </div>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>4. Altatás és ébresztés</h2>
+        <h2>4. Altatás és ébresztés: termelő-fogyasztó probléma, szemaforok, mutex-ek, monitorok, Üzenet, adás, vétel</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Termelő-fogyasztó probléma</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Mi ez a probléma?</span> A termelő-fogyasztó probléma egy <span class="highlight">klasszikus szinkronizációs kihívás</span> az operációs rendszerekben. Két processzus osztozik egy <span class="highlight">közös, rögzített méretű tárolón</span>. Az egyik, a <span class="highlight">termelő</span>, adatokat helyez el benne, míg a másik, a <span class="highlight">fogyasztó</span>, kiveszi azokat. Ez a modell számos valós szituációt reprezentál a számítástechnikában.</p>
-                
-                <div class="step">
-                    <p><span class="key-point">Mikor jelentkeznek nehézségek?</span></p>
-                    <ul>
-                        <li>Ha a termelő új elemet kíván a tárolóba tenni, de az már <span class="highlight">tele van</span>. Ilyenkor nem tud tovább termelni, de várakoznia kell.</li>
-                        <li>Ha a fogyasztó elemet akar kivenni, de a tároló <span class="highlight">üres</span>. Ebben az esetben nincs mit fogyasztania, tehát várakozásra kényszerül.</li>
-                    </ul>
-                </div>
-                
-                <div class="step">
-                    <p><span class="key-point">Hogyan oldjuk meg ezt a problémát?</span></p>
-                    <ul>
-                        <li>A termelő <span class="highlight">elalszik</span>, ha a tároló tele van. Ezzel <span class="highlight">nem pazarolja a CPU erőforrásait</span> felesleges ellenőrzésekre.</li>
-                        <li>A fogyasztó <span class="highlight">felébreszti</span> a termelőt, ha kivett egy elemet. Így a termelő tudni fogja, hogy <span class="highlight">újra van hely</span> a tárolóban.</li>
-                        <li>A fogyasztó <span class="highlight">elalszik</span>, ha a tároló üres. Ez megakadályozza a <span class="highlight">folyamatos, felesleges ellenőrzéseket</span>.</li>
-                        <li>A termelő <span class="highlight">felébreszti</span> a fogyasztót, ha új elemet tett a tárolóba. Ezáltal a fogyasztó <span class="highlight">azonnal tudni fog</span> az új elemről.</li>
-                    </ul>
-                    <p>Ez a megoldás <span class="highlight">hatékonyan kezeli a szinkronizációt</span>, minimalizálja a felesleges CPU-használatot, és biztosítja a <span class="highlight">folyamatos, zökkenőmentes működést</span> a termelő és fogyasztó között.</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="algorithm">
-            <h2>Szemaforok</h2>
+            <h2>1. Szemaforok</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi a szemafor és mire használjuk?</span> A szemafor egy <span class="highlight">speciális változótípus</span>, amely lehetővé teszi az <span class="highlight">ébresztések számolását és tárolását</span> későbbi felhasználás céljából. Ez egy <span class="highlight">kulcsfontosságú eszköz</span> a párhuzamos programozásban és a folyamatok szinkronizálásában. A szemafor értéke lehet <span class="highlight">0</span>, jelezve, hogy nincs elmentett ébresztés, vagy bármilyen <span class="highlight">pozitív egész szám</span>, amely a függőben lévő ébresztések számát jelzi.</p>
-                
+
                 <div class="step">
-                    <p><span class="key-point">Milyen fő műveletek vannak a szemaforokon?</span></p>
+                    <p><span class="key-point">Szemafor műveletek:</span></p>
                     <ul>
                         <li><span class="highlight">Down (Altató) művelet:</span>
                             <ul>
@@ -288,67 +395,113 @@
                     </ul>
                 </div>
                 
+                <p><span class="key-point">Mire használhatók a szemaforok?</span> Szemaforokat használhatunk <span class="highlight">kölcsönös kizárás megvalósítására, erőforrások számlálására és processzusok szinkronizálására</span>. Különösen hasznosak komplex szinkronizációs problémák, mint például a termelő-fogyasztó probléma megoldásában.</p>
                 <p><span class="key-point">Hogyan valósítják meg a szemaforokat?</span> A szemafor műveleteket általában <span class="highlight">rendszerhívásként implementálják</span>. Az operációs rendszer ideiglenesen <span class="highlight">letiltja a megszakításokat</span>, amíg vizsgálja és frissíti a szemafor értékét, valamint szükség esetén altatja a processzust. Többprocesszoros rendszerekben minden szemafort <span class="highlight">védeni kell egy zárolási változóval</span>, általában a <span class="highlight">TSL (Test and Set Lock)</span> utasítást használva, hogy egyszerre csak egy CPU vizsgálhassa a szemafort.</p>
             </div>
         </div>
-    
+        
         <div class="algorithm">
-            <h2>Mutexek</h2>
+            <h2>1,5. Termelő-fogyasztó probléma</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Mi a mutex és miben különbözik a szemafortól?</span> A mutex (<span class="highlight">mutual exclusion</span>, azaz kölcsönös kizárás) a szemafor <span class="highlight">egyszerűsített változata</span>, amely kifejezetten a <span class="highlight">kölcsönös kizárás kezelésére</span> szolgál. Míg a szemafor számláló jellegű és több értéket vehet fel, a mutex csak <span class="highlight">két állapotban</span> lehet: zárolt vagy nem zárolt.</p>
+                <p><span class="key-point">Mi a termelő-fogyasztó probléma?</span> A termelő-fogyasztó probléma egy <span class="highlight">klasszikus szinkronizációs kihívás</span> az operációs rendszerekben. Két processzus osztozik egy <span class="highlight">közös, rögzített méretű tárolón</span>. Az egyik, a <span class="highlight">termelő</span>, adatokat helyez el benne, míg a másik, a <span class="highlight">fogyasztó</span>, kiveszi azokat.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Mik a mutex főbb jellemzői?</span></p>
+                    <p><span class="key-point">Mikor jelentkeznek nehézségek?</span></p>
                     <ul>
-                        <li>Csak két állapota lehet: <span class="highlight">zárolt vagy nem zárolt</span></li>
-                        <li>Általában <span class="highlight">egy bitet vagy egy egész értéket</span> használ a reprezentáláshoz (0 nem zárolt, minden más érték zárolt)</li>
-                        <li><span class="highlight">Egyszerűbb és hatékonyabb</span>, mint a szemafor, ha csak kölcsönös kizárásra van szükség</li>
-                        <li>Könnyebben implementálható <span class="highlight">hardver szinten</span></li>
+                        <li>Ha a termelő új elemet kíván a tárolóba tenni, de az már <span class="highlight">tele van</span>. Ilyenkor nem tud tovább termelni, de várakoznia kell.</li>
+                        <li>Ha a fogyasztó elemet akar kivenni, de a tároló <span class="highlight">üres</span>. Ebben az esetben nincs mit fogyasztania, tehát várakozásra kényszerül.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A probléma elemei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Termelők:</span> Adatokat állítanak elő</li>
+                        <li><span class="highlight">Fogyasztók:</span> Feldolgozzák a termelt adatokat</li>
+                        <li><span class="highlight">Puffer:</span> Korlátozott méretű tárhely az adatok átmeneti tárolására</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan oldjuk meg ezt a problémát?</span></p>
+                    <ul>
+                        <li>A termelő <span class="highlight">elalszik</span>, ha a tároló tele van. Ezzel <span class="highlight">nem pazarolja a CPU erőforrásait</span> felesleges ellenőrzésekre.</li>
+                        <li>A fogyasztó <span class="highlight">felébreszti</span> a termelőt, ha kivett egy elemet. Így a termelő tudni fogja, hogy <span class="highlight">újra van hely</span> a tárolóban.</li>
+                        <li>A fogyasztó <span class="highlight">elalszik</span>, ha a tároló üres. Ez megakadályozza a <span class="highlight">folyamatos, felesleges ellenőrzéseket</span>.</li>
+                        <li>A termelő <span class="highlight">felébreszti</span> a fogyasztót, ha új elemet tett a tárolóba. Ezáltal a fogyasztó <span class="highlight">azonnal tudni fog</span> az új elemről.</li>
+                    </ul>
+                    <p>Ez a megoldás <span class="highlight">hatékonyan kezeli a szinkronizációt</span>, minimalizálja a felesleges CPU-használatot, és biztosítja a <span class="highlight">folyamatos, zökkenőmentes működést</span> a termelő és fogyasztó között.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>2. Mutex-ek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a mutex-ek?</span> A mutex (kölcsönös kizárás) egy <span class="highlight">egyszerű zárolási mechanizmus</span>, amely biztosítja, hogy egyszerre csak egy processzus vagy szál férhessen hozzá egy megosztott erőforráshoz. Lényegében egy <span class="highlight">bináris szemafor</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Mutex műveletek:</span></p>
+                    <ul>
+                        <ul>
+                            <li><span class="highlight">mutex_lock eljárás:</span> Amikor egy processzus hozzá akar férni a kritikus szekcióhoz, meghívja ezt.
+                                <ul>
+                                    <li>Ha a mutex <span class="highlight">nem zárolt</span>, a hívás sikeres, és a processzus beléphet a kritikus szekcióba.</li>
+                                    <li>Ha <span class="highlight">zárolt</span>, a hívó processzus blokkolódik, amíg a mutex fel nem szabadul.</li>
+                                </ul>
+                            </li>
+                            <li><span class="highlight">mutex_unlock eljárás:</span> A kritikus szekcióból kilépve hívják meg.
+                                <ul>
+                                    <li><span class="highlight">Feloldja</span> a mutexet.</li>
+                                    <li>Ha több processzus is várakozik, közülük az egyik <span class="highlight">véletlenszerűen kiválasztott</span> megszerezheti a zárolást.</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </ul>
                 </div>
                 
-                <div class="step">
-                    <p><span class="key-point">Hogyan működik a mutex a gyakorlatban?</span></p>
-                    <ul>
-                        <li><span class="highlight">mutex_lock eljárás:</span> Amikor egy processzus hozzá akar férni a kritikus szekcióhoz, meghívja ezt.
-                            <ul>
-                                <li>Ha a mutex <span class="highlight">nem zárolt</span>, a hívás sikeres, és a processzus beléphet a kritikus szekcióba.</li>
-                                <li>Ha <span class="highlight">zárolt</span>, a hívó processzus blokkolódik, amíg a mutex fel nem szabadul.</li>
-                            </ul>
-                        </li>
-                        <li><span class="highlight">mutex_unlock eljárás:</span> A kritikus szekcióból kilépve hívják meg.
-                            <ul>
-                                <li><span class="highlight">Feloldja</span> a mutexet.</li>
-                                <li>Ha több processzus is várakozik, közülük az egyik <span class="highlight">véletlenszerűen kiválasztott</span> megszerezheti a zárolást.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                
+                <p><span class="key-point">Miben különböznek a szemaforoktól?</span> A mutex-ek <span class="highlight">egyszerűbbek és specifikusabbak, mint a szemaforok</span>. Kizárólag kölcsönös kizárásra használatosak, míg a szemaforok többféle szinkronizációs feladatra alkalmazhatók.</p>
                 <p><span class="key-point">Milyen veszélyeket rejt a mutexek használata?</span> A fő veszély a <span class="highlight">holtpont (deadlock)</span> kialakulása. Ez olyan helyzet, amikor <span class="highlight">minden érintett processzus blokkolódik</span>, mert mindegyik olyan erőforrásra vár, amit egy másik, szintén blokkolt processzus tart foglalva. A mutexek <span class="highlight">helyes használata</span> és a erőforrások <span class="highlight">megfelelő sorrendben történő lefoglalása</span> kulcsfontosságú a holtpontok elkerüléséhez.</p>
             </div>
         </div>
-    
+
         <div class="algorithm">
-            <h2>Monitor eljárások</h2>
+            <h2>3. Monitorok</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
                 <p><span class="key-point">Mi az a monitor és mire szolgál?</span> A monitor egy <span class="highlight">magasabb szintű szinkronizációs eszköz</span>, amely eljárások, változók és adatszerkezetek együttese, egy <span class="highlight">speciális modulba vagy csomagba összegyűjtve</span>. A monitorok célja, hogy <span class="highlight">strukturált és biztonságos módot</span> nyújtsanak a párhuzamos programozáshoz, <span class="highlight">automatikusan kezelve</span> a kölcsönös kizárást.</p>
-                
                 <div class="step">
-                    <p><span class="key-point">Mik a monitor főbb jellemzői és előnyei?</span></p>
+                    <p><span class="key-point">Monitor jellemzői:</span></p>
                     <ul>
-                        <li>A processzusok <span class="highlight">bármikor hívhatják</span> a monitorban lévő eljárásokat</li>
-                        <li>A monitor <span class="highlight">belső adatszerkezetei nem érhetők el közvetlenül</span> a monitoron kívülről</li>
-                        <li>Minden időpillanatban <span class="highlight">csak egy processzus lehet aktív</span> egy monitorban, ami automatikus kölcsönös kizárást biztosít</li>
-                        <li>Ha a monitor szabad, a hívó processzus <span class="highlight">azonnal beléphet</span></li>
-                        <li>A monitorok általában <span class="highlight">mutexeket vagy bináris szemaforokat</span> használnak a belépési pontoknál</li>
-                        <li>A <span class="highlight">fordítóprogram kezeli</span> a kölcsönös kizárást, így <span class="highlight">kisebb a programozói hibák esélye</span></li>
+                        <li><span class="highlight">Kölcsönös kizárás:</span> Automatikusan biztosítja, hogy egyszerre csak egy processzus lehessen a monitorban</li>
+                        <li><span class="highlight">Feltételes változók:</span> Lehetővé teszik a processzusok altatását és ébresztését</li>
+                        <li><span class="highlight">Adatrejtés:</span> A monitor adatai csak a monitor eljárásain keresztül érhetők el</li>
                     </ul>
                 </div>
                 
-                <p><span class="key-point">Előny:</span> A fordítóprogram kezeli a kölcsönös kizárást, így <span class="highlight">kisebb a hibalehetőség</span> és <span class="highlight">magasabb szintű absztrakciót</span> biztosít a párhuzamos programozáshoz.</p>
+                <p><span class="key-point">Miért előnyösek a monitorok?</span> A monitorok <span class="highlight">magasabb szintű absztrakciót biztosítanak</span> a szinkronizációhoz, ami csökkenti a programozási hibák lehetőségét és növeli a kód olvashatóságát. Különösen hasznosak komplex szinkronizációs problémák megoldásában.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>4. Üzenet, adás, vétel</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az üzenetküldés?</span> Az üzenetküldés egy <span class="highlight">kommunikációs mechanizmus a processzusok között</span>, ahol az egyik processzus üzenetet küld, a másik pedig fogadja azt. Ez lehetővé teszi a processzusok közötti információcserét és szinkronizációt.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Üzenetküldési műveletek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Send (Küldés):</span> Egy processzus üzenetet küld egy másiknak</li>
+                        <li><span class="highlight">Receive (Fogadás):</span> Egy processzus fogadja a neki küldött üzenetet</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen típusú üzenetküldés létezik?</span> Az üzenetküldés lehet <span class="highlight">szinkron</span> (a küldő vár, amíg a fogadó átveszi az üzenetet) vagy <span class="highlight">aszinkron</span> (a küldő folytatja a működését az üzenet elküldése után). Mindkét módszernek megvannak a maga előnyei és használati esetei.</p>
+                
+                <p><span class="key-point">Miért hasznos az üzenetküldés?</span> Az üzenetküldés <span class="highlight">rugalmas módot biztosít a processzusok közötti kommunikációra és szinkronizációra</span>, különösen elosztott rendszerekben. Lehetővé teszi a laza csatolást a processzusok között, ami elősegíti a moduláris és skálázható rendszertervezést.</p>
             </div>
         </div>
     </div>
@@ -358,28 +511,31 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Írók és olvasók problémája</h2>
+            <h2>1. Az írók és olvasók probléma</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> Az írók és olvasók problémája egy <span class="highlight">adatbázis elérését modellezi</span>, ahol több olvasó egyidejűleg olvashat, de írás közben senki más nem férhet hozzá az adatbázishoz.</p>
-                
-                <p><span class="key-point">Megjegyzés:</span> Az elfogadható, hogy <span class="highlight">több processzus egyidejűleg olvasson</span> az adatbázisból, de ha egy processzus <span class="highlight">aktualizálja (írja) az adatbázist</span>, akkor azt más processzusoknak nem szabad elérniük, még az olvasóknak sem.</p>
+                <p><span class="key-point">Mi az írók és olvasók probléma?</span> Az írók és olvasók probléma egy <span class="highlight">klasszikus szinkronizációs feladat</span>, amely egy olyan helyzettel foglalkozik, ahol több processzus (írók és olvasók) osztozik egy közös erőforráson, például egy adatbázison vagy fájlon.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Kihívások:</span></p>
+                    <p><span class="key-point">A probléma lényege:</span></p>
                     <ul>
-                        <li>Hogyan kezeljük az <span class="highlight">olvasók és írók prioritását</span>?</li>
-                        <li>Hogyan biztosítsuk, hogy az írók ne <span class="highlight">éhezzenek</span> (ne várakozzanak végtelen ideig)?</li>
-                        <li>Hogyan maximalizáljuk a <span class="highlight">párhuzamosságot</span> az olvasók között?</li>
+                        <li><span class="highlight">Olvasók:</span> Egyidejűleg több olvasó is hozzáférhet az adatokhoz</li>
+                        <li><span class="highlight">Írók:</span> Egy író kizárólagos hozzáférést igényel az adatokhoz</li>
+                        <li><span class="highlight">Konfliktus:</span> Az írók és olvasók nem férhetnek hozzá egyszerre az adatokhoz</li>
                     </ul>
                 </div>
+                
+                <p><span class="key-point">Milyen kihívásokat kell kezelni?</span> A fő kihívás a <span class="highlight">megfelelő egyensúly megtalálása</span> az olvasók párhuzamos hozzáférése és az írók kizárólagos hozzáférése között, miközben el kell kerülni az éhezést (starvation) is.</p>
             </div>
         </div>
-    
+
         <div class="algorithm">
-            <h2>Megoldási módok</h2>
+            <h2>2. Megoldási stratégiák</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
+                <p><span class="key-point">Milyen megoldási stratégiák léteznek?</span> Több stratégia is létezik az írók és olvasók probléma kezelésére, mindegyiknek megvannak a maga előnyei és hátrányai.</p>
+                
+                <p><span class="key-point">Fő stratégiák:</span></p>
                 <div class="step">
                     <p><span class="key-point">1. Olvasók prioritása:</span></p>
                     <ul>
@@ -409,8 +565,10 @@
                         <li><span class="highlight">Előny:</span> Egyik csoport sem szenved éhségtől</li>
                         <li><span class="highlight">Hátrány:</span> Csökkentheti a párhuzamosságot az olvasók között</li>
                     </ul>
-                    <p><span class="key-point">Fontos:</span> Ez a megoldás biztosítja, hogy <span class="highlight">egyik csoport se szenvedjen éhségtől</span>.</p>
+                    
                 </div>
+                
+                <p><span class="key-point">Melyik stratégiát válasszuk?</span> A választás függ az <span class="highlight">alkalmazás specifikus követelményeitől</span>. Ha az olvasási műveletek dominálnak, az olvasók prioritása lehet előnyös. Ha az adatok frissessége kritikus, az írók prioritása lehet jobb. Komplex rendszerekben gyakran az igazságos megoldás a legmegfelelőbb.</p>
             </div>
         </div>
     </div>
@@ -420,27 +578,69 @@
     </div>
     <div class="main-content">
         <div class="algorithm">
-            <h2>Sorompók működése</h2>
+            <h2>1. Sorompók alapjai</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
-                <p><span class="key-point">Definíció:</span> A sorompó egy primitív könyvtári eljárás, amely <span class="highlight">fázisokra osztja az alkalmazást</span>, és biztosítja, hogy minden processzus befejezze az aktuális fázist, mielőtt bármelyik továbbhaladna.</p>
+                <p><span class="key-point">Mik a sorompók?</span> A sorompók (barriers) olyan <span class="highlight">szinkronizációs mechanizmusok</span>, amelyek lehetővé teszik, hogy egy csoport processzus vagy szál egy meghatározott ponton bevárja egymást, mielőtt tovább haladna.</p>
                 
                 <div class="step">
-                    <p><span class="key-point">Működési elv:</span></p>
+                    <p><span class="key-point">Sorompók jellemzői:</span></p>
                     <ul>
-                        <li>Minden fázis végére <span class="highlight">elhelyezünk egy sorompót</span></li>
-                        <li>Amikor egy processzus a sorompóhoz ér, <span class="highlight">addig blokkolódik</span>, amíg az összes többi processzus el nem éri a sorompót</li>
-                        <li>A sorompó az <span class="highlight">utolsó processzus beérkezése után elengedi</span> az összes várakozó processzust</li>
+                        <li><span class="highlight">Várakozási pont:</span> Minden processzus megáll a sorompónál</li>
+                        <li><span class="highlight">Együttes továbbhaladás:</span> Csak akkor folytatódik a végrehajtás, ha minden processzus elérte a sorompót</li>
+                        <li><span class="highlight">Újrahasználhatóság:</span> A sorompók általában többször is használhatók egy program futása során</li>
                     </ul>
                 </div>
                 
-                <p><span class="key-point">Alkalmazás:</span> Hasznos például <span class="highlight">nagy mátrixokon végzett párhuzamos műveletek</span> esetében, ahol minden processzusnak be kell fejeznie a saját részfeladatát, mielőtt a következő fázis elkezdődhetne.</p>
+                <p><span class="key-point">Mire használjuk a sorompókat?</span> A sorompók különösen hasznosak olyan helyzetekben, ahol <span class="highlight">több processzusnak szinkronban kell működnie</span>, például párhuzamos számítások egyes fázisai között vagy elosztott rendszerekben az állapotok szinkronizálására.</p>
             </div>
         </div>
+
+        <div class="algorithm">
+            <h2>2. Sorompók működése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan működnek a sorompók?</span> A sorompók működése általában a következő lépésekből áll:</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Működési folyamat:</span></p>
+                    <ol>
+                        <li><span class="highlight">Érkezés:</span> Minden processzus jelzi érkezését a sorompóhoz</li>
+                        <li><span class="highlight">Várakozás:</span> A processzusok várakoznak, amíg mindenki meg nem érkezik</li>
+                        <li><span class="highlight">Feloldás:</span> Az utolsó processzus érkezésekor a sorompó feloldódik</li>
+                        <li><span class="highlight">Továbbhaladás:</span> Minden processzus egyszerre folytatja a végrehajtást</li>
+                    </ol>
+                </div>
+                
+                <p><span class="key-point">Milyen implementációk léteznek?</span> A sorompók megvalósíthatók <span class="highlight">szemaforokkal, monitorokkal vagy speciális hardveres utasításokkal</span>. A választás függ a rendelkezésre álló eszközöktől és a teljesítménykövetelményektől.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>3. Sorompók alkalmazása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mikor érdemes sorompókat használni?</span> Sorompókat számos helyzetben alkalmazhatunk, ahol <span class="highlight">szükség van a processzusok vagy szálak szinkronizálására</span> egy meghatározott ponton.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Tipikus alkalmazási területek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Párhuzamos számítások:</span> Mátrix műveletek, numerikus szimulációk fázisai között</li>
+                        <li><span class="highlight">Elosztott rendszerek:</span> Konzisztens állapot biztosítása több csomópont között</li>
+                        <li><span class="highlight">Iteratív algoritmusok:</span> Minden iteráció végén a részeredmények szinkronizálása</li>
+                        <li><span class="highlight">Erőforrás-inicializálás:</span> Komplex rendszerek indításakor az összes komponens inicializálásának bevárása</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Milyen előnyökkel jár a sorompók használata?</span> A sorompók <span class="highlight">egyszerűsítik a párhuzamos programozást</span>, segítenek elkerülni a versenyhelyzeteket, és biztosítják a konzisztens állapotot a párhuzamos végrehajtás során.</p>
+            </div>
+        </div>
+
+
     </div>
 
     <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>7. Összefoglalás</h2>
+        <h2>Összefoglalás</h2>
     </div>
     <div class="main-content">
         <div class="algorithm">
