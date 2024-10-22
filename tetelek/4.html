@@ -4,23 +4,1002 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 4 - </title>
+    <title>Tétel 4 - Formális nyelvek</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
-    <script defer data-domain="allamvizsga.netlify.app" src="https://plausible.io/js/script.js"></script>
 </head>
 <body class="dark-mode">
     <i class="fas fa-arrow-left back-button" id="backButton"></i>
     <i class="fas fa-adjust theme-toggle" id="themeToggle"></i>
 
-	<h1>Formális nyelvek - 4. Tétel</h1>
+    <h1>Formális nyelvek - 4. tétel</h1>
     <p class="desc"><em>
         <span class="highlight">Környezetfüggetlen nyelvek és reguláris nyelvek definíciója.</span><br>
-        Véges automaták és reguláris kifejezések. <br>
-        <span class="highlight">Pumpáló lemmák. </span><br>
+        Véges automaták és reguláris kifejezések.<br>
+        <span class="highlight">Pumpáló lemmák.</span><br>
         Zártsági tulajdonságok műveletekre.
     </em></p>
 
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Formális nyelvek alapfogalmai</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Formális nyelvek alapfogalmai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a formális nyelv?</span> A formális nyelv egy olyan <span class="highlight">matematikai és informatikai fogalom</span>, amely véges hosszúságú szavak halmazát</span> írja le egy meghatározott ábécéből.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Alapvető jelölések az elméletben:</span></p>
+                    <ul>
+                        <li><span class="highlight">a, b, c, d - Σ elemei:</span>
+                            <ul>
+                                <li>A formális nyelv <span class="highlight">terminális elemeit</span> jelölik</li>
+                                <li>Ezek azok a konkrét szimbólumok, amelyek a <span class="highlight">végső nyelvet alkotják</span></li>
+                                <li>"terminálás" vagy "lezárás" kifejezéssel szokták összekapcsolni.</li>
+                                <li>A végső formát képviselik a generált szavakban</li>
+                                <li>Σ (szigma) betű által jelöltek, ami abc betűkészletét reprezentálja.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">A, B, C, D és S - N elemei:</span>
+                            <ul>
+                                <li>A formális nyelv <span class="highlight">nemterminális elemeit</span> jelentik</li>
+                                <li>Olyan szimbólumok, amelyekre a <span class="highlight">nyelvi szabályok alkalmazhatók</span></li>
+                                <li>Nem “jelennek meg” a végső nyelvtanban, a kialakításra használhatók</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">U, V, W, X, Y, Z, a, b - N ∪ Σ elemei:</span>
+                            <ul>
+                                <li>A formális nyelv <span class="highlight">terminális és nemterminális elemeit</span> egyaránt jelentik</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">α, β, γ, δ - (N ∪ Σ)* elemei:</span>
+                            <ul>
+                                <li>Az összes olyan szót tartalmazza, amely a <span class="highlight">terminális és nemterminális szimbólumok bármely kombinációjából</span> származik</li>
+                                <li>Gyakran hivatkozunk erre a kifejezésre a "formális nyelv" megnevezéssel</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">u, v, w, x, y, z - Σ* elemei:</span>
+                            <ul>
+                                <li>Az Σ ábécé <span class="highlight">tetszőleges hosszúságú szavait</span> jelenti</li>
+                                <li>Bármely kombinációt felhasználva készíthetünk szavakat</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Alapvető definíciók:</span></p>
+                    <ul>
+                        <li><span class="highlight">Ábécé (Σ):</span>
+                            <ul>
+                                <li>Szimbólumok véges nem üres halmaza</li>
+                                <li>Például: Σ = {a, b, c}</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Szó:</span>
+                            <ul>
+                                <li>Egy Σ ábécé elemeiből képzett véges sorozat</li>
+                                <li>0 hosszú szó az üres szó (jele: ε - epszilon)</li>
+                                <li>Példák: a, aa, aabba</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Szavak halmazai:</span>
+                            <ul>
+                                <li>Σ* = { ε, a, b, aa, ab, aba } - <span class="highlight">összes szó halmaza</span></li>
+                                <li>Σ+ = { a, b, aa, ab, aba } - <span class="highlight">legalább egy betűből álló szavak halmaza</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Mi a nyelv és nyelvtan?</span></p>
+                    <ul>
+                        <li><span class="highlight">Nyelv:</span>
+                            <ul>
+                                <li>Egy <span class="highlight">nyelv</span> a <span class="highlight">szavak</span> halmaza</li>
+                                <li>Σ* tetszőleges részhalmazát Σ feletti nyelvnek nevezzük (jele: L)</li>
+                                <li>Lehet véges vagy végtelen számú szóból álló halmaz</li>
+                                <li>Példa véges nyelvre: L = {a, b, ab}</li>
+                                <li>Példa végtelen nyelvre: L = {a<sup>i</sup> b<sup>i</sup> | 0 ≤ i}</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Nyelvtan:</span>
+                            <ul>
+                                <li>Egy <span class="highlight">nyelvtan </span> egy végesen specifikált <span class="highlight">eszköz </span>nyelvek generálására</li>
+                                <li>Olyan <span class="highlight">végesen specifikált eszköz</span>, mellyel nyelvek megadására van lehetőség</li>
+                                <li>A nyelv és nyelvtan két különböző fogalom</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Példa nyelvtan felépítésére:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nyelv:</span> Az "a" betűk egy végtelen sorozata</li>
+                        <li><span class="highlight">Nyelvtan összetevői:</span>
+                            <ul>
+                                <li>Terminális szimbólumok: {a}</li>
+                                <li>Nemterminális szimbólumok: {S}</li>
+                                <li>Kezdőszimbólum: S</li>
+                                <li>Szabályok: <code>S → aS | ε</code></li>
+                            </ul>
+                        </li>
+                        <li>Ez a nyelvtan <span class="highlight">végtelen sokféle szót generálhat</span>, amelyek csak "a" betűkből állnak: "a", "aa", "aaa", stb.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic active" onclick="toggleMainContent(this)">
+        <h2>2. Környezetfüggetlen nyelvek és reguláris nyelvek definíciója</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Környezetfüggetlen nyelvek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a környezetfüggetlen nyelvtan?</span> A környezetfüggetlen nyelvtan egy <span class="highlight">olyan szabályrendszer</span>, amely a szóalkotás szabályait írja le, és egy <span class="highlight">G = (N, Σ, P, S) négyes</span>, ahol:</p>
+    
+                <div class="step">
+                    <p><span class="key-point">A nyelvtan elemei:</span></p>
+                    <ul>
+                        <li><span class="highlight">N:</span> nemterminális szimbólumok véges halmaza</li>
+                        <ul>
+                            <li>Ezek a szabályok <span class="highlight">köztes elemei</span></li>
+                            <li>Példák: A, B, C, S</li>
+                        </ul>
+                        <li><span class="highlight">Σ (Szigma):</span> terminális szimbólumok véges halmaza, nincs közös eleme az N halmazzal</li>
+                        <ul>
+                            <li>A <span class="highlight">végső nyelv elemei</span></li>
+                            <li>Példák: a, b, c</li>
+                        </ul>
+                        <li><span class="highlight">P:</span> produkciós szabályok véges halmaza</li>
+                        <ul>
+                            <li>Ezek írják le, hogyan lehet a nemterminális szimbólumokat lecserélni terminális és/vagy más nemterminális szimbólumokra. </li>
+                            <li>Azaz a nemterminális szimbólumokon végrehajtott átalakítások halmaza.</li>
+                        </ul>
+                        <li><span class="highlight">S:</span> kezdő szimbólum (S ∈ N)</li>
+                    </ul>
+                </div>
+                
+    
+                <div class="step">
+                    <p><span class="key-point">Miben különleges a környezetfüggetlen nyelvtan?</span></p>
+                    <ul>
+                        <li>A szabályok <span class="highlight">nem függnek a környezettől</span></li>
+                        <li><span class="highlight">P:</span>(produkciós szabályok) <span class="highlight">A → α alakú</span>, ahol:
+                            <ul>
+                                <li>A egy nemterminális szimbólum (nagybetű)</li>
+                                <li>α lehet terminális vagy nemterminális szimbólumok sorozata (nagy és kicsi betűk)</li>
+                            </ul>
+                        </li>
+                        <li>A szabályok <span class="highlight">alkalmazása nem változik</span> a szövegkörnyezet megváltozásával</li>
+                        <li>Ha egy nyelvhez meg tudunk adni akár egy környezetfüggetlen nyelvtant, akkor az környezetfüggetlen nyelv</li>
+                        <li>jelölése: L = L(G)) | nyelv (L), nyelvtan (G)</li>
+                        <li>Az ilyen nyelvek halmazát CF-fel jelöljük.</li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Környezetfüggetlen nyelvtan példája:</span></p>
+                    <ul>
+                        <li>Produkciós szabály: <span class="highlight">S → aSb | ε</span></li>
+                        <li>Ez a nyelvtan az összes <span class="highlight">kiegyensúlyozott a és b karakterpárt</span> tartalmazza</li>
+                        <li>Például: ab, aabb, aaabbb, stb.</li>
+                        <li>A | jel a <span class="highlight">"vagy" választási lehetőséget</span> jelenti</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Reguláris nyelvek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi tesz egy nyelvtant regulárissá?</span> Egy G = (N, Σ, P, S) nyelvtanra azt mondjuk, hogy reguláris (jobblineáris), ha <span class="highlight">P-ben minden szabály A → xB vagy A → x alakú</span>.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Reguláris szabályok jellemzői:</span></p>
+                    <ul>
+                        <li>Minden szabály jobb oldalán <span class="highlight">legfeljebb egy nemterminális van</span></li>
+                        <li>Ha van nemterminális, az <span class="highlight">mindig a szó jobb oldali végén</span> van</li>
+                        <li>A szabályokat az <span class="highlight">A → x alakú szabállyal fejezzük be</span>, nem az üresre hozással</li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Példák szabályokra:</span></p>
+                    <ul>
+                        <li><span class="highlight">Helyes reguláris szabályok:</span>
+                            <ul>
+                                <li>S → aA (egy nemterminális, jobb oldalon)</li>
+                                <li>A → bS (egy nemterminális, jobb oldalon)</li>
+                                <li>A → b (nincs nemterminális)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Nem reguláris szabályok:</span>
+                            <ul>
+                                <li>S → aSb (nem jobb oldalon van az S)</li>
+                                <li>S → aSS (két nemterminális van)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Fontos összefüggések:</span></p>
+                    <ul>
+                        <li>Mivel minden reguláris <span class="highlight">nyelvtan</span> egyúttal <span class="highlight">könyezetfüggetlen</span> is,</li>
+                        <li>ezért minden reguláris <span class="highlight">nyelv</span> egyúttal <span class="highlight">könyezetfüggetlen</span> is,</li>
+                        <li>A reguláris nyelvek halmazát <span class="highlight">REG-gel jelöljük</span></li>
+                        <li>REG ⊆ CF, azaz a <span class="highlight">reguláris nyelvek a környezetfüggetlen nyelvek részhalmazát</span> képezik</li>
+                        <li>A reguláris csak <span class="highlight">jobban megszabja</span>, mint a környezetfüggetlen, de A → α alakú dolgokat hoz ki</li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Példák a különböző nyelvtípusokra:</span></p>
+                    <ul>
+                        <li><span class="highlight">Környezetfüggő:</span>
+                            <ul>
+                                <li>Csak akkor változtatható meg, ha <span class="highlight">matchel egy sémát</span></li>
+                                <li>Példa levezetésre:
+                                    <ul>
+                                        <li>S → aS (független, bal oldalon csak egy dolog van)</li>
+                                        <li>aS → c (csak akkor ha S-t "a" előzi meg)</li>
+                                        <li>Felhasználva: S → aS → c</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Környezetfüggetlen:</span>
+                            <ul>
+                                <li>Bal oldalon <span class="highlight">csak nagybetű lehet</span> a szabályban</li>
+                                <li>Jobb oldalon lehet <span class="highlight">nagy és kicsi betű is</span> (A → α)</li>
+                                <li>Példa: <pre><code>G1 = ({S}, {a, b}, {S → aSb, S → ε}, S)</code></pre></li>
+                                <li>Ez ekvivalens a következővel: <pre><code>G2 = ({A, S}, {a, b}, {S → ε, S → aAb, A → aAb, A → ε}, S)</code></pre></li>
+                                <li>Levezetési példa: <pre><code>S ⇒G2 aAb ⇒G2 aaAbb ⇒G2 aaaAbbb ⇒G2 aaabbb</code></pre></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Reguláris:</span>
+                            <ul>
+                                <li>A szabályban <span class="highlight">csak a jobb oldalon lehet és csak 1 db</span> nemterminális</li>
+                                <li>Szabályra példa: S → aB (egy db B van és a jobb oldalán van)</li>
+                                <li>Mivel minden reguláris nyelvtan környezetfüggetlen is, ezért REG ⊆ CF</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic active" onclick="toggleMainContent(this)">
+        <h2>3. Véges automaták és reguláris kifejezések</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Véges automaták típusai és működésük</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a véges automata?</span> A véges automata egy olyan <span class="highlight">matematikai modell</span>, amely állapotok és átmenetek segítségével képes leírni a számítógépek és más rendszerek működését.</p>
+                <div class="step">
+                    <p><span class="key-point">Működési elv:</span></p>
+                    <ul>
+                        <li>Az automata <span class="highlight">állapotok között mozog</span></li>
+                        <li>Az átmenetek a <span class="highlight">bemeneti jelek függvényében aktiválódnak</span></li>
+                        <li>Egy állapotban "marad", amíg nem érkezik olyan <span class="highlight">bemeneti jel, ami alapján át kell lépnie</span> egy másik állapotba</li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Véges automaták típusai:</span> Véges automatákból 2-félét különböztetünk meg, determinisztikus és nemdeterminisztikus.</p>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>A determinisztikus automaták (DFA)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a determinisztikus automata?</span> (determine = eldönt) A DFA olyan véges automata, ahol egy adott állapotból egy bizonyos betű előfordulására az automata <span class="highlight">csak egy állapotba kerülhet át</span> (nincsenek benne ugyanarra a betűre elágazások).</p>
+    
+                <div class="step">
+                    <p><span class="key-point">A DFA elemei - M = (Q, Σ, δ, q0, F):</span></p>
+                    <ul>
+                        <li><span class="highlight">Q:</span> az állapotok nem üres, véges halmaza
+                            <ul>
+                                <li>Például: Q = {q0, q1, q2}</li>
+                                <li>Ez azt jelenti, hogy az automatának három állapota van</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Σ:</span> inputábécé
+                            <ul>
+                                <li>Például: Σ = {a, b}</li>
+                                <li>Ez azt jelenti, hogy az automata kétféle bemenetet fogad</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">δ (delta):</span> egy Q × Σ → Q leképezés (átmenetfüggvény)
+                            <ul>
+                                <li>Például: δ(q0, a) = q1</li>
+                                <li>Ez azt jelenti, hogy q0 állapotból 'a' input hatására q1 állapotba kerül</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">q0:</span> kezdőállapot
+                            <ul>
+                                <li>Az automata innen kezdi a működését</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">F:</span> végállapotok halmaza (Q részhalmaza)
+                            <ul>
+                                <li>Például: F = {q2}</li>
+                                <li>Ez azt jelenti, hogy az automata végállapota q2</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Megadási módok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Táblázatos forma:</span>
+                        <pre>
+| Állapot/Input | a   | b   |
+|---------------|-----|-----|
+| -> q0         | q1  | q2  |
+| q1            | q0  | q2  |
+| * q2          | q2  | q2  |</pre>
+                            <ul>
+                                <li>-> jelöli a kezdőállapotot</li>
+                                <li>* jelöli a végállapotot</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Irányított gráf:</span>
+                            <img src="../assets/images/DFA.webp" alt="determinisztikus automaták" class="graph-image">
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Működése:</span></p>
+                    <ul>
+                        <li>Minden lépésben az automata <span class="highlight">beolvassa a következő input szimbólumot</span></li>
+                        <li>Átmegy egy olyan állapotba, amelyet az <span class="highlight">átmeneti függvény meghatároz</span></li>
+                        <li>Az input szó felfogható <span class="highlight">cellákra osztott szalagként</span></li>
+                        <li>Kezdetben a q0 kezdőállapotban van, és az <span class="highlight">olvasófej az első betűt dolgozza fel</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>A nemdeterminisztikus automaták (NFA)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a nemdeterminisztikus automata?</span> ("no determination" = no eldöntés) Olyan véges automata, ahol egy adott állapotból egy input szimbólum hatására <span class="highlight">több állapotba is átkerülhet</span> az automata.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Az NFA elemei - M = (Q, Σ, δ, q0, F):</span></p>
+                    <ul>
+                        <li><span class="highlight">Q:</span> az állapotok nem üres, véges halmaza</li>
+                        <li><span class="highlight">Σ:</span> inputábécé</li>
+                        <li><span class="highlight">δ (delta):</span> egy Q × Σ → P(Q) leképezés
+                            <ul>
+                                <li>Az átmenetfüggvény <span class="highlight">állapotok halmazát</span> adja eredményül</li>
+                                <li>Például: δ(q0, a) = {q0, q1} - egy input több állapotba is vezethet</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">q0:</span> kezdőállapot</li>
+                        <li><span class="highlight">F:</span> végállapotok halmaza</li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Példa egy NFA-ra (Maba):</span></p>
+                    <pre>
+δ    | a        | b
+-----|----------|------
+q0   | q0, q1   | q0
+q1   |          | q2
+q2   | q3       |
+*q3  | q3       | q3</pre>
+<img src="../assets/images/NFA.webp" alt="nemdeterminisztikus automaták" class="graph-image">
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Fontos tulajdonságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Teljesség:</span>
+                            <ul>
+                                <li>Egy NFA teljesen definiált (teljes), ha <span class="highlight">minden állapot és betű esetén</span> az átmeneti függvény által generált állapothalmaz legalább egyelemű</li>
+                                <li>Azaz nem tudnak "elakadni" az átmenetek</li>
+                                <li>Továbbá, minden nemdeterminisztikus automata könnyen teljessé tehető egy ún. ”csapda” állapot bevezetésével, anélkül, hogy a felismert nyelv megváltozna.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Ekvivalencia tétel:</span>
+                            <ul>
+                                <li>Egy nyelv akkor és csak akkor ismerhető fel NFA-val, ha felismerhető DFA-val</li>
+                                <li>A <span class="highlight">nemdeterminisztikus automaták által felismert nyelvek</span> a determinisztikus automatával felismert nyelvek részhalmazát képezik</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Nemdeterminisztikus ε-automaták</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                    <span class="key-point">Mi az ε-automata?</span>
+                        <ul>
+                            <li>Olyan véges automata, ahol megengedettek az <span class="highlight">"input nélküli" átmenetek</span></li>
+                            <li>Egy állapotból egy input szimbólum hatására <span class="highlight">több állapotba is átkerülhetünk</span></li>
+                            <li>Léteznek olyan átmenetek, amelyek <span class="highlight">nem fogyasztják az inputot</span> (ε-átmenetek)</li>
+                        </ul>
+                    
+                    <span class="key-point">Elemei - M = (Q, Σ, δ, q0, F):</span>
+                        <ul>
+                            <li>Q: az állapotok nem üres, véges halmaza</li>
+                            <li>Σ: inputábécé</li>
+                            <li>δ: egy Q × <span class="highlight">(Σ ∪ ε)</span> → P(Q) leképezés
+                                <ul>
+                                    <li>Az inputábécé <span class="highlight">kibővítve az üres ε-nal</span></li>
+                                </ul>
+                            </li>
+                            <li>q0: kezdőállapot</li>
+                            <li>F: végállapotok halmaza</li>
+                        </ul>
+                    
+                    <span class="key-point">ε-lezárás fogalma:</span>
+                        <ul>
+                            <li>Egy állapothalmaz <span class="highlight">ε-lezárását</span> úgy kapjuk meg, hogy:
+                                <ul>
+                                    <li>Egy {q} halmazból indulunk ki</li>
+                                    <li>Hozzávesszük a <span class="highlight">ε-átmenettel elérhető állapotokat</span></li>
+                                    <li>Ezt addig folytatjuk, amíg a halmaz <span class="highlight">bővíthető</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    
+                    <span class="key-point">Példa ε-lezárásra:</span>
+                        <pre>
+Q0 -a- Q1
+|
+ε
+|
+Q2</pre>
+                        <ul>
+                            <li>Ha a {q} halmaz csak Q0-t tartalmazza, akkor az <span class="highlight">ε-lezárásában Q2 is benne lesz</span></li>
+                            <li>Mert Q2 elérhető Q0-ból egy ε-átmenettel</li>
+                        </ul>
+                    
+                    <span class="key-point">Felismerési szabály:</span>
+                        <ul>
+                            <li>Az automata felismeri a w szót, ha:
+                                <ul>
+                                    <li>q0-ból w hatására <span class="highlight">elérhető valamelyik végállapot</span></li>
+                                    <li>Az elérés történhet <span class="highlight">ε-átmenetek segítségével is</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    
+                    <span class="key-point">Fontos tétel:</span>
+                        <ul>
+                            <li>Egy nyelv akkor és csak akkor ismerhető fel ε-automatával, ha felismerhető NFA-val</li>
+                            <li>Az ε-automaták által felismert nyelvek <span class="highlight">még szűkebb halmazt alkotnak</span>, mint a nemdeterminisztikus automaták nyelvei</li>
+                        </ul>
+                    
+                
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Reguláris kifejezések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a reguláris kifejezés célja?</span> A reguláris kifejezés a <span class="highlight">nyelvek megadásának egy újabb formális módja</span>, amely lehetővé teszi nyelvek tömör és pontos specifikációját.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Hogyan építjük fel?</span></p>
+                    <ul>
+                        <li>Veszünk egy <span class="highlight">alapábécét (Σ)</span></li>
+                        <li>Hozzáadunk <span class="highlight">segédszimbólumokat</span></li>
+                        <li>Ezekből építünk fel <span class="highlight">kifejezéseket meghatározott szabályok szerint</span></li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Mi alkotja a reguláris kifejezések halmazát?</span></p>
+                    <p>Egy Σ ábécé feletti reguláris kifejezések halmaza a <span class="highlight">(Σ ∪ {Ø, ε, (,), +, *})*</span> halmaz legszűkebb olyan U részhalmaza, amely tartalmazza:</p>
+                    <ul>
+                        <li><span class="highlight">Ø:</span> Az üres halmaz eleme U-nak</li>
+                        <li><span class="highlight">ε:</span> Az üres szó eleme U-nak</li>
+                        <li><span class="highlight">Σ:</span> Az ábécé minden eleme U-nak</li>
+                        <li><span class="highlight">Kombinációk:</span> Az ezekből képzett kifejezések is elemei U-nak:
+                            <ul>
+                                <li><span class="highlight">+</span> (vagy): választás két kifejezés között</li>
+                                <li><span class="highlight">*</span> (ismétlés): egy kifejezés tetszőleges számú ismétlése</li>
+                                <li><span class="highlight">konkatenáció:</span> kifejezések egymás után fűzése</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Nyelv reprezentálása:</span></p>
+                    <ul>
+                        <li>|R| jelöli az <span class="highlight">R reguláris kifejezés által meghatározott nyelvet</span></li>
+                        <li>Egy L nyelv akkor reprezentálható reguláris kifejezéssel, ha <span class="highlight">létezik olyan R reguláris kifejezés</span>, amely meghatározza L-t</li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Példa reguláris kifejezésre:</span></p>
+                    <ul>
+                        <li><span class="highlight">L = {uabav | u, v ∊ Σ*}</span>
+                            <ul>
+                                <li>Jelentése: olyan szavak, amelyekben <span class="highlight">előfordul az "aba" részszó</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Reguláris kifejezéssel:</span> L = |(a + b)*aba(a + b)*|
+                            <ul>
+                                <li><span class="highlight">(a + b)*:</span> tetszőleges számú a vagy b a szó elején</li>
+                                <li><span class="highlight">aba:</span> az "aba" részszó</li>
+                                <li><span class="highlight">(a + b)*:</span> tetszőleges számú a vagy b a szó végén</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Kapcsolat az automatákkal:</span></p>
+                    <ul>
+                        <li>Az automatával felismerhető nyelvek és a reguláris kifejezések <span class="highlight">szoros kapcsolatban állnak</span> egymással</li>
+                        <li>Minden reguláris kifejezéssel leírt nyelv <span class="highlight">felismerhető véges automatával</span></li>
+                        <li>Minden véges automatával felismerhető nyelv <span class="highlight">leírható reguláris kifejezéssel</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic active" onclick="toggleMainContent(this)">
+        <h2>4. Pumpáló lemmák.</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Pumpáló lemmák alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a pumpáló lemma?</span> A pumpáló lemma egy <span class="highlight">fontos eszköz a formális nyelvek elméletében</span>, amelyet annak bizonyítására használunk, hogy egy adott nyelv <span class="highlight">nem reguláris</span> vagy <span class="highlight">nem környezetfüggetlen</span>.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Mire használjuk?</span></p>
+                    <ul>
+                        <li>Segít <span class="highlight">bizonyítani egy nyelvről</span>, hogy nem tartozik egy adott nyelvosztályba</li>
+                        <li>Lehetővé teszi a nyelvek <span class="highlight">osztályozását</span> és tulajdonságaik megértését</li>
+                        <li><span class="highlight">Indirekt bizonyítás</span> eszközeként szolgál</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Reguláris nyelvekre vonatkozó pumpáló lemma</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mit mond ki a lemma?</span> Minden L reguláris nyelv esetén <span class="highlight">megadható egy k > 0 egész szám</span> úgy, hogy minden szóra a nyelvből teljesül, hogy ha k-nál hosszabb, akkor van egy speciális felbontása.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">A lemma formai megfogalmazása:</span></p>
+                    <ul>
+                        <li>Minden L reguláris nyelvhez <span class="highlight">létezik egy k > 0 szám</span></li>
+                        <li>Ha w ∈ L és |w| ≥ k, akkor w = <span class="highlight">w1w2w3</span> alakban írható, ahol:
+                            <ul>
+                                <li>|w2| > 0 (a középső rész nem üres)</li>
+                                <li>|w1w2| ≤ k (az első két rész együtt nem túl hosszú)</li>
+                                <li>Minden i ≥ 0 esetén <span class="highlight">w1w2ⁱw3 ∈ L</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Példa a lemma alkalmazására:</span></p>
+                    <p>Bizonyítsuk, hogy az L = {aⁿbⁿ | n ≥ 0} nyelv nem reguláris!</p>
+                    <ul>
+                        <li><span class="highlight">1. Indirekt feltevés:</span> Tegyük fel, hogy L reguláris</li>
+                        <li><span class="highlight">2. Választunk egy szót:</span> w = aᵏbᵏ ∈ L</li>
+                        <li><span class="highlight">3. A lemma szerint:</span> w = w1w2w3, ahol w2 csak a-kat tartalmazhat</li>
+                        <li><span class="highlight">4. Pumpálás után:</span> Az a-k és b-k száma nem lesz egyenlő</li>
+                        <li><span class="highlight">5. Ellentmondás:</span> A pumpált szó nincs a nyelvben</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Környezetfüggetlen nyelvekre vonatkozó pumpáló lemma (Bar-Hillel lemma)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miben más ez a lemma?</span> Ez a lemma <span class="highlight">komplexebb felbontást</span> követel meg, amely jobban illeszkedik a környezetfüggetlen nyelvek természetéhez.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">A Bar-Hillel lemma állítása:</span></p>
+                    <ul>
+                        <li>Minden L környezetfüggetlen nyelvhez <span class="highlight">létezik egy k > 0 szám</span></li>
+                        <li>Ha w ∈ L és |w| ≥ k, akkor w = <span class="highlight">uvxyz</span> alakban írható, ahol:
+                            <ul>
+                                <li>|vxy| ≤ k (a középső három rész nem túl hosszú)</li>
+                                <li>|vy| > 0 (a pumpálandó részek nem üresek)</li>
+                                <li>Minden i ≥ 0 esetén <span class="highlight">u(vⁱ)x(yʲ)z ∈ L</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">A két lemma összehasonlítása:</span></p>
+                    <ul>
+                        <li><span class="highlight">Reguláris lemma:</span>
+                            <ul>
+                                <li>Három részre bont (w1w2w3)</li>
+                                <li>Egy részt pumpál (w2)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Bar-Hillel lemma:</span>
+                            <ul>
+                                <li>Öt részre bont (uvxyz)</li>
+                                <li>Két részt pumpál (v és y)</li>
+                                <li>A pumpálás szimmetrikus lehet</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Következmények:</span></p>
+                    <ul>
+                        <li>A pumpáló lemmák segítségével <span class="highlight">bebizonyítható</span>, hogy:
+                            <ul>
+                                <li>Vannak nyelvek, amelyek <span class="highlight">nem regulárisak</span>, de környezetfüggetlenek</li>
+                                <li>REG ⊂ CF (a reguláris nyelvek a környezetfüggetlen nyelvek <span class="highlight">valódi részhalmazát</span> alkotják)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Pumpáló lemma gyakorlati példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mit bizonyítunk?</span> Bizonyítsuk be, hogy az L = {aⁿbⁿ | n ≥ 0} nyelv <span class="highlight">nem reguláris</span>!</p>
+    
+                <div class="step">
+                    <p><span class="key-point">A bizonyítás lépései:</span></p>
+                    <ul>
+                        <li><span class="highlight">Indirekt feltevés:</span>
+                            <ul>
+                                <li>Tegyük fel, hogy L reguláris nyelv</li>
+                                <li>Ekkor létezik egy k pumpálási konstans a lemmából</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Válasszunk megfelelő szót:</span>
+                            <ul>
+                                <li>Legyen w = aᵏbᵏ</li>
+                                <li>Ez a szó biztosan eleme L-nek</li>
+                                <li>A szó hossza |w| = 2k ≥ k</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Alkalmazzuk a lemmát:</span>
+                            <ul>
+                                <li>w = w₁w₂w₃ alakban írható</li>
+                                <li>|w₁w₂| ≤ k miatt w₂ csak a-kat tartalmazhat</li>
+                                <li>|w₂| > 0 miatt legalább egy 'a' van w₂-ben</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Pumpáljuk fel a szót:</span>
+                            <ul>
+                                <li>Legyen i = 2: w₁w₂²w₃</li>
+                                <li>Ez a szó több a-t tartalmaz, mint b-t</li>
+                                <li>Például ha w₂ = aa, akkor: aaaabbb</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Ellentmondásra jutunk:</span>
+                            <ul>
+                                <li>A pumpált szóban nem egyenlő az a-k és b-k száma</li>
+                                <li>Tehát a pumpált szó nem eleme L-nek</li>
+                                <li>Ez ellentmond a pumpálási lemmának</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Miért működik ez a bizonyítás?</span></p>
+                    <ul>
+                        <li>A lemma azt állítja, hogy <span class="highlight">minden felbontás esetén</span> működnie kell a pumpálásnak</li>
+                        <li>Mi találtunk egy olyan esetet, ahol <span class="highlight">egyetlen felbontás sem működik</span></li>
+                        <li>Ez <span class="highlight">ellentmond a reguláris tulajdonságnak</span></li>
+                        <li>Tehát az eredeti feltevésünk (hogy L reguláris) hamis volt</li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Következtetés:</span></p>
+                    <ul>
+                        <li>Az L = {aⁿbⁿ | n ≥ 0} nyelv <span class="highlight">biztosan nem reguláris</span></li>
+                        <li>Ez egy klasszikus példa arra, hogy egy <span class="highlight">egyszerűnek tűnő nyelv</span> sem feltétlenül reguláris</li>
+                        <li>Később megmutatható, hogy ez a nyelv <span class="highlight">környezetfüggetlen</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic active" onclick="toggleMainContent(this)">
+        <h2>5. Zártsági tulajdonságok műveletekre.</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Zártsági tulajdonságok alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mit jelent a zártság?</span> Egy nyelvosztály zárt egy műveletre, ha a <span class="highlight">művelet eredménye</span> is az adott nyelvosztályba tartozik. Azaz ha a műveletet az osztály elemeire alkalmazzuk, az eredmény is az osztály eleme lesz.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Miért fontosak a zártsági tulajdonságok?</span></p>
+                    <ul>
+                        <li>Segítenek <span class="highlight">jellemezni a nyelvosztályokat</span></li>
+                        <li>Lehetővé teszik <span class="highlight">új nyelvek konstruálását</span> megőrizve az osztály tulajdonságait</li>
+                        <li><span class="highlight">Bizonyítási eszközként</span> szolgálnak nyelvek osztályozásánál</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Műveletek és zártság</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Alapvető műveletek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Unió:</span> Két nyelv összes szavának egyesítése
+                            <ul>
+                                <li>Ha L1 és L2 reguláris nyelvek, akkor L1 ∪ L2 is reguláris.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Metszet:</span> Két nyelv közös szavai
+                            <ul>
+                                <li>Ha L1 és L2 reguláris nyelvek, akkor L1 ∩ L2 is reguláris.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Komplementer:</span> Az összes szó, ami nincs a nyelvben
+                            <ul>
+                                <li>Ha L reguláris nyelv, akkor a komplementere is reguláris.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Konkatenáció:</span> Nyelvek szavainak egymás után fűzése
+                            <ul>
+                                <li>Ha L1 és L2 reguláris nyelvek, akkor L1L2 is reguláris.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Kleene-csillag:</span> Nyelv szavainak tetszőleges ismétlése
+                            <ul>
+                                <li>Ha L reguláris nyelv, akkor L* is reguláris.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Homomorfizmus:</span>
+                            <ul>
+                                <li>Ha L reguláris nyelv és h homomorfizmus, akkor h(L) is reguláris.</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Inverz homomorfizmus</span>
+                            <ul>
+                                <li>Ha L reguláris nyelv és h homomorfizmus, akkor h^(-1)(L) is reguláris.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step" style="overflow: auto;">
+                    <p><span class="key-point">Zártságok összehasonlítása:</span></p>
+                    <table style="width:100%; border-collapse: collapse; margin: 15px 0;">
+                        <tr style="background-color: #333; color: white;">
+                            <th style="padding: 10px; border: 1px solid #666;">Művelet</th>
+                            <th style="padding: 10px; border: 1px solid #666;">Reguláris nyelvek</th>
+                            <th style="padding: 10px; border: 1px solid #666;">Környezetfüggetlen nyelvek</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Unió</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Metszet</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;">✗</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Komplementer</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;">✗</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Konkatenáció</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Kleene-csillag</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Homomorfizmus</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #666;">Inverz homomorfizmus</td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                            <td style="padding: 10px; border: 1px solid #666;"><span class="highlight">✓</span></td>
+                        </tr>
+                    </table>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Összehasonlítás:</span></p>
+                    <ul>
+                        <li><span class="highlight">Reguláris nyelvek:</span>
+                            <ul>
+                                <li>Zártak <span class="highlight">minden felsorolt műveletre</span></li>
+                                <li>Ez nagy <span class="highlight">rugalmasságot</span> biztosít a nyelvek konstruálásában</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Környezetfüggetlen nyelvek:</span>
+                            <ul>
+                                <li>Nem zártak a <span class="highlight">metszetre és komplementerre</span></li>
+                                <li>A többi műveletre viszont <span class="highlight">megőrzik a zártságot</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">Gyakorlati jelentőség:</span></p>
+                    <ul>
+                        <li>A zártsági tulajdonságok segítenek <span class="highlight">új nyelvek konstruálásában</span></li>
+                        <li>Lehetővé teszik <span class="highlight">komplex nyelvek építését</span> egyszerűbbekből</li>
+                        <li>Fontos szerepet játszanak a <span class="highlight">nyelvosztályok jellemzésében</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic active" onclick="toggleMainContent(this)">
+        <h2>6. Összefoglaló</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Általános áttekintés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontosak a formális nyelvek?</span> A formális nyelvek, mint a <span class="highlight">reguláris és környezetfüggetlen nyelvek</span>, széles körben használatosak a számítástudományban és programozásban.</p>
+    
+                <div class="step">
+                    <p><span class="key-point">Gyakorlati alkalmazások:</span></p>
+                    <ul>
+                        <li><span class="highlight">Reguláris kifejezések:</span>
+                            <ul>
+                                <li>Szövegfeldolgozási feladatok</li>
+                                <li>Keresés és helyettesítés</li>
+                                <li>Adatvalidálás</li>
+                                <li>Például: email-címek ellenőrzése (\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Környezetfüggetlen nyelvek:</span>
+                            <ul>
+                                <li>Programozási nyelvek alapja (C++, Java)</li>
+                                <li>Szintaxis ellenőrzése</li>
+                                <li>Strukturált kód írásának biztosítása</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="algorithm">
+            <h2>Főbb témakörök összefoglalása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">1. Környezetfüggetlen és reguláris nyelvek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Környezetfüggetlen nyelvtan:</span>
+                            <ul>
+                                <li>P összes szabálya A → α alakú</li>
+                                <li>Nyelvek halmaza: CF</li>
+                                <li>L = L(G) ha G generálja L-t</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Reguláris nyelvtan:</span>
+                            <ul>
+                                <li>Minden szabály A → xB vagy A → x alakú</li>
+                                <li>Nyelvek halmaza: REG</li>
+                                <li>REG ⊂ CF (valódi részhalmaz)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">2. Véges automaták és reguláris kifejezések:</span></p>
+                    <ul>
+                        <li><span class="highlight">Véges automaták típusai:</span>
+                            <ul>
+                                <li>Determinisztikus: egy út minden szimbólumra</li>
+                                <li>Nemdeterminisztikus: több lehetséges út</li>
+                                <li>ε-automata: üres átmenetek lehetségesek</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Ekvivalencia:</span>
+                            <ul>
+                                <li>L generálható reguláris nyelvtannal</li>
+                                <li>L felismerhető automatával</li>
+                                <li>L reprezentálható reguláris kifejezéssel (Kleene-tétel)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">3. Pumpáló lemma:</span></p>
+                    <ul>
+                        <li><span class="highlight">Reguláris nyelvekre:</span>
+                            <ul>
+                                <li>k > 0 létezik minden reguláris nyelvhez</li>
+                                <li>w = w1w2w3 felbontás</li>
+                                <li>w2 tetszőlegesen pumpálható</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Következmények:</span>
+                            <ul>
+                                <li>Bizonyítási eszköz a regularitásra</li>
+                                <li>REG ⊂ CF bizonyítása</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="step">
+                    <p><span class="key-point">4. Zártsági tulajdonságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Reguláris nyelvek:</span>
+                            <ul>
+                                <li>Zártak minden alapműveletre</li>
+                                <li>Unió, metszet, komplementer, konkatenáció, Kleene-csillag, homomorfizmus, inverz homomorfizmus</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Környezetfüggetlen nyelvek:</span>
+                            <ul>
+                                <li>Nem zártak metszetre és komplementerre</li>
+                                <li>Zártak a többi műveletre</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../assets/js/tetel.js"></script>
 </body>
 </html>
