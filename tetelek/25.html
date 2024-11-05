@@ -66,7 +66,40 @@
                 <p><span class="key-point">Miért fontosak a hálózati architektúrák?</span> A hálózati architektúrák <span class="highlight">meghatározzák a kommunikáció szabályait és struktúráját</span> a különböző rendszerek között, lehetővé téve a <span class="highlight">hatékony és megbízható adatcserét</span>.</p>
             </div>
         </div>
-        
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Szabványosítók (ISO/OSI, Internet, ITU, IEEE)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>ISO (International Standards Organization)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az ISO?</span> Az ISO egy <span class="highlight">1946-ban alakult, önkéntes, nem államközi szerződéseken alapuló szervezet</span>, amely nemzetközi szabványokat ad ki.</p>
+                <p><span class="key-point">Nemzetközi-e az ISO?</span> Igen, az ISO egy <span class="highlight">nemzetközi szervezet</span>. A neve is erre utal: International Organization for Standardization. Tagjai különböző országok nemzeti szabványügyi szervezetei, és globális hatáskörrel működik.</p>
+                <div class="step">
+                    <p><span class="key-point">ISO jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">89 tagállam</span> nemzeti szabványügyi szervezete alkotja</li>
+                        <li>Tagok között: ANSI (USA), BSI (UK), AFNOR (Franciaország), DIN (Németország)</li>
+                        <li><span class="highlight">Több mint 5000 szabványt</span> adtak ki, beleértve az OSI szabványokat is</li>
+                        <li>Szabványok témái: A <span class="highlight">csavaroktól a telefonpóznák bevonatáig</span></li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik az ISO?</span> Az ISO-nak közel <span class="highlight">200 Műszaki Bizottsága</span> van, amelyek <span class="highlight">albizottságokra és munkacsoportokra</span> oszlanak, hogy <span class="highlight">különböző szakterületekkel</span> foglalkozhassanak.</p>
+
+                <div class="step">
+                    <p><span class="key-point">ISO szabványok jelentősége:</span></p>
+                    <ul>
+                        <li>Biztosítják a <span class="highlight">termékek és szolgáltatások minőségét, biztonságát és hatékonyságát</span></li>
+                        <li>Elősegítik a <span class="highlight">nemzetközi kereskedelmet</span> az egységes szabványok által</li>
+                        <li>Hozzájárulnak a <span class="highlight">technológiai fejlődéshez és innovációhoz</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="algorithm">
             <h2>OSI modell</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
@@ -80,46 +113,18 @@
                     <p><span class="key-point">OSI modell rétegei:</span></p>
                     <ol>
                         <li><span class="highlight">Fizikai réteg:</span> Bitek továbbítása
-                            <ol>
-                                <li>Feladata a <span class="highlight">nyers bitek átvitele</span> a kommunikációs csatornán</li>
-                                <li>Foglalkozik a <span class="highlight">feszültségszintekkel, bit időzítéssel, kábelezéssel</span> és hasonló fizikai dolgokkal</li>
-                            </ol>
                         </li>
                         <li><span class="highlight">Adatkapcsolati réteg:</span> Bitek adatkeretekbe tördelése
-                            <ol>
-                                <li><span class="highlight">Megbízható átvitelt</span> biztosít a fizikai réteg felett</li>
-                                <li>Kezeli a <span class="highlight">hibák észlelését és javítását</span></li>
-                            </ol>
                         </li>
                         <li><span class="highlight">Hálózati réteg:</span> Útvonal meghatározása
-                            <ol>
-                                <li>Feladata a <span class="highlight">csomagok útválasztása</span> a forrástól a célig</li>
-                                <li>Kezeli a <span class="highlight">hálózati forgalmat, torlódásokat</span></li>
-                            </ol>
                         </li>
                         <li><span class="highlight">Szállítási réteg:</span> Forgalomszabályozás, hibajavítás
-                            <ol>
-                                <li>Biztosítja a <span class="highlight">megbízható adatátvitelt</span> a végpontok között</li>
-                                <li>Kezeli a <span class="highlight">folyamvezérlést és a hibák javítását</span></li>
-                            </ol>
                         </li>
                         <li><span class="highlight">Viszony réteg:</span> Kapcsolat létesítése és bontása
-                            <ol>
-                                <li>Lehetővé teszi a <span class="highlight">munkamenetek létrehozását</span> a folyamatok között</li>
-                                <li>Kezeli a <span class="highlight">dialógus vezérlését</span> és a szinkronizációt</li>
-                            </ol>
                         </li>
                         <li><span class="highlight">Megjelenítési réteg:</span> Adatszerkezetek definiálása és átvitele
-                            <ol>
-                                <li>Foglalkozik az adatok <span class="highlight">formátumával és kódolásával</span></li>
-                                <li>Biztosítja az adatok <span class="highlight">megfelelő értelmezését</span> a különböző rendszerek között</li>
-                            </ol>
                         </li>
                         <li><span class="highlight">Alkalmazási réteg:</span> Különböző protokollok (pl. HTTP, SMTP)
-                            <ol>
-                                <li>Biztosítja a <span class="highlight">hálózati szolgáltatások</span> elérését az alkalmazások számára</li>
-                                <li>Olyan protokollokat tartalmaz, mint a <span class="highlight">HTTP, FTP, SMTP</span> stb.</li>
-                            </ol>
                         </li>
                     </ol>
                 </div>
@@ -131,6 +136,263 @@
         </div>
 
         <div class="algorithm">
+            <h2>1. Fizikai réteg (Physical)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a fizikai réteg szerepe?</span> Ez a réteg olyan, mint a <span class="highlight">posta: eljuttatja a levelet a házak között</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Fő feladatok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Bitek továbbítása</span> a kommunikációs csatornán</li>
+                        <li>Biztosítja, hogy az egyik oldalon elküldött <span class="highlight">1-es a másik oldalon is 1-esként</span> érkezzen meg</li>
+                        <li>Foglalkozik a <span class="highlight">feszültségszintekkel</span> és bit időzítéssel</li>
+                        <li>Kezeli a <span class="highlight">kábelcsatlakozást</span> és vezeték nélküli kapcsolatokat</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Mit tartalmaz ez a réteg?</span></p>
+                    <ul>
+                        <li><span class="highlight">Hálózati kábelek</span> és csatlakozók</li>
+                        <li><span class="highlight">Vezeték nélküli rádiófrekvenciák</span></li>
+                        <li><span class="highlight">Fényimpulzusok</span> és elektromos feszültségek</li>
+                        <li>Fizikai eszközök <span class="highlight">működési paraméterei</span></li>
+                    </ul>
+                </div>
+        
+                <p><span class="key-point">Hogyan segíti a fejlesztést?</span> Az OSI modell útmutató a fejlesztőknek és gyártóknak a <span class="highlight">kommunikációs termékek és szoftverprogramok fejlesztésében</span>, amelyek egy általánosan megalapozott modellel együttműködve működnek.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>2. Adatkapcsolati réteg (Data Link)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az adatkapcsolati réteg szerepe?</span> Ez a réteg <span class="highlight">ellenőrzi, hogy a levél nem sérült-e meg útközben</span>, és beteszi egy borítékba.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Fő feladatok:</span></p>
+                    <ul>
+                        <li>A fizikai réteg adottságait egy <span class="highlight">megbízható vonallá alakítja</span></li>
+                        <li>Az átviendő adatokat <span class="highlight">adatkeretekbe tördeli</span></li>
+                        <li><span class="highlight">Forgalomszabályozást</span> és hibakezelést végez</li>
+                        <li>A fogadó fél <span class="highlight">nyugtázza a keretek helyes vételét</span></li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Alrétegek:</span></p>
+                    <ul>
+                        <li><span class="highlight">MAC (Media Access Control):</span> Fizikai címzési módszerek kezelése</li>
+                        <li><span class="highlight">LLC (Logical Link Control):</span> Logikai kapcsolatok kezelése</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Működési folyamat:</span></p>
+                    <ul>
+                        <li>Adatok fogadása a <span class="highlight">fizikai rétegből</span></li>
+                        <li><span class="highlight">Átviteli hibák ellenőrzése</span></li>
+                        <li>Bitek <span class="highlight">adatkeretekbe csomagolása</span></li>
+                        <li>MAC vagy LLC rétegek <span class="highlight">fizikai címzési módszereinek</span> kezelése</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>3. Hálózati réteg (Network)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a hálózati réteg szerepe?</span> Ez a réteg <span class="highlight">dönti el, hogy a levél melyik útvonalon jusson el a címzetthez</span>.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Fő feladatok:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">alhálózat működésének irányítása</span></li>
+                        <li><span class="highlight">Útvonalak meghatározása</span> a forrástól a célig</li>
+                        <li><span class="highlight">Logikai címzés</span> kezelése</li>
+                        <li><span class="highlight">Fizikai és logikai címek</span> közötti leképezés</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Útvonalválasztás típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Statikus:</span> Előre meghatározott táblázatok alapján</li>
+                        <li><span class="highlight">Dinamikus:</span> Minden csomag számára egyedi útvonal</li>
+                    </ul>
+                </div>
+        
+                <p><span class="key-point">Protokollok:</span> Ezen a rétegen működik az <span class="highlight">IP protokoll</span>, amely az internet ismert hálózati rétege.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>4. Szállítási réteg (Transport)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a szállítási réteg szerepe?</span> Ez a réteg <span class="highlight">biztosítja, hogy a levél megérkezik</span>, és ha nem, akkor újraküldi.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Fő feladatok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Forgalomszabályozás</span></li>
+                        <li><span class="highlight">Hibajavítás</span> és multiplexelés</li>
+                        <li>Csomagok <span class="highlight">elvesztésének kezelése</span></li>
+                        <li><span class="highlight">Ellenőrző összeg</span> számítása és ellenőrzése</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Szolgáltatások:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hiba helyreállítás</span></li>
+                        <li><span class="highlight">Adatáramlás szabályozása</span></li>
+                        <li><span class="highlight">Újraküldések kezelése</span></li>
+                        <li>Kapcsolatok <span class="highlight">koordinálása</span></li>
+                    </ul>
+                </div>
+        
+                <p><span class="key-point">Protokollok:</span> Leggyakrabban használt protokollok a <span class="highlight">TCP (Transmission Control Protocol)</span> és az <span class="highlight">UDP (User Datagram Protocol)</span>.</p>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>5. Viszony réteg (Session)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a viszony réteg szerepe?</span> Ez a réteg <span class="highlight">létrehozza és lezárja a levelezést</span>, vagyis megnyitja és bezárja a kapcsolatot az eszközök között.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Fő feladatok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Párbeszéd szervezése</span> és kapcsolatok kezelése</li>
+                        <li><span class="highlight">Munkamenetek létrehozása</span> és fenntartása</li>
+                        <li><span class="highlight">Hitelesítés</span> és jogosultságkezelés</li>
+                        <li><span class="highlight">Újracsatlakozás</span> kezelése hálózati megszakítás esetén</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Folyamatok:</span></p>
+                    <ul>
+                        <li>Kapcsolatok <span class="highlight">felépítése és bontása</span></li>
+                        <li><span class="highlight">Adatátvitel szervezése</span></li>
+                        <li><span class="highlight">Szinkronizáció</span> biztosítása</li>
+                        <li><span class="highlight">Párbeszéd irányítása</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>6. Megjelenítési réteg (Presentation)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a megjelenítési réteg szerepe?</span> Ez a réteg <span class="highlight">átalakítja a levél tartalmát</span>, hogy mindkét fél megértse, például lefordítja, ha más nyelven van írva.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Fő feladatok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Adatok formátumának</span> kezelése</li>
+                        <li><span class="highlight">Karakterkészletek konvertálása</span></li>
+                        <li><span class="highlight">Titkosítás</span> és dekódolás</li>
+                        <li>Adatok <span class="highlight">tömörítése</span> és kibontása</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Adatformátumok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Szövegek</span> (ASCII, Unicode)</li>
+                        <li><span class="highlight">Képek</span> (JPEG, PNG)</li>
+                        <li><span class="highlight">Hangok</span> (MP3, WAV)</li>
+                        <li><span class="highlight">Videók</span> (AVI, MP4)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="algorithm">
+            <h2>7. Alkalmazási réteg (Application)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az alkalmazási réteg szerepe?</span> Ez a réteg az a rész, ahol <span class="highlight">megírod és elolvasod a levelet</span>, mint például a böngészés vagy az e-mailezés.</p>
+        
+                <div class="step">
+                    <p><span class="key-point">Fő protokollok:</span></p>
+                    <ul>
+                        <li><span class="highlight">HTTP/HTTPS:</span> Webböngészés</li>
+                        <li><span class="highlight">SMTP:</span> E-mail küldés</li>
+                        <li><span class="highlight">FTP:</span> Fájlátvitel</li>
+                        <li><span class="highlight">DNS:</span> Névfeloldás</li>
+                    </ul>
+                </div>
+        
+                <div class="step">
+                    <p><span class="key-point">Alkalmazások:</span></p>
+                    <ul>
+                        <li><span class="highlight">Webböngészők</span> (Chrome, Firefox)</li>
+                        <li><span class="highlight">E-mail kliensek</span> (Outlook)</li>
+                        <li><span class="highlight">Chat programok</span> (Skype)</li>
+                        <li><span class="highlight">Fájlmegosztó</span> alkalmazások</li>
+                    </ul>
+                </div>
+        
+                <p><span class="key-point">Szolgáltatások:</span> Az alkalmazási réteg <span class="highlight">közvetlen kapcsolatot biztosít</span> a felhasználói alkalmazások és a hálózati szolgáltatások között.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Internet</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az Internet?</span> Az Internet az <span class="highlight">összekapcsolt számítógépes hálózatok globális rendszere</span>, amely az <span class="highlight">Internet Protocol Suite (TCP/IP)</span> protokollt használja a hálózatok és az eszközök közötti kommunikációhoz.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Internet jellemzői:</span></p>
+                    <ul>
+                        <li><span class="highlight">Magán-, állami, tudományos, üzleti és kormányzati hálózatokból</span> áll</li>
+                        <li><span class="highlight">Lokális és globális kiterjedésű</span> hálózatokat kapcsol össze</li>
+                        <li><span class="highlight">Közös protokollokat</span> és szolgáltatásokat használ</li>
+                        <li><span class="highlight">Nincs központosított irányítása</span></li>
+                        <li>A hálózatok <span class="highlight">elektronikus, vezeték nélküli és optikai technológiákat</span> használnak</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik az Internet?</span> Az Internet <span class="highlight">csomagkapcsolt hálózatként</span> működik, ahol az adatok kisebb egységekben, <span class="highlight">csomagokban utaznak</span> a hálózaton keresztül.</p>
+
+                <p><span class="key-point">Mi az ARPANET?</span> Az ARPANET az Internet <span class="highlight">elődje</span>, az első szélesebb körben kiépített <span class="highlight">nagy kiterjedésű csomag-kapcsolt hálózat</span>. Az 1970-es években <span class="highlight">tudományos és katonai hálózatok</span> összekapcsolására szolgált.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Az Internet fejlődése:</span></p>
+                    <ul>
+                        <li>1983: A <span class="highlight">TCP/IP lett az egyetlen hivatalos protokoll</span> az ARPANET-en</li>
+                        <li>1980-as évek közepe: Az összekapcsolt hálózatokat kezdték <span class="highlight">"internetnek"</span> nevezni</li>
+                        <li>Növekedés: A <span class="highlight">NSFNET és ARPANET összekapcsolása</span> exponenciális növekedést eredményezett</li>
+                        <li>Globalizáció: Kapcsolatok épültek <span class="highlight">Kanada, Európa és a csendes-óceáni térség</span> felé</li>
+                    </ul>
+                </div>
+                
+                <p><span class="key-point">Hogyan működik a modem?</span> A modem egy kártya a számítógépben, amely a <span class="highlight">digitális jeleket analóg jelekké alakítja</span>, hogy azok akadály nélkül átmehessenek a telefonhálózaton. Az ISP (Internet Service Provider) POP-jánál (Point of Presence) ezeket a jeleket <span class="highlight">visszaalakítják digitális jelekké</span>.</p>
+                
+                <div class="step">
+                    <p><span class="key-point">Internet szolgáltatás folyamata:</span></p>
+                    <ol>
+                        <li>A számítógép <span class="highlight">digitális jeleket küld</span> a modemnek</li>
+                        <li>A modem <span class="highlight">analóg jelekké alakítja</span> ezeket</li>
+                        <li>Az analóg jelek <span class="highlight">áthaladnak a telefonhálózaton</span></li>
+                        <li>Az ISP POP-jánál a jelek <span class="highlight">visszaalakulnak digitálissá</span></li>
+                        <li>A digitális jelek <span class="highlight">továbbítódnak az ISP hálózatán</span></li>
+                        <li>Innen a jelek <span class="highlight">eljutnak az internetre</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+                <div class="algorithm">
             <h2>TCP/IP modell</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
             <div class="content">
@@ -186,88 +448,6 @@
                 <p><span class="key-point">Miben különbözik a TCP/IP az OSI modelltől?</span> A TCP/IP modell <span class="highlight">gyakorlatiasabb megközelítést</span> alkalmaz, és <span class="highlight">kevesebb réteget</span> használ. Míg az OSI modell egy elméleti keret, a TCP/IP az internet tényleges működését tükrözi.</p>
             </div>
         </div>
-    </div>
-
-    <div class="main-topic" onclick="toggleMainContent(this)">
-        <h2>2. Szabványosítók (ISO/OSI, Internet, ITU, IEEE)</h2>
-    </div>
-    <div class="main-content">
-        <div class="algorithm">
-            <h2>ISO (International Standards Organization)</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Mi az ISO?</span> Az ISO egy <span class="highlight">1946-ban alakult, önkéntes, nem államközi szerződéseken alapuló szervezet</span>, amely nemzetközi szabványokat ad ki.</p>
-                <p><span class="key-point">Nemzetközi-e az ISO?</span> Igen, az ISO egy <span class="highlight">nemzetközi szervezet</span>. A neve is erre utal: International Organization for Standardization. Tagjai különböző országok nemzeti szabványügyi szervezetei, és globális hatáskörrel működik.</p>
-                <div class="step">
-                    <p><span class="key-point">ISO jellemzői:</span></p>
-                    <ul>
-                        <li><span class="highlight">89 tagállam</span> nemzeti szabványügyi szervezete alkotja</li>
-                        <li>Tagok között: ANSI (USA), BSI (UK), AFNOR (Franciaország), DIN (Németország)</li>
-                        <li><span class="highlight">Több mint 5000 szabványt</span> adtak ki, beleértve az OSI szabványokat is</li>
-                        <li>Szabványok témái: A <span class="highlight">csavaroktól a telefonpóznák bevonatáig</span></li>
-                    </ul>
-                </div>
-                
-                <p><span class="key-point">Hogyan működik az ISO?</span> Az ISO-nak közel <span class="highlight">200 Műszaki Bizottsága</span> van, amelyek <span class="highlight">albizottságokra és munkacsoportokra</span> oszlanak, hogy <span class="highlight">különböző szakterületekkel</span> foglalkozhassanak.</p>
-
-                <div class="step">
-                    <p><span class="key-point">ISO szabványok jelentősége:</span></p>
-                    <ul>
-                        <li>Biztosítják a <span class="highlight">termékek és szolgáltatások minőségét, biztonságát és hatékonyságát</span></li>
-                        <li>Elősegítik a <span class="highlight">nemzetközi kereskedelmet</span> az egységes szabványok által</li>
-                        <li>Hozzájárulnak a <span class="highlight">technológiai fejlődéshez és innovációhoz</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="algorithm">
-            <h2>Internet</h2>
-            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
-            <div class="content">
-                <p><span class="key-point">Mi az Internet?</span> Az Internet az <span class="highlight">összekapcsolt számítógépes hálózatok globális rendszere</span>, amely az <span class="highlight">Internet Protocol Suite (TCP/IP)</span> protokollt használja a hálózatok és az eszközök közötti kommunikációhoz.</p>
-                
-                <div class="step">
-                    <p><span class="key-point">Internet jellemzői:</span></p>
-                    <ul>
-                        <li><span class="highlight">Magán-, állami, tudományos, üzleti és kormányzati hálózatokból</span> áll</li>
-                        <li><span class="highlight">Lokális és globális kiterjedésű</span> hálózatokat kapcsol össze</li>
-                        <li><span class="highlight">Közös protokollokat</span> és szolgáltatásokat használ</li>
-                        <li><span class="highlight">Nincs központosított irányítása</span></li>
-                        <li>A hálózatok <span class="highlight">elektronikus, vezeték nélküli és optikai technológiákat</span> használnak</li>
-                    </ul>
-                </div>
-                
-                <p><span class="key-point">Hogyan működik az Internet?</span> Az Internet <span class="highlight">csomagkapcsolt hálózatként</span> működik, ahol az adatok kisebb egységekben, <span class="highlight">csomagokban utaznak</span> a hálózaton keresztül.</p>
-
-                <p><span class="key-point">Mi az ARPANET?</span> Az ARPANET az Internet <span class="highlight">elődje</span>, az első szélesebb körben kiépített <span class="highlight">nagy kiterjedésű csomag-kapcsolt hálózat</span>. Az 1970-es években <span class="highlight">tudományos és katonai hálózatok</span> összekapcsolására szolgált.</p>
-                
-                <div class="step">
-                    <p><span class="key-point">Az Internet fejlődése:</span></p>
-                    <ul>
-                        <li>1983: A <span class="highlight">TCP/IP lett az egyetlen hivatalos protokoll</span> az ARPANET-en</li>
-                        <li>1980-as évek közepe: Az összekapcsolt hálózatokat kezdték <span class="highlight">"internetnek"</span> nevezni</li>
-                        <li>Növekedés: A <span class="highlight">NSFNET és ARPANET összekapcsolása</span> exponenciális növekedést eredményezett</li>
-                        <li>Globalizáció: Kapcsolatok épültek <span class="highlight">Kanada, Európa és a csendes-óceáni térség</span> felé</li>
-                    </ul>
-                </div>
-                
-                <p><span class="key-point">Hogyan működik a modem?</span> A modem egy kártya a számítógépben, amely a <span class="highlight">digitális jeleket analóg jelekké alakítja</span>, hogy azok akadály nélkül átmehessenek a telefonhálózaton. Az ISP (Internet Service Provider) POP-jánál (Point of Presence) ezeket a jeleket <span class="highlight">visszaalakítják digitális jelekké</span>.</p>
-                
-                <div class="step">
-                    <p><span class="key-point">Internet szolgáltatás folyamata:</span></p>
-                    <ol>
-                        <li>A számítógép <span class="highlight">digitális jeleket küld</span> a modemnek</li>
-                        <li>A modem <span class="highlight">analóg jelekké alakítja</span> ezeket</li>
-                        <li>Az analóg jelek <span class="highlight">áthaladnak a telefonhálózaton</span></li>
-                        <li>Az ISP POP-jánál a jelek <span class="highlight">visszaalakulnak digitálissá</span></li>
-                        <li>A digitális jelek <span class="highlight">továbbítódnak az ISP hálózatán</span></li>
-                        <li>Innen a jelek <span class="highlight">eljutnak az internetre</span></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        
         <div class="algorithm">
             <h2>ITU (International Telecommunication Union)</h2>
             <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
