@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 5 - </title>
+    <title>Tétel 5 - Közelítő és szimbolikus számítások I.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
     <script defer data-domain="allamvizsga.netlify.app" src="https://plausible.io/js/script.js"></script>
@@ -20,6 +20,1028 @@
         <span class="highlight">Mátrixok sajátértékeinek és sajátvektorainak numerikus meghatározása.</span><br>
     </em></p>
 
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Általános mátrix fogalmak</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Alapvető mátrix típusok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a diagonális mátrix?</span> Egy A mátrix akkor diagonális, ha <span class="highlight">kizárólag a főátlóban tartalmaz elemeket</span>. Másképp fogalmazva, egy négyzetes mátrix, melynek <span class="highlight">minden főátlón kívüli eleme nulla</span>.</p>
+
+                <p><span class="key-point">Mi az egységmátrix?</span> Az I (vagy E) egységmátrix olyan <span class="highlight">diagonális mátrix</span>, amelynek <span class="highlight">főátlójában kizárólag egyesek szerepelnek</span>, minden más helyen nullák vannak.</p>
+
+                <p><span class="key-point">Mi a szimmetrikus mátrix?</span> Egy A mátrix akkor szimmetrikus, ha <span class="highlight">önmagának transzponáltjával megegyezik</span> (A = Aᵀ).</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Speciális mátrix tulajdonságok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a pozitív definit mátrix?</span> Egy A mátrix akkor pozitív definit, ha:</p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Szimmetrikus</span></li>
+                        <li>Minden nem nulla x vektorra: <span class="highlight">xᵀAx > 0</span></li>
+                    </ul>
+                    <pre><code>|2 2 -2|
+|2 5 -4|
+|-2 -4 5|</code></pre>
+                    <ul>
+                        <li><span class="highlight">Szimmetrikus?</span> Igen mivel a A = Aᵀ</li>
+                        <li>Determinánsok kiszámolása minden egyes mátrixban pozitívnak kell lennie.<span class="highlight"></span></li>
+                        <ul>
+                            <li>1*1-ben 2 > 0 ✓</li>
+                            <li>2*2-ben (2*5) – (2*2) = 6 > 0 ✓</li>
+                            <li>3*3-ban (2*5*5) + (2*(-4) * (-2)) + ((-2) * 2 *(-4)) –
+                                (2*-4*-4) – (2*2*5) - (-2 * 5 * -2) =
+                                 50 + 16 + 16 – 32 -20 – 20 = 10 ✓
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Mi a főminor?</span> Az A mátrix i-edik főminora az A első i sorából és i oszlopából képzett <span class="highlight">Aᵢ mátrix determinánsa</span>. Egy mátrix főminor mátrixai a mátrix bal felső sarok mátrixok determinánsai. Például:</p>
+                <pre><code>A = |4 3 2 1|
+    |5 6 7 8|
+    |9 10 11 12|
+
+Első főminor: 4
+Második főminor: det(|4 3||5 6|) = 4*6 - 3*5 = 9</code></pre>
+
+                <p><span class="key-point">Mi a háromszögmátrix?</span> Olyan mátrix, amely <span class="highlight">csak a főátlóban és az alatta/felette</span> lévő helyeken tartalmaz értékeket, a többi elem nulla.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Invertálhatóság és egyéb tulajdonságok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mikor invertálható egy mátrix?</span> Egy A mátrix invertálhatónak mondható, ha létezik egy B mátrix, amellyel szorozva egységmátrixot kapunk (AB = I).</p>
+
+                <p><span class="key-point">Mi a szinguláris mátrix?</span> Egy mátrix szinguláris vagy degenerált, ha <span class="highlight">determinánsa 0</span>, azaz nem invertálható.</p>
+
+                <p><span class="key-point">Mi a transzponált mátrix?</span> Az Aₙ ₓ ₘ mátrix transzponáltja az Aᵀₙ ₓ ₘ mátrix, ahol:</p>
+                <div class="step">
+                    <ul>
+                        <li>Az A <span class="highlight">sorai Aᵀ oszlopai</span></li>
+                        <li>Az A <span class="highlight">oszlopai Aᵀ sorai</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Diagonális dominancia és ortogonalitás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az ortogonális mátrix?</span> Az A mátrix ortogonális, ha <span class="highlight">inverze megegyezik a transzponáltjával</span> (QQᵀ = I).</p>
+
+                <div class="step">
+                    <p><span class="key-point">Diagonális dominancia típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Diagonálisan domináns:</span> Minden főátlóbeli elem abszolút értéke nagyobb vagy egyenlő az őt tartalmazó sor összes többi elemének összegénél</li>
+                        <li><span class="highlight">Szigorúan diagonálisan domináns:</span> Minden főátlóbeli elem abszolút értéke nagyobb az őt tartalmazó sor összes többi elemének összegénél</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Eliminációs módszerek</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Eliminációs módszerek áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az elimináció lényege?</span> A lineáris egyenletrendszerek megoldása során célunk a rendszert olyan alakra hozni, ahol az <span class="highlight">ismeretlenek fokozatosan kifejezhetők</span>. Ez az átalakítási folyamat az elimináció.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Megengedett átalakítások:</span></p>
+                    <ul>
+                        <li>Egy egyenlet <span class="highlight">nem nulla számmal való szorzása</span></li>
+                        <li>Egyenletek <span class="highlight">összeadása vagy kivonása</span></li>
+                        <li>Egyenletek <span class="highlight">cseréje</span></li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Hogyan reprezentáljuk az átalakításokat?</span> Az átalakítások <span class="highlight">mátrix műveletekkel is leírhatók</span>. Ezeket a mátrixokat <span class="highlight">eliminációs mátrixoknak (M)</span> nevezzük.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Eliminációs mátrixok tulajdonságai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik az eliminációs mátrixok?</span> Ha fogunk egy tetszőleges <span class="highlight">a vektort</span>, akkor erre viszonylag egyszerű megadni egy olyan <span class="highlight">Mₖ mátrixot</span>, amellyel azt balról beszorozva a k-adik elem alatti együtthatók eltűnnek. Az Mk mátrix ki nem írt értékei 0, a főátlójában pedig csak 1-esek szerepelnek. A vektorban található ak együtthatót generálóelemnek, a mátrixot pedig eliminációs mátrixnak, vagy gauss-transzformációnak nevezzük. </p>
+
+                <div class="step">
+                    <p><span class="key-point">Fő tulajdonságok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Reguláris</span> (nem szinguláris - van inverze - beszorozva 1-et kapunk)</li>
+                        <li>Alakja: <span class="highlight">Mₖ = I-meₖᵀ</span>, ahol:
+                            <ul>
+                                <li>I: egységmátrix</li>
+                                <li>m: vektor, ami a generálóelem indexéig nullákat tartalmaz</li>
+                                <li>eₖ: az egységmátrix k-adik oszlopa</li>
+                            </ul>
+                        </li>
+                        <li>Főátlón kívüli elemei csak az <span class="highlight">előjelükben különböznek</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Példa eliminációs mátrixra:</span></p>
+                    <pre><code>a = (1, 2, -3) =>
+
+      |1  0  0| |1|   |1|
+M₁a = |-2 1  0| |2| = |0|
+      |3  0  1| |-3|  |0|</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gauss-elimináció részletesen</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Gauss-elimináció célja?</span> A Gauss-elimináció célja az egyenletrendszer <span class="highlight">felső háromszög alakra</span> hozása, ami jelentősen megkönnyíti a megoldást.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Példa egy egyenletrendszerre:</span></p>
+                    <pre><code>1x + 3y + 2z = -1
+-1x + 1y + 2z = -3
+-3x + 2y + 1z = -12</code></pre>
+
+                    <p>Mátrix alakban:</p>
+                    <pre><code>    | 1 3 2| →   |x|     |-1|
+A = |-1 1 2| X = |y| b = |-3|
+    |-3 2 1|     |z|     |-12|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Eliminációs folyamat:</span></p>
+                    <ol>
+                        <li><span class="highlight">Generálóelem kiválasztása</span> (főátló elemei)</li>
+                        <li>Alatta lévő elemek <span class="highlight">nullázása eliminációs mátrixszal</span></li>
+                        <li>Folyamat <span class="highlight">ismétlése minden oszlopra</span></li>
+                        <li>Végeredményként <span class="highlight">felső háromszög alakú</span> mátrixot kapunk</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Háromszög alakú eredmény:</span></p>
+                    <pre><code>| 1 3 2|    |-1|
+| 0 4 4| b = |-3|
+| 0 0 -4|    |-12|</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gauss-Jordan elimináció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Gauss-Jordan elimináció?</span> A Gauss-elimináció <span class="highlight">továbbfejlesztett változata</span>, amely a mátrixot diagonális formára hozza.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Teljes diagonalizálás</span> - minden főátlón kívüli elem nulla lesz</li>
+                        <li><span class="highlight">Főátló standardizálása</span> - főátló elemei 1-re normálhatók</li>
+                        <li>A megoldás <span class="highlight">közvetlenül leolvasható</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Előnyök és hátrányok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Előny:</span> Egyszerűbb leolvasni a megoldást</li>
+                        <li><span class="highlight">Hátrány:</span> Több műveletet igényel, mint az egyszerű Gauss-elimináció</li>
+                        <li><span class="highlight">Alkalmazás:</span> Mátrix invertálásánál különösen hasznos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Cramer-szabály</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Cramer-szabály?</span> A Cramer-szabály egy <span class="highlight">determinánsokon alapuló</span> módszer lineáris egyenletrendszerek megoldására.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Alkalmazási feltételek:</span></p>
+                    <ul>
+                        <li>Csak <span class="highlight">négyzetes</span> mátrixokra alkalmazható</li>
+                        <li>A mátrix <span class="highlight">determinánsa nem lehet nulla</span></li>
+                        <li><span class="highlight">n×n-es</span> egyenletrendszerre használható</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Korlátok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Nagy számításigény</span> miatt csak kis rendszerekre praktikus</li>
+                        <li>Numerikusan <span class="highlight">kevésbé stabil</span> más módszerekhez képest</li>
+                        <li><span class="highlight">n! művelet</span> szükséges a megoldáshoz</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>LU-felbontás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az LU-felbontás?</span> Az LU-felbontás során a mátrixot egy <span class="highlight">alsó háromszög (L)</span> és egy <span class="highlight">felső háromszög (U)</span> mátrix szorzatára bontjuk.</p>
+
+                <div class="step">
+                    <p><span class="key-point">LU-felbontás lépései:</span></p>
+                    <ul>
+                        <li><span class="highlight">Eliminációs mátrixokkal</span> felső háromszög alakra hozzuk a mátrixot</li>
+                        <li>A folyamat során keletkező <span class="highlight">szorzótényezőkből</span> építjük fel az L mátrixot</li>
+                        <li>A végeredményül kapott <span class="highlight">felső háromszög</span> lesz az U mátrix</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Példa LU-felbontásra:</span></p>
+                    <pre><code>    |2 4 -2|  |1 0 0|    |2 4 -2|
+A = |0 1 1| = |2 1 0|  = |0 1 1| = LU
+    |0 0 4|   |-1 1 1|   |0 0 4|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Alkalmazás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Ly = b</span> egyenletrendszer megoldása előre-helyettesítéssel</li>
+                        <li><span class="highlight">Ux = y</span> felső háromszög rendszer megoldása vissza-helyettesítéssel</li>
+                        <li>Hatékony módszer, ha <span class="highlight">ugyanazzal a mátrixszal</span> több egyenletrendszert kell megoldani</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Eliminációs módszerek összehasonlítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan válasszunk módszert?</span> A megfelelő eliminációs módszer kiválasztása függ a <span class="highlight">probléma méretétől</span>, <span class="highlight">típusától</span> és a <span class="highlight">megoldás gyakoriságától</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Módszerek előnyei és hátrányai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gauss-elimináció:</span>
+                            <ul>
+                                <li>Általánosan használható</li>
+                                <li>Viszonylag egyszerű implementáció</li>
+                                <li>Közepes méretű rendszerekig hatékony</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Iterációs módszerek:</span>
+                            <ul>
+                                <li>Nagy rendszereknél hatékonyabbak</li>
+                                <li>Különösen jól működnek ritka mátrixoknál</li>
+                                <li>Memóriaigényük kedvezőbb</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Cramer-szabály:</span>
+                            <ul>
+                                <li>Inkább elméleti jelentőségű</li>
+                                <li>Kis méretű rendszerekre korlátozódik</li>
+                                <li>Számításigénye nagy</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">LU-felbontás:</span>
+                            <ul>
+                                <li>Többszöri megoldásnál előnyös</li>
+                                <li>Stabil numerikus módszer</li>
+                                <li>Hatékony mátrix invertálásnál</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Gyakorlati választás:</span> A problémánk jellegétől függően válasszunk:</p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Kis rendszerek:</span> Gauss-elimináció vagy LU-felbontás</li>
+                        <li><span class="highlight">Nagy, ritka rendszerek:</span> Iterációs módszerek</li>
+                        <li><span class="highlight">Többszöri megoldás:</span> LU-felbontás</li>
+                        <li><span class="highlight">Elméleti vizsgálatok:</span> Cramer-szabály</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Mátrixok trianguláris felbontásai</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Trianguláris felbontások alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a trianguláris felbontás?</span> A trianguláris felbontás során egy négyzetes mátrixot <span class="highlight">két vagy több speciális alakú mátrix szorzatára</span> bontunk fel.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Leggyakoribb felbontási típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">LU felbontás:</span> A = LU, ahol L alsó, U felső háromszög</li>
+                        <li><span class="highlight">Cholesky felbontás:</span> A = LLᵀ, ahol L alsó háromszög</li>
+                        <li><span class="highlight">QR felbontás:</span> A = QR, ahol Q ortonormált, R felső háromszög</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Miért hasznosak a felbontások?</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszerűsítik</span> a lineáris egyenletrendszerek megoldását</li>
+                        <li><span class="highlight">Hatékonyabb</span> inverz számítást tesznek lehetővé</li>
+                        <li><span class="highlight">Jobban kezelik</span> a numerikus hibákat</li>
+                        <li>Alkalmazhatók <span class="highlight">szingularitás vizsgálatra</span> és sajátérték számításra</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>LU felbontás részletesen</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az LU felbontás?</span> Az LU felbontás során a mátrixot egy <span class="highlight">alsó (L)</span> és egy <span class="highlight">felső (U) háromszögmátrix</span> szorzatára bontjuk.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Példa LU felbontásra:</span></p>
+                    <pre><code>    |2 4 -2|  |1 0 0|    |2 4 -2|
+A = |0 1 1| = |2 1 0|  = |0 1 1| = LU
+    |0 0 4|   |-1 1 1|   |0 0 4|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">LU felbontás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Gauss-elimináció</span> végrehajtása az eredeti mátrixon</li>
+                        <li>Az <span class="highlight">eliminációs mátrixok</span> segítségével L meghatározása</li>
+                        <li>A végső <span class="highlight">felső háromszög alak</span> adja U-t</li>
+                        <li><span class="highlight">Ellenőrzés:</span> A = LU egyenlőség teljesülésének vizsgálata</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Alkalmazás egyenletrendszerek megoldására:</span></p>
+                    <ol>
+                        <li><span class="highlight">Ly = b</span> megoldása előre-helyettesítéssel</li>
+                        <li><span class="highlight">Ux = y</span> megoldása vissza-helyettesítéssel</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Cholesky felbontás (LLᵀ)</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Cholesky felbontás?</span> A Cholesky felbontás egy <span class="highlight">speciális LU felbontás</span>, ahol az U mátrix az L transzponáltja (A = LLᵀ). A lineáris egyenletrendszerek megoldására használható.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Alkalmazási feltételek:</span></p>
+                    <ul>
+                        <li>A mátrix legyen <span class="highlight">szimmetrikus</span> (A = Aᵀ)</li>
+                        <li>A mátrix legyen <span class="highlight">pozitív definit</span></li>
+                        <li>Minden <span class="highlight">főminor determinánsa pozitív</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Példa Cholesky felbontásra:</span></p>
+                    <pre><code>|9 -6 3|    |l₁₁ 0 0|    |l₁₁ l₂₁ l₃₁|
+|-6 20 18| = |l₂₁ l₂₂ 0| = |0 l₂₂ l₃₂|
+|3 18 62|   |l₃₁ l₃₂ l₃₃|    |0 0 l₃₃|</code></pre>
+
+                    <p>Megoldás:</p>
+                    <pre><code>   |3 0 0|
+L =|-2 4 0|
+   |1 5 6|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Hatékonyabb</span> az általános LU felbontásnál</li>
+                        <li><span class="highlight">Numerikusan stabilabb</span> más módszereknél</li>
+                        <li><span class="highlight">Kevesebb tárolóhelyet</span> igényel</li>
+                        <li><span class="highlight">Szimmetrikus, pozitív definit</span> mátrixoknál ideális</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>QR felbontás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a QR felbontás?</span> A QR felbontás során a mátrixot egy <span class="highlight">ortogonális (Q)</span> és egy <span class="highlight">felső háromszög (R)</span> mátrix szorzatára bontjuk.</p>
+
+                <div class="step">
+                    <p><span class="key-point">QR felbontás tulajdonságai:</span></p>
+                    <ul>
+                        <li>Q mátrix <span class="highlight">ortogonális</span> (QQᵀ = QᵀQ = I)</li>
+                        <li>R mátrix <span class="highlight">felső háromszög alakú</span></li>
+                        <li>A felbontás <span class="highlight">létezik minden reguláris</span> mátrixra</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Alkalmazási területek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Sajátérték problémák</span> megoldása</li>
+                        <li><span class="highlight">Legkisebb négyzetes</span> problémák</li>
+                        <li><span class="highlight">Túlhatározott egyenletrendszerek</span> megoldása</li>
+                        <li>Numerikusan <span class="highlight">stabil megoldások</span> biztosítása</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. LU felbontás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>LU felbontás alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az LU felbontás?</span> Eliminációs mátrixokkal olyan alakot szeretnénk kialakítani, ahol az <span class="highlight">Ax = b egyenletrendszer</span> bal oldalán egy <span class="highlight">felső háromszögmátrix</span> van. Behelyettesítést egyszerű leolvasással végre tudjuk hajtani.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Általános forma:</span></p>
+                    <pre><code>|X X X| M₁ |X X X| M₂ |X X X|
+|X X X| →  |0 y y| →  |0 X X|
+|X X X|    |0 y y|    |0 0 y|
+   A         M₁A       M₂M₁A</code></pre>
+                    <p>Itt X jelöli a mátrix szorzás előtti elemeit, y pedig az utolsó lépésben megváltozott, nem feltétlenül 0 elemeket. Ezzel az eljárással kapjuk az LU felbontást</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>LU felbontás és Gauss-elimináció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért használjuk?</span> A módszer egy <span class="highlight">lineáris egyenletrendszer megoldására</span> szolgál, ahol a kiinduló mátrixot <span class="highlight">felbontjuk egy alsó háromszög (L) és egy felső háromszög (U) mátrixra</span>. •	Ezáltal az eredeti lineáris egyenletrendszer egyszerűbb, háromszög rendszerekre bontható, amelyek könnyen megoldhatók.</p>
+
+                <div class="step">
+                    <p><span class="key-point">A módszer lépései:</span></p>
+                    <ol>
+                        <li>Először a kiinduló mátrix felbontása L (alsó háromszög) és U (felső háromszög) mátrixokra.</li>
+                        <li><span class="highlight">Ly = b egyenletrendszert</span> oldjuk meg előre-helyettesítéssel</li>
+                        <li>Ezt követi az <span class="highlight">Ux = y felső háromszög rendszer</span> megoldása vissza-helyettesítéssel</li>
+                        <li>Az eredeti rendszer így <span class="highlight">egyszerűbb, háromszög rendszerekre</span> bomlik</li>
+                    </ol>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">MATLAB implementáció:</span></p>
+                    <pre><code>[L, U] = LU(A);      % LU felbontás
+y = LTriSol(L, b);  % előre-helyettesítés
+x = UTriSol(U, y);  % vissza-helyettesítés</code></pre>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Implementációs részletek:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">L mátrix</span> az eliminációs mátrixokból adódik</li>
+                        <li>Az <span class="highlight">U mátrix</span> a végső felső háromszög alakú mátrix</li>
+                        <li>A módszer <span class="highlight">numerikusan stabil</span>, ha nem szükséges sorcsere</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>LU felbontás példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Példa egyenletrendszer:</span> Vegyük a következő lineáris egyenletrendszert:</p>
+
+                <div class="step">
+                    <pre><code>2x₁ + 4x₂ - 2x₃ = 2
+4x₁ + 9x₂ - 3x₃ = 8
+-2x₁ - 3x₂ + 7x₃ = 10</code></pre>
+
+                    <p>Ezt felírjuk mátrix formájú alakra:</p>
+                    <pre><code>|2  4 -2|   |x₁|   |2|
+|4  9 -3| = |x₂| = |8|
+|-2 -3 7|  |x₃|   |10|</code></pre>
+                </div>
+
+                <p><span class="key-point">Átrendezés lépései:</span> Mivel felső háromszög mátrixra szeretnénk bontani a bemeneti mátrixot, ezért jó lenne, ha a főátló alatt csak 0 értékek szerepelnének.</p>
+
+                <div class="step">
+                    <p>Első lépés: Az első sor generálóelemét (a kettest) -2x kell hozzáadni a második sorhoz, és 1x a harmadikhoz:</p>
+                    <pre><code>      |1  0  0| |2  4 -2|   |2  4 -2|
+M₁A = |-2 1  0| |4  9 -3| = |0  1  1|
+      |1  0  1| |-2 -3 7|  |0  1  5|
+
+      |1  0  0| |2|   |2|
+M₁b = |-2 1  0| |8| = |4|
+      |1  0  1| |10|  |12|</code></pre>
+                </div>
+
+                <p><span class="key-point">Második lépés:</span> Láthatjuk, hogy a sor többi eleme is módosult, és eredményül az első oszlopunk már kezd hasonlítani egy trianguláris mátrix első oszlopára. Folytassuk az iterációt a második oszlopon a második elemmel: vonjuk ki a harmadik sorból a második sort!</p>
+
+                <div class="step">
+                    <pre><code>        |1  0  0| |2  4 -2|  |2  4 -2|
+M₁M₂A = |0  1  0| |0  1  1| = |0  1  1|
+        |0 -1  1| |0  1  5|  |0  0  4|
+
+        |1  0  0| |2|  |2|
+M₂M₁A = |0  1  0| |4| = |4|
+        |0 -1  1| |12|  |8|</code></pre>
+                </div>
+
+                <p><span class="key-point">Végeredmény:</span> Megkaptunk az eredeti lineáris egyenletrendszerrel ekvivalens felső háromszögmátrixos alakot:</p>
+
+                <div class="step">
+                    <pre><code>|2  4 -2| |x₁|  |2|
+|0  1  1| |x₂| = |4|
+|0  0  4| |x₃|  |8|</code></pre>
+
+                    <p>És ebből már tudjuk, hogy:</p>
+                    <ul>
+                        <li>4x₃ = 8 => x₃ = 2</li>
+                        <li>x₂ + x₃ = 4 => x₂ = 4 - x₃ = 4 - 2 = 2</li>
+                        <li>2x₁ + 4x₂ - 2x₃ = 2 => x₁ = (2-4x₂+2x₃)/2 = (2-8+4)/2 = (-2)/2 = -1</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Teljes LU felbontás:</span> tehát x = (-1, 2, 2)ᵀ, az LU felbontás:</p>
+                <div class="step">
+                    <pre><code>    |1  0 0|  |1  0  0|    |1  0 0|
+L=L₁L₂ = |2  1  0| = |0  1  0|  = |2  1  0| = LU
+    |-1  0  1|   |0  1  1|   |-1  1  1|</code></pre>
+                </div>
+
+                <p><span class="key-point">Maga az A mátrix felbontás:</span></p>
+                <div class="step">
+                    <pre><code>    |2  4 -2|  |1  0  0|    |2  4 -2|
+A = |0  1  1| = |2  1  0|  = |0  1  1| = LU
+    |0  0  4|   |-1 1  1|   |0  0  4|</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="algorithm">
+            <h2>Főelemkiválasztás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mikor szükséges főelemkiválasztás?</span> Az LU felbontás csak akkor sikeres, ha az A mátrix <span class="highlight">nem szinguláris</span> és <span class="highlight">minden generáló elem nullától különböző</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Problémák és megoldások:</span></p>
+                    <ul>
+                        <li>Ha az A mátrix elemei között <span class="highlight">van nulla</span>, az LU felbontás nem lesz reguláris</li>
+                        <li>Megoldás: <span class="highlight">sorok és oszlopok átrendezése</span> (permutáció)</li>
+                        <li>A permutációval olyan mátrixot kapunk, amelynek <span class="highlight">LU felbontása reguláris</span></li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Permutációs mátrix használata:</span></p>
+                    <ul>
+                        <li>P permutációs mátrixszal: <span class="highlight">PA = LU</span></li>
+                        <li>Ez biztosítja a <span class="highlight">numerikus stabilitást</span></li>
+                        <li>A lineáris egyenletrendszer megoldása <span class="highlight">stabilabbá válik</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Cholesky felbontás (LLᵀ)</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Cholesky felbontás (LLᵀ) alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Cholesky felbontás?</span> Ha a Gauss elimináció során vizsgált mátrix <span class="highlight">pozitív definit</span>, akkor létezik <span class="highlight">U = Lᵀ felbontás</span>, tehát A = LU = LLᵀ.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mikor alkalmazható?</span> Két feltételnek kell teljesülnie:</p>
+                    <ul>
+                        <li><span class="highlight">Szimmetria:</span> A mátrixnak szimmetrikusnak kell lennie</li>
+                        <li><span class="highlight">Pozitív definitség:</span> A mátrixra képzett összes főminor pozitív kell legyen</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Ellenőrzés menete:</span></p>
+                    <ol>
+                        <li>Először a <span class="highlight">szimmetriát</span> vizsgáljuk, ami gyakran ránézésre eldönthető</li>
+                        <li>Majd a <span class="highlight">második feltételt</span> vizsgáljuk meg a mátrixra képzett összes főminor pozitív.</li>
+                        <li>Ha mindkét feltétel teljesül, <span class="highlight">alkalmazható a felbontás</span></li>
+                    </ol>
+                </div>
+                <p><span class="key-point">Mi az eredméye?</span> A felbontás eredménye egy alsó háromszög mátrix (L), amelynek a transzponáltja (Lᵀ) szorozva adja vissza az eredeti mátrixot (A = LLᵀ).</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Cholesky felbontás menete</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mit szeretnénk elérni?</span> Egy olyan mátrixot akarunk kapni, amit fel tudunk bontani két triangulárisra úgy, hogy <span class="highlight">az egyik a másik transzponáltja</span> legyen.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Példa a felbontásra:</span></p>
+                    <pre><code>|9 -6 3|    |l₁₁ 0 0|    |l₁₁ l₂₁ l₃₁|
+|-6 20 18| = |l₂₁ l₂₂ 0| × |0 l₂₂ l₃₂|
+|3 18 62|   |l₃₁ l₃₂ l₃₃|    |0 0 l₃₃|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mátrixszorzás elvégzése:</span> A jobb oldali szorzást elvégezve:</p>
+                    <pre><code>|9 -6 3|    |l²₁₁ l₁₁l₂₁ l₁₁l₃₁|
+|-6 20 18| = |l₁₁l₂₁ l²₂₁+l²₂₂ l₂₁l₃₁+l₂₂l₃₂|
+|3 18 62|    |l₁₁l₃₁ l₂₁l₃₁+l₂₂l₃₂ l²₃₁+l²₃₂+l²₃₃|</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Cholesky felbontás példa számítása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Egyenletek megoldása:</span> A megfelelő értékek behelyettesítése után az alábbi egyenleteket kell megoldanunk:</p>
+
+                <div class="step">
+                    <ol>
+                        <li>l₁₁ = sqrt(l²₁₁) = sqrt(9) = <span class="highlight">3</span></li>
+                        <li>l₁₁l₂₁ = -6 ⟹ 3l₂₁ = -6 ⟹ l₂₁ = <span class="highlight">-2</span></li>
+                        <li>l₁₁l₃₁ = 3 ⟹ 3l₃₁ = 3 ⟹ l₃₁ = <span class="highlight">1</span></li>
+                        <li>l²₂₁+l²₂₂ = 20 ⟹ 4 + l²₂₂ = 20 ⟹ l²₂₂ = 16 ⟹ l₂₂ = <span class="highlight">4</span></li>
+                        <li>l₂₁l₃₁+l₂₂l₃₂ = 18 ⟹ -2 + 4l₃₂ = 18 ⟹ 4l₃₂ = 20 ⟹ l₃₂ = <span class="highlight">5</span></li>
+                        <li>l²₃₁+l²₃₂+l²₃₃ = 62 ⟹ 1² + 5² + l²₃₃ = 62 ⟹ 26 + l²₃₃ = 62 ⟹ l²₃₃ = 36 ⟹ l₃₃ = <span class="highlight">6</span></li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Eredmény:</span> A fenti egyenletrendszer megoldásával megkapjuk L háromszögmátrixát:</p>
+                    <pre><code>   |3 0 0|
+L = |-2 4 0|
+   |1 5 6|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Ellenőrzés:</span> Szorozzuk össze L-t a transzponáltjával:</p>
+                    <pre><code>     |3 0 0|   |3 -2 1| |9 -6 3|
+LLᵀ = |-2 4 0| × |0 4 5| = |-6 20 18| = A
+     |1 5 6|   |0 0 6|  |3 18 62|</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. QR felbontás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>QR felbontás alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a QR felbontás?</span> QR felbontás: egy Rⁿˣⁿ <span class="highlight">reguláris mátrixnak</span> létezik egy olyan QR felbontása, ahol <span class="highlight">Q egy ortogonális mátrix</span>, R pedig egy <span class="highlight">felső háromszögmátrix</span>.</p>
+                <p><span class="key-point">TÉTEL:</span> Tetszőleges A négyzetes valós reguláris mátrixnak létezik az A = Q*R felbontása ortogonális és felső háromszög mátrixra.</p>
+                <div class="step">
+                    <p><span class="key-point">Mikor alkalmazható?</span> Hogyha az A egy olyan n×k-as mátrix, ahol:</p>
+                    <ul>
+                        <li>n ≥ k𝑛 ≥ 𝑘</li>
+                        <li>A mátrix <span class="highlight">teljes oszloprangú</span>, vagyis az oszlopvektorok rangja kk</li>
+                        <li>Ekkor létezik olyan <span class="highlight">n × n-es Q ortogonális mátrix</span>, és olyan R felső háromszögmátrix, hogy A = Q×R</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Ortogonális mátrix tulajdonságai:</span></p>
+                    <ul>
+                        <li>Egy Q négyzetes mátrixot ortogonálisnak nevezünk, ha <span class="highlight">QQᵀ = QᵀQ = I</span></li>
+                        <li>Az ortogonális transzformáció <span class="highlight">megőrzi a vektorok euklideszi normáját</span>:
+                            <pre><code>||Qx||²₂ = (Qx)ᵀQx = xᵀx = ||x||²₂</code></pre>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>QR felbontás numerikus tulajdonságai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért fontos a numerikus stabilitás?</span> Az ortogonális transzformációk a kettes normát megtartják, ezért <span class="highlight">numerikusan stabilisak</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Kondicionáltság:</span></p>
+                    <ul>
+                        <li>Mivel <span class="highlight">cond₂(Q) = 1</span>, ezért a visszahelyettesítés ugyanúgy kondícionált, mint az eredeti feladat</li>
+                        <li>Ez biztosítja a <span class="highlight">numerikus stabilitást</span> a megoldás során</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">MATLAB implementáció:</span></p>
+                    <pre><code>[Q,R] = qr(A,0);
+x = R\(Q'*b);</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>QR felbontás alkalmazásai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire használható?</span> A QR felbontás számos fontos alkalmazási területtel rendelkezik:</p>
+
+                <div class="step">
+                    <p><span class="key-point">Főbb alkalmazási területek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Lineáris egyenletrendszerek</span> megoldása
+                            <ul>
+                                <li>Ax = b megoldása QR felbontással</li>
+                                <li>Numerikusan stabilabb más módszereknél</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Legkisebb négyzetek módszere</span>
+                            <ul>
+                                <li>Túlhatározott egyenletrendszerek megoldása</li>
+                                <li>Adatillesztési problémák</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Sajátérték-feladatok</span> megoldása
+                            <ul>
+                                <li>QR-algoritmus alapja</li>
+                                <li>Mátrixok sajátértékeinek meghatározása</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">Lineáris függetlenség</span> vizsgálata
+                            <ul>
+                                <li>Mátrix rangjának meghatározása</li>
+                                <li>Bázistranszformációk végrehajtása</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Előnyök más felbontásokkal szemben:</span></p>
+                    <ul>
+                        <li><span class="highlight">Numerikus stabilitás:</span> Az ortogonális transzformációk miatt</li>
+                        <li><span class="highlight">Általánosabb alkalmazhatóság:</span> Nem csak négyzetes mátrixokra</li>
+                        <li><span class="highlight">Jobb kondicionáltság:</span> A visszahelyettesítés során kedvezőbb numerikus tulajdonságok</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>7. Lineáris Egyenletrendszerek Megoldása Iterációs Módszerekkel</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Iterációs módszerek alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mikor használjuk az iterációs módszereket?</span> Kis és közepes lineáris egyenletrendszerekre, továbbá nagyméretű sávmátrixokra <span class="highlight">direkt módszerek ajánlhatóak</span>. A nagyméretű, de nem feltétlen ritka mátrixokkal rendelkező lineáris egyenletrendszerek megoldására <span class="highlight">iterációs eljárások használatosak</span>.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Miért fontosak?</span> Ezek a feladatok a direkt módszerekkel <span class="highlight">használhatatlanul lassú műveletigényűek</span> lennének, ezért szükségesek az iterációs megoldások.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Jacobi iteráció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan működik?</span> A Jacobi iteráció egy <span class="highlight">lényegretörő módszer</span> a lineáris egyenletrendszerek megoldására.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Az eljárás lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Fejezzük ki</span> az egyes változókat külön-külön sorokból, és kerüljenek ők egy oldalra.</li>
+                        <li>Vegyünk egy <span class="highlight">indulóvektort</span>, és határozzuk meg így az egyenlet jobb oldali értékét</li>
+                        <li>A kapott vektort a <span class="highlight">következő iterációban használjuk</span> indulóvektorként</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Konvergencia feltételei:</span></p>
+                    <ul>
+                        <li>Vannak esetek, amikor a Jacobi-iteráció nem konvergál, csak akkor ha:
+                            <ul>
+                                <li>((azaz a kapott eredmények nem közelítenek a valós megoldáshoz))</li>
+                                <li>A mátrix <span class="highlight">diagonális dominanciája</span> teljesül, vagy</li>
+                                <li>A <span class="highlight">norma kisebb, mint 1</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <p><span class="key-point">Norma:</span> A norma egy olyan függvény, amely egy vektor vagy<span class="highlight"> „méretét”,</span> vagy <span class="highlight">"nagyságát" méri.</span> </p>
+                <div class="step">
+                    <p><span class="key-point">Norma típusok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Végtelen norma:</span> A vektor abszolút értékű elemei közül a legnagyobb elemet veszi. Mátrix esetében a sorok abszolút értékű elemeinek összegéből a legnagyobbat választja</li>
+                        <li><span class="highlight">Euklideszi norma:</span> A vektor abszolút értékeinek négyzetösszegéből vett négyzetgyököt jelenti</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Konvergencia jelentősége:</span> A konvergenciához szükséges, hogy a használt <span class="highlight">norma értéke kisebb legyen, mint 1</span>, ami biztosítja, hogy a sorozat közeledik egy határértékhez, nem pedig divergenssé válik.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gauss-Seidel iteráció</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a különbség a Jacobi iterációhoz képest?</span> A számolás közben is a <span class="highlight">legújabb eredményt használjuk</span>, nem csak a végén.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Példa a különbségre:</span></p>
+                    <pre><code>x₁ᵏ⁺¹ = (4+xᵏ₂-xᵏ₃)/4
+xᵏ⁺¹₂ = (1 + 2xᵏ⁺¹₁ + xᵏ₃)/4
+xᵏ⁺¹₃ = (4 + 2xᵏ⁺¹₁ - xᵏ⁺¹₂)</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Előnyök:</span></p>
+                    <ul>
+                        <li><span class="highlight">Gyorsabb konvergencia:</span> Általában kevesebb lépésben kihozza az eredményt</li>
+                        <li><span class="highlight">Hatékonyabb memóriahasználat:</span> Az új értékeket azonnal felhasználjuk</li>
+                        <li><span class="highlight">Jobb pontosság:</span> A frissebb értékek használata miatt pontosabb eredményt ad</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Sebesség javítása:</span> A Jacobi iteráció sebessége javítható úgy, ha a <span class="highlight">vektorkomponensek meghatározása után</span> az iterációs képlet jobb oldalán már az <span class="highlight">új értékeket használjuk</span>. Ez azt jelenti, hogy amit már egyszer kifejeztünk, később inkább azt használjuk, ne az eredeti változatát.</p>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Konvergencia tulajdonságok:</span> Egy iterációs sorozat akkor globálisan konvergens, ha:</p>
+                    <ul>
+                        <li>A mátrix <span class="highlight">spektrálsugara p(B)</span> (ami a legnagyobb sajátérték abszolút értéke) kisebb, mint 1</li>
+                        <li>Ha létezik olyan norma, amelynek értéke <span class="highlight">kisebb, mint 1</span>, akkor az iteráció biztosan közelít egy megoldáshoz</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Konvergencia tulajdonságok:</span></p>
+                    
+                    <ul>
+                        <li>Az iterációs módszerek egy fontos tulajdonsága, hogy <span class="highlight">konvergensek-e</span>, azaz kellően sok iterációt végrehajtva közelítjük-e a keresett megoldást.</li>
+                        <li>Egy iterációs sorozat akkor <span class="highlight">globálisan konvergens</span>, ha:
+                            <ul>
+                                <li>A mátrix <span class="highlight">spektrálsugara p(B)</span> (ami a legnagyobb sajátérték abszolút értéke) kisebb, mint 1</li>
+                                <li>Ez azt jelenti, hogy ha egy mátrixhoz létezik olyan <span class="highlight">norma, amelynek értéke kisebb, mint 1</span>, akkor az iteráció biztosan közelít egy megoldáshoz, nem pedig eltávolodik attól</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>8. Mátrixok Sajátértékeinek és Sajátvektorainak Numerikus Meghatározása</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Alapvető definíció és meghatározás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a sajátérték és sajátvektor?</span> Egy A mátrix sajátértéke (λ) és sajátvektorára (v) igaz kell, hogy legyen a <span class="highlight">sajátérték egyenlet</span>: Av = λv, amiből következik v(A-λ) = 0</p>
+
+                <div class="step">
+                    <p><span class="key-point">Meghatározás módja:</span></p>
+                    <ul>
+                        <li>A sajátértékeket és sajátvektorokat az <span class="highlight">(A - λI)x = 0</span> homogén egyenletrendszer megoldásával kapjuk</li>
+                        <li>A sajátértékeket a <span class="highlight">karakterisztikus polinom</span> det(A - λI) = 0 megoldásai adják</li>
+                        <li>A <span class="highlight">spektrumnak</span> nevezzük a sajátértékek halmazát, amit Λ(A)-val jelölünk</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Numerikus stabilitás és kondicionáltság</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a kondicionáltság jelentősége?</span> A sajátértékek kondicionáltsága azt mutatja meg, hogy a mátrix <span class="highlight">kis változtatásai mennyire befolyásolják</span> a sajátértékeket.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Kondicionáltsági tulajdonságok:</span></p>
+                    <ul>
+                        <li>A kondíciószám a <span class="highlight">bal- és jobb sajátvektorok által bezárt szög</span> koszinuszának reciproka</li>
+                        <li><span class="highlight">Szimmetrikus és Hermite-szimmetrikus</span> mátrixok esetén a sajátértékek jól kondicionáltak</li>
+                        <li>A <span class="highlight">többszörös vagy egymáshoz közeli</span> sajátértékek rosszul kondicionáltak lehetnek</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Gyakorlati megfontolások:</span></p>
+                    <ul>
+                        <li>A numerikus módszerek <span class="highlight">stabilitása kritikus szempont</span></li>
+                        <li>A Matlab például a <span class="highlight">"balance" utasítást</span> ajánlja a kondicionáltság javítására</li>
+                        <li>A kis változtatás is <span class="highlight">jelentősen befolyásolhatja</span> a sajátvektorokat, míg a sajátértékek stabilok maradtak</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Korlátok és becslések</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen korlátok léteznek?</span> A sajátértékek meghatározásánál több fontos korlát és becslés is létezik:</p>
+
+                <div class="step">
+                    <ul>
+                        <li>A <span class="highlight">spektrálsugár</span> (legnagyobb abszolút értékű sajátérték) nem nagyobb, mint bármely mátrixnorma</li>
+                        <li>A <span class="highlight">Gershgorin-körök tétele</span> hasznos becslést ad a sajátértékek elhelyezkedésére</li>
+                        <li>A sajátértékek a <span class="highlight">Gershgorin-körök uniójában</span> találhatók</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Numerikus módszerek kiválasztása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Milyen szempontok alapján válasszunk módszert?</span> A megfelelő numerikus módszer kiválasztása függ a feladat jellegétől:</p>
+
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Nagyméretű ritka mátrixok</span> esetén iteratív módszerek ajánlottak</li>
+                        <li><span class="highlight">Kis méretű tömör mátrixoknál</span> direkt módszerek használhatók</li>
+                        <li>A mátrix struktúrája (pl. <span class="highlight">szimmetrikus, diagonális</span>) befolyásolja a választandó módszert</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kulcsfontosságú szempontok</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mire kell különösen figyelni?</span> A numerikus meghatározás során több kritikus szempontot kell figyelembe venni:</p>
+
+                <div class="step">
+                    <ul>
+                        <li>A <span class="highlight">kondicionáltság vizsgálata</span> és javítása</li>
+                        <li>Megfelelő <span class="highlight">előfeldolgozás</span> (pl. kiegyensúlyozás)</li>
+                        <li>A mátrix <span class="highlight">tulajdonságainak figyelembevétele</span></li>
+                        <li>A <span class="highlight">numerikus stabilitás</span> biztosítása</li>
+                        <li>A használt módszer <span class="highlight">gondos megválasztása</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Gyakorlati példa</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Példa 2x2-es mátrix sajátértékeinek meghatározására:</span></p>
+
+                <div class="step">
+                    <p>Legyen A mátrixunk:</p>
+                    <pre><code>    |4  1|
+A = |1  3|</code></pre>
+
+                    <p>1. Karakterisztikus polinom felírása:</p>
+                    <pre><code>det(A - λI) = |4-λ   1  |
+              |1    3-λ| = 0</code></pre>
+
+                    <p>2. Determináns kifejtése:</p>
+                    <pre><code>(4-λ)(3-λ) - 1 = 0
+λ² - 7λ + 11 = 0</code></pre>
+
+                    <p>3. Megoldás:</p>
+                    <pre><code>λ₁ = (7 + √9)/2 = 5
+λ₂ = (7 - √9)/2 = 2</code></pre>
+
+                    <p>4. Sajátvektorok meghatározása λ₁ = 5 esetén:</p>
+                    <pre><code>(4-5)x₁ + x₂ = 0
+x₁ + (3-5)x₂ = 0</code></pre>
+
+                    <p>Ebből: v₁ = (1, 1)ᵀ a sajátvektor</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../assets/js/tetel.js"></script>
 </body>
 </html>
