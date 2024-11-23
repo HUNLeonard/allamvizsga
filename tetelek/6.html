@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tétel 6 - </title>
+    <title>Tétel 6 - Közelítő és szimbolikus számítások II</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tetel.css">
     <script defer data-domain="allamvizsga.netlify.app" src="https://plausible.io/js/script.js"></script>
@@ -19,7 +19,737 @@
         Lagrange interpoláció.<br>
         <span class="highlight">Numerikus integrálás.</span><br>
     </em></p>
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>1. Alapvető szükséges fogalmak</h2>
+    </div>
 
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Deriválás és differenciálhatóság</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a függvény deriváltja?</span> Egy f(x) függvény deriváltja az <span class="highlight">x pontban található érintő meredeksége</span>. Ez alapvető jelentőségű a függvények viselkedésének megértésében.</p>
+
+                <p><span class="key-point">Mikor differenciálható egy függvény?</span> Egy f(x) függvény akkor differenciálható, ha az <span class="highlight">x pontjában jól közelíthető lineáris függvénnyel</span>. Ez a tulajdonság elengedhetetlen számos numerikus módszer alkalmazásához.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mit jelent a differenciálhatóság a gyakorlatban?</span></p>
+                    <ul>
+                        <li>A függvénynek van <span class="highlight">érintője minden pontban</span></li>
+                        <li>A függvény <span class="highlight">folytonos</span> az adott pontban</li>
+                        <li>A függvény <span class="highlight">deriváltja létezik</span> az adott pontban</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Zérushelyek és tulajdonságaik</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a zérushely?</span> Egy f(x) függvény zérushelye az a pont, ahol a függvény <span class="highlight">metszi az x tengelyt</span>, azaz ahol f(x) = 0.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Zérushelyek típusai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyszeres zérushely:</span> Az x* pont egyszeres zérushelye f-nek, ha f'(x*) ≠ 0, tehát a függvény deriváltjában x nem zérushely.</li>
+                        <li><span class="highlight">Izolált zérushely:</span> Az x* pont izolált zérushelye f-nek, ha f(x*) = 0, és létezik olyan (Epsilon) ε > 0 küszöbszám, hogy az (x* - ε, x* + ε) intervallumban x* az egyetlen zérushely.</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miért fontosak a zérushelyek?</span> A zérushelyek segítenek megérteni a függvény <span class="highlight">viselkedését</span> és kulcsfontosságúak számos <span class="highlight">matematikai probléma megoldásában</span>.</p>
+                <div class="step">
+                    <p><span class="key-point">Milyen függvényosztályokat ismerünk?</span></p>
+                    <ul>
+                        <li><span class="highlight">Polinomiális függvények</span></li>
+                        <li><span class="highlight">Lineáris függvények</span></li>
+                        <li><span class="highlight">Exponenciális függvények</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Vandermonde-mátrix és szorzat jelölés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Vandermonde-mátrix?</span> Egy speciális mátrix, ahol a sorok <span class="highlight">mértani sorozatot alkotnak</span>. A mátrix alakja:</p>
+
+                <pre><code>    |1 x₁ x₁² ... xⁿ⁻¹₁|
+    |1 x₂ x₂² ... xⁿ⁻¹₂|
+V = |1 x₃ x₃² ... xⁿ⁻¹₃|
+    |: : : : : : : : : :|
+    |1 xₘ xₘ² ... xⁿ⁻¹ᵐ|</code></pre>
+
+                <div class="step">
+                    <p><span class="key-point">П szimbólum jelentése:</span></p>
+                    <ul>
+                        <li>A П egy halmaz feletti <span class="highlight">összeszorzást jelenti</span></li>
+                        <li><pre><code>7
+П = k
+k=3
+</code></pre> k = (3)(4)(5)(6)(7)
+                        </li>
+                        <li>Gyakran használjuk <span class="highlight">szorzatsorozatok tömör jelölésére</span></li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miért fontos a Vandermonde-mátrix?</span> A Vandermonde-mátrix kulcsfontosságú az <span class="highlight">interpolációs problémák megoldásában</span> és <span class="highlight">polinom rendszerek vizsgálatában</span>.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>2. Newton- (érintő), szelő- és húrmódszer</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Newton (érintő) módszer - Részletes</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a Newton módszer?</span> A Newton módszer az <span class="highlight">egyik legjobb módszer valós függvények zérushelyeinek közelítésére</span>. Különösen hatékony, ha az iteráció egy gyökhöz elég közelről indul.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Milyen feltételeket kell teljesíteni?</span></p>
+                    <ul>
+                        <li>Az f(x) = 0 egyenlet x* <span class="highlight">egyszeres, izolált zérushelyét</span> keressük</li>
+                        <li>A zérushely <span class="highlight">környezetében f(x) differenciálható</span></li>
+                        <li>Szükség van egy x₀ <span class="highlight">megfelelő kezdőértékre</span> a zérushely környezetéből</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan működik részletesen?</span></p>
+                    <ol>
+                        <li>Kiválasztunk egy <span class="highlight">x₀ kezdőértéket</span></li>
+                        <li>Az iterációs képletet alkalmazzuk: <span class="highlight">xₖ₊₁ = xₖ − [f(xₖ) / f'(xₖ)]</span></li>
+                        <li>A folyamatot addig ismételjük, amíg <span class="highlight">megfelelő pontosságot</span> nem érünk el</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A módszer geometriai értelmezése:</span></p>
+                    <ol>
+                        <li>Adott P(x₀, y₀) ponton áthaladó m meredekségű egyenes egyenlete: <span class="highlight">y − y₀ = m(x − x₀)</span></li>
+                        <li>A k-adik iterációban az (xₖ , f(xₖ)) ponthoz tartozó érintőt és annak zérushelyét akarjuk meghatározni. <span class="highlight">y − f(xₖ) = m(x − xₖ)</span></li>
+                        <li>Az adott pontba húzott érintő meredeksége: <span class="highlight">m = f'(xₖ)</span></li>
+                        <ol><li>Behelyettesítve: <span class="highlight">y − f(xₖ) = f'(xₖ)(x − xₖ)</span></li></ol>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Zérushely meghatározása:</span></p>
+                    <ol>
+                        <li>Mivel a <span class="highlight">zérushelyet keressük</span>, ezért y = 0, tehát elhagyható.</li>
+                        <ol>
+                        <li>Átrendezve: <span class="highlight">−f(xₖ) = f'(xₖ)(x − xₖ)</span></li>
+                        </ol>
+                        <li>Ebből kapjuk az iterációs képletet: <span class="highlight">xₖ₊₁ = xₖ − f(xₖ)/f'(xₖ)</span></li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A módszer hátrányai:</span></p>
+                    <ul>
+                        <li><span class="highlight">Deriváltak számítása szükséges</span>, ami költséges művelet</li>
+                        <li>Ha a függvény <span class="highlight">nem explicit módon adott</span>,(csak behelyettesíteni tudunk) a derivált nem számítható</li>
+                        <li>Ha csak <span class="highlight">közelítő algoritmusunk</span> van, nem tudjuk kiszámolni a deriváltat</li>
+                        <ol><li>- Ilyenkor alkalmas inkább érintő módszert használni.</li></ol>
+                        <li>Néha <span class="highlight">rossz kezdőérték</span> esetén nem konvergál</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Konvergencia:</span> A Newton módszer általában <span class="highlight">kvadratikusan konvergál</span>, ami azt jelenti, hogy a hibák négyzetesen csökkennek minden iterációban, feltéve hogy megfelelő kezdőértéket választottunk.</p>
+
+                <p><span class="key-point">Mikor érdemes használni?</span> A Newton módszer különösen hatékony, amikor:</p>
+                <ul>
+                    <li>A függvény <span class="highlight">deriváltja könnyen számítható</span></li>
+                    <li>Van <span class="highlight">jó kezdeti becslésünk</span> a zérushelyre</li>
+                    <li><span class="highlight">Gyors konvergenciára</span> van szükségünk</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Szelő módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Miért használjuk?</span> A szelő módszert akkor alkalmazzuk, amikor <span class="highlight">szeretnénk elkerülni a deriváltak számítását</span>. Ez különösen hasznos, ha a függvény deriváltja nem ismert vagy nehezen számítható. Általában egyszerűbb, ha f'(xₖ) helyett a numerikus deriváltat használjuk.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan működik?</span></p>
+                    <ul>
+                        <li>Két <span class="highlight">kezdőértéket választunk</span> (x₀ és x₁)</li>
+                        <li>Az xₖ₊₁ pont az <span class="highlight">(xₖ, f(xₖ)) és (xₖ-1, f(xₖ₋₁)) pontokon átmenő egyenes</span> x tengellyel vett metszéspontja</li>
+                        <li>A módszert érdemes olyan kezdőértékekkel indítani, amelyek <span class="highlight">közrefogják a keresett x* gyököt</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Mikor hatékony?</span> Ha f'(x*) > 0 és f"(x*) > 0, akkor x*-nál nagyobb (de ahhoz közeli) <span class="highlight">kezdőértékekkel szigorúan monoton konvergencia</span> érhető el.</p>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Húr módszer</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a húr módszer lényege?</span> A húr módszer a <span class="highlight">szelő módszer egy speciális változata</span>, ahol a kezdeti pontokban a függvényértékek ellentétes előjelűek.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan működik?</span></p>
+                    <ul>
+                        <li>A húr-módszer egy <span class="highlight">numerikus eljárás</span> a nemlineáris egyenletek gyökeinek meghatározására.</li>
+                        <li>Két pontot választunk, ahol a <span class="highlight">függvény előjelet vált</span></li>
+                        <li>Két pont közötti egyenest meghosszabbítjuk, és meghatározzuk az x tengellyel való metszéspontját. </li>
+                        <li>Ez az új pont lesz a következő iterációs lépés.</li>
+                        <li>Az új pontot mindig úgy választjuk, hogy az <span class="highlight">előjelkülönbség fennmaradjon</span></li>
+                        <li>Biztosítva a gyök mindig a <span class="highlight">vizsgált intervallumban marad</span></li>
+                        <li>A <span class="highlight">zérushely mindig a választott pontok között</span> lesz</li>
+                        <li>Minden iterációban azt az xₖ₊₁ pontot választjuk, amellyel az <span class="highlight">előjel-különbség fennmarad</span></li>
+                    </ul>
+                </div>
+                <p><span class="key-point">TLDR lényeg:</span> Azt az algoritmus—változatot, amely felteszi, hogy a kezdeti x₀, x₁ pontokban az f(x) függvény ellentétes előjelű, és f (xₖ₊₁) előjele függvényében a megelőző két pontból azt választja a következő iterációs lépéshez, amelyikkel ez a tulajdonság fennmarad, húrmódszernek nevezzük.</p>
+                <div class="step">
+                    <p><span class="key-point">Konvergencia összehasonlítás:</span></p>
+                    <ol>
+                        <li><span class="highlight">Newton módszer:</span> Általában a leggyorsabb konvergencia</li>
+                        <li><span class="highlight">Húr módszer:</span> Közepes sebességű konvergencia</li>
+                        <li><span class="highlight">Szelő módszer:</span> Leglassabb konvergencia</li>
+                    </ol>
+                    <p><span class="highlight">Viszont</span> az utóbbi kettő csak a függvényt kiszámító szubrutinra támaszkodnak és semmi egyéb információra nincs szükségük a függvényről (newtonnal ellentétben.)</p>
+                    <p>Tehát: <span class="highlight">Newton > Húr > Szelő</span> konvergencia szempontjából</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>3. Konjugált Gradiens Eljárás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Alapelvek és működés</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <a href="https://www.youtube.com/watch?v=h4cG8jLGmKg" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube elmagyarázva
+                </a>
+                <a href="https://www.youtube.com/watch?v=eAYohMUpPMA" class="algorithm-link" target="_blank">
+                    <i class="fas fa-video"></i> Youtube elmagyarázva
+                </a>
+                <p><span class="key-point">Mi az eljárás alapelve?</span> A konjugált gradiens módszer azon alapul, hogy egy <span class="highlight">többváltozós függvény a gradiensvektorával ellentétes irányban csökken a leggyorsabban</span>. Ez az elv teszi különösen hatékonnyá a módszert.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Mi a módszer alapötlete?</span></p>
+                    <ul>
+                        <li>A <span class="highlight">keresési irányként</span> a gradiensvektor (-1)-szeresét választjuk</li>
+                        <li>Ez megegyezik az adott pontbeli <span class="highlight">r = b - Ax maradékvektorral</span></li>
+                        <li>Az így nyert iterációs módszert a θ(x) függvény minimumhelyének megkeresésére gradiens-módszereknek, másképpen a legmeredekebb ereszkedés módszerének hívjuk. </li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Miért szükséges a konjugált változat?</span></p>
+                    <ul>
+                        <li>Az egyszerű gradiens módszer gyakran <span class="highlight">lassú konvergenciát</span> eredményez</li>
+                        <li>A konjugált változat <span class="highlight">hatékonyabb keresési irányokat</span> használ</li>
+                        <li>A konjugált irányok <span class="highlight">gyorsabb konvergenciát</span> biztosítanak</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Mi a különbség a gradiens és konjugált gradiens módszer között?</span></p>
+                <div class="step">
+                    <ul>
+                        <li><span class="highlight">Gradiens módszer:</span> Mindig a gradienssel ellentétes irányában keres</li>
+                        <li><span class="highlight">Konjugált gradiens:</span> Az sₖ₊₁ keresési irányt úgy állítja be, hogy az A-ortogonális legyen az sₖ keresési irányra és az összes megelőző keresési irányra is</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Miért hatékonyabb ez a megközelítés?</span> Az A-ortogonális keresési irányok használata <span class="highlight">gyorsabb konvergenciát</span> eredményez, mivel minden új irány "független" az előzőektől a mátrix szempontjából.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Konjugált gradiens-módszer iteratív algoritmusa</span></p>
+                    <p><strong>Definíció:</strong> Adott egy A ∈ Rⁿ×ⁿ szimmetrikus, pozitív definit mátrix. Az x és y vektorok <span class="highlight">A-konjugáltak (vagy A-ortogonálisak)</span>, ha xᵀAy = 0.</p>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Hogyan határozzuk meg az új keresési irányt?</span></p>
+                    <ul>
+                        <li>Lineáris algebrai azonosságok alkalmazásával az új keresési irány: <span class="highlight">sₖ₊₁ = rₖ₊₁ + (rᵀₖ₊₁ rₖ₊₁) / (rᵀₖ rᵀₖ) * sₖ</span></li>
+                        <li>Az <span class="highlight">első iterációban</span> s₁-et egyszerűen a maradékvektorral tesszük egyenlővé</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Lépéshossz optimalizálás</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Hogyan határozzuk meg az optimális lépéshosszt?</span> A keresési irány mentén az optimális α lépésköz <span class="highlight">közvetlenül meghatározható</span>, nem kell adaptív módon keresni.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Az optimális α meghatározása:</span></p>
+                    <ol>
+                        <li>Az új vektor sₖ keresési irány mentén <span class="highlight">xₖ + αₖsₖ</span> alakú lesz</li>
+                        <li>Minimalizálni kell a <span class="highlight">θ(xₖ + αₖsₖ)</span> értéket α függvényében az optimális α lépésköz beállításához.</li>
+                        <li>A minimum ott van, ahol az <span class="highlight">α szerinti derivált 0</span></li>
+                        <li>Ebből kapjuk: <span class="highlight">αₖ = (sᵀₖrₖ) / (sᵀₖAsₖ)</span></li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Reziduális vektor számítása:</span></p>
+                    <ul>
+                        <li>Az új reziduális vektor: <span class="highlight">rₖ₊₁ = b - Axₖ₊₁</span></li>
+                        <li>Kifejezve: <span class="highlight">rₖ₊₁ = rₖ - αₖAsₖ</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Matematikai háttér</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Kulcs egyenletek és levezetések:</span></p>
+                    <ul>
+                        <li>Új reziduális vektor: <span class="highlight">rₖ₊₁ = b - Axₖ₊₁ = b - A(xₖ + αsₖ) = rₖ - αAsₖ</span></li>
+                        <li>Optimális α meghatározása: <span class="highlight">αₖ = (sᵀₖrₖ) / (sᵀₖAsₖ)</span></li>
+                        <li>Új keresési irány: <span class="highlight">sₖ₊₁ = rₖ₊₁ + (rᵀₖ₊₁rₖ₊₁) / (rᵀₖrₖ) * sₖ</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Iteratív algoritmus</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mik a kezdeti feltételek?</span></p>
+                <p></p>
+                <ul>
+                    <li>A ∈ Rⁿ×ⁿ <span class="highlight">pozitív definit mátrix</span></li>
+                    <li>b ∈ Rⁿ <span class="highlight">adott vektor</span></li>
+                    <li>x ∈ Rⁿ <span class="highlight">tetszőleges kezdővektor</span></li>
+                    <li>Az első keresési irány és r₁ a <span class="highlight">gradiens (-1)-szerese</span></li>
+                </ul>
+
+                <div class="step">
+                    <p><span class="key-point">Az algoritmus lépései:</span></p>
+                    <p>Amíg nem teljesülnek a megállási feltételek a következőket iteráljuk:</p>
+                    <ol>
+                        <li><span class="highlight">αₖ := (rᵀₖrₖ) / (sᵀₖAsₖ)</span></li>
+                        <li><span class="highlight">xₖ₊₁ = xₖ + αₖsₖ</span></li>
+                        <li><span class="highlight">rₖ₊₁ = rₖ - αₖAsₖ</span></li>
+                        <li><span class="highlight">βₖ₊₁ := (rᵀₖ₊₁rₖ₊₁) / (rᵀₖrₖ)</span></li>
+                        <li><span class="highlight">sₖ₊₁ = rₖ₊₁ + βₖ₊₁sₖ</span></li>
+                    </ol>
+                </div>
+                <div class="step">
+                    <p><span class="key-point">Fontos észrevételek az algoritmusról:</span></p>
+                    <ul>
+                        <li>Az αₖ értéket <span class="highlight">más formában határozzuk meg</span> mint korábban</li>
+                        <li>Érvényes az összefüggés viszont: <span class="highlight">rᵀₖ sₖ = rᵀₖ (rₖ + βₖ sₖ₋₁) = rᵀₖ rₖ + βₖ rᵀₖsₖ₋₁</span></li>
+                        <li>Ez azért igaz, mert az <span class="highlight">rₖ residuális vektor merőleges</span> az sₖ₋₁ keresési irányra</li>
+                        <li>Ezt onnan tudjuk, hogy az <span class="highlight">optimális α meghatározásakor</span> 0 = -rᵀₖ₊₁ sk teljesül</li>
+                        <li>Ez biztosítja, hogy a <span class="highlight">lineáris egyenletrendszer két oldala</span> a pontokban adott kis pozitív értékek alatt maradjon</li>
+                    </ul>
+                </div>
+
+                <p><span class="key-point">Fontos tulajdonságok:</span></p>
+                <ul>
+                    <li>Az algoritmus <span class="highlight">automatikusan meghatározza</span> az optimális lépésközt</li>
+                    <li>A reziduális vektor <span class="highlight">merőleges</span> az előző keresési irányra</li>
+                    <li>A módszer <span class="highlight">hatékonyan kezeli</span> a nagy méretű, ritka lineáris egyenletrendszereket</li>
+                </ul>
+
+                <div class="step">
+                    <p><span class="key-point">MATLAB implementáció:</span> <i>(DONT @ ME, nem is tanultam MATLABET amikor nekem tanították a tárgyat)</i></p>
+                    <pre><code>function [x] = congrad(A,b,x)
+    r=b-A*x;
+    p=r;
+    rsold=r'*r;
+
+    for i=1:length(b)
+        Ap=A*p;
+        alpha=rsold/(p'*Ap);
+        x=x+alpha*p;
+        r=r-alpha*Ap;
+        rsnew=r'*r;
+        if sqrt(rsnew) < 1e-10
+            break;
+        end
+        p=r+(rsnew/rsold)*p;
+        rsold=rsnew;
+    end
+end</code></pre>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>4. Lagrange Interpoláció</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Az interpoláció alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az interpoláció?</span> Az interpoláció olyan feladat, ahol adott <span class="highlight">(xᵢ, yᵢ), i = 1, 2, … m pontpár sorozatához</span> előállítunk egy olyan f(x) függvényt, amely:</p>
+                <ul>
+                    <li>Egy <span class="highlight">előre adott függvényosztályba</span> tartozik</li>
+                    <li>Az xᵢ alappontokban a <span class="highlight">hozzájuk tartozó yᵢ értékeket</span> veszi fel</li>
+                </ul>
+
+                <div class="step">
+                    <p><span class="key-point">Interpoláció vs. Extrapoláció:</span></p>
+                    <ul>
+                        <li><span class="highlight">Interpoláció:</span> A közelítő függvény értékét a legkisebb és legnagyobb xᵢ által meghatározott intervallumon belül becsüljük</li>
+                        <li><span class="highlight">Extrapoláció:</span> Ha az adott pont nincs benne az intervallumban</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Lagrange interpoláció jellemzői</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mikor használjuk?</span> A Lagrange interpolációt akkor használjuk, amikor <span class="highlight">polinommal szeretnénk közelíteni</span> az adott függvényt.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Alapfeltételek:</span></p>
+                    <ul>
+                        <li>Az alappontok <span class="highlight">páronként különbözők</span></li>
+                        <li>A függvény <span class="highlight">nem mehet át két y = f(x) értékhez tartozó ponton</span>(tehát ugyanazon a ponton kétszer).</li>
+                        <li>A módszer <span class="highlight">egy n-1-edfokú interpolációs polinomot</span> hoz létre</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A Vandermonde-mátrix szerepe:</span></p>
+                    <p>Az interpolációs feltételek egy <span class="highlight">lineáris egyenletrendszert</span> határoznak meg, amely Vandermonde-mátrixszal írható le:</p>
+                    <pre><code>|1 x₁ x²₁ ... xⁿ⁻¹₁| |a₀| |y₁|
+|1 x₂ x²₂ ... xⁿ⁻¹₂| |a₁| |y₂|
+|: : : : :| |:| = |:|
+|1 xₙ x²ₙ ... xⁿ⁻¹| |aₙ| |yₙ|</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A Vandermonde-determináns:</span></p>
+                    <p>A mátrix determinánsa az alábbi képlettel számítható:</p>
+                    <code>П (xᵢ - xⱼ), ahol i>j</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Lagrange-féle interpolációs polinom</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Milyen következtetést vonhatunk le?</span></p>
+                    <p>Ha az interpolációs alappontok <span class="highlight">páronként különböznek</span> (amit feltételként már kikötöttünk), akkor ez <span class="highlight">pontosan egy n-1-edfokú interpolációs polinomot</span> fog létrehozni.</p>
+                </div>
+
+                <p><span class="key-point">Mi a Lagrange-polinom képlete?</span></p>
+                <div class="step">
+                    <pre><code>        nᵢⱼ
+Lᵢ(x) =  П  = (x-xⱼ)/(xᵢ-xⱼ) = 
+      j=1, j≠i
+
+= [(x-x₁)(x-x₂)...(x-xᵢ₋₁)(x-xᵢ₊₁)...(x-xₙ)]/
+[(xᵢ-x₁)(xᵢ-x₂)...(xᵢ-xᵢ₋₁)(xᵢ-xᵢ₊₁)...(xᵢ-xₙ)]</code></pre>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A polinom tulajdonságai:</span></p>
+                    <ul>
+                        <li>Ha x = xᵢ, akkor <span class="highlight">Lᵢ(xᵢ) = 1</span>, mert a számláló és nevező megegyezik</li>
+                        <li>Viszont ha x = xⱼ (ahol i≠j), akkor <span class="highlight">Lᵢ(xⱼ) = 0</span>, mert a számlálóban lesz egy nulla tényező</li>
+                        <li>Az így előállított polinom <span class="highlight">ugyanazokat az értékeket veszi fel az alappontokban</span>, mint az eredeti függvény. |> Minden i-re pₙ(xᵢ) = f(xᵢ) teljesül</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">A módszer előnyei:</span></p>
+                    <ul>
+                        <li><span class="highlight">Egyértelmű megoldás:</span> Pontosan egy n-1-edfokú interpolációs polinom létezik</li>
+                        <li><span class="highlight">Pontos illeszkedés:</span> A polinom pontosan átmegy az adott pontokon</li>
+                        <li><span class="highlight">Explicit formula:</span> A megoldás zárt alakban felírható</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Korlátok és megfontolások:</span></p>
+                    <ul>
+                        <li>Magas fokszám esetén a <span class="highlight">polinom oszcillálhat</span> az alappontok között</li>
+                        <li>Az alappontok <span class="highlight">elhelyezkedése kritikus</span> a közelítés minősége szempontjából</li>
+                        <li>Nagy számú pont esetén <span class="highlight">numerikus instabilitások</span> léphetnek fel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>5. Numerikus integrálás</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Numerikus integrálás alapjai</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a numerikus integrálás célja?</span> A feladat egy f függvény <span class="highlight">határozott integráljának közelítése</span> az [a, b] intervallumon, amikor a határozatlan integrált nem ismerjük, de a függvényértékeket ki tudjuk számolni.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Milyen feltételekkel dolgozunk?</span></p>
+                    <ul>
+                        <li>Az f függvény <span class="highlight">határozatlan integrálját nem ismerjük</span></li>
+                        <li>Adott x-re az <span class="highlight">f(x) függvényérték kiszámítható</span> (akár közelítően is)</li>
+                        <li>A függvény <span class="highlight">integrálható</span> az adott intervallumon</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Mikor alkalmazzuk?</span></p>
+                    <ul>
+                        <li>Amikor a függvény <span class="highlight">primitív függvénye nem ismert</span></li>
+                        <li>Amikor csak <span class="highlight">diszkrét pontokban ismerjük</span> a függvényértékeket</li>
+                        <li>Amikor a <span class="highlight">határozatlan integrál túl bonyolult</span> a közvetlen számításhoz</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kvadratúra-formula</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a kvadratúra-formula?</span> Egy olyan formula, amely az integrált <span class="highlight">véges sok függvényérték súlyozott összegével</span> közelít az [a, b] intervallumon.</p>
+
+                <div class="step">
+                    <p><span class="key-point">A kvadratúra-formula lépései:</span></p>
+                    <ol>
+                        <li><span class="highlight">Alappontok meghatározása:</span> x₁, ..., xₙ pontok az [a, b] intervallumban</li>
+                        <li><span class="highlight">Súlyok hozzárendelése:</span> Minden xᵢ alapponthoz egy wᵢ súly</li>
+                        <li><span class="highlight">Súlyozott összeg számítása:</span> Qₙ(f) = Σ wᵢf(xᵢ)</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Téglalap szabály:</span></p>
+                    <ul>
+                        <li>A <span class="highlight">legegyszerűbb kvadratúra-formula</span></li>
+                        <li>Egyetlen alappontot használ: az <span class="highlight">intervallum felezőpontját</span></li>
+                        <li>A súly értéke: <span class="highlight">w₁ = b - a</span></li>
+                        <li>Formula: <span class="highlight">(b-a)f((a+b)/2)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Téglalap szabály</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi a téglalap szabály?</span> A legegyszerűbb kvadratúra-formula, ahol <span class="highlight">egyetlen alappontot</span> használunk.</p>
+
+                <div class="step">
+                    <p><span class="key-point">A módszer jellemzői:</span></p>
+                    <ul>
+                        <li>Az <span class="highlight">intervallum felezőpontját</span> választjuk alappontnak</li>
+                        <li>A súly az <span class="highlight">intervallum mérete</span> (b - a)</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Geometriai értelmezés:</span></p>
+                    <ul>
+                        <li>A formula: <span class="highlight">(b-a)f((a+b)/2)</span></li>
+                        <li>A formula egy <span class="highlight">téglalap területét</span> adja meg</li>
+                        <li>A téglalap <span class="highlight">szélessége: w₁ = b - a</span></li>
+                        <li>A téglalap <span class="highlight">magassága: f((a+b)/2)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="algorithm">
+            <h2>Interpolációs kvadratúra</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <p><span class="key-point">Mi az interpolációs kvadratúra?</span> Olyan kvadratúra-formula, ahol az (xᵢ, f(xᵢ)) pontokra <span class="highlight">Lagrange-interpolációs polinomot</span> illesztünk.</p>
+
+                <div class="step">
+                    <p><span class="key-point">Lagrange interpolációs megközelítés:</span></p>
+                    <ul>
+                        <li><span class="highlight">x₁, …, xₙ alappontok meghatározása</span> a módszertől függően</li>
+                        <li>A (xᵢ, f(xᵢ)) pontokra <span class="highlight">Lagrange-interpolációs polinom illesztése</span></li>
+                        <li>Az interpolációs polinom <span class="highlight">integráljának kiszámítása</span> az [a, b] intervallumon</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Fontosabb módszerek:</span></p>
+                    <ul>
+                        <li><span class="highlight">Trapéz szabály:</span> Lineáris interpoláció két pont között</li>
+                        <li><span class="highlight">Simpson szabály:</span> Másodfokú polinom illesztése három pontra</li>
+                        <li><span class="highlight">Gauss-kvadratúra:</span> Optimálisan választott alappontok és súlyok</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Pontosság növelése:</span></p>
+                    <ul>
+                        <li><span class="highlight">Intervallum felosztása:</span> Kisebb részintervallumokra bontás</li>
+                        <li><span class="highlight">Adaptív módszerek:</span> A felosztás sűrítése ott, ahol nagyobb a hiba</li>
+                        <li><span class="highlight">Magasabb fokú közelítések:</span> Több pont használata a pontosság növelésére</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-topic" onclick="toggleMainContent(this)">
+        <h2>6. Összefoglaló</h2>
+    </div>
+    <div class="main-content">
+        <div class="algorithm">
+            <h2>Gyökkeresési módszerek áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Newton (érintő) módszer:</span></p>
+                    <ul>
+                        <li><span class="highlight">Képlet:</span> xₖ₊₁ = xₖ − [f(xₖ) / f'(xₖ)]</li>
+                        <li><span class="highlight">Előny:</span> Gyors konvergencia</li>
+                        <li><span class="highlight">Hátrány:</span> Derivált számítása szükséges</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Szelő módszer:</span></p>
+                    <ul>
+                        <li><span class="highlight">Működés:</span> Két pont közötti szelő és x tengely metszéspontja</li>
+                        <li><span class="highlight">Előny:</span> Nem kell derivált</li>
+                        <li><span class="highlight">Hátrány:</span> Lassabb konvergencia</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Húr módszer:</span></p>
+                    <ul>
+                        <li><span class="highlight">Jellemző:</span> Ellentétes előjelű függvényértékekkel dolgozik</li>
+                        <li><span class="highlight">Előny:</span> Garantált konvergencia</li>
+                        <li><span class="highlight">Konvergencia sorrend:</span> Newton > Húr > Szelő</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Konjugált gradiens módszer összefoglalása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Fő jellemzők:</span></p>
+                    <ul>
+                        <li><span class="highlight">Cél:</span> Lineáris egyenletrendszerek megoldása</li>
+                        <li><span class="highlight">Alapelv:</span> A-ortogonális keresési irányok használata</li>
+                        <li><span class="highlight">Optimalizálás:</span> Lépésköz direkt számítható</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Algoritmus lényege:</span></p>
+                    <ul>
+                        <li><span class="highlight">Iteratív módszer</span></li>
+                        <li><span class="highlight">Automatikus lépésköz</span> meghatározás</li>
+                        <li><span class="highlight">Gyors konvergencia</span> megfelelő feltételek mellett</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Lagrange interpoláció áttekintése</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Alapkoncepció:</span></p>
+                    <ul>
+                        <li><span class="highlight">Cél:</span> Pontokra illesztett polinom meghatározása</li>
+                        <li><span class="highlight">Feltétel:</span> Páronként különböző alappontok</li>
+                        <li><span class="highlight">Eredmény:</span> n-1-edfokú interpolációs polinom</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Alkalmazási terület:</span></p>
+                    <ul>
+                        <li><span class="highlight">Függvényközelítés</span> diszkrét pontokban</li>
+                        <li><span class="highlight">Interpoláció</span> vs. extrapoláció megkülönböztetése</li>
+                        <li><span class="highlight">Vandermonde-mátrix</span> szerepének megértése</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Numerikus integrálás összefoglalása</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Kvadratúra-formulák:</span></p>
+                    <ul>
+                        <li><span class="highlight">Alapelv:</span> Súlyozott összeg használata</li>
+                        <li><span class="highlight">Téglalap szabály:</span> Legegyszerűbb közelítés</li>
+                        <li><span class="highlight">Interpolációs kvadratúra:</span> Pontosabb közelítés</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Gyakorlati alkalmazás:</span></p>
+                    <ul>
+                        <li><span class="highlight">Határozatlan integrál</span> nem szükséges</li>
+                        <li><span class="highlight">Függvényértékek</span> ismerete elegendő</li>
+                        <li><span class="highlight">Közelítő számítások</span> elfogadhatók</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="algorithm">
+            <h2>Kapcsolódó fogalmak és módszerek</h2>
+            <p class="toggle-content">További részletek <i class="fas fa-chevron-down"></i></p>
+            <div class="content">
+                <div class="step">
+                    <p><span class="key-point">Alapvető fogalmak:</span></p>
+                    <ul>
+                        <li><span class="highlight">Függvény deriváltja:</span> Érintő meredeksége</li>
+                        <li><span class="highlight">Zérushelyek típusai:</span> Egyszeres, izolált</li>
+                        <li><span class="highlight">Konvergencia:</span> Különböző módszerek sebessége</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <p><span class="key-point">Gyakorlati szempontok:</span></p>
+                    <ul>
+                        <li><span class="highlight">Módszerválasztás:</span> Feladat jellegétől függ</li>
+                        <li><span class="highlight">Számítási igény:</span> Különböző komplexitású megoldások</li>
+                        <li><span class="highlight">Pontosság vs. sebesség:</span> Kompromisszumok mérlegelése</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="../assets/js/tetel.js"></script>
 </body>
 </html>
